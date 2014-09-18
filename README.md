@@ -55,3 +55,10 @@ Project Plan
 [LLVM IR]: http://llvm.org/docs/LangRef.html
 [bitcode]: http://llvm.org/docs/BitCodeFormat.html
 [AST]: https://en.wikipedia.org/wiki/Abstract_syntax_tree
+
+public domain
+-------------
+
+This paper is hereby released into the *[public domain][]*.
+
+[public domain]: https://creativecommons.org/publicdomain/zero/1.0/
