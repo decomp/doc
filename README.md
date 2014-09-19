@@ -13,9 +13,9 @@ Project Plan
 1. ~~Register a [dedicated GitHub organization][] to keep track of all
    repositories related to the project.~~
 2. Investigate [which][CI] Continuous Integration services to use for:
-	- compilation status for commits and pull requests (SUCCESS/FAILURE)
-	- test cases (PASS/FAIL)
-	- code coverage (percentage)
+	- ~~[compilation status][travis] for commits and pull requests (SUCCESS/FAILURE)~~
+	- ~~[test cases][travis] (PASS/FAIL)~~
+	- ~~[code coverage][coveralls] (percentage)~~
 	- benchmarks?
 3. Make use of [Semantic Versioning][] from day one.
 4. Search for relevant literature.
@@ -51,6 +51,8 @@ Project Plan
 
 [dedicated GitHub organization]: https://github.com/mewrev
 [CI]: https://jmcvetta.github.io/blog/2013/08/30/continuous-integration-for-go-code/
+[travis]: https://travis-ci.org/
+[coveralls]: https://coveralls.io/
 [Semantic Versioning]: http://semver.org/
 [LLVM IR]: http://llvm.org/docs/LangRef.html
 [bitcode]: http://llvm.org/docs/BitCodeFormat.html
