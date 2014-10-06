@@ -19,15 +19,27 @@
 
 \maketitle
 
+\begin{abstract}
+TODO
+\end{abstract}
+
 \pagebreak
 
 \tableofcontents
 
 \pagebreak
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Introduction
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 % === [ Introduction ] =========================================================
 
 \section{Introduction}
+
+% --- [ Background ] -----------------------------------------------------------
+
+\subsection{Background}
 
 A compiler is a piece of software which translates human readable high-level
 programming languages (e.g. C) to machine readable low-level languages (e.g.
@@ -37,7 +49,262 @@ other way around. This paper introduces the concept of decompilation (originally
 referred to as reverse compilation \cite{rev_comp}) which moves in the opposite
 direction by lifting code from a low-level to a high-level representation.
 
+% --- [ Purpose ] --------------------------------------------------------------
+
+\subsection{Purpose}
+
+% --- [ Project Deliverables ] -------------------------------------------------
+
+\subsection{Project Deliverables}
+
+The source code and the report of this project have been released into the
+public domain \cite{CC0}, and are made available at:
+\begin{itemize}
+	\item \url{https://github.com/mewlang/llvm}
+	\item \url{https://github.com/mewpaper/decompilation}
+\end{itemize}
+
+% --- [ Disposition ] ----------------------------------------------------------
+
+\subsection{Disposition}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Literature Review
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% === [ Literature Review ] ====================================================
+
+\section{Literature Review}
+
+% --- [ Terminology ] ----------------------------------------------------------
+
+\subsection{Terminology}
+
+
+% ~~~ [ Intermediate Representation ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{Intermediate Representation}
+
+% ~~~ [ Static Single Assignment Form ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{Static Single Assignment Form}
+
+% ~~~ [ Control Flow Graph ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+% TODO: Control-Flow Graphs or Control Flow Graphs?
+
+\subsubsection{Control Flow Graph}
+
+% ~~~ [ Abstract Syntax Tree ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{Abstract Syntax Tree}
+
+% --- [ Decompilation Phases ] -------------------------------------------------
+
+\subsection{Decompilation Phases}
+
+% TODO: Make sure the word hallmark can be used in this context.
+
+The following decompilation phases have been outlined by Cristina Cifuentes in
+her hallmark paper ``Reverse Compilation Techniques'' \cite{rev_comp}.
+
+% ~~~ [ Syntax Analysis ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{Syntax Analysis}
+
+% ~~~ [ Semantic Analysis ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{Semantic Analysis}
+
+% ~~~ [ Intermediate Code Generation ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{Intermediate Code Generation}
+
+% ~~~ [ Control Flow Graph Generation ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{Control Flow Graph Generation}
+
+% ~~~ [ Data Flow Analysis ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{Data Flow Analysis}
+
+% ~~~ [ Control Flow Analysis ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{Control Flow Analysis}
+
+% === [ Related Work ] =========================================================
+
+\section{Related Work}
+
+% --- [ Academic Prototypes ] --------------------------------------------------
+
+\subsection{Academic Prototypes}
+
+% ~~~ [ The dcc Decompiler ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{The \texttt{dcc} Decompiler}
+
+\cite{rev_comp}
+
+% ~~~ [ The opencl Decompiler ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{The \texttt{opencl} Decompiler}
+
+\cite{decomp_llvm}
+
+% --- [ Open Source Projects ] -------------------------------------------------
+
+\subsection{Open Source Projects}
+
+% ~~~ [ Boomerang ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{Boomerang}
+
+\cite{boomerang}
+
+% ~~~ [ radare ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{radare}
+
+\cite{radare}
+
+% --- [ Commercial Products ] --------------------------------------------------
+
+\subsection{Commercial Products}
+
+% TODO: Add Mac-specific Decompiler.
+
+% ~~~ [ The Interactive Disassembler ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{The Interactive Disassembler}
+
+% ~~~ [ Hex-Rays Decompiler ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{Hex-Rays Decompiler}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Design and Implementation
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% === [ Requirements ] =========================================================
+
+\section{Requirements}
+
+% === [ Methodology ] ==========================================================
+
+\section{Methodology}
+
+% --- [ Evolutionary Development and Throwaway Prototyping ] -------------------
+
+\subsection{Evolutionary Development and Throwaway Prototyping}
+
+% ~~~ [ Revision Control System ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{Revision Control System}
+
+% --- [ Public Issue Tracking ] ------------------------------------------------
+
+\subsection{Public Issue Tracking}
+
+% --- [ Continuous Integration ] -----------------------------------------------
+
+\subsection{Continuous Integration}
+
+% --- [ Test Driven Design ] ---------------------------------------------------
+
+\subsection{Test Driven Design}
+
+% === [ Design ] ===============================================================
+
+\section{Design}
+
+% --- [ Choice of Programming Language ] ---------------------------------------
+
+\subsection{Choice of Programming Language}
+
+% TODO: Mention software composition.
+
+% --- [ Choice of Intermediate Representation ] --------------------------------
+
+% TODO: Find synonym for "Choice of".
+
+\subsection{Choice of Intermediate Representation}
+
+% --- [ Decompiler Pipeline ] --------------------------------------------------
+
+\subsection{Decompiler Pipeline}
+
+% --- [ System Architecture ] --------------------------------------------------
+
+\subsection{System Architecture}
+
+% TODO: Mention package division.
+
+% === [ Development ] ==========================================================
+
+\section{Development}
+
+% --- [ TODO ] ------------------------------------------------------------
+
+\subsection{TODO}
+
+% --- [ Testing ] --------------------------------------------------------------
+
+\subsection{Testing}
+
+% ~~~ [ Fuzzing the LLVM IR Parser ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{Fuzzing the LLVM IR Parser}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Evaluation and Conclusion
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% === [ Evaluation ] ===========================================================
+
+\section{Evaluation}
+
+% --- [ Evaluation against Requirements ] --------------------------------------
+
+\subsection{Evaluation against Requirements}
+
+% --- [ Third Party Adaptation ] -----------------------------------------------
+
+\subsection{Third Party Adaptation}
+
+% --- [ Profiling and Benchmarks ] ---------------------------------------------
+
+\subsection{Profiling and Benchmarks}
+
+% === [ Future Work ] ==========================================================
+
+\section{Future Work}
+
+% === [ Conclusion ] ===========================================================
+
+\section{Conclusion}
+
+% --- [ Introduction ] ---------------------------------------------------------
+
+\subsection{Introduction}
+
+% --- [ Personal Reflections ] -------------------------------------------------
+
+\subsection{Personal Reflections}
+
+% --- [ Personal Development ] -------------------------------------------------
+
+\subsection{Personal Development}
+
+% --- [ Final Thoughts ] -------------------------------------------------------
+
+\subsection{Final Thoughts}
+
 \pagebreak
+
+% === [ References ] ===========================================================
+
+\section{References}
 
 \bibliography{references}
 
