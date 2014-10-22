@@ -45,13 +45,7 @@ TODO
 
 \subsection{Background}
 
-A compiler is a piece of software which translates human readable high-level
-programming languages (e.g. C) to machine readable low-level languages (e.g.
-Assembly). In the usual flow of compilation, code is lowered through a set of
-transformations from a high-level to a low-level representation. This paper
-introduces the concept of decompilation (originally referred to as reverse
-compilation \cite{rev_comp}) which moves in the opposite direction by lifting
-code from a low-level to a high-level representation.
+A compiler is a piece of software which translates human readable high-level programming languages (e.g. C) to machine readable low-level languages (e.g. Assembly). In the usual flow of compilation, code is lowered through a set of transformations from a high-level to a low-level representation. This paper introduces the concept of decompilation (originally referred to as reverse compilation \cite{rev_comp}) which moves in the opposite direction by lifting code from a low-level to a high-level representation.
 
 % TODO: Find a good place to write about the applications of decompilation;
 %    automated vuln audit \cite{vuln_audit}, etc.
@@ -60,50 +54,30 @@ code from a low-level to a high-level representation.
 
 \subsection{Project Aim and Objectives}
 
-The aim of this project is to facilitate decompilation workflows using
-composition of language-agnostic decompilation passes; specifically the
-reconstruction of high-level control structures and, as a future ambition,
-expressions.
+The aim of this project is to facilitate decompilation workflows using composition of language-agnostic decompilation passes; specifically the reconstruction of high-level control structures and, as a future ambition, expressions.
 
 In order to achieve this aim, the author will:
-
 \begin{enumerate}
-	\item Review traditional decompilation techniques, including control flow
-analysis and data flow analysis.
-	\item Critically evaluate a set of Intermediate Representations (IR), which
-describes low-, medium- and high-level language semantics, to identify one or
-more suitable for the decompilation pipeline.
-	\item Analyze the formal grammar (language specification) of the IR to verify
-that it is unambiguous. If the grammar is ambiguous or if no formal grammar
-exists, produce a formal grammar. This objective is critical for
-language-independence, as the IR works as a bridge between different programming
-languages.
-	\item Determine if any existing library for the IR satisfies our
-requirements; and if not develop one. The requirements would include a suitable
-in-memory representation, and support for on-disk file storage and arbitrary
-manipulations (inject, delete, etc) of the IR.
-	\item Design and develop components which identify the structural patterns of
-high-level control structures using control flow analysis of the IR.
-	\item Develop tools which perform one or more decompilation passes on a given
-IR. The tools will be reusable by other programming language environments as
-their input and output is specified by a formally defined IR.
-	\item As a future ambition, design and develop components which perform
-expression propagation using data flow analysis of the IR.
+	\item Review traditional decompilation techniques, including control flow analysis and data flow analysis.
+	\item Critically evaluate a set of Intermediate Representations (IR), which describes low-, medium- and high-level language semantics, to identify one or more suitable for the decompilation pipeline.
+	\item Analyze the formal grammar (language specification) of the IR to verify that it is unambiguous. If the grammar is ambiguous or if no formal grammar exists, produce a formal grammar. This objective is critical for language-independence, as the IR works as a bridge between different programming languages.
+	\item Determine if any existing library for the IR satisfies our requirements; and if not develop one. The requirements would include a suitable in-memory representation, and support for on-disk file storage and arbitrary manipulations (inject, delete, etc) of the IR.
+	\item Design and develop components which identify the structural patterns of high-level control structures using control flow analysis of the IR.
+	\item Develop tools which perform one or more decompilation passes on a given IR. The tools will be reusable by other programming language environments as their input and output is specified by a formally defined IR.
+	\item As a future ambition, design and develop components which perform expression propagation using data flow analysis of the IR.
 \end{enumerate}
 
 % --- [ Deliverables ] ---------------------------------------------------------
 
 \subsection{Deliverables}
 
-The source code and the report of this project have been released into the
-public domain \cite{cc0}, and are made available at:
+The source code and the report of this project have been released into the public domain \cite{cc0} and are made available at:
 \begin{itemize}
 	\item \url{https://github.com/mewlang/llvm}
 	\item \url{https://github.com/mewpaper/decompilation}
 \end{itemize}
 
-% TODO: Specify the deliverables of the project after the development phase has
-% finished. Use the text below as a basis.
+% TODO: Specify the deliverables of the project after the development phase has finished. Use the text below as a basis.
 %
 % The following documents have been produced:
 % * Project report.
@@ -111,10 +85,8 @@ public domain \cite{cc0}, and are made available at:
 %
 % The following system artifacts have been developed:
 % * Library for interacting with LLVM IR; refer to objective 4.
-% * Library for reconstructing high- level control structures from LLVM IR;
-%   refer to objective 5.
-% * Tool for performing one or more decompilation passes on a given IR; refer to
-%   objective 6.
+% * Library for reconstructing high- level control structures from LLVM IR; refer to objective 5.
+% * Tool for performing one or more decompilation passes on a given IR; refer to objective 6.
 
 % --- [ Disposition ] ----------------------------------------------------------
 
