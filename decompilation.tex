@@ -1,4 +1,5 @@
-% TODO: s/artifact/artefact/
+% TODO: Use British and not Amarican English:
+%    s/artifact/artefact/
 
 \documentclass[12pt, a4paper]{article}
 
@@ -9,9 +10,10 @@
 \usepackage[margin=1in]{geometry}
 \usepackage[parfill]{parskip}
 \usepackage[hidelinks]{hyperref}
+\usepackage{graphicx}
 \bibliographystyle{ieeetr}
 
-\title{Compositional Decompilation} % TODO: This title will change.
+\title{Compositional Decompilation} % TODO: This title may change.
 \author{Robin Eklind}
 \date{2014-10-04}
 
@@ -151,10 +153,19 @@ public domain \cite{cc0}, and are made available at:
 
 \subsection{Decompilation Phases}
 
-% TODO: Make sure the word hallmark can be used in this context.
+A core principle utilized in decompilers is the separation of concern through the use of abstractions, and a lot of work involves translating into and breaking out of various abstraction layers. In general a decompiler is composed of distinct phases which parses, analyzes or transforms the input. These phases are conceptually grouped into three modules to separate concerns regarding source machine language and target programming language. The front-end module parses object files and translates their platform dependent assembly into a platform independent intermediate representation (IR). The middle-end module performs a set of decompilation passes to lift the IR, from a low-level to a high-level representation, by reconstruction high-level control structures and expressions. Finally the back-end module translates the high-level IR to a specific target programming language. Figure \ref{overview} gives an overview of the decompilation modules and visualizes their relationship.
 
-The following decompilation phases have been outlined by Cristina Cifuentes in
-her hallmark paper ``Reverse Compilation Techniques'' \cite{rev_comp}.
+\begin{figure}[htbp]
+	\includegraphics[width=\textwidth]{inc/overview.png}
+	\caption{The front-end module accepts several object file formats (PE, ELF, …) as input and translates their platform dependent assembly (x86, ARM, …) to a low-level IR. The middle-end module then lifts the low-level IR to a high-level IR through a set of decompilation passes. Finally the backend-module translates the high-level IR into one of several target programming languages (C, Go, Python, …).}
+	\label{overview}
+\end{figure}
+
+The remainder of this section describes the distinct decompilation phases, most of which have been outlined by Cristina Cifuentes in her influential paper ``Reverse Compilation Techniques'' \cite{rev_comp}.
+
+% ~~~ [ Object File Analysis ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{Object File Analysis}
 
 % ~~~ [ Syntax Analysis ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -315,6 +326,14 @@ her hallmark paper ``Reverse Compilation Techniques'' \cite{rev_comp}.
 % --- [ Formal Grammar of LLVM IR ] --------------------------------------------
 
 \subsection{Formal Grammar of LLVM IR}
+
+% --- [ Documentation ] --------------------------------------------------------
+
+\subsection{Documentation}
+
+% --- [ Ideomatic Language Use ] -----------------------------------------------
+
+\subsection{Ideomatic Language Use}
 
 % --- [ TODO ] -----------------------------------------------------------------
 
