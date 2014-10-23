@@ -1,5 +1,8 @@
-% TODO: Use British and not Amarican English:
-%    s/artifact/artefact/
+% TODO: Use British and not American English:
+%    * s/artifact/artefact/
+%    * Too many commas. Read about best practices.
+% TODO: Proof read for common mistakes:
+%    * exist vs exists.
 
 \documentclass[12pt, a4paper]{article}
 
@@ -134,21 +137,40 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 \subsection{Decompilation Phases}
 
-A core principle utilized in decompilers is the separation of concern through the use of abstractions, and a lot of work involves translating into and breaking out of various abstraction layers. In general a decompiler is composed of distinct phases which parses, analyzes or transforms the input. These phases are conceptually grouped into three modules to separate concerns regarding source machine language and target programming language. The front-end module parses object files and translates their platform dependent assembly into a platform independent intermediate representation (IR). The middle-end module performs a set of decompilation passes to lift the IR, from a low-level to a high-level representation, by reconstruction high-level control structures and expressions. Finally the back-end module translates the high-level IR to a specific target programming language. Figure \ref{overview} gives an overview of the decompilation modules and visualizes their relationship.
+A core principle utilized in decompilers is the separation of concern through the use of abstractions, and a lot of work involves translating into and breaking out of various abstraction layers. In general a decompiler is composed of distinct phases which parses, analyzes or transforms the input. These phases are conceptually grouped into three modules to separate concerns regarding source machine language and target programming language. The front-end module parses executable files and translates their platform dependent assembly into a platform independent intermediate representation (IR). The middle-end module performs a set of decompilation passes to lift the IR, from a low-level to a high-level representation, by reconstruction high-level control structures and expressions. Finally the back-end module translates the high-level IR to a specific target programming language. Figure \ref{overview} gives an overview of the decompilation modules and visualizes their relationship.
 
 \begin{figure}[htbp]
 	\includegraphics[width=\textwidth]{inc/overview.png}
-	\caption{The front-end module accepts several object file formats (PE, ELF, …) as input and translates their platform dependent assembly (x86, ARM, …) to a low-level IR. The middle-end module then lifts the low-level IR to a high-level IR through a set of decompilation passes. Finally the backend-module translates the high-level IR into one of several target programming languages (C, Go, Python, …).}
+	\caption{The front-end module accepts several executable file formats (PE, ELF, …) as input and translates their platform dependent assembly (x86, ARM, …) to a low-level IR. The middle-end module then lifts the low-level IR to a high-level IR through a set of decompilation passes. Finally the backend-module translates the high-level IR into one of several target programming languages (C, Go, Python, …).}
 	\label{overview}
 \end{figure}
 
 The remainder of this section describes the distinct decompilation phases, most of which have been outlined by Cristina Cifuentes in her influential paper ``Reverse Compilation Techniques'' \cite{rev_comp}.
 
-% ~~~ [ Object File Analysis ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~ [ Executable File Analysis ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-\subsubsection{Object File Analysis}
+\subsubsection{Executable File Analysis}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+The representation of executables, shared libraries and object code is standardized by a variety of file formats which provides encapsulation of assembly instructions and data. Two such formats are the Portable Executable (PE) file format and the Executable and Linkable Format (ELF), which are used by Windows and Linux respectively. Both formats partition executable code and data into sections and assign appropriate access permissions to each section. The most commonly used sections are summarized in table \ref{sections}. In general no single section has both write and execute permissions as this could compromise the security of the system.
+
+\begin{table}
+	\begin{center}
+		\begin{tabular}{|l|l|l|}
+			\hline
+			Section name & Usage description & Access permissions \\
+			\hline
+			\texttt{.text} & Assembly instructions & \texttt{r-x} \\
+			\texttt{.rodata} & Read-only data & \texttt{r--} \\
+			\texttt{.data} & Data & \texttt{rw-} \\
+			\texttt{.bss} & Uninitialized data & \texttt{rw-} \\
+			\hline
+		\end{tabular}
+	\end{center}
+	\caption{The \texttt{.text} section contains executable code while the \texttt{.rodata}, \texttt{.data} and \texttt{.bss} sections contains data in various forms.}
+	\label{sections}
+\end{table}
+
+TODO: continue here.
 
 % ~~~ [ Syntax Analysis ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
