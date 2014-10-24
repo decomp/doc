@@ -133,6 +133,12 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
+% --- [ Dissection of an Executable ] ------------------------------------------
+
+\subsection{Dissection of an Executable}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
 % --- [ Decompilation Phases ] -------------------------------------------------
 
 \subsection{Decompilation Phases}
@@ -151,9 +157,9 @@ The remainder of this section describes the distinct decompilation phases, most 
 
 \subsubsection{Executable File Analysis}
 
-The representation of executables, shared libraries and object code is standardized by a variety of file formats which provides encapsulation of assembly instructions and data. Two such formats are the Portable Executable (PE) file format and the Executable and Linkable Format (ELF), which are used by Windows and Linux respectively. Both formats partition executable code and data into sections and assign appropriate access permissions to each section. The most commonly used sections are summarized in table \ref{sections}. In general no single section has both write and execute permissions as this could compromise the security of the system.
+The representation of executables, shared libraries and object code is standardized by a variety of file formats which provides encapsulation of assembly instructions and data. Two such formats are the Portable Executable (PE) file format and the Executable and Linkable Format (ELF), which are used by Windows and Linux respectively. Both of these formats partition executable code and data into sections and assign appropriate access permissions to each section, as summarized by table \ref{sections}. In general no single section has both write and execute permissions as this could compromise the security of the system.
 
-\begin{table}
+\begin{table}[htbp]
 	\begin{center}
 		\begin{tabular}{|l|l|l|}
 			\hline
@@ -166,7 +172,7 @@ The representation of executables, shared libraries and object code is standardi
 			\hline
 		\end{tabular}
 	\end{center}
-	\caption{The \texttt{.text} section contains executable code while the \texttt{.rodata}, \texttt{.data} and \texttt{.bss} sections contains data in various forms.}
+	\caption{A summary of the most commonly used sections in ELF files. The \texttt{.text} section contains executable code while the \texttt{.rodata}, \texttt{.data} and \texttt{.bss} sections contains data in various forms.}
 	\label{sections}
 \end{table}
 
