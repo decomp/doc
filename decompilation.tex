@@ -135,9 +135,13 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 % --- [ Dissection of an Executable ] ------------------------------------------
 
+% TODO: Change section header to Anatomy of an Executable?
+
 \subsection{Dissection of an Executable}
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+\cite{elf_dissection}
 
 % --- [ Decompilation Phases ] -------------------------------------------------
 
@@ -154,6 +158,8 @@ A core principle utilized in decompilers is the separation of concern through th
 The remainder of this section describes the distinct decompilation phases, most of which have been outlined by Cristina Cifuentes in her influential paper ``Reverse Compilation Techniques'' \cite{rev_comp}.
 
 % ~~~ [ Executable File Analysis ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+% TODO: Rename to Binary Analysis?
 
 \subsubsection{Executable File Analysis}
 
@@ -248,9 +254,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 \subsubsection{\texttt{C-Decompiler}}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-
-\cite{readable_decomp}
+The \texttt{C-Decompiler} translates machine code into C source code. It focuses primarily on improving the readability of the generated C source code, and does so by extending the traditional decompilation techniques outlined by Cristina Cifuentes in three ways. Firstly, the data flow analysis phase is refined using a shadow stack, which corresponds to a virtual stack capable of tracking stack variables and updates to the stack pointer register. Secondly, the register propagation algorithms are adapted to handle use-def chains across multiple basic blocks. Lastly, library signatures are generated for the C++ Standard Template Library \cite{readable_decomp}.
 
 % ~~~ [ The REcompile Decompilation Framework ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
