@@ -3,10 +3,10 @@ all: decompilation
 decompilation: graphs
 	texi2pdf -q -c $@.tex
 
-graphs: inc/overview.png
+graphs: inc/modules_overview.png
 
-inc/overview.png:
-	dot -Tpng -o inc/overview.png inc/overview.dot
+inc/modules_overview.png:
+	dot -Tpng -o inc/modules_overview.png inc/modules_overview.dot
 
 clean:
 	rm -f *.aux *.log *.out *.toc
