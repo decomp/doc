@@ -164,31 +164,33 @@ The representation of executables, shared libraries and relocatable object code 
 	\label{sections}
 \end{table}
 
-To gain a better understanding of the anatomy of executables the remainder of this section describes the structure of ELF files and presents the dissection of a simple \textit{``hello world''} ELF executable. Although the ELF and PE file formats differs with regards to specific details, the general principles are applicable to both formats.
+To gain a better understanding of the anatomy of executables the remainder of this section describes the structure of ELF files and presents the dissection of a simple \textit{``hello world''} ELF executable, largely inspired by Eric Youngdale's article on \textit{``The ELF Object File Format by Dissection''} \cite{elf_dissection}. Although the ELF and PE file formats differs with regards to specific details, the general principles are applicable to both formats.
 
 In general ELF files consists of a file header, zero or more program headers, zero or more section headers and data referred to by the program or section headers, as depicted in figure \ref{elf_structure}.
 
 \begin{figure}[htbp]
 	\begin{center}
 		\includegraphics[width=0.5\textwidth]{inc/elf_structure.png}
-		\caption{The basic structure of an ELF file.}
+		\caption{The basic structure of an ELF file. \textit{License:} CC BY-SA \cite{elf_structure_orig}}
 		\label{elf_structure}
 	\end{center}
 \end{figure}
 
-All ELF files starts with the four byte identifier \texttt{0x7F}, \texttt{'E'}, \texttt{'L'}, \texttt{'F'} which marks the beginning of the ELF file header. The ELF file header contains general information about a binary, such as its object file type (executable, relocatable or shared object), its assembly architecture (x86-64, ARM, …), the virtual address of its entry point which indicates where program execution begins, and the file offsets to the program and section headers \cite{elf_dissection}.
+All ELF files starts with the four byte identifier \texttt{0x7F}, \texttt{'E'}, \texttt{'L'}, \texttt{'F'} which marks the beginning of the ELF file header. The ELF file header contains general information about a binary, such as its object file type (executable, relocatable or shared object), its assembly architecture (x86-64, ARM, …), the virtual address of its entry point which indicates the starting point of program execution, and the file offsets to the program and section headers.
 
-Each program header describes a segment of continuous memory by specifying its type (loadable program segment, dynamic linking information, …), size, file offset, access permissions and virtual address. Similarly each section header describes a section of continuous memory by specifying its name, type (string table, relocation entities, …), flags (writable, occupies memory during execution, …), size, file offset, virtual address, and alignment information.
-
-In general segments are used by the linker to load the executable into memory with correct access permissions, while sections are used by the compiler to categorize data and instructions. Therefore the program headers are optional for relocatable and shared objects while, the section headers are optional for executables.
+Each program header describes a segment of continuous memory by specifying its type (loadable program segment, dynamic linking information, …), size, file offset, access permissions and virtual address. Similarly each section header describes a section of continuous memory by specifying its name, type (string table, relocation entities, …), flags (writable, occupies memory during execution, …), size, file offset, virtual address, and alignment information. In general segments are used by the linker to load an executable into memory with correct access permissions, while sections are used by the compiler to categorize data and instructions. Therefore the program headers are optional for relocatable and shared objects, while the section headers are optional for executables.
 
 \begin{figure}[htbp]
 	\begin{center}
 		\includegraphics[width=\textwidth]{inc/elf_dissection.png}
-		\caption{The entire contents of a simple \textit{``hello world''} ELF executable with color-coded sections, segments and program headers.}
+		\caption{The entire contents of a simple \textit{``hello world''} ELF executable with color-coded file offsets, sections, segments and program headers, where each file offset is 8 bytes in width and colored using a darker shade of its corresponding segment, section or program header.}
 		\label{elf_dissection}
 	\end{center}
 \end{figure}
+
+To further investigate the structure of ELF files a simple 64-bit \textit{``hello world''} executable has been dissected and its content color-coded. Each file offset of the executable consists of 8 bytes and is denoted in figure \ref{elf_dissection} with a darker shade of the color used by its corresponding target segment, section or program header. Starting at the middle of the ELF file header, at offset \texttt{0x20}, is the file offset (red) to the program table (bright red). The program table contains five program headers which specify the size and file offsets of two sections and three segments, namely the \texttt{.interp} (gray) and \texttt{.dynamic} (purple) sections, a \textit{read-only} (blue), a \textit{read-write} (green) and a \textit{read-execute} (yellow) segment.
+
+Both the \texttt{.interp} and the \texttt{.dynamic} sections are used for dynamic linking, the former specifying the linker (in this case \textit{``/lib/ld64.so.1''}) and the latter an array of dynamic entries containing offsets and virtual addresses to relevant dynamic linking information. In this case the dynamic array specifies that \textit{``libc.so.6''} is a required library, and contains the virtual addresses to the dynamic string table, the dynamic symbol table, the Global Offset Table (GOT)/Prodecure Linkage Table (PLT), and the relocation entities of the PLT.
 
 % --- [ Decompilation Phases ] -------------------------------------------------
 
@@ -202,7 +204,7 @@ A core principle utilized in decompilers is the separation of concern through th
 	\label{modules_overview}
 \end{figure}
 
-The remainder of this section describes the distinct decompilation phases, most of which have been outlined by Cristina Cifuentes in her influential paper ``Reverse Compilation Techniques'' \cite{rev_comp}.
+The remainder of this section describes the distinct decompilation phases, most of which have been outlined by Cristina Cifuentes in her influential paper \textit{``Reverse Compilation Techniques''} \cite{rev_comp}.
 
 % ~~~ [ Binary Analysis ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
