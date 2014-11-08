@@ -188,7 +188,7 @@ Each program header describes a segment of continuous memory by specifying its t
 	\end{center}
 \end{figure}
 
-To further investigate the structure of ELF files a simple 64-bit \textit{``hello world''} executable has been dissected and its content color-coded. Each file offset of the executable consists of 8 bytes and is denoted in figure \ref{elf_dissection} with a darker shade of the color used by its corresponding target segment, section or program header. Starting at the middle of the ELF file header, at offset \texttt{0x20}, is the file offset (red) to the program table (bright red). The program table contains five program headers which specify the size and file offsets of two sections and three segments, namely the \texttt{.interp} (gray) and \texttt{.dynamic} (purple) sections, and a \textit{read-only} (blue), a \textit{read-write} (green) and a \textit{read-execute} (yellow) segment.
+To further investigate the structure of ELF files a simple 64-bit \textit{``hello world''} executable has been dissected and its content color-coded. Each file offset of the executable consists of 8 bytes and is denoted in figure \ref{elf_dissection} with a darker shade of the color used by its corresponding target segment, section or program header. Starting at the middle of the ELF file header, at offset \texttt{0x20}, is the file offset (red) to the program table (bright red). The program table contains five program headers which specify the size and file offsets of two sections and three segments, namely the \texttt{.interp} (gray) and the \texttt{.dynamic} (purple) sections, and a \textit{read-only} (blue), a \textit{read-write} (green) and a \textit{read-execute} (yellow) segment.
 
 Several sections are contained within the three segments. The \textit{read-only} segment contains the following sections:
 
@@ -210,14 +210,11 @@ The \textit{read-write} segment contains the following section:
 And the \textit{read-execute} segment contains the following sections:
 
 \begin{itemize}
-	\item \texttt{.plt}: Procedure and Linkage Table (PLT)
+	\item \texttt{.plt}: Procedure Linkage Table (PLT)
 	\item \texttt{.text}: executable code section
 \end{itemize}
 
-
-Both the \texttt{.interp} and the \texttt{.dynamic} sections are used for dynamic linking, the former specifying the linker (in this case \textit{``/lib/ld64.so.1''}) and the latter an array of dynamic entries containing offsets and virtual addresses to relevant dynamic linking information. In this case the dynamic array specifies that \textit{``libc.so.6''} is a required library, and contains the virtual addresses to the dynamic string table, the dynamic symbol table, the Global Offset Table (GOT) and Prodecure Linkage Table (PLT), and the relocation entities of the PLT. As noted, even a simple \textit{``hello world''} executable requires a large number of sections related to dynamic linking. Further analysis will reveal their relation to each other and describe their usage.
-
-% TODO: Check that interdependent can be used in this context.
+Seven out of the nine sections contained within the executable are directly related to dynamic linking. The \texttt{.interp} section specifies the linker (in this case \textit{``/lib/ld64.so.1''}) and the \texttt{.dynamic} section an array of dynamic entities containing offsets and virtual addresses to relevant dynamic linking information. In this case the dynamic array specifies that \textit{``libc.so.6''} is a required library, and contains the virtual addresses to the \texttt{.dynstr}, \texttt{.dynsym}, \texttt{.rela.plt} and \texttt{.got.plt} sections. As noted, even a simple \textit{``hello world''} executable requires a large number of sections related to dynamic linking. Further analysis will reveal their relation to each other and describe their usage.
 
 % --- [ Decompilation Phases ] -------------------------------------------------
 
