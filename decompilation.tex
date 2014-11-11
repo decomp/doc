@@ -14,6 +14,7 @@
 \usepackage[parfill]{parskip}
 \usepackage[hidelinks]{hyperref}
 \usepackage{graphicx}
+\usepackage{listings}
 \bibliographystyle{ieeetr}
 
 \title{Language-Agnostic Composition of Decompilation Components}
@@ -65,7 +66,7 @@ A compiler is a piece of software which translates human readable high-level pro
 
 \subsection{Project Aim and Objectives}
 
-The aim of this project is to facilitate decompilation workflows using composition of language-agnostic decompilation passes; specifically the reconstruction of high-level control structures and, as a future ambition, expressions.
+This project aims to facilitate decompilation workflows using composition of language-agnostic decompilation passes; specifically the reconstruction of high-level control structures and, as a future ambition, expressions.
 
 In order to achieve this aim, the author will:
 \begin{enumerate}
@@ -215,6 +216,26 @@ And the \textit{read-execute} segment contains the following sections:
 \end{itemize}
 
 Seven out of the nine sections contained within the executable are directly related to dynamic linking. The \texttt{.interp} section specifies the linker (in this case \textit{``/lib/ld64.so.1''}) and the \texttt{.dynamic} section an array of dynamic entities containing offsets and virtual addresses to relevant dynamic linking information. In this case the dynamic array specifies that \textit{``libc.so.6''} is a required library, and contains the virtual addresses to the \texttt{.dynstr}, \texttt{.dynsym}, \texttt{.rela.plt} and \texttt{.got.plt} sections. As noted, even a simple \textit{``hello world''} executable requires a large number of sections related to dynamic linking. Further analysis will reveal their relation to each other and describe their usage.
+
+The dynamic string table contains the names of libraries (e.g. \textit{``libc.so.6''}) and identifiers (e.g. \textit{``printf''}) which are required for dynamic linking. Other sections refer to these strings using offsets into \texttt{.dynstr}. One such section is the dynamic symbol table which declares an array of dynamic symbol entities, each specifying the name (e.g. offset to \textit{``printf''} in \texttt{.dynstr}) and binding information (global or local) of a dynamic symbol. Both the \texttt{.plt} and the \texttt{.rela.plt} sections refers to these dynamic symbols using array indicies.
+
+Taking a step back it is worth noting that the \textit(``printf'') and \textit{``exit''} functions of our \textit{``hello world''} executable are resolved during runtime using lazy dynamic linking. That is, they are not resolved when the executable is loaded but rather
+
+\begin{figure}[htbp]
+	\lstinputlisting[language={[x86masm]Assembler},xleftmargin=1cm,xrightmargin=1cm]{inc/elf_text.asm}
+	\caption{The assembly instructions of the \texttt{.text} section.}
+	\label{elf_text}
+\end{figure}
+
+\begin{figure}[htbp]
+	\lstinputlisting[language={[x86masm]Assembler},xleftmargin=1cm,xrightmargin=1cm]{inc/elf_plt.asm}
+	\caption{The x86-64 assembly instructions of the \texttt{.plt} section.}
+	\label{elf_plt}
+\end{figure}
+
+The \texttt{.rela.plt} section specifies the relocation entities of the Procedure Linkage Table (PLT). More specifically it contains the virtual address to the \textit{printf} and \textit{exit} functions in the Global Offset Table (GOT) of the PLT.
+
+To summarize, the execution of a dynamically linked executable can roughly be described as follows. First the kernel parses
 
 % --- [ Decompilation Phases ] -------------------------------------------------
 
