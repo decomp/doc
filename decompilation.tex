@@ -144,6 +144,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 % --- [ The Anatomy of an Executable ] -----------------------------------------
 
+% TODO: Store a markdown version of this section in the readme of the mewrev/dissection repo.
+
 \subsection{The Anatomy of an Executable}
 
 The representation of executables, shared libraries and relocatable object code is standardized by a variety of file formats which provides encapsulation of assembly instructions and data. Two such formats are the Portable Executable (PE) file format and the Executable and Linkable Format (ELF), which are used by Windows and Linux respectively. Both of these formats partition executable code and data into sections and assign appropriate access permissions to each section, as summarized by table \ref{sections}. In general no single section has both write and execute permissions as this could compromise the security of the system.
@@ -219,7 +221,7 @@ And the \textit{read-execute} segment contains the following sections:
 
 Seven out of the nine sections contained within the executable are directly related to dynamic linking. The \texttt{.interp} section specifies the linker (in this case \textit{``/lib/ld64.so.1''}) and the \texttt{.dynamic} section an array of dynamic entities containing offsets and virtual addresses to relevant dynamic linking information. In this case the dynamic array specifies that \textit{``libc.so.6''} is a required library, and contains the virtual addresses to the \texttt{.dynstr}, \texttt{.dynsym}, \texttt{.rela.plt} and \texttt{.got.plt} sections. As noted, even a simple \textit{``hello world''} executable requires a large number of sections related to dynamic linking. Further analysis will reveal their relation to each other and describe their usage.
 
-The dynamic string table contains the names of libraries (e.g. \textit{``libc.so.6''}) and identifiers (e.g. \textit{``printf''}) which are required for dynamic linking. Other sections refer to these strings using offsets into \texttt{.dynstr}. The dynamic symbol table declares an array of dynamic symbol entities, each specifying the name (e.g. offset to \textit{``printf''} in \texttt{.dynstr}) and binding information (local or global) of a dynamic symbol. Both the \texttt{.plt} and the \texttt{.rela.plt} sections refers to these dynamic symbols using array indicies.
+The dynamic string table contains the names of libraries (e.g. \textit{``libc.so.6''}) and identifiers (e.g. \textit{``printf''}) which are required for dynamic linking. Other sections refer to these strings using offsets into \texttt{.dynstr}. The dynamic symbol table declares an array of dynamic symbol entities, each specifying the name (e.g. offset to \textit{``printf''} in \texttt{.dynstr}) and binding information (local or global) of a dynamic symbol. Both the \texttt{.plt} and the \texttt{.rela.plt} sections refers to these dynamic symbols using array indicies. The \texttt{.rela.plt} section specifies the relocation entities of the PLT; more specifically it informs the linker of the virtual address to the \texttt{.printf} and \texttt{.exit} entities in the GOT.
 
 Lets take a step back for a moment and reflect on how dynamic linking is accomplished on a Linux system by reviewing the assembly instructions of the executable \texttt{.text} and \texttt{.plt} sections as outlined by figure \ref{elf_text} and \ref{elf_plt} respectively.
 
@@ -235,22 +237,11 @@ Lets take a step back for a moment and reflect on how dynamic linking is accompl
 	\label{elf_plt}
 \end{figure}
 
-As visualized in figure \ref{elf_text} the call instruction targets the \texttt{.printf} label of the PLT instead of the actual address of the \textit{printf} function in the \textit{libc.so.6} library. The Procedure Linkage Table (PLT) provides a level of indirection between call instructions and actual function (procedure) addresses, and contains one entity per external function as outlined in figure \ref{elf_plt}. The \texttt{.printf} entity of the PLT contains a jump instruction which targets the address stored in the \texttt{.printf} entity of the GOT. Initially this GOT entity contains the address of the next instruction, i.e. the instruction denoted by the \texttt{.resolve\_printf} label in the PLT.
+As visualized in figure \ref{elf_text} the first call instruction of the \texttt{.text} section targets the \texttt{.printf} label of the \texttt{.plt} section instead of the actual address of the \textit{printf} function in the \textit{libc} library. The Procedure Linkage Table (PLT) provides a level of indirection between call instructions and actual function (procedure) addresses, and contains one entity per external function as outlined in figure \ref{elf_plt}. The \texttt{.printf} entity of the PLT contains a jump instruction which targets the address stored in the \texttt{.printf} entity of the GOT. Initially this address points to the next instruction, i.e. the instruction denoted by the \texttt{.resolve\_printf} label in the PLT. On the first invokation of \textit{printf} the linker replaces this address with the actual address of the \textit{printf} function in the \textit{libc} library, and any subsequent invokation of \textit{printf} will target the resolved function address directly. This method of external function resolution is known as lazy dynamic linking. By resolving external functions at runtime only the functions which are actually invoked gets resolved, which may improve performace.
 
-% TODO: Refer to the trampolining method? (a method commonly known as trampolining)
-
-%At first this entry contains the address
-
-The \texttt{.rela.plt} section specifies the relocation entities of the PLT. More specifically it informs the linker of the virtual address to the \textit{printf} and \textit{exit} functions in the GOT.
+A closer look at the instructions denoted by the \texttt{.resolve\_printf} label in figure \ref{elf_plt} reveals how the linker knows which function to resolve. Essentially the \textit{dl\_runtime\_resolve} function is invoked with two arguments, namely the dynamic symbol index of the \textit{printf} function and a pointer to a linked list of nodes, each refering to the \texttt{.dynamic} section of a shared object. Upon termination the linked list of our \textit{``hello world''} process contains a total of four nodes, one for the executable itself and three for its dynamically loaded libraries, namely \textit{linux-vdso.so.1}, \textit{libc.so.6} and \textit{ld64.so.1}.
 
 %Upon execution the kernel maps the segments of the executable to pages in memory with appropriate access permissions.
-
-
-%call to \textit{printf} is made using a level of indirection. Instead of directly refering to the address of the \textit{printf} function in \textit{libc.so.6} the call instruction targets the \texttt{.printf} label of the \texttt{.plt} section.
-
-%Taking a step back it is worth noting that the \textit(``printf'') and \textit{``exit''} functions of our \textit{``hello world''} executable are resolved during runtime using lazy dynamic linking. That is, they are not resolved when the executable is loaded but rather
-
-%The \texttt{.rela.plt} section specifies the relocation entities of the Procedure Linkage Table (PLT). More specifically it contains the virtual address to the \textit{printf} and \textit{exit} functions in the Global Offset Table (GOT) of the PLT.
 
 %To summarize, the execution of a dynamically linked executable can roughly be described as follows. First the kernel parses
 
