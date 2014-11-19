@@ -150,8 +150,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 % --- [ The Anatomy of an Executable ] -----------------------------------------
 
-% TODO: Store a markdown version of this section in the readme of the mewrev/dissection repo.
-
 \subsection{The Anatomy of an Executable}
 
 The representation of executables, shared libraries and relocatable object code is standardized by a variety of file formats which provides encapsulation of assembly instructions and data. Two such formats are the Portable Executable (PE) file format and the Executable and Linkable Format (ELF), which are used by Windows and Linux respectively. Both of these formats partition executable code and data into sections and assign appropriate access permissions to each section, as summarized by table \ref{sections}. In general no single section has both write and execute permissions as this could compromise the security of the system.
@@ -173,7 +171,7 @@ The representation of executables, shared libraries and relocatable object code 
 	\label{sections}
 \end{table}
 
-To gain a better understanding of the anatomy of executables the remainder of this section describes the structure of ELF files and presents the dissection of a simple \textit{``hello world''} ELF executable, largely inspired by Eric Youngdale's article on \textit{``The ELF Object File Format by Dissection''} \cite{elf_dissection}. Although the ELF and PE file formats differs with regards to specific details, the general principles are applicable to both formats.
+To gain a better understanding of the anatomy of executables the remainder of this section describes the structure of ELF files and presents the dissection of a simple \textit{``hello world''} ELF executable, largely inspired by Eric Youngdale's article on \textit{The ELF Object File Format by Dissection} \cite{elf_dissection}. Although the ELF and PE file formats differs with regards to specific details, the general principles are applicable to both formats.
 
 In general ELF files consists of a file header, zero or more program headers, zero or more section headers and data referred to by the program or section headers, as depicted in figure \ref{elf_structure}.
 
@@ -211,8 +209,6 @@ Several sections are contained within the three segments. The \textit{read-only}
 \end{itemize}
 
 The \textit{read-write} segment contains the following section:
-
-% TODO: Check that henceforth can be used to specify "from this point on".
 
 \begin{itemize}
 	\item \texttt{.got.plt}: Global Offset Table (GOT) of the PLT (henceforth referred to as the GOT as this executable only contains one such table)
@@ -268,6 +264,8 @@ The remainder of this section describes the distinct decompilation phases, most 
 % ~~~ [ Binary Analysis ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 \subsubsection{Binary Analysis}
+
+The binary analysis phase is responsible for parsing the various binary file formats, such as PE and ELF, and present its content in a uniform manner which preserves the relation between file content, virtual address and access permissions.
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
