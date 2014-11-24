@@ -1,0 +1,3 @@
+[submodule "latex"]
+	path = latex
+	url = https://github.com/mewpaper/latex
