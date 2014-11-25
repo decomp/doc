@@ -15,6 +15,8 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage{graphicx}
 \usepackage{listings}
+\usepackage{latex/nasm/lang}
+\usepackage{latex/nasm/style}
 \bibliographystyle{ieeetr}
 
 \title{Language-Agnostic Composition of Decompilation Components}
@@ -39,9 +41,11 @@ TODO
 
 \pagebreak
 
-\textbf{Acknowledgements}
+% TODO: Remember to display the acknowledgements page.
 
-My heartfelt gratitude goes to Janka Chlebíková for supervising this project and showing me the beauty of Theoretical Computer Science; your joyful enthusiasm is inspiring!
+%\textbf{Acknowledgements}
+
+%My heartfelt gratitude goes to Janka Chlebíková for supervising this project and showing me the beauty of Theoretical Computer Science; your joyful enthusiasm is inspiring!
 
 \pagebreak
 
@@ -228,13 +232,13 @@ The dynamic string table contains the names of libraries (e.g. \textit{``libc.so
 Lets take a step back for a moment and reflect on how dynamic linking is accomplished on a Linux system by reviewing the assembly instructions of the executable \texttt{.text} and \texttt{.plt} sections as outlined by figure \ref{elf_text} and \ref{elf_plt} respectively.
 
 \begin{figure}[htbp]
-	\lstinputlisting[language={[x86masm]Assembler},xleftmargin=1cm,xrightmargin=1cm]{inc/elf_text.asm}
+	\lstinputlisting[language=nasm,style=nasm,xleftmargin=1cm,xrightmargin=1cm]{inc/elf_text.asm}
 	\caption{The assembly instructions of the \texttt{.text} section.}
 	\label{elf_text}
 \end{figure}
 
 \begin{figure}[htbp]
-	\lstinputlisting[language={[x86masm]Assembler},xleftmargin=1cm,xrightmargin=1cm]{inc/elf_plt.asm}
+	\lstinputlisting[language=nasm,style=nasm,xleftmargin=1cm,xrightmargin=1cm]{inc/elf_plt.asm}
 	\caption{The assembly instructions of the \texttt{.plt} section.}
 	\label{elf_plt}
 \end{figure}
