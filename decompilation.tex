@@ -84,7 +84,7 @@ The aim of this project is to facilitate decompilation workflows using compositi
 In order to achieve this aim, the author will:
 \begin{enumerate}
 	\item Review traditional decompilation techniques, including control flow analysis and data flow analysis. \label{decomp_research_obj}
-	\item Critically evaluate a set of Intermediate Representations (IR), which describes low-, medium- and high-level language semantics, to identify one or more suitable for the decompilation pipeline. \label{ir_evaluation_obj}
+	\item Critically evaluate a set of Intermediate Representations (IRs), which describes low-, medium- and high-level language semantics, to identify one or more suitable for the decompilation pipeline. \label{ir_evaluation_obj}
 	\item Analyze the formal grammar (language specification) of the IR to verify that it is unambiguous. If the grammar is ambiguous or if no formal grammar exists, produce a formal grammar. This objective is critical for language-independence, as the IR works as a bridge between different programming languages. \label{formal_ir_obj}
 	\item Determine if any existing library for the IR satisfies our requirements; and if not develop one. The requirements would include a suitable in-memory representation, and support for on-disk file storage and arbitrary manipulations (inject, delete, etc) of the IR. \label{ir_lib_obj}
 	\item Design and develop components which identify the structural patterns of high-level control structures using control flow analysis of the IR. \label{structure_lib_obj}
@@ -497,7 +497,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 % * Research of decompilation techniques.
 % * Evaluation of IRs.
 % * Formal IR.
-% TODO: Make sure that tables don't overflow the page width boundary.
 
 The requirements of each deliverable have been categorized using MoSCoW prioritization \cite{MoSCoW_analysis}, the definition of which is presented in table \ref{MoSCoW_priorities}.
 
@@ -507,10 +506,10 @@ The requirements of each deliverable have been categorized using MoSCoW prioriti
 			\hline
 			Priority & Description \\
 			\hline
-			MUST & An essential requirement that \textit{must} be satisfied. \\
-			SHOULD & An important requirement that \textit{should} be satisfied if possible. \\
-			COULD & A desirable requirement that \textit{could} be satisfied but it is not necessary. \\
-			WON'T & A future requirement that \textit{will not} be satisfied in this release. \\
+			MUST & An essential requirement that \textit{must} be satisfied \\
+			SHOULD & An important requirement that \textit{should} be satisfied if possible \\
+			COULD & A desirable requirement that \textit{could} be satisfied but it is not necessary \\
+			WON'T & A future requirement that \textit{will not} be satisfied in this release \\
 			\hline
 		\end{tabular}
 	\end{center}
@@ -520,7 +519,33 @@ The requirements of each deliverable have been categorized using MoSCoW prioriti
 
 % TODO: Add metatext to bind the following sections together?
 
-\subsection{LLVM IR Library Requirements}
+% TODO: Mention that the following objective is prioritized as WON'T?
+% 7) expression_lib_obj
+
+\subsection{Literature Review}
+
+foo
+
+\begin{table}[htbp]
+	\begin{center}
+		\begin{tabular}{|l|l|l|}
+			\hline
+			Req. ID & Priority & Description \\
+			\hline
+			\textbf{R1} & MUST & Describe common structural analysis techniques \\
+			\textbf{R2} & SHOULD & Outline the general stages of the decompilation pipeline \\
+			\textbf{R3} & COULD & Identify a suitable IR for the decompilation pipeline \\
+			\hline
+		\end{tabular}
+	\end{center}
+	\caption{Requirements of the literature review.}
+\end{table}
+
+% TODO: Ref the following objectives:
+% 1) decomp_research_obj
+% 2) ir_evaluation_obj
+
+\subsection{LLVM IR Library}
 
 % TODO: Check if primitives may be used in this context.
 
@@ -532,20 +557,26 @@ The LLVM IR language defines several primitives directly related to code optimiz
 			\hline
 			Req. ID & Priority & Description \\
 			\hline
-			\textbf{R1} & MUST & Read the assembly representation of LLVM IR. \\
-			\textbf{R2} & MUST & Write the assembly representation of LLVM IR. \\
-			\textbf{R3} & MUST & Inspect and manipulate the in-memory representation of LLVM IR. \\
-			\textbf{R4} & MUST & Produce Control-Flow Graphs from LLVM IR Basic Blocks. \\
-			\textbf{R5} & COULD & Visualize Control-Flow Graphs using the \texttt{DOT} graph description language. \\
-			\textbf{R6} & WON'T & Read the bitcode representation of LLVM IR. \\
-			\textbf{R7} & WON'T & Write the bitcode representation of LLVM IR. \\
+			\textbf{R4} & MUST & Read the assembly representation of LLVM IR \\
+			\textbf{R5} & MUST & Write the assembly representation of LLVM IR \\
+			\textbf{R6} & MUST & Interact with an in-memory representation of LLVM IR \\
+			\textbf{R7} & MUST & Produce CFGs from LLVM IR basic blocks \\
+			\textbf{R8} & COULD & Visualize CFGs using the \texttt{DOT} graph description language \\
+			\textbf{R9} & WON'T & Read the bitcode representation of LLVM IR \\
+			\textbf{R10} & WON'T & Write the bitcode representation of LLVM IR \\
+			\textbf{R11} & WON'T & Provide a formal grammar of LLVM IR \\
 			\hline
 		\end{tabular}
 	\end{center}
-	\caption{The requirements of the LLVM IR library.}
+	\caption{Requirements of the LLVM IR library.}
 \end{table}
 
-\subsection{Structural Analysis Library Requirements}
+% TODO: Ref the following objectives:
+% 3) formal_ir_obj
+% 4) ir_lib_obj
+
+
+\subsection{Structural Analysis Library}
 
 A decision was made early on to only support decompilation of compiler generated code from structured high-level languages. To avoid a myriad of special cases support for arbitrary, unstructured and obfuscated code has been intentionally left out.
 
@@ -555,23 +586,26 @@ A decision was made early on to only support decompilation of compiler generated
 			\hline
 			Req. ID & Priority & Description \\
 			\hline
-			\textbf{R8} & MUST & Recover a set of high-level control flow primitives from reducible graphs. \\
-			\textbf{R9} & MUST & Recover pre-test loops (e.g. \texttt{for}, \texttt{while}). \\
-			\textbf{R10} & MUST & Recover infinite loops (e.g. \texttt{while(TRUE)}). \\
-			\textbf{R11} & MUST & Recover 2-way conditionals (e.g. \texttt{if}, \texttt{if-else}). \\
-			\textbf{R12} & SHOULD & Recover post-test loops (e.g. \texttt{do-while}). \\
-			\textbf{R13} & SHOULD & Recover n-way conditionals (e.g. \texttt{switch}). \\
-			\textbf{R14} & COULD & Multi-exit loops. \\
-			\textbf{R15} & COULD & Nested loops. \\
-			\textbf{R16} & WON'T & Recover high-level control flow primitives from irreducible graphs. \\
-			\textbf{R17} & WON'T & Recover compound boolean expressions. \\
+			\textbf{R12} & MUST & Support analysis of reducible graphs \\
+			\textbf{R13} & MUST & Recover pre-test loops (e.g. \texttt{for}, \texttt{while}) \\
+			\textbf{R14} & MUST & Recover infinite loops (e.g. \texttt{while(TRUE)}) \\
+			\textbf{R15} & MUST & Recover 2-way conditionals (e.g. \texttt{if}, \texttt{if-else}) \\
+			\textbf{R16} & SHOULD & Recover post-test loops (e.g. \texttt{do-while}) \\
+			\textbf{R17} & SHOULD & Recover n-way conditionals (e.g. \texttt{switch}) \\
+			\textbf{R18} & COULD & Recover multi-exit loops \\
+			\textbf{R19} & COULD & Recover nested loops \\
+			\textbf{R20} & WON'T & Support analysis of irreducible graphs \\
+			\textbf{R21} & WON'T & Recover compound boolean expressions \\
 			\hline
 		\end{tabular}
 	\end{center}
-	\caption{The requirements of the structural analysis library.}
+	\caption{Requirements of the structural analysis library.}
 \end{table}
 
-\subsection{Structural Analysis Tool Requirements}
+% TODO: Ref the following objectives:
+% 5) structure_lib_obj
+
+\subsection{Structural Analysis Tool}
 
 The primary intention of this project is to create self-contained components which may be used in the decompilation pipelines of other projects. It is therefore of vital importance that the components are able to interact with tools written in other programming languages. The structural analysis tool is one such component which aims to recovers a set of high-level control flow primitives from LLVM IR.
 
@@ -581,13 +615,16 @@ The primary intention of this project is to create self-contained components whi
 			\hline
 			Req. ID & Priority & Description \\
 			\hline
-			\textbf{R18} & MUST & Perform structural analysis decompilation passes on LLVM IR files. \\
-			\textbf{R19} & MUST & Integrate well with components of other programming language environments. \\
+			\textbf{R22} & MUST & Perform structural decompilation passes on LLVM IR \\
+			\textbf{R23} & MUST & Support language-agnostic interaction with other components \\
 			\hline
 		\end{tabular}
 	\end{center}
-	\caption{The requirements of the structural analysis tool.}
+	\caption{Requirements of the structural analysis tool.}
 \end{table}
+
+% TODO: Ref the following objective:
+% 6) reconstruct_tool_obj
 
 % === [ Methodology ] ==========================================================
 
