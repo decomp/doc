@@ -294,6 +294,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 \subsubsection{Control Flow Analysis}
 
+Control-Flow Graph (CFG)
+
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
 % --- [ Evaluation of Intermediate Representations ] ---------------------------
@@ -503,12 +505,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 \section{Requirements}
 
 % TODO: Related the requirements to the project objectives.
-% TODO: Add requirements for the other deliverables:
-% * Research of decompilation techniques.
-% * Evaluation of IRs.
-% * Formal IR.
 
-The requirements of each deliverable have been outlined in the succeeding subsections, and are categorized using MoSCoW prioritization \cite{MoSCoW_analysis}; the definition of which is presented in table \ref{MoSCoW_priorities}. Each requirement is directly related to an objective and the only objective not covered is objective \ref{obj_data_analysis_library} which was intentionally left as a future ambition.
+The requirements of each deliverable have been outlined in the succeeding subsections, and are categorized using MoSCoW prioritization \cite{MoSCoW_analysis}; a definition of which is presented in table \ref{MoSCoW_priorities}. Each requirement is directly related to an objective as indicated by the requirements tables of the deliverables. The only objective not covered is objective \ref{obj_data_analysis_library} which was intentionally left as a future ambition.
 
 \begin{table}[htbp]
 	\begin{center}
@@ -527,13 +525,13 @@ The requirements of each deliverable have been outlined in the succeeding subsec
 	\label{MoSCoW_priorities}
 \end{table}
 
-% TODO: Add metatext to bind the following sections together?
+% --- [ Literature Review ] ----------------------------------------------------
 
 \subsection{Literature Review}
 
-foo
+A top priority of the literature review has been to gain insight into the structural analysis phase (\ref{req_review_structural_analysis}) as the software artifacts heavily depend on it. The other stages of the decompilation pipeline are important to convey the big picture of how components fit together, but the project could still be successful without satisfying \ref{req_review_decomp_stages}.
 
-As mentioned in \ref{req_review_structural_analysis} and \ref{req_review_suitable_ir}, foo bar baz.
+Several years prior to the initiation of this project the author and his colleges were considering to use LLVM IR for decompilation purposes. In recent years other research groups have started to develop decompilers and reverse engineering components which rely on LLVM IR \cite{decomp_llvm,retargetable_decomp,mcsema}. There may exist an IR which is more suitable in theory, but in practise the collaboration and reuse of others efforts made possible by the vibrant LLVM community is a strong merit in and of itself. The project may therefore be successful even without identifying an optimal IR for decompilation (objective \ref{obj_review_suitable_ir} and \ref{req_review_suitable_ir}).
 
 \begin{table}[htbp]
 	\begin{center}
@@ -550,11 +548,19 @@ As mentioned in \ref{req_review_structural_analysis} and \ref{req_review_suitabl
 	\caption{Requirements of the literature review.}
 \end{table}
 
+% --- [ LLVM IR Library ] ------------------------------------------------------
+
 \subsection{LLVM IR Library}
 
-% TODO: Check if primitives may be used in this context.
+The LLVM IR language defines several primitives directly related to code optimization and linking, neither of which convey any useful information for the decompilation pipeline. It is therefore sufficient for this project to support a subset of the LLVM IR language and the relevant requirements should be interpreted as referring to a subset of the language.
 
-The LLVM IR language defines several primitives directly related to code optimization and linking, neither of which convey any useful information for the decompilation pipeline. It is therefore sufficient for all LLVM IR related requirements to support a subset of the language.
+The structural analysis tool interacts with other components using LLVM IR. It is therefore required to support reading from and writing to at least one of the representations of LLVM IR. Each representation is isomorphic and the standard \texttt{llvm-as} and \texttt{llvm-dis} tools from the LLVM distribution may be used to convert between the assembly language and bitcode representation of LLVM IR. Access to the bitcode representation (\ref{req_ir_library_read_bitcode} and \ref{req_ir_library_write_bitcode}) has therefore been deferred in favour of the assembly language representation (\ref{req_ir_library_read_asm} and \ref{req_ir_library_write_asm}) which has the benefit of being human readable.
+
+The structural analysis library will inspect and manipulate an in-memory representation of LLVM IR (\ref{req_ir_library_mem}) to locate high-level structural patterns and store these findings respectively. Instead of working with sequential lists the structural analysis algorithms will operate on CFGs of basic blocks (\ref{req_ir_library_cfg}). To facilitate the implementation and debugging of these algorithms a visual representation of the CFGs would be beneficial (\ref{req_ir_library_cfg_debug}).
+
+To guarantee the language-agnostic interaction between components, objective \ref{obj_formal_ir} stated that a formal grammar for the LLVM IR had to be located or produced (\ref{req_formal_ir}). Previous efforts have only managed to produce formal grammars for subsets of the LLVM IR language \cite{formal_llvm_ir_spec,formalizing_llvm_ir} and no such grammar has been officially endorsed. The difficult nature of producing a formal grammar only became apparent after discussions with the project supervisor. With this in mind, objective \ref{obj_formal_ir} has been re-evaluated as a future ambition.
+
+% TODO: Add reference to the intention of keeping the specification loose.
 
 \begin{table}[htbp]
 	\begin{center}
@@ -562,8 +568,8 @@ The LLVM IR language defines several primitives directly related to code optimiz
 			\hline
 			Obj. & Req. & Priority & Description \\
 			\hline
-			\ref{obj_ir_library} & \customlabel{req_ir_library_read_asm}{\textbf{R4}} & MUST & Read the assembly representation of LLVM IR \\
-			\ref{obj_ir_library} & \customlabel{req_ir_library_write_asm}{\textbf{R5}} & MUST & Write the assembly representation of LLVM IR \\
+			\ref{obj_ir_library} & \customlabel{req_ir_library_read_asm}{\textbf{R4}} & MUST & Read the assembly language representation of LLVM IR \\
+			\ref{obj_ir_library} & \customlabel{req_ir_library_write_asm}{\textbf{R5}} & MUST & Write the assembly language representation of LLVM IR \\
 			\ref{obj_ir_library} & \customlabel{req_ir_library_mem}{\textbf{R6}} & MUST & Interact with an in-memory representation of LLVM IR \\
 			\ref{obj_ir_library} & \customlabel{req_ir_library_cfg}{\textbf{R7}} & MUST & Produce CFGs from LLVM IR basic blocks \\
 			\ref{obj_ir_library} & \customlabel{req_ir_library_cfg_debug}{\textbf{R8}} & COULD & Visualize CFGs using the \texttt{DOT} graph description language \\
@@ -575,6 +581,8 @@ The LLVM IR language defines several primitives directly related to code optimiz
 	\end{center}
 	\caption{Requirements of the LLVM IR library.}
 \end{table}
+
+% --- [ Structural Analysis Library ] ------------------------------------------
 
 \subsection{Structural Analysis Library}
 
@@ -601,6 +609,8 @@ A decision was made early on to only support decompilation of compiler generated
 	\end{center}
 	\caption{Requirements of the structural analysis library.}
 \end{table}
+
+% --- [ Structural Analysis Tool ] ---------------------------------------------
 
 \subsection{Structural Analysis Tool}
 
