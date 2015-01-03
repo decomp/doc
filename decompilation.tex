@@ -61,6 +61,8 @@ TODO
 
 \section{Introduction}
 
+A compiler is a piece of software which translates human readable high-level programming languages (e.g. C) to machine readable low-level languages (e.g. Assembly). In the usual flow of compilation, code is lowered through a set of transformations from a high-level to a low-level representation. The decompilation process (originally referred to as reverse compilation \cite{rev_comp}) moves in the opposite direction by lifting code from a low-level to a high-level representation.
+
 As recognized by Edsger W. Dijkstra in his 1972 ACM Turing Lecture (an extract from which is presented in figure \ref{dijkstra_lecture}) one of the most powerful tools for solving complex problems in Computer Science is the use of abstractions and separation of concerns. This paper explores a compositional approach to decompilation which facilitates abstractions to create a pipeline of self-contained components. Since the components interact through language-agnostic interfaces (well-defined input and output) each individual component may be written in a variety of programming languages. Furthermore, for each component of the decompilation pipeline there may exist multiple implementations with their individual strengths and weaknesses. The end user (e.g. malware analyst, security researcher, reverse engineer, …) may select the components which solves their task at hand the best.
 
 \begin{figure}[htbp]
@@ -70,10 +72,6 @@ As recognized by Edsger W. Dijkstra in his 1972 ACM Turing Lecture (an extract f
 	\caption{An extract from the ACM Turing Lecture given by Edsger W. Dijkstra in 1972.}
 	\label{dijkstra_lecture}
 \end{figure}
-
-A compiler is a piece of software which translates human readable high-level programming languages (e.g. C) to machine readable low-level languages (e.g. Assembly). In the usual flow of compilation, code is lowered through a set of transformations from a high-level to a low-level representation. The decompilation process (originally referred to as reverse compilation \cite{rev_comp}) moves in the opposite direction by lifting code from a low-level to a high-level representation.
-
-% TODO(u): Write about the purpose of this project, and why it may add something new to the table.
 
 % TODO: Find a good place to write about the applications of decompilation.
 
@@ -85,18 +83,20 @@ The aim of this project is to facilitate decompilation workflows using compositi
 
 In order to achieve this aim, the author will:
 \begin{enumerate}
-	\item Review traditional decompilation techniques, including control flow analysis and data flow analysis.
-	\item Critically evaluate a set of Intermediate Representations (IR), which describes low-, medium- and high-level language semantics, to identify one or more suitable for the decompilation pipeline.
-	\item Analyze the formal grammar (language specification) of the IR to verify that it is unambiguous. If the grammar is ambiguous or if no formal grammar exists, produce a formal grammar. This objective is critical for language-independence, as the IR works as a bridge between different programming languages.
-	\item Determine if any existing library for the IR satisfies our requirements; and if not develop one. The requirements would include a suitable in-memory representation, and support for on-disk file storage and arbitrary manipulations (inject, delete, etc) of the IR.
-	\item Design and develop components which identify the structural patterns of high-level control structures using control flow analysis of the IR.
-	\item Develop tools which perform one or more decompilation passes on a given IR. The tools will be reusable by other programming language environments as their input and output is specified by a formally defined IR.
-	\item As a future ambition, design and develop components which perform expression propagation using data flow analysis of the IR.
+	\item Review traditional decompilation techniques, including control flow analysis and data flow analysis. \label{decomp_research_obj}
+	\item Critically evaluate a set of Intermediate Representations (IR), which describes low-, medium- and high-level language semantics, to identify one or more suitable for the decompilation pipeline. \label{ir_evaluation_obj}
+	\item Analyze the formal grammar (language specification) of the IR to verify that it is unambiguous. If the grammar is ambiguous or if no formal grammar exists, produce a formal grammar. This objective is critical for language-independence, as the IR works as a bridge between different programming languages. \label{formal_ir_obj}
+	\item Determine if any existing library for the IR satisfies our requirements; and if not develop one. The requirements would include a suitable in-memory representation, and support for on-disk file storage and arbitrary manipulations (inject, delete, etc) of the IR. \label{ir_lib_obj}
+	\item Design and develop components which identify the structural patterns of high-level control structures using control flow analysis of the IR. \label{structure_lib_obj}
+	\item Develop tools which perform one or more decompilation passes on a given IR. The tools will be reusable by other programming language environments as their input and output is specified by a formally defined IR. \label{reconstruct_tool_obj}
+	\item As a future ambition, design and develop components which perform expression propagation using data flow analysis of the IR. \label{expression_lib_obj}
 \end{enumerate}
 
 % --- [ Deliverables ] ---------------------------------------------------------
 
 \subsection{Deliverables}
+
+% TODO: Add https://github.com/mewrev/decomp when it is created.
 
 The source code and the report of this project have been released into the public domain \cite{cc0} and are made available at:
 \begin{itemize}
@@ -107,12 +107,12 @@ The source code and the report of this project have been released into the publi
 % TODO: Specify the deliverables of the project after the development phase has finished. Use the text below as a basis.
 %
 % The following documents have been produced:
-% * Project report.
-% * Formal grammar for the LLVM IR language; refer to objective 3.
+% * Project report; refer to objective 1 and 2.
+% * Formal grammar for a subset of the LLVM IR language; refer to objective 3.
 %
 % The following system artifacts have been developed:
 % * Library for interacting with LLVM IR; refer to objective 4.
-% * Library for reconstructing high- level control structures from LLVM IR; refer to objective 5.
+% * Library for reconstructing high-level control structures from LLVM IR; refer to objective 5.
 % * Tool for performing one or more decompilation passes on a given IR; refer to objective 6.
 
 % --- [ Disposition ] ----------------------------------------------------------
@@ -131,37 +131,11 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
-% --- [ Terminology ] ----------------------------------------------------------
-
-\subsection{Terminology}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-
-% ~~~ [ Intermediate Representation ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-\subsubsection{Intermediate Representation}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-
-% ~~~ [ Static Single Assignment Form ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-\subsubsection{Static Single Assignment Form}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-
-\cite{ssa_decomp}
-
-% ~~~ [ Control Flow Graph ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-\subsubsection{Control Flow Graph}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-
 % --- [ The Anatomy of an Executable ] -----------------------------------------
 
 \subsection{The Anatomy of an Executable}
 
-The representation of executables, shared libraries and relocatable object code is standardized by a variety of file formats which provides encapsulation of assembly instructions and data. Two such formats are the Portable Executable (PE) file format and the Executable and Linkable Format (ELF), which are used by Windows and Linux respectively. Both of these formats partition executable code and data into sections and assign appropriate access permissions to each section, as summarized by table \ref{sections}. In general no single section has both write and execute permissions as this could compromise the security of the system.
+The representation of executables, shared libraries and relocatable object code is standardized by a variety of file formats which provides encapsulation of assembly instructions and data. Two such formats are the Portable Executable (PE) file format and the Executable and Linkable Format (ELF), which are used by Windows and Linux respectively. Both of these formats partition executable code and data into sections and assign appropriate access permissions to each section, as summarized by table \ref{elf_sections}. In general no single section has both write and execute permissions as this could compromise the security of the system.
 
 \begin{table}[htbp]
 	\begin{center}
@@ -177,7 +151,7 @@ The representation of executables, shared libraries and relocatable object code 
 		\end{tabular}
 	\end{center}
 	\caption{A summary of the most commonly used sections in ELF files. The \texttt{.text} section contains executable code while the \texttt{.rodata}, \texttt{.data} and \texttt{.bss} sections contains data in various forms.}
-	\label{sections}
+	\label{elf_sections}
 \end{table}
 
 To gain a better understanding of the anatomy of executables the remainder of this section describes the structure of ELF files and presents the dissection of a simple \textit{``hello world''} ELF executable, largely inspired by Eric Youngdale's article on \textit{The ELF Object File Format by Dissection} \cite{elf_dissection}. Although the ELF and PE file formats differs with regards to specific details, the general principles are applicable to both formats.
@@ -268,7 +242,7 @@ The remainder of this section describes the distinct decompilation phases, most 
 
 \subsubsection{Binary Analysis}
 
-The binary analysis phase is responsible for parsing input files of various binary file formats, such as PE and ELF, and present their content in a uniform manner which preserves the relation between file content, virtual address and access permissions.
+The binary analysis phase is responsible for parsing input files of various binary file formats, such as PE and ELF, and present their content in a uniform manner which preserves the relations between file content, virtual addresses and access permissions.
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
@@ -309,6 +283,85 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 % ~~~ [ Control Flow Analysis ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 \subsubsection{Control Flow Analysis}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+% --- [ Evaluation of Intermediate Representations ] ---------------------------
+
+\subsection{Evaluation of Intermediate Representations}
+
+% TODO: Very interesting read about the evaluation of IRs specifically for reverse engineering: An Intermediate Representation for Integrating Reverse Engineering Analyses.
+
+% TODO: Check http://indefinitestudies.org/2009/04/03/a-quick-survey-on-intermediate-representations-for-program-analysis/
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+% ~~~ [ LLVM IR ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{LLVM IR}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+% ~~~ [ ELIR ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{ELIR}
+
+% TODO: Research.
+% ref: http://www.eresi-project.org/
+% Part of ERESI.
+% "ERESI development has restarted as of February 2013"
+% Seems dead; no new code in 19 months.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+% ~~~ [ Hex Rays Microcode ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{Hex Rays Microcode}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+\cite{hexrays}
+
+% ~~~ [ Wire ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{Wire}
+
+% TODO: Check: Wire - A Formal Intermediate Language for Binary Analysis
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+
+% ~~~ [ Valgrind IR ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{Valgrind IR}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+% ~~~ [ QEMU IR ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{QEMU IR}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+% ~~~ [ REIL ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{REIL}
+
+% TODO: Research.
+% Check: REIL: A platform-independent intermediate representation of disassembled code for static code analysis
+%
+% REIL. Used in BinNavi (aquired by Google in 2011), the Reverse Engineering Intermediate Language defines a very simple RISC architecture (17 instructions), with the nice property that each instruction has at most one side-effect.
+% lang ref: http://www.zynamics.com/binnavi/manual/html/reil_language.htm
+% http://blog.zynamics.com/2010/06/22/the-reil-language-part-ii/
+
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+% ~~~ [ SAIL ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{SAIL}
+
+% TODO: Check: SAIL: Static Analysis Intermediate Language with a Two-Level Representation
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
@@ -360,7 +413,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 % ~~~ [ C-Decompiler ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-\subsubsection{\texttt{C-Decompiler}}
+\subsubsection{The \texttt{C-Decompiler}}
 
 The \texttt{C-Decompiler} translates machine code into C source code. It focuses primarily on improving the readability of the generated C source code, and does so by extending the traditional decompilation techniques outlined by Cristina Cifuentes in three ways. Firstly, the data flow analysis phase is refined using a shadow stack, which corresponds to a virtual stack capable of tracking stack variables and updates to the stack pointer register. Secondly, the register propagation algorithms are adapted to handle use-def chains across multiple basic blocks. Lastly, library signatures are generated for the C++ Standard Template Library \cite{readable_decomp}.
 
@@ -424,13 +477,32 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 \cite{retargetable_decomp}
 
-% ==============================================================================
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Design and Implementation
-% ==============================================================================
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % === [ Requirements ] =========================================================
 
 \section{Requirements}
+
+The requirements in this section have been categorized using MoSCoW prioritization \cite{MoSCoW_analysis}, a summary of which is presented in table \ref{MoSCoW_priorities}.
+
+\begin{table}[htbp]
+	\begin{center}
+		\begin{tabular}{|l|l|}
+			\hline
+			Priority & Description \\
+			\hline
+			MUST & An essential requirement that \textit{must} be satisfied. \\
+			SHOULD & An important requirement that \textit{should} be satisfied if possible. \\
+			COULD & A desirable requirement that \textit{could} be satisfied but it is not necessary. \\
+			WON'T & A future requirement that \textit{will not} be satisfied in this release. \\
+			\hline
+		\end{tabular}
+	\end{center}
+	\caption{A summary of the MoSCoW (MUST, SHOULD, COULD, WON'T) priorities.}
+	\label{MoSCoW_priorities}
+\end{table}
 
 % TODO: Cleanup.
 
@@ -443,13 +515,27 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 	\item \textit{Future ambition}: Output pseudo-code containing the high-level control structures.
 \end{enumerate}
 
+\begin{table}[htbp]
+	\begin{center}
+		\begin{tabular}{|l|l|l|}
+			\hline
+			Req. ID & Priority & Description and justification \\
+			\hline
+			\textbf{R1} & MUST & foo. \\
+			\hline
+		\end{tabular}
+	\end{center}
+	\caption{foo}
+\end{table}
+
+
 % === [ Methodology ] ==========================================================
 
 \section{Methodology}
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
-% TODO(u): Explain why this specific methodology was chosen, and justify the methods. The justification may be required to be quite detailed, with in-text references.
+% TODO: Explain why this specific methodology was chosen, and justify the methods. The justification may be required to be quite detailed, with in-text references.
 
 % --- [ Evolutionary Development and Throwaway Prototyping ] -------------------
 
@@ -491,27 +577,25 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 \subsection{Choice of Programming Language}
 
+% TODO: Clarify the benefits and drawbacks of using Go over C++ which would be the obvious choice for LLVM IR heavy projects.
+
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
 % TODO: Mention software composition.
 
-% --- [ Choice of Intermediate Representation ] --------------------------------
-
-% TODO: Find synonym for "Choice of".
-
-\subsection{Choice of Intermediate Representation}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-
 % --- [ Decompiler Pipeline ] --------------------------------------------------
 
 \subsection{Decompiler Pipeline}
+
+% TODO: Describe where the "restructure" component fits in the overall decompilation pipeline. Mention which projects and tools that may be used to fill the gaps.
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
 % --- [ System Architecture ] --------------------------------------------------
 
 \subsection{System Architecture}
+
+% TODO: Visualize the dependency graph of the "restructure" tool and describe in detail what input it expects and what output it produces.
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
@@ -521,11 +605,15 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 \section{Development}
 
+% TODO: Brainstorm about which sections are actually relevant and how they should be structured.
+
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
-% --- [ Formal Grammar of LLVM IR ] --------------------------------------------
+% --- [ Formal Grammar for a subset of LLVM IR ] -------------------------------
 
-\subsection{Formal Grammar of LLVM IR}
+\subsection{Formal Grammar for a subset of LLVM IR}
+
+% TODO: Mention previous (partial but incomplete) work.
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
@@ -533,11 +621,19 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 \subsection{Documentation}
 
+% TODO: Both API documentation and end user documentation with example use cases (perhaps also covering related projects such as McSema).
+
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
 % --- [ Ideomatic Language Use ] -----------------------------------------------
 
 \subsection{Ideomatic Language Use}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+% --- [ LLVM IR library ] ------------------------------------------------------
+
+\subsection{LLVM IR library}
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
@@ -615,7 +711,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 \subsection{Project Summary}
 
-% TODO(u): Summarise the key findings of your report. No new information should be included.
+% TODO: Summarise the key findings of your report. No new information should be included.
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
@@ -632,6 +728,10 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
 \pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% References
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % === [ References ] ===========================================================
 
