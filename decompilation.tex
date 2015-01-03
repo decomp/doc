@@ -308,9 +308,9 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
-% ~~~ [ Hex Rays Microcode ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~ [ Hex-Rays Microcode ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-\subsubsection{Hex Rays Microcode}
+\subsubsection{Hex-Rays Microcode}
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
@@ -375,7 +375,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 \subsection{Native Code to LLVM IR}
 
-% TODO: Add BAP?
+% TODO: Add BAP? Find the project which used QEMU to translate x86 into LLVM IR.
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
@@ -492,7 +492,14 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 \section{Requirements}
 
-The requirements in this section have been categorized using MoSCoW prioritization \cite{MoSCoW_analysis}, a summary of which is presented in table \ref{MoSCoW_priorities}.
+% TODO: Related the requirements to the project objectives.
+% TODO: Add requirements for the other deliverables:
+% * Research of decompilation techniques.
+% * Evaluation of IRs.
+% * Formal IR.
+% TODO: Make sure that tables don't overflow the page width boundary.
+
+The requirements of each deliverable have been categorized using MoSCoW prioritization \cite{MoSCoW_analysis}, the definition of which is presented in table \ref{MoSCoW_priorities}.
 
 \begin{table}[htbp]
 	\begin{center}
@@ -511,30 +518,76 @@ The requirements in this section have been categorized using MoSCoW prioritizati
 	\label{MoSCoW_priorities}
 \end{table}
 
-% TODO: Cleanup.
+% TODO: Add metatext to bind the following sections together?
 
-\begin{enumerate}
-	\item Lexer and parser for the assembly representation of LLVM IR.
-	\item Generation of control flow graphs from LLVM IR.
-	\item Generation of graph description files (DOT) from control flow graphs.
-	\item Create a structured control flow graph using control flow analysis.
-	\item Output LLVM IR with information about high-level control structures stored in the basic block names.
-	\item \textit{Future ambition}: Output pseudo-code containing the high-level control structures.
-\end{enumerate}
+\subsection{LLVM IR Library Requirements}
+
+% TODO: Check if primitives may be used in this context.
+
+The LLVM IR language defines several primitives directly related to code optimization and linking, neither of which convey any useful information for the decompilation pipeline. It is therefore sufficient for all LLVM IR related requirements to support a subset of the language.
 
 \begin{table}[htbp]
 	\begin{center}
 		\begin{tabular}{|l|l|l|}
 			\hline
-			Req. ID & Priority & Description and justification \\
+			Req. ID & Priority & Description \\
 			\hline
-			\textbf{R1} & MUST & foo. \\
+			\textbf{R1} & MUST & Read the assembly representation of LLVM IR. \\
+			\textbf{R2} & MUST & Write the assembly representation of LLVM IR. \\
+			\textbf{R3} & MUST & Inspect and manipulate the in-memory representation of LLVM IR. \\
+			\textbf{R4} & MUST & Produce Control-Flow Graphs from LLVM IR Basic Blocks. \\
+			\textbf{R5} & COULD & Visualize Control-Flow Graphs using the \texttt{DOT} graph description language. \\
+			\textbf{R6} & WON'T & Read the bitcode representation of LLVM IR. \\
+			\textbf{R7} & WON'T & Write the bitcode representation of LLVM IR. \\
 			\hline
 		\end{tabular}
 	\end{center}
-	\caption{foo}
+	\caption{The requirements of the LLVM IR library.}
 \end{table}
 
+\subsection{Structural Analysis Library Requirements}
+
+A decision was made early on to only support decompilation of compiler generated code from structured high-level languages. To avoid a myriad of special cases support for arbitrary, unstructured and obfuscated code has been intentionally left out.
+
+\begin{table}[htbp]
+	\begin{center}
+		\begin{tabular}{|l|l|l|}
+			\hline
+			Req. ID & Priority & Description \\
+			\hline
+			\textbf{R8} & MUST & Recover a set of high-level control flow primitives from reducible graphs. \\
+			\textbf{R9} & MUST & Recover pre-test loops (e.g. \texttt{for}, \texttt{while}). \\
+			\textbf{R10} & MUST & Recover infinite loops (e.g. \texttt{while(TRUE)}). \\
+			\textbf{R11} & MUST & Recover 2-way conditionals (e.g. \texttt{if}, \texttt{if-else}). \\
+			\textbf{R12} & SHOULD & Recover post-test loops (e.g. \texttt{do-while}). \\
+			\textbf{R13} & SHOULD & Recover n-way conditionals (e.g. \texttt{switch}). \\
+			\textbf{R14} & COULD & Multi-exit loops. \\
+			\textbf{R15} & COULD & Nested loops. \\
+			\textbf{R16} & WON'T & Recover high-level control flow primitives from irreducible graphs. \\
+			\textbf{R17} & WON'T & Recover compound boolean expressions. \\
+			\hline
+		\end{tabular}
+	\end{center}
+	\caption{The requirements of the structural analysis library.}
+\end{table}
+
+\subsection{Structural Analysis Tool Requirements}
+
+The primary intention of this project is to create self-contained components which may be used in the decompilation pipelines of other projects. It is therefore of vital importance that the components are able to interact with tools written in other programming languages. The structural analysis tool is one such component which aims to recovers a set of high-level control flow primitives from LLVM IR.
+
+\begin{table}[htbp]
+	\begin{center}
+		\begin{tabular}{|l|l|l|}
+			\hline
+			Req. ID & Priority & Description \\
+			\hline
+			\textbf{R18} & MUST & Perform structural analysis decompilation passes on LLVM IR files. \\
+			\textbf{R19} & MUST & Integrate well with components of other programming language environments. \\
+			\hline
+		\end{tabular}
+	\end{center}
+	\caption{The requirements of the structural analysis tool.}
+\end{table}
 
 % === [ Methodology ] ==========================================================
 
@@ -594,7 +647,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 \subsection{Decompiler Pipeline}
 
-% TODO: Describe where the "restructure" component fits in the overall decompilation pipeline. Mention which projects and tools that may be used to fill the gaps.
+% TODO: Describe where the "restructure" component fits in the overall decompilation pipeline. Mention which projects and tools that may be used to fill the gaps. bin_descend and IDA python script of MC-Semantics -> Google Protocol Buffer -> cfg_to_bc -> LLVM IR
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
@@ -603,6 +656,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 \subsection{System Architecture}
 
 % TODO: Visualize the dependency graph of the "restructure" tool and describe in detail what input it expects and what output it produces.
+
+% TODO: Write about. Input and output LLVM IR to operate well with components written in other languages. Output LLVM IR with information about high-level control structures stored in the basic block names or in metadata.
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
