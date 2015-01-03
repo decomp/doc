@@ -296,12 +296,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
-% ~~~ [ LLVM IR ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-\subsubsection{LLVM IR}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-
 % ~~~ [ ELIR ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 \subsubsection{ELIR}
@@ -365,47 +359,64 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
+% ~~~ [ LLVM IR ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{LLVM IR}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
 % === [ Related Work ] =========================================================
 
 \section{Related Work}
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
-% TODO: Change the structure of this section.
-%
-% * Native Code to LLVM IR
-%    - Dagger
-%    - Fracture
-%    - MC-Semantics
-%       dagger and fracture rely on TableGen for instruction semantics, McSema doesn't.
-%    - BAP?
-% * Decompilers and Decompilation Frameworks
-%    - The dcc Decompiler
-%    - The opencl Decompiler
-%    - C-Decompiler
-%    - The REcompile Decompilation Framework
-%    - Boomerang
-%    - radare
-%    - IDA Hex-Rays
-%    - The Retargetable Decompiler
+% --- [ Native Code to LLVM IR ] -----------------------------------------------
 
-% --- [ Academic Prototypes ] --------------------------------------------------
+\subsection{Native Code to LLVM IR}
 
-\subsection{Academic Prototypes}
+% TODO: Add BAP?
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
-% ~~~ [ The dcc Decompiler ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~ [ Dagger ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-\subsubsection{The \texttt{dcc} Decompiler}
+\subsubsection{Dagger}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+% ~~~ [ Fracture ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{Fracture}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+% ~~~ [ MC-Semantics ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{MC-Semantics}
+
+% TODO: Evaluate and highlight key differences between Dagger, Fracture and McSema.
+% Dagger and Fracture rely on TableGen for instruction semantics, McSema doesn't.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+% --- [ Decompilers ] ----------------------------------------------------------
+
+\subsection{Decompilers}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+% ~~~ [ dcc ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{dcc}
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
 \cite{rev_comp}
 
-% ~~~ [ The opencl Decompiler ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~ [ opencl ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-\subsubsection{The \texttt{opencl} Decompiler}
+\subsubsection{opencl}
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
@@ -413,23 +424,9 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 % ~~~ [ C-Decompiler ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-\subsubsection{The \texttt{C-Decompiler}}
+\subsubsection{C-Decompiler}
 
 The \texttt{C-Decompiler} translates machine code into C source code. It focuses primarily on improving the readability of the generated C source code, and does so by extending the traditional decompilation techniques outlined by Cristina Cifuentes in three ways. Firstly, the data flow analysis phase is refined using a shadow stack, which corresponds to a virtual stack capable of tracking stack variables and updates to the stack pointer register. Secondly, the register propagation algorithms are adapted to handle use-def chains across multiple basic blocks. Lastly, library signatures are generated for the C++ Standard Template Library \cite{readable_decomp}.
-
-% ~~~ [ The REcompile Decompilation Framework ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-\subsubsection{The \texttt{REcompile} Decompilation Framework}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-
-\cite{recompile}
-
-% --- [ Open Source Projects ] -------------------------------------------------
-
-\subsection{Open Source Projects}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
 % ~~~ [ Boomerang ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -439,6 +436,46 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 \cite{boomerang}
 
+% ~~~ [ IDA Hex-Rays ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{IDA Hex-Rays}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+\cite{hexrays}
+
+% ~~~ [ The Retargetable Decompiler ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{The Retargetable Decompiler}
+
+% TODO: Write about Decompilation as a Services.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+\cite{retargetable_decomp}
+
+% ~~~ [ Hopper ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{Hopper}
+
+% TODO: Write about the Hopper decompiler. ref: http://www.hopperapp.com/
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+% --- [ Reverse Engineering Frameworks ] ---------------------------------------
+
+\subsection{Reverse Engineering Frameworks}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+% ~~~ [ REcompile ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{REcompile}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+\cite{recompile}
+
 % ~~~ [ radare ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 \subsubsection{radare}
@@ -446,36 +483,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
 \cite{radare}
-
-% --- [ Commercial Products ] --------------------------------------------------
-
-\subsection{Commercial Products}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-
-% TODO: Add section about the Hopper decompiler. ref: http://www.hopperapp.com/
-
-% ~~~ [ Hex-Rays Decompiler ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-\subsubsection{Hex-Rays Decompiler}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-
-\cite{hexrays}
-
-% --- [ Decompilation as a Services ] ------------------------------------------
-
-\subsection{Decompilation as a Services}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-
-% ~~~ [ The Retargetable Decompiler ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-\subsubsection{The Retargetable Decompiler}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-
-\cite{retargetable_decomp}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Design and Implementation
@@ -737,6 +744,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 \section{References}
 
+\renewcommand{\refname}{\vskip -1cm}
 \bibliography{references}
 
 \end{document}
