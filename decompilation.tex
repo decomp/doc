@@ -300,6 +300,12 @@ Control-Flow Graph (CFG)
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
+% ~~~ [ Code Generation ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{Code Generation}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
 % --- [ Evaluation of Intermediate Representations ] ---------------------------
 
 \subsection{Evaluation of Intermediate Representations}
@@ -355,15 +361,11 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 \subsubsection{REIL}
 
-% TODO: Research.
-% Check: REIL: A platform-independent intermediate representation of disassembled code for static code analysis
-%
-% REIL. Used in BinNavi (aquired by Google in 2011), the Reverse Engineering Intermediate Language defines a very simple RISC architecture (17 instructions), with the nice property that each instruction has at most one side-effect.
-% lang ref: http://www.zynamics.com/binnavi/manual/html/reil_language.htm
-% http://blog.zynamics.com/2010/06/22/the-reil-language-part-ii/
+The Reverse Engineering Intermediate Language (REIL) is a very simple and platform independent assembly language. Its instruction set contains only 17 different instructions, each with exactly three (possibly empty) operands. The first two operands are always used for input and the third for output (except for the conditional jump instruction which uses the third operand as the jump target). Furthermore, each instruction has at most one effect on the global state and never any side-effects (such as setting flags) \cite{reil,reil_spec}.
 
+% TODO: Incorporate notes from "REIL - notes.txt"
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+The language was originally designed to assist static code analysis and translators from native assembly (x86, PowerPC-32 and ARM-32) to REIL are commercially available. However, the project home page has not been updated since Google acquired zynamics in 2011. Since then approximately 10 papers have been published which references REIL and the adaptation of the language within the open source community seems limited. As of 2015-01-04 only three implementations existed on GitHub (two in Python \cite{barf,pyreil} and one in C \cite{bit}), and the most popular had less than 25 watchers, 80 stars and 15 forks.
 
 % ~~~ [ SAIL ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -444,9 +446,9 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 \cite{boomerang}
 
-% ~~~ [ IDA Hex-Rays ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~ [ Hex-Rays Decompiler ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-\subsubsection{IDA Hex-Rays}
+\subsubsection{Hex-Rays Decompiler}
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
