@@ -222,9 +222,9 @@ The dynamic string table contains the names of libraries (e.g. \textit{``libc.so
 
 Lets take a step back for a moment and reflect on how dynamic linking is accomplished on a Linux system by reviewing the assembly instructions of the executable \texttt{.text} and \texttt{.plt} sections as outlined in listing \ref{elf_text} and \ref{elf_plt} respectively.
 
-\lstinputlisting[language=nasm,style=nasm,caption={The assembly instructions of the \texttt{.text} section.\label{elf_text}},xleftmargin=1cm,xrightmargin=1cm]{inc/elf_text.asm}
+\lstinputlisting[language=nasm,style=nasm,caption={The assembly instructions of the \texttt{.text} section.\label{elf_text}}]{inc/elf_text.asm}
 
-\lstinputlisting[language=nasm,style=nasm,caption={The assembly instructions of the \texttt{.plt} section.\label{elf_plt}},xleftmargin=1cm,xrightmargin=1cm]{inc/elf_plt.asm}
+\lstinputlisting[language=nasm,style=nasm,caption={The assembly instructions of the \texttt{.plt} section.\label{elf_plt}}]{inc/elf_plt.asm}
 
 As visualized in listing \ref{elf_text} the first call instruction of the \texttt{.text} section targets the \texttt{.printf} label of the \texttt{.plt} section instead of the actual address of the \textit{printf} function in the \textit{libc} library. The Procedure Linkage Table (PLT) provides a level of indirection between call instructions and actual function (procedure) addresses, and contains one entity per external function as outlined in listing \ref{elf_plt}. The \texttt{.printf} entity of the PLT contains a jump instruction which targets the address stored in the \texttt{.printf} entity of the GOT. Initially this address points to the next instruction, i.e. the instruction denoted by the \texttt{.resolve\_printf} label in the PLT. On the first invokation of \textit{printf} the linker replaces this address with the actual address of the \textit{printf} function in the \textit{libc} library, and any subsequent invokation of \textit{printf} will target the resolved function address directly.
 
@@ -362,6 +362,12 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 \subsubsection{REIL}
 
 The Reverse Engineering Intermediate Language (REIL) is a very simple and platform independent assembly language. Its instruction set contains only 17 different instructions, each with exactly three (possibly empty) operands. The first two operands are always used for input and the third for output (except for the conditional jump instruction which uses the third operand as the jump target). Furthermore, each instruction has at most one effect on the global state and never any side-effects (such as setting flags) \cite{reil,reil_spec}.
+
+% TODO: Operands have a type, a value and a size.
+
+Thanks to the simplicity of REIL a full definition of its instruction set has been provided in listing \ref{reil_instruction_set}, which includes examples of each instruction and defines their syntax and semantics (in pseudo C-code).
+
+\lstinputlisting[language=nasm,style=nasm,caption={A full definition of the REIL instruction set. \label{reil_instruction_set}}]{inc/reil_instruction_set.asm}
 
 % TODO: Incorporate notes from "REIL - notes.txt"
 
