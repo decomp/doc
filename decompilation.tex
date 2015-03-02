@@ -32,7 +32,7 @@
 
 \title{Compositional Decompilation using LLVM IR}
 \author{Robin Eklind}
-\date{2014-10-04}
+\date{2014-10-04} % TODO: Update date before handing in.
 
 % Document
 
@@ -107,12 +107,13 @@ In order to achieve this aim, the author will:
 
 \subsection{Deliverables}
 
-% TODO: Add https://github.com/mewrev/decomp when it is created.
-
-The source code and the report of this project have been released into the public domain \cite{cc0} and are made available at:
+The source code and the report of this project have been released into the public domain \cite{cc0} and are made available at the following GitHub repositories.
 \begin{itemize}
-	\item \url{https://github.com/mewlang/llvm}
-	\item \url{https://github.com/mewpaper/decompilation}
+	\item LLVM IR library (\textit{work in progress}): \\ \url{https://github.com/mewlang/llvm}
+	\item Subgraph isomorphism search algorithms and related tools: \\ \url{https://github.com/mewrev/graphs}
+	\item Control flow graph generation tool: \\ \url{https://github.com/mewrev/ll2dot}
+	\item Decompilation tool: \\ \url{https://github.com/mewrev/ll2go}
+	\item Paper: \\ \url{https://github.com/mewpaper/decompilation}
 \end{itemize}
 
 % TODO: Specify the deliverables of the project after the development phase has finished. Use the text below as a basis.
@@ -240,7 +241,7 @@ To summarize, the execution of a dynamically linked executable can roughly be de
 
 \subsection{Decompilation Phases}
 
-A core principle utilized in decompilers is the separation of concern through the use of abstractions, and a lot of work involves translating into and breaking out of various abstraction layers. In general a decompiler is composed of distinct phases which parses, analyzes or transforms the input. These phases are conceptually grouped into three modules to separate concerns regarding source machine language and target programming language. The front-end module parses executable files and translates their platform dependent assembly into a platform independent intermediate representation (IR). The middle-end module performs a set of decompilation passes to lift the IR, from a low-level to a high-level representation, by reconstruction high-level control structures and expressions. Finally the back-end module translates the high-level IR to a specific target programming language. Figure \ref{modules_overview} gives an overview of the decompilation modules and visualizes their relationship.
+A core principle utilized in decompilers is the separation of concern through the use of abstractions, and a lot of work involves translating into and breaking out of various abstraction layers. In general a decompiler is composed of distinct phases which parses, analyzes or transforms the input. These phases are conceptually grouped into three modules to separate concerns regarding source machine language and target programming language. The front-end module parses executable files and translates their platform dependent assembly into a platform independent intermediate representation (IR). The middle-end module performs a set of decompilation passes to lift the IR, from a low-level to a high-level representation, by reconstructing high-level control structures and expressions. Finally the back-end module translates the high-level IR to a specific target programming language. Figure \ref{modules_overview} gives an overview of the decompilation modules and visualizes their relationship.
 
 \begin{figure}[htbp]
 	\begin{center}
@@ -262,15 +263,39 @@ As demonstrated in section \ref{executable_anatomy} parsing even a simple \texti
 
 \subsubsection{Disassembly}
 
-% TODO: refer to the syntactic analysis phase in C. Cifuentes.
+The disassembly phase (referred to as the syntactic analysis phase in C. Cifuentes paper) is responsible for decoding the raw machine instructions of the executable segments into assembly. At first sight it may seem trivial to implement a disassembler; simply use a lookup table which translates a sequence of bytes to their corresponding assembly instructions.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+% TODO: Introduce the various approaches and highlight their individual
+% strengths and weaknesses.
+%
+% NAIVE APPROACH: linear descent disassemblers.
+% PROBLEM: Highlight problems with linear descent disassemblers.
+%    - rodata (e.g. "hello world") and jump tables in code.
+%
+% SOLUTION: recursive descent disassemblers.
+% PROBLEM: Highlight problems with recursive descent disassemblers.
+%    - Distinguish between code and data (e.g. find entry points of functions).
+%      Not add functions are directly referred to (e.g. callback functions which
+%      are commonly used by GUI applications).
+%    - Easy to fool.
+%       xor eax, eax
+%       cmp eax, 0
+%       jz foo+1 ; Cannot disassembly both foo and foo+1.
+% foo:
+%       add eax, 3
+%
+% SOLUTION: symbolic execution engines.
+% PROBLEM: security, performance, ...?
 
 % ~~~ [ Semantic Analysis ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 \subsubsection{Semantic Analysis}
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+% TODO: Ideoms
+%    - 64-bit binops
+%    - xor eax, eax ; eax = 0
 
 % ~~~ [ Intermediate Code Generation ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -366,6 +391,8 @@ The Reverse Engineering Intermediate Language (REIL) is a very simple and platfo
 % TODO: Operands have a type, a value and a size.
 
 Thanks to the simplicity of REIL a full definition of its instruction set has been provided in listing \ref{reil_instruction_set}, which includes examples of each instruction and defines their syntax and semantics (in pseudo C-code).
+
+% TODO: Move this listing to an appendix section.
 
 \lstinputlisting[language=nasm,style=nasm,caption={A full definition of the REIL instruction set. \label{reil_instruction_set}}]{inc/reil_instruction_set.asm}
 
@@ -680,6 +707,9 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 \section{Design}
 
+% TODO: Add design notes
+%    - Use interfaces for function parameters and concrete types for result parameters.
+
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
 % --- [ Choice of Programming Language ] ---------------------------------------
@@ -719,6 +749,15 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 \section{Development}
 
 % TODO: Brainstorm about which sections are actually relevant and how they should be structured.
+
+% TODO: Mention the following trivias:
+%    - Identify unused tokens (hash and backspace) in the C++ code base and submit a patch which was commited to remove these.
+%    - Discuss API design with members of the open source community.
+%    - Ask experienced LLVM developers of insight into possible inconsistencies with LLVM IR. Some highlighted inconsistent behaviour and some were intended behaviour.
+
+% Hints for Computer System Design (1983) - Butler Lampson
+%    "Handle normal and worst case seperately"
+
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
@@ -809,6 +848,9 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 % === [ Future Work ] ==========================================================
 
 \section{Future Work}
+
+% TODO: Add notes from IDEAS.txt.
+%    - grind
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
