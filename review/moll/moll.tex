@@ -27,16 +27,16 @@ Moll's paper explores various techniques for reconstructing high-level primitive
 
 The LLVM IR language is conceptually a platform-independent RISC assembly language whose control flow is structured using basic blocks. Each basic block consists of a sequence of instructions and ends with a terminator instruction (such as a branch or a function return), which indicates the next basic block to execute. The connections between basic blocks, as specified by the execution flow, may be represented using a Control Flow Graph (CFG), in which each basic block represents a node.
 
-In the following illustrations each letter (A-D) represents a node in a CFG, and each arrow represents the flow of execution from one node to another.
+In the following illustrations each letter (A-C) represents a node in a CFG, and each arrow represents the flow of execution from one node to another.
 
 \begin{figure}[H]
    \centering
    \begin{subfigure}[b]{0.2\textwidth}
-      \includegraphics[width=\textwidth]{inc/for-loop.png}
+      \includegraphics[width=\textwidth]{inc/pre_loop.png}
    \end{subfigure}
    \qquad
    \begin{subfigure}[b]{0.2\textwidth}
-      \lstinputlisting{inc/for-loop.c}
+      \lstinputlisting{inc/pre_loop.c}
    \end{subfigure}
    \caption{The CFG (left) and pseudo-code (right) of a for-loop.}
 \end{figure}
@@ -50,10 +50,10 @@ In the following illustrations each letter (A-D) represents a node in a CFG, and
    \begin{subfigure}[b]{0.2\textwidth}
       \lstinputlisting{inc/if.c}
    \end{subfigure}
-   \caption{The CFG (left) and pseudo-code (right) of an if statement.}
+   \caption{The CFG (left) and pseudo-code (right) of an if-statement.}
 \end{figure}
 
-A key insight provided by the paper is the idea that various high-level primitives, such as for-loops and if statements, have different patterns in the CFG. This enables the use of pattern matching to reconstruct high-level primitives from lower level representations.
+A key insight provided by the paper is the idea that various high-level primitives, such as for-loops and if-statements, have different patterns in the CFG. This enables the use of pattern matching to reconstruct high-level primitives from lower level representations.
 
 \bibliography{references}
 
