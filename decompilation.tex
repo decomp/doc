@@ -729,6 +729,19 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 % TODO: Describe where the "restructure" component fits in the overall decompilation pipeline. Mention which projects and tools that may be used to fill the gaps. bin_descend and IDA python script of MC-Semantics -> Google Protocol Buffer -> cfg_to_bc -> LLVM IR
 
+% TODO: Rewrite and clarify.
+
+The decompilation pipeline is made of up several components which are conceptually grouped into three modules. The front-end module translates a variety of inputs (such as binary files and source code) into LLVM IR by utilizing a collection of tools developed by several independent open source projects. The middle-end lifts the LLVM IR to a high-level representation by conducting a control flow analysis which generates a structured CFG of each function. The back-end generates high-level control-flow primitives such as if-statements and for-loops based on the structured CFG. In addition it translates the individual instructions of the LLVM IR to expressions and statements of the target programming language (in this case Go). The interaction between the front-end, middle-end and back-end modules is visualized in figure \ref{decompilation_pipeline}.
+
+\begin{figure}[htbp]
+	\begin{center}
+		\includegraphics[width=\textwidth]{inc/decompilation_pipeline.png}
+		\caption{foo}
+		\label{decompilation_pipeline}
+	\end{center}
+\end{figure}
+
+
 \subsubsection{Front-end}
 
 % TODO: Rewrite and clarify.

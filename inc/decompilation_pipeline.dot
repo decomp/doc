@@ -1,0 +1,30 @@
+digraph G {
+	rankdir=LR
+
+	// MC-Semantic input
+	In1 [label="x86 (ELF, PE or COFF)"]
+	// Dagger input
+	In2 [label="x86-64 (ELF or Mach-O)"]
+	// Fracture input
+	In3 [label="AArch32 (ELF or PE)"]
+	// Clang input
+	In4 [label="C source code (*.c)"]
+	// GHC input
+	In5 [label="Haskell source code (*.hs)"]
+	// rustc input
+	In6 [label="Rust source code (*.rs)"]
+	// Any LLVM compiler input
+	In7 [label="…"]
+
+	Front [label="Front-end" color=blue shape=box]
+	Middle [label="Middle-end" color=blue shape=box]
+	Back [label="Back-end" color=blue shape=box]
+
+	// Output
+	Out [label="Go"]
+
+	{In1 In2 In3 In4 In5 In6 In7} -> Front
+	Front -> Middle [label="LLVM IR"]
+	Middle -> Back [label="Structured CFG"]
+	Back -> Out
+}
