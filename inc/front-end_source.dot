@@ -1,0 +1,52 @@
+digraph G {
+	// Clang input
+	In1 [label="C source code (*.c)"]
+
+	// Clang++ input
+	In2 [label="C++ source code (*.cpp)"]
+
+	// GHC input
+	In3 [label="Haskell source code (*.hs)"]
+
+	// rustc input
+	In4 [label="Rust source code (*.rs)"]
+
+	// Any LLVM compiler input
+	In5 [label="…"]
+
+	// Front-end
+	subgraph cluster {
+		label="Front-end"
+		color=blue
+		clang [label="clang" shape=box]
+		clangpp [label="clang++" shape=box]
+		GHC [label="GHC" shape=box]
+		rustc [label="rustc" shape=box]
+		anycomp [label="Any LLVM compiler" shape=box]
+	}
+
+	// Output
+	Out [label="LLVM IR"]
+
+	// Middle-end
+	Middle [label="Middle-end" shape=box style=dashed color=blue]
+
+	// Input -> front-end
+	In1 -> clang
+	In2 -> clangpp
+	In3 -> GHC
+	In4 -> rustc
+	In5 -> anycomp
+
+	// Front-end -> output
+	clang -> Out
+	clangpp -> Out
+	GHC -> Out
+	rustc -> Out
+	anycomp -> Out
+
+	// Output -> middle-end
+	Out -> Middle
+
+	rankdir=LR
+}

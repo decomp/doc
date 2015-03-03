@@ -1,0 +1,40 @@
+digraph G {
+	// MC-Semantic input
+	In1 [label="x86 (ELF, PE or COFF)"]
+
+	// Dagger input
+	In2 [label="x86-64 (ELF or Mach-O)"]
+
+	// Fracture input
+	In3 [label="AArch32 (ELF or PE)"]
+
+	// Front-end
+	subgraph cluster {
+		label="Front-end"
+		color=blue
+		MCSema [label="MC-Semantics" shape=box]
+		Dagger [label="Dagger" shape=box]
+		Fracture [label="Fracture" shape=box]
+	}
+
+	// Output
+	Out [label="LLVM IR"]
+
+	// Middle-end
+	Middle [label="Middle-end" shape=box style=dashed color=blue]
+
+	// Input -> front-end
+	In1 -> MCSema
+	In2 -> Dagger
+	In3 -> Fracture
+
+	// Front-end -> output
+	MCSema -> Out
+	Dagger -> Out
+	Fracture -> Out
+
+	// Output -> middle-end
+	Out -> Middle
+
+	rankdir=LR
+}
