@@ -113,7 +113,7 @@ The source code and the report of this project have been released into the publi
 	\item Subgraph isomorphism search algorithms and related tools: \\ \url{https://github.com/mewrev/graphs}
 	\item Control flow graph generation tool: \\ \url{https://github.com/mewrev/ll2dot}
 	\item Decompilation tool: \\ \url{https://github.com/mewrev/ll2go}
-	\item Paper: \\ \url{https://github.com/mewpaper/decompilation}
+	\item Project report: \\ \url{https://github.com/mewpaper/decompilation}
 \end{itemize}
 
 % TODO: Specify the deliverables of the project after the development phase has finished. Use the text below as a basis.
@@ -393,6 +393,7 @@ The Reverse Engineering Intermediate Language (REIL) is a very simple and platfo
 Thanks to the simplicity of REIL a full definition of its instruction set has been provided in listing \ref{reil_instruction_set}, which includes examples of each instruction and defines their syntax and semantics (in pseudo C-code).
 
 % TODO: Move this listing to an appendix section.
+% TODO: Add REIL syntax highlighting.
 
 \lstinputlisting[language=nasm,style=nasm,caption={A full definition of the REIL instruction set. \label{reil_instruction_set}}]{inc/reil_instruction_set.asm}
 
@@ -761,14 +762,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
-% --- [ Formal Grammar for a subset of LLVM IR ] -------------------------------
-
-\subsection{Formal Grammar for a subset of LLVM IR}
-
-% TODO: Mention previous (partial but incomplete) work.
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-
 % --- [ Documentation ] --------------------------------------------------------
 
 \subsection{Documentation}
@@ -801,12 +794,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
-% ~~~ [ Fuzzing the LLVM IR Parser ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-\subsubsection{Fuzzing the LLVM IR Parser}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-
 \pagebreak
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -831,12 +818,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
-% --- [ Third Party Adaptation ] -----------------------------------------------
-
-\subsection{Third Party Adaptation}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-
 % --- [ Profiling and Benchmarks ] ---------------------------------------------
 
 \subsection{Profiling and Benchmarks}
@@ -851,6 +832,13 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 % TODO: Add notes from IDEAS.txt.
 %    - grind
+
+% * Fuzzing the LLVM IR Parser
+
+% * Formal Grammar for a subset of LLVM IR
+%    - Mention previous (partial but incomplete) work.
+
+% * Third Party Adaptation
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
