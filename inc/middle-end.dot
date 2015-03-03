@@ -12,13 +12,14 @@ digraph G {
 		iso [label="iso" shape=box]
 	}
 
+	// Temporary output.
+	tmp [label="Unstructured CFG (*.dot)"]
+
 	// Back-end
 	Back [label="Back-end" shape=box style=dashed color=blue]
 
 	// Front-end -> middle-end
 	Front -> ll2dot [label="LLVM IR" minlen=4]
-
-	tmp [label="Unstructured CFG (*.dot)"]
 
 	// Middle-end -> back-end
 	ll2dot -> tmp

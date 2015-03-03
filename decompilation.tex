@@ -769,7 +769,19 @@ The middle-end is responsible for lifting the LLVM IR to a high-level representa
 
 \subsubsection{Back-end}
 
-baz
+% TODO: Rewrite and clarify.
+
+% TODO: Add ref to rsc's grind tool.
+
+The back-end is responsible for translating the structured control-flow graph of the LLVM IR into a target programming language. The \texttt{ll2go} tool is a proof of concept back-end which produces unpolished Go source code. The polishing is done by separate tools which fixes potential compilation issues and makes the code more ideomatic. The interaction between the middle-end and the back-end is illustrated in figure \ref{back_end}. Currently the \texttt{ll2gofix} replaces return-statements in the \texttt{main} function with calls to \texttt{os.Exit}, which is required since the \texttt{main} function has no return arguments in Go. Instead the Go runtime calls \texttt{os.Exit} with the status-code \texttt{0} once \texttt{main} returns to signal successful termination. This eliminates the need to always end the \texttt{main} function with a \texttt{return 0;} statement as is common practise in C. A future ambition is to make use of and possibly contribute to the \texttt{grind} tool which moves variable declarations closer to their usage, and thus improving readability of the code. Generally the aim is to keep the \texttt{ll2go} tool as simple as possible. The middle-end is responsible for the structural analysis, and as a future ambition the data flow analysis. Since the complexity of the back-end is kept to a minimum it should be trivial to implement support for other output languages.
+
+\begin{figure}[htbp]
+	\begin{center}
+		\includegraphics[width=\textwidth]{inc/back-end.png}
+		\caption{foo}
+		\label{back_end}
+	\end{center}
+\end{figure}
 
 % --- [ System Architecture ] --------------------------------------------------
 
