@@ -731,6 +731,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 \subsubsection{Front-end}
 
+% TODO: Rewrite and clarify.
+
 The front-end module is responsible for converting the input into LLVM IR. Two common scenarios exists, converting binary files (e.g. executables, shared libraries and relocatable object code) and converting source code (e.g. C, Haskell, Rust, …) into LLVM IR. The first scenario is presented in figure \ref{binary_to_llvm} and the second in figure \ref{source_to_llvm}.
 
 % TODO: Mention opt --mem2reg.
@@ -753,7 +755,17 @@ The front-end module is responsible for converting the input into LLVM IR. Two c
 
 \subsubsection{Middle-end}
 
-bar
+% TODO: Rewrite and clarify.
+
+The middle-end is responsible for lifting the LLVM IR to a high-level representation through a series of decompilation passes. The \texttt{ll2dot} tool generates a CFG (in the DOT file format) for each function of a given LLVM IR input file. The \texttt{iso} tool searches for subgraph isomorphisms of control flow primitives in a given CFG. Once located the nodes identified subgraph are merged into a single node which is labeled with the high-level control flow primitive. Successive iterations continue to simplify the CFG until only one node is left, at which point the high-level control flow structure has been recovered. Should the \texttt{iso} tool fail to reduce the graph into a single node, the graph is considered irreducible with regards to the supported high-level control-flow primitives. The interaction between the front-end, the \texttt{ll2dot} and \texttt{iso} tools of the middle-end and the back-end is illustrated in figure \ref{middle_end}.
+
+\begin{figure}[htbp]
+	\begin{center}
+		\includegraphics[width=\textwidth]{inc/middle-end.png}
+		\caption{foo}
+		\label{middle_end}
+	\end{center}
+\end{figure}
 
 \subsubsection{Back-end}
 
