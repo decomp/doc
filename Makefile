@@ -1,12 +1,12 @@
 all: decompilation
 
-decompilation: graphs
+decompilation: inc
 	texi2pdf -q -c $@.tex
 
-graphs: inc/modules_overview.png
+.PHONY: clean inc
 
-inc/modules_overview.png:
-	dot -Tpng -o inc/modules_overview.png inc/modules_overview.dot
+inc:
+	make -C $@/
 
 clean:
 	rm -f *.aux *.log *.out *.toc
