@@ -1,24 +1,30 @@
 digraph G {
-	ranksep=1.2
+	ranksep=0.6
 
-	In1, In2, In3, In4 [label="Input"]
-	Front [label="Front-end" shape=box]
-	Middle [label="Middle-end" shape=box]
-	Back [label="Back-end" shape=box]
-	Out1, Out2, Out3, Out4 [label="Output"]
+	In1 [label="PE (x86)"]
+	In2 [label="ELF (x86)"]
+	In3 [label="ELF (ARM)"]
+	In4 [label="…"]
+	Front [label="Front-end" shape=box color=blue]
+	Middle [label="Middle-end" shape=box color=blue]
+	Back [label="Back-end" shape=box color=blue]
+	Out1 [label="C"]
+	Out2 [label="Go"]
+	Out3 [label="Python"]
+	Out4 [label="…"]
 
-	In1 -> Front [label="PE (x86)"]
-	In2 -> Front [label="ELF (x86)"]
-	In3 -> Front [label="ELF (ARM)"]
-	In4 -> Front [label="…"]
+	In1 -> Front
+	In2 -> Front
+	In3 -> Front
+	In4 -> Front
 
 	Front -> Middle [label="low-level IR"]
 	Middle -> Back [label="high-level IR"]
 
-	Back -> Out1 [label="C"]
-	Back -> Out2 [label="Go"]
-	Back -> Out3 [label="Python"]
-	Back -> Out4 [label="…"]
+	Back -> Out1
+	Back -> Out2
+	Back -> Out3
+	Back -> Out4
 
 	{rank=same; Front Middle Back}
 }
