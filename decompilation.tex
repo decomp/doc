@@ -770,6 +770,8 @@ The front-end module is responsible for converting the input into LLVM IR. Two c
 
 % TODO: Rewrite and clarify.
 
+% TODO: Create a restructure tool which replaces the use of iso.
+
 The middle-end is responsible for lifting the LLVM IR to a high-level representation through a series of decompilation passes. The \texttt{ll2dot} tool generates a CFG (in the DOT file format) for each function of a given LLVM IR input file. The \texttt{iso} tool searches for subgraph isomorphisms of control flow primitives in a given CFG. Once located the nodes identified subgraph are merged into a single node which is labeled with the high-level control flow primitive. Successive iterations continue to simplify the CFG until only one node is left, at which point the high-level control flow structure has been recovered. Should the \texttt{iso} tool fail to reduce the graph into a single node, the graph is considered irreducible with regards to the supported high-level control-flow primitives. The interaction between the front-end, the \texttt{ll2dot} and \texttt{iso} tools of the middle-end and the back-end is illustrated in figure \ref{middle_end}.
 
 \begin{figure}[htbp]
@@ -809,6 +811,17 @@ The back-end is responsible for translating the structured control-flow graph of
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
 % TODO: Mention package division.
+
+\subsection{Data-driven Design}
+
+% TODO: Add notes about the use of DOT-files to describe control-flow primitives. Think if and how this could be pushed further to facilitate the development of future back-ends.
+
+\subsection{Limitations}
+
+% TODO: Add limitations related to the design choices. Which limitations are easily solvable given more time and which are fundamentally part of the design.
+%    - No support for n-way conditionals (e.g.switch-statements).
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
 \pagebreak
 
