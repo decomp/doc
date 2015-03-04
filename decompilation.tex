@@ -883,9 +883,18 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 \subsection{Documentation}
 
-% TODO: Both API documentation and end user documentation with example use cases (perhaps also covering related projects such as McSema).
+% TODO: Add example use cases (perhaps also covering related projects such as McSema)?
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+A set of source code analysis tools are used to automate the generation and presentation of documentation. The main benefit of this approach is that only one version of the documentation has to be maintained and it is kept within the source code, thus preventing it from falling out of sync with the implementation. UNIX manual pages are generated for command line tools using \texttt{mango} \cite{mango}, which locates the relevant comments and command line flag definitions in the source code. Library documentation is presented using \texttt{godoc} \cite{godoc} (a tool similar to \texttt{doxygen}), and may be accessed through a web or command line interface.
+
+The GoDoc.org server hosts an instance of \texttt{godoc} which presents the documentation of publicly available source code repositories. An online version of the documentation for each artefact has been made available using this service.
+
+\begin{itemize}
+	\item Library for interacting with LLVM IR (\textit{work in progress}) \\ \url{https://godoc.org/github.com/mewlang/llvm}
+	\item LLVM IR Control Flow Graph generation tool \\ \url{https://godoc.org/github.com/mewrev/ll2dot}
+	\item Subgraph isomorphism search algorithms for reconstructing high-level control flow primitives and related tools \\ \url{https://github.com/mewrev/graphs}
+	\item Decompiler back-end tool (\textit{proof of concept}) \\ \url{https://godoc.org/github.com/mewrev/ll2go}
+\end{itemize}
 
 % --- [ Ideomatic Language Use ] -----------------------------------------------
 
