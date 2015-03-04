@@ -32,7 +32,7 @@
 
 \title{Compositional Decompilation using LLVM IR}
 \author{Robin Eklind}
-\date{2014-10-04} % TODO: Update date before handing in.
+\date{2015-03-04} % TODO: Update date before handing in.
 
 % Document
 
@@ -107,25 +107,20 @@ In order to achieve this aim, the author will:
 
 \subsection{Deliverables}
 
-The source code and the report of this project have been released into the public domain \cite{cc0} and are made available at the following GitHub repositories.
+The source code and the report of this project have been released into the public domain \cite{cc0} and are made available on GitHub.
+
+The following documents have been produced:
 \begin{itemize}
-	\item LLVM IR library (\textit{work in progress}): \\ \url{https://github.com/mewlang/llvm}
-	\item Subgraph isomorphism search algorithms and related tools: \\ \url{https://github.com/mewrev/graphs}
-	\item Control flow graph generation tool: \\ \url{https://github.com/mewrev/ll2dot}
-	\item Decompilation tool: \\ \url{https://github.com/mewrev/ll2go}
-	\item Project report: \\ \url{https://github.com/mewpaper/decompilation}
+	\item Project report; refer to objective \ref{obj_review_decomp} and \ref{obj_review_suitable_ir} \\ \url{https://github.com/mewpaper/decompilation}
 \end{itemize}
 
-% TODO: Specify the deliverables of the project after the development phase has finished. Use the text below as a basis.
-%
-% The following documents have been produced:
-% * Project report; refer to objective 1 and 2.
-% * Formal grammar for a subset of the LLVM IR language; refer to objective 3.
-%
-% The following system artifacts have been developed:
-% * Library for interacting with LLVM IR; refer to objective 4.
-% * Library for reconstructing high-level control structures from LLVM IR; refer to objective 5.
-% * Tool for performing one or more decompilation passes on a given IR; refer to objective 6.
+And the following system artefacts have been developed:
+\begin{itemize}
+	\item Library for interacting with LLVM IR (\textit{work in progress}); refer to objective \ref{obj_ir_library} \\ \url{https://github.com/mewlang/llvm}
+	\item LLVM IR Control Flow Graph generation tool; refer to objective \ref{obj_structural_analysis_library} \\ \url{https://github.com/mewrev/ll2dot}
+	\item Subgraph isomorphism search algorithms for reconstructing high-level control flow primitives and related tools; refer to objective \ref{obj_structural_analysis_library} and \ref{obj_structural_analysis_tool} \\ \url{https://github.com/mewrev/graphs}
+	\item Decompiler back-end tool (\textit{proof of concept}) \\ \url{https://github.com/mewrev/ll2go}
+\end{itemize}
 
 % --- [ Disposition ] ----------------------------------------------------------
 
@@ -561,7 +556,7 @@ The requirements of each deliverable have been outlined in the succeeding subsec
 
 \subsection{Literature Review}
 
-A top priority of the literature review has been to gain insight into the structural analysis phase (\ref{req_review_structural_analysis}) as the software artifacts heavily depend on it. The other stages of the decompilation pipeline are important to convey the big picture of how components fit together, but the project could still be successful without satisfying \ref{req_review_decomp_stages}.
+A top priority of the literature review has been to gain insight into the structural analysis phase (\ref{req_review_structural_analysis}) as the software artefacts heavily depend on it. The other stages of the decompilation pipeline are important to convey the big picture of how components fit together, but the project could still be successful without satisfying \ref{req_review_decomp_stages}.
 
 Several years prior to the initiation of this project the author and his colleges were considering to use LLVM IR for decompilation purposes. In recent years other research groups have started to develop decompilers and reverse engineering components which rely on LLVM IR \cite{decomp_llvm,retargetable_decomp,mcsema}. There may exist an IR which is more suitable in theory, but in practise the collaboration and reuse of others efforts made possible by the vibrant LLVM community is a strong merit in and of itself. The project may therefore be successful even without identifying an optimal IR for decompilation (objective \ref{obj_review_suitable_ir} and \ref{req_review_suitable_ir}).
 
