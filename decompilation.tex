@@ -738,7 +738,7 @@ foo
 %
 % [1]: https://github.com/go-llvm/llvm/issues/40
 %
-% Ideomatic language usage.
+% Idiomatic language usage.
 %    - Use interfaces for function parameters and concrete types for result parameters.
 
 % TODO: Add
@@ -751,11 +751,12 @@ foo
 
 \subsection{Choice of Programming Language}
 
-% TODO: Clarify the benefits and drawbacks of using Go over C++ which would be the obvious choice for LLVM IR heavy projects.
+% TODO: Clarify the benefits and drawbacks of using Go over C++ which would be the obvious choice for LLVM IR heavy projects. Choosing not to use C++ validates the language-agnostic aspects of the design.
 % - Compilation speed. ll2dot takes > 1.5m whereas a regular Go program takes < 1s.
-foo
 
 % TODO: Mention software composition.
+
+foo
 
 % --- [ Decompiler Pipeline ] --------------------------------------------------
 
@@ -824,7 +825,7 @@ The middle-end is responsible for lifting the LLVM IR to a high-level representa
 
 % TODO: Proof-of-concept. Implement a back-end for another language and written in another language. This would stress test the language-agnostic aspects of the design, thus making sure that the heavy-lifting is done in the middle-end and not in ll2go.
 
-The back-end is responsible for translating the structured control-flow graph of the LLVM IR into a target programming language. The \texttt{ll2go} tool is a proof of concept back-end which produces unpolished Go source code. The polishing is done by separate tools which fixes potential compilation issues and makes the code more ideomatic. The interaction between the middle-end and the back-end is illustrated in figure \ref{back_end}. Currently the \texttt{ll2gofix} replaces return-statements in the \texttt{main} function with calls to \texttt{os.Exit}, which is required since the \texttt{main} function has no return arguments in Go. Instead the Go runtime calls \texttt{os.Exit} with the status-code \texttt{0} once \texttt{main} returns to signal successful termination. This eliminates the need to always end the \texttt{main} function with a \texttt{return 0;} statement as is common practise in C. A future ambition is to make use of and possibly contribute to the \texttt{grind} tool which moves variable declarations closer to their usage, and thus improving readability of the code. Generally the aim is to keep the \texttt{ll2go} tool as simple as possible. The middle-end is responsible for the structural analysis, and as a future ambition the data flow analysis. Since the complexity of the back-end is kept to a minimum it should be trivial to implement support for other output languages.
+The back-end is responsible for translating the structured control-flow graph of the LLVM IR into a target programming language. The \texttt{ll2go} tool is a proof of concept back-end which produces unpolished Go source code. The polishing is done by separate tools which fixes potential compilation issues and makes the code more idiomatic. The interaction between the middle-end and the back-end is illustrated in figure \ref{back_end}. Currently the \texttt{ll2gofix} replaces return-statements in the \texttt{main} function with calls to \texttt{os.Exit}, which is required since the \texttt{main} function has no return arguments in Go. Instead the Go runtime calls \texttt{os.Exit} with the status-code \texttt{0} once \texttt{main} returns to signal successful termination. This eliminates the need to always end the \texttt{main} function with a \texttt{return 0;} statement as is common practise in C. A future ambition is to make use of and possibly contribute to the \texttt{grind} tool which moves variable declarations closer to their usage, and thus improving readability of the code. Generally the aim is to keep the \texttt{ll2go} tool as simple as possible. The middle-end is responsible for the structural analysis, and as a future ambition the data flow analysis. Since the complexity of the back-end is kept to a minimum it should be trivial to implement support for other output languages.
 
 \begin{figure}[htbp]
 	\begin{center}
@@ -906,6 +907,26 @@ foo
 \subsection{Decompiler Back-end Tool}
 
 foo
+
+% --- [ Idiomatic Coding ] -----------------------------------------------------
+
+\subsection{Idiomatic Coding}
+
+Making effective use of a programming language requires more than simply learning its syntax and key features. With a reasonable understanding of the underlying design decisions behind a programming language and the historic factors which drove its development one may infer the governing principles and key beliefs of its developers. These principles and beliefs influence every aspect of software development; they determines how programs are structured and how problems are solved. One of the primary driving forces behind the development of the Go programming language is pragmatism, the idea of which was captured in the following quote by Samuel Tesla shortly after Go was released in 2009:
+
+\begin{quote}
+	\textit{``Go is not meant to innovate programming theory. It's meant to innovate programming practice.''} - Samuel Tesla, Dec 2009 \cite{pragmatic}
+\end{quote}
+
+% TODO: Add the following key points.
+
+\cite{effective_go}
+
+\textit{less is exponentionally more} \cite{less_is_more}
+\textit{simplicity}
+\textit{composition}
+\textit{tooling}
+\textit{automation}
 
 % --- [ Documentation ] --------------------------------------------------------
 
@@ -1071,12 +1092,18 @@ foo
 % TODO: Add notes from IDEAS.txt.
 %    - grind
 
+% * Finish developing the LLVM IR library and replace the C++ binding with a pure Go implementation. This should decrese build times significantly and simplify the overall complexity of the project by several orders of magnitude.
+
 % * Fuzzing the LLVM IR Parser
 
 % * Formal Grammar for a subset of LLVM IR
 %    - Mention previous (partial but incomplete) work.
 
 % * Third Party Adaptation
+
+% * Data Flow Analysis.
+
+% * Stress test the design by implementing another back-end written in and for another programming language.
 
 foo
 
@@ -1106,7 +1133,7 @@ This is the largest project I have undertaken in my life and I feel satisfied wi
 
 \subsection{Final Thoughts}
 
-My happiest moment during the project was when the larger components started working and could be connected to form a complete system. It feels great having started out with a vague idea of how the decompiler could work, gradually gaining new insights and refining its design after researching and building on the knowledge of others, developing and iteratively reimplementing the various components until they feel just right, finally arriving at a working prototype and watching the full system in action! If there is one key idea I want to leave you with it is that the composition of independent components, each with a single purpose and well-defined input and output, is a powerful tool for solving complex problems.
+My happiest moment during the project was when the larger components started working and could be connected to form a complete system. It feels great having started out with a vague idea of how the decompiler could work, gradually gaining new insights and refining its design after researching and building on the knowledge of others, developing and iteratively reimplementing the various components until they feel just right, finally arriving at a working prototype and seeing the full system in action! If there is one key idea I want to leave you with it is that the composition of independent components, each with a single purpose and well-defined input and output, is a powerful concept for solving complex problems.
 
 \pagebreak
 
