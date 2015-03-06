@@ -980,17 +980,17 @@ foo
 
 \subsection{Continuous Integration}
 
-The Continuous Integration (CI) practise originated from the Extreme Programming methodology \cite{xp} but has reached a much broader audience in recent years. Today most large scale software projects utilize rely on CI server farms which continuously compile and test new versions of the source code.
+The Continuous Integration (CI) practise originated from the Extreme Programming methodology \cite{xp} but has reached a much broader audience in recent years. Today most large scale software projects rely on CI server farms which continuously compile and test new versions of the source code.
 
-This project makes use of Travis CI, which is tightly integrated with GitHub, to run a series of automated tests for each commit to the source code repository. The tests are varied and range from source code formatting and coding style issues to build status and test coverage. A future ambition is to run benchmarks for each commit to quickly identify performance regressions.
-
-% TODO: <future> Investigate how the benchmark servers work for the go project and see if the solution is portable.
+This project makes use of Travis CI, which is tightly integrated with GitHub, to run a series of automated tests for each commit to the source code repository. The tests are varied and range from identifying source code formatting and coding style issues to monitoring the build status and test coverage. A future ambition is to run benchmarks for each commit to quickly identify performance regressions.
 
 \subsubsection{Source Code Formatting}
 
-\texttt{gofmt}
+Instead of relying on a formatting style guide the Go project enforces a single formatting style using \texttt{gofmt} (a tool similar to \texttt{indent}) which automatically formats Go source code. The adoption of this tool is widespread within the Go community as indicated by a survey conducted back in 2013. The survey found that 70\% of the publicly available Go packages were formatted according to the rules of \texttt{gofmt} \cite{gofmt_70percent}, a figure which is likely to have increased since then.
 
-foo
+Using a single formatting style for all Go source code may at first seem like a small deal, but the advantages are vast. It becomes easier to write code as one may focus on the problem at hand rather than minor formatting issues. Similarly it becomes easier to read code when it is formatted in a familiar and uniform manner. We may focus our entire attention at understanding the semantics of the code without being distracted by inconsistent or unfamiliar formatting. And perhaps most importantly, it prevents useless discussions about which formatting style is the right one.
+
+Several text editors supports adding pre-save hooks which executes a command to pre-process the text before saving it. This mechanism may be used with the \texttt{godoc} tool to automatically enforce its formatting style each time a source file is saved. One of the CI tests catches and reports incorrectly formatted source code, should a programmer forget to install such a hook.
 
 \subsubsection{Coding Style}
 
