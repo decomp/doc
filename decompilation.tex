@@ -681,7 +681,7 @@ The primary intention of this project is to create self-contained components whi
 
 % TODO: Rewrite to make this section feel right. It is currently too succinct. Elaborate on some topics, and potentially split into multiple sections.
 
-No single methodology will be used for this project, but rather a combination of techniques which have been proven to work well in practice. Continuous Integration will be used throughout the development process to monitor the build status, test cases, and code coverage of each component. The API stability of each component will be governed using Semantic Versioning (vMAJOR.MINOR.PATCH). Prior to version 1.0 the components will be written using either throw-away prototyping or iterative development and the API may change drastically. The implementation correctness will be verified using Test Driven Design where feasible, with test cases written prior to the actual implementation of the API.
+No single methodology will be used for this project, but rather a combination of techniques which have been proven to work well in practice. Continuous Integration will be used throughout the development process to monitor the build status, test cases, and code coverage of each component. The API stability of each component will be governed using Semantic Versioning (vMAJOR.MINOR.PATCH). Prior to version 1.0 the components will be written using either throw-away prototyping or iterative development and the API may change drastically. The implementation correctness will be verified using Test Driven Development where feasible, with test cases written prior to the actual implementation of the API.
 
 % TODO: Explain why this specific methodology was chosen, and justify the methods. The justification may be required to be quite detailed, with in-text references.
 
@@ -719,15 +719,9 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
-% --- [ Continuous Integration ] -----------------------------------------------
+% --- [ Test Driven Development ] ----------------------------------------------
 
-\subsection{Continuous Integration}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-
-% --- [ Test Driven Design ] ---------------------------------------------------
-
-\subsection{Test Driven Design}
+\subsection{Test Driven Development}
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
@@ -879,6 +873,36 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
+% --- [ LLVM IR Library ] ------------------------------------------------------
+
+\subsection{LLVM IR Library}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+% --- [ Control Flow Graph Generation Tool ] -----------------------------------
+
+\subsection{Control Flow Graph Generation Tool}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+% --- [ Subgraph Isomorphism Search Algorithm ] --------------------------------
+
+\subsection{Subgraph Isomorphism Search Algorithm}
+
+Implementing the subgraph isomorphism search algorithm was without doubt the most difficult endeavour of the entire project. It took roughly five iterations of implementing, evaluating and rethinking the algorithm to find an approach which felt right and another two iterations to develop a working implementation which passed all the test cases.
+
+% --- [ Control Flow Analysis Tool ] -------------------------------------------
+
+\subsection{Control Flow Analysis Tool}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+% --- [ Decompiler Back-end Tool ] ---------------------------------------------
+
+\subsection{Decompiler Back-end Tool}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
 % --- [ Documentation ] --------------------------------------------------------
 
 \subsection{Documentation}
@@ -887,7 +911,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 A set of source code analysis tools are used to automate the generation and presentation of documentation. The main benefit of this approach is that only one version of the documentation has to be maintained and it is kept within the source code, thus preventing it from falling out of sync with the implementation. UNIX manual pages are generated for command line tools using \texttt{mango} \cite{mango}, which locates the relevant comments and command line flag definitions in the source code. Library documentation is presented using \texttt{godoc} \cite{godoc} (a tool similar to \texttt{doxygen}), and may be accessed through a web or command line interface.
 
-The GoDoc.org server hosts an instance of \texttt{godoc} which presents the documentation of publicly available source code repositories. An online version of the documentation for each artefact has been made available using this service.
+The GoDoc.org server hosts an instance of \texttt{godoc} which presents the documentation of publicly available source code repositories. An online version of the documentation has been made available for each artefact using this service.
 
 \begin{itemize}
 	\item Library for interacting with LLVM IR (\textit{work in progress}) \\ \url{https://godoc.org/github.com/mewlang/llvm}
@@ -896,32 +920,113 @@ The GoDoc.org server hosts an instance of \texttt{godoc} which presents the docu
 	\item Decompiler back-end tool (\textit{proof of concept}) \\ \url{https://godoc.org/github.com/mewrev/ll2go}
 \end{itemize}
 
-% --- [ Ideomatic Language Use ] -----------------------------------------------
+% --- [ Verification ] ---------------------------------------------------------
 
-\subsection{Ideomatic Language Use}
+\subsection{Verification}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-
-% --- [ LLVM IR library ] ------------------------------------------------------
-
-\subsection{LLVM IR library}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-
-% --- [ TODO ] -----------------------------------------------------------------
-
-\subsection{TODO}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-
-% --- [ Testing ] --------------------------------------------------------------
-
-\subsection{Testing}
+\subsubsection{Test Cases}
 
 % TODO: Add
 %    - Use the Clang compiler to produce test cases, as it is capable of emitting LLVM IR from C source code. The goal will be to reconstruct the high- level control flow structures (such as for- loops, if-else statements, etc) of the original C code from the LLVM IR.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+While developing the lexer for the LLVM IR assembly language
+
+foo
+
+\subsubsection{Code Coverage}
+
+\ref{iso_code_coverage}
+
+\begin{figure}[htbp]
+	\begin{center}
+		\includegraphics[width=\textwidth]{inc/iso_code_coverage.png}
+		\caption{Extract from the code coverage of the subgraph isomorphism search algorithm.}
+		\label{iso_code_coverage}
+	\end{center}
+\end{figure}
+
+foo
+
+% --- [ Optimization ] ---------------------------------------------------------
+
+\subsection{Optimization}
+
+foo
+
+\subsubsection{Benchmarks}
+
+percentage delta.
+
+\texttt{benchcmp}
+
+foo
+
+\subsubsection{Profiling}
+
+% TODO: Add bottle neck example
+%    inc/lexer_pprof_before.svg
+
+% TODO:
+%    - CPU profiling
+%       go test -cpuprofile=a.out
+%    - Memory profiling
+%       go test -memprofile=a.out
+
+\texttt{go tool pprof}
+
+foo
+
+% --- [ Continuous Integration ] -----------------------------------------------
+
+\subsection{Continuous Integration}
+
+The Continuous Integration (CI) practise originated from the Extreme Programming methodology \cite{xp} but has reached a much broader audience in recent years. Today most large scale software projects utilize rely on CI server farms which continuously compile and test new versions of the source code.
+
+This project makes use of Travis CI, which is tightly integrated with GitHub, to run a series of automated tests for each commit to the source code repository. The tests are varied and range from source code formatting and coding style issues to build status and test coverage. A future ambition is to run benchmarks for each commit to quickly identify performance regressions.
+
+% TODO: <future> Investigate how the benchmark servers work for the go project and see if the solution is portable.
+
+\subsubsection{Source Code Formatting}
+
+\texttt{gofmt}
+
+foo
+
+\subsubsection{Coding Style}
+
+\texttt{golint}
+
+foo
+
+\subsubsection{Code Correctness}
+
+\texttt{go vet}
+
+foo
+
+\subsubsection{Build Status}
+
+\texttt{go get}
+
+foo
+
+\subsubsection{Test Cases}
+
+\texttt{go test}
+
+foo
+
+\subsubsection{Code Coverage}
+
+\texttt{go test -cover}
+
+foo
+
+\subsubsection{Data Race Detection}
+
+\texttt{go test -race}
+
+foo
 
 \pagebreak
 
