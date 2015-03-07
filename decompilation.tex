@@ -7,6 +7,10 @@
 % TODO: Proof read for common mistakes:
 %    * exist vs exists.
 
+% TODO: <ask>
+%    * Remove useless citations to commands? The intention is to avoid ambiguity
+%      when refering to commands, but the use of citations seems overkill.
+
 \documentclass[12pt, a4paper]{article}
 
 % Preamble
@@ -17,6 +21,8 @@
 \usepackage[parfill]{parskip}
 \usepackage[hidelinks]{hyperref}
 \usepackage{graphicx}
+\usepackage{numprint}
+\usepackage{multirow}
 \usepackage{listings}
 \usepackage{latex/nasm/lang}
 \usepackage{latex/nasm/style}
@@ -76,7 +82,7 @@ TODO
 
 A compiler is a piece of software which translates human readable high-level programming languages (e.g. C) to machine readable low-level languages (e.g. Assembly). In the usual flow of compilation, code is lowered through a set of transformations from a high-level to a low-level representation. The decompilation process (originally referred to as reverse compilation \cite{rev_comp}) moves in the opposite direction by lifting code from a low-level to a high-level representation.
 
-Decompilation enables source code reconstruction of binary applications and libraries. Both security researchers and software engineers may benifit from decompilation as it facilitates analysis, modification and reconstruction of object code. The applications of decompilation are versatile, and may include one of the following use cases:
+Decompilation enables source code reconstruction of binary applications and libraries. Both security researchers and software engineers may benefit from decompilation as it facilitates analysis, modification and reconstruction of object code. The applications of decompilation are versatile, and may include one of the following use cases:
 
 \begin{itemize}
 	\item Analyze malware
@@ -459,7 +465,7 @@ foo
 \subsubsection{MC-Semantics}
 
 % TODO: Evaluate and highlight key differences between Dagger, Fracture and McSema.
-% Dagger and Fracture rely on TableGen for instruction semantics, McSema doesn't.
+% Dagger and Fracture rely on TableGen for instruction semantics, McSema does not.
 
 foo
 
@@ -502,6 +508,7 @@ foo
 % ~~~ [ The Retargetable Decompiler ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 \subsubsection{The Retargetable Decompiler}
+\label{retargetable_decomp_section}
 
 % TODO: Write about Decompilation as a Services.
 
@@ -691,7 +698,7 @@ No single methodology will be used for this project, but rather a combination of
 %    - Attempt to find flaws in the design by stress testing it through proof of concept implementations.
 %    - Engage in discussions with the open source community during the design process of any library intended for third party use; specifically the LLVM IR libraries.
 %    - Once the design is deemed mature, begin an iterative process of implementation and testing.
-%    - Don't be afraid to throw away code and trying new ideas, that's what revision control systems are for!
+%    - Don not be afraid to throw away code and trying new ideas, that is what revision control systems are for!
 
 % TODO: Add
 %    - All work was made available on GitHub from day one and the source code was released into the public domain to encourage open source adaptation and interaction.
@@ -770,6 +777,17 @@ foo
 % TODO: Rewrite and clarify.
 
 The decompilation pipeline is made of up several components which are conceptually grouped into three modules. The front-end module translates a variety of inputs (such as binary files and source code) into LLVM IR by utilizing a collection of tools developed by several independent open source projects. The middle-end lifts the LLVM IR to a high-level representation by conducting a control flow analysis which generates a structured CFG of each function. The back-end generates high-level control-flow primitives such as if-statements and for-loops based on the structured CFG. In addition it translates the individual instructions of the LLVM IR to expressions and statements of the target programming language (in this case Go). The interaction between the front-end, middle-end and back-end modules is visualized in figure \ref{decompilation_pipeline}.
+
+% * Front-end
+%    - binary -> LLVM IR ([MC-Semantics](https://github.com/trailofbits/mcsema), [Dagger](http://dagger.repzret.org/) or [Fracture](https://github.com/draperlaboratory/fracture))
+%    - source code -> LLVM IR (clang, ghc, rustc, ...)
+% * Middle-end
+%    - LLVM IR -> Unstructured CFG ([ll2dot](https://github.com/mewrev/ll2dot))
+%    - Unstructured CFG -> Structured CFG ([iso](https://github.com/mewrev/graphs) and [merge](https://github.com/mewrev/graphs).)
+%       + Truthfully `ll2go` doesn't make direct use of `iso` or `merge` but rather the graph libraries. A future ambition is to allow `iso` and `merge` to output JSON such that they may be used directly by `ll2go`.
+% * Back-end
+%    - Structured CFG -> Go ([ll2go](https://github.com/mewrev/ll2go))
+
 
 \begin{figure}[htbp]
 	\begin{center}
@@ -861,6 +879,50 @@ foo
 
 foo
 
+% --- [ Security Assessment ] --------------------------------------------------
+
+\subsection{Security Assessment}
+
+To assess the security of the decompiler pipeline, lets imagine a scenario in which users are given access to the implementation details and source code of the entire system and may provide arbitrary input to any of its components. A potential scenario could involve a web site which provides decompilation as a service and allows its users to interact with the various stages of the decompiler pipeline. The Retargetable Decompiler (see section \ref{retargetable_decomp_section}) provides such a service, except it only allows users to interact with the binary analysis stage of the pipeline and its source code is proprietary. The scope of this security assessment will be limited to the various components of the decompiler pipeline and their interaction. In particular security issues related to the operating system, network stack, web server and web page (e.g. SQL-injection and XSS vulnerabilities) of the decompilation service are intentionally excluded from the scope of the security assessment.
+
+The objective of an attacker may be to escalate their privileges in a system by exploiting it to execute actions not intended by design. Since the security of any system is only as strong as its weakest link, it is critical to identify and isolate likely targets for attacks. Projects which consist of or depend on large C or C++ code bases may exhibit memory safety issues, such as buffer overflows or use-after-free vulnerabilities. These issues are considered low-hanging fruit for attackers and have a long history of successful exploitation \cite{for_fun_and_profit}. Several modern programming languages (including Go) provide memory safety guarantees and may solve these issues by inserting bounds-checking for array accesses and using garbage collection for memory management. Code written in memory safe languages may still contain other security vulnerabilities caused by logic errors or insufficient validation, sanitation and parametrization of input (e.g. command injection and directory traversal vulnerabilities).
+
+The number of lines of code in a project may give an indication to the project's complexity and to some extent its potential attack surface. As summarized in table \ref{loc_summary} every component of the decompiler pipeline except \texttt{iso} depends on LLVM. The LLVM code base contains approximately \numprint{800000} lines of C++ source code, and even if only a portion of the code will be linked into the executables it is an interesting target for attacks. One thing to keep in mind is that there are several high-end users of the LLVM project (such as Apple, Intel, NVIDIA and Sony \cite{llvm_users}) and it has a well established code reviewing process. Some of the LLVM developers are also very well educated in common security vulnerabilities and have developed the Clang Static Analyzer, which is a static source code analysis that locates bugs (such as buffer overflows and use-after-free issues) in C and C++ programs \cite{clang_analyzer}. The LLVM project may contain several security issues due to its size, but they are most likely difficult to discover since the low-hanging fruit have been caught by the Clang Static Analyzer.
+
+\begin{table}[htbp]
+	\begin{center}
+		\begin{tabular}{|l|l|l|l|}
+			\hline
+			\textbf{Project} & \textbf{Language} & \textbf{Lines} & \textbf{Dependencies} \\
+			\hline
+			\multicolumn{4}{|l|}{\hspace{4ex} \textit{Front-end}} \\
+			\hline
+			Dagger & C++ & \numprint{2000} & LLVM \\
+			Fracture & C++ & \numprint{20000} & LLVM \\
+			MC-Semantics & C++ & \numprint{25000} & LLVM and Google Protocol Buffers \\
+			\hline
+			\multicolumn{4}{|l|}{\hspace{4ex} \textit{Middle-end}} \\
+			\hline
+			ll2dot & Go & \numprint{500} & LLVM and dot \\
+			iso & Go & \numprint{2000} & dot \\
+			\hline
+			\multicolumn{4}{|l|}{\hspace{4ex} \textit{Back-end}} \\
+			\hline
+			ll2go & Go & \numprint{1500} & LLVM, llvm (Go), iso and dot \\
+			\hline
+			\multicolumn{4}{|l|}{\hspace{4ex} \textit{Dependencies}} \\
+			\hline
+			LLVM & C++ & \numprint{800000} & - \\
+			Google Protocol Buffers & C++ & \numprint{125000} & - \\
+			llvm (Go) & Go & \numprint{5000} & - \\
+			dot & Go & \numprint{7000} & - \\
+			\hline
+		\end{tabular}
+	\end{center}
+	\caption{A rough summary of each project specifying their programming language, number of lines of code and dependencies.}
+	\label{loc_summary}
+\end{table}
+
 \pagebreak
 
 % === [ Development ] ==========================================================
@@ -870,7 +932,7 @@ foo
 % TODO: Brainstorm about which sections are actually relevant and how they should be structured.
 
 % TODO: Mention the following trivias:
-%    - Identify unused tokens (hash and backspace) in the C++ code base and submit a patch which was commited to remove these.
+%    - Identify unused tokens (hash and backspace) in the C++ code base and submit a patch which was commited to remove these. (http://reviews.llvm.org/D7248)
 %    - Discuss API design with members of the open source community.
 %    - Ask experienced LLVM developers of insight into possible inconsistencies with LLVM IR. Some highlighted inconsistent behaviour and some were intended behaviour. (LLVM-dev mailing list)
 
@@ -943,9 +1005,9 @@ Every aspect of Go development embodies the UNIX philosophy (see figure \ref{uni
 \begin{figure}[htbp]
 	\begin{center}
 		\begin{quote}
-			\textit{``Write programs that do one thing and do it well. Write programs to work together.''}
+			\textit{``Write programs that do one thing and do it well. Write programs to work together.''} \cite{art_of_unix}
 		\end{quote}
-		\caption{The UNIX philosophy \cite{art_of_unix}.}
+		\caption{The UNIX philosophy.}
 		\label{unix_philosophy}
 	\end{center}
 \end{figure}
@@ -1116,8 +1178,6 @@ foo
 
 % * Finish developing the LLVM IR library and replace the C++ binding with a pure Go implementation. This should decrese build times significantly and simplify the overall complexity of the project by several orders of magnitude.
 
-% * Fuzzing the LLVM IR Parser
-
 % * Formal Grammar for a subset of LLVM IR
 %    - Mention previous (partial but incomplete) work.
 
@@ -1126,6 +1186,8 @@ foo
 % * Data Flow Analysis.
 
 % * Stress test the design by implementing another back-end written in and for another programming language.
+
+% TODO: Fuzz the LLVM IR parser by generating valid LLVM from the EBNF grammar (similar to gosmith).
 
 foo
 
