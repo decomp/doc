@@ -21,11 +21,13 @@
 \usepackage[parfill]{parskip}
 \usepackage[hidelinks]{hyperref}
 \usepackage{graphicx}
+\usepackage{pdfpages}
 \usepackage{numprint}
 \usepackage{multirow}
 \usepackage{listings}
 \usepackage{latex/nasm/lang}
 \usepackage{latex/nasm/style}
+\usepackage{latex/reil/lang}
 \bibliographystyle{ieeetr} % TODO: Change to APA 6th ed? snyft
 
 % Custom labels command by Ian Thompson and Henrik Bøgelund Lavstse.
@@ -358,47 +360,6 @@ foo
 
 foo
 
-% ~~~ [ ELIR ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-\subsubsection{ELIR}
-
-% TODO: Research.
-% ref: http://www.eresi-project.org/
-% Part of ERESI.
-% "ERESI development has restarted as of February 2013"
-% Seems dead; no new code in 19 months.
-
-foo
-
-% ~~~ [ Hex-Rays Microcode ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-\subsubsection{Hex-Rays Microcode}
-
-foo
-
-\cite{hexrays}
-
-% ~~~ [ Wire ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-\subsubsection{Wire}
-
-% TODO: Check: Wire - A Formal Intermediate Language for Binary Analysis
-
-foo
-
-
-% ~~~ [ Valgrind IR ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-\subsubsection{Valgrind IR}
-
-foo
-
-% ~~~ [ QEMU IR ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-\subsubsection{QEMU IR}
-
-foo
-
 % ~~~ [ REIL ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 \subsubsection{REIL}
@@ -407,24 +368,11 @@ The Reverse Engineering Intermediate Language (REIL) is a very simple and platfo
 
 % TODO: Operands have a type, a value and a size.
 
-Thanks to the simplicity of REIL a full definition of its instruction set has been provided in listing \ref{reil_instruction_set}, which includes examples of each instruction and defines their syntax and semantics (in pseudo C-code).
-
-% TODO: Move this listing to an appendix section.
-% TODO: Add REIL syntax highlighting.
-
-\lstinputlisting[language=nasm,style=nasm,caption={A full definition of the REIL instruction set. \label{reil_instruction_set}}]{inc/reil_instruction_set.asm}
+Thanks to the simplicity of REIL a full definition of its instruction set has been provided in appendix \ref{reil_appendix}, which includes examples of each instruction and defines their syntax and semantics (in pseudo C-code).
 
 % TODO: Incorporate notes from "REIL - notes.txt"
 
 The language was originally designed to assist static code analysis and translators from native assembly (x86, PowerPC-32 and ARM-32) to REIL are commercially available. However, the project home page has not been updated since Google acquired zynamics in 2011. Since then approximately 10 papers have been published which references REIL and the adaptation of the language within the open source community seems limited. As of 2015-01-04 only three implementations existed on GitHub (two in Python \cite{barf,pyreil} and one in C \cite{bit}), and the most popular had less than 25 watchers, 80 stars and 15 forks.
-
-% ~~~ [ SAIL ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-\subsubsection{SAIL}
-
-% TODO: Check: SAIL: Static Analysis Intermediate Language with a Two-Level Representation
-
-foo
 
 % ~~~ [ LLVM IR ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -883,11 +831,11 @@ foo
 
 \subsection{Security Assessment}
 
-To assess the security of the decompiler pipeline, lets imagine a scenario in which users are given access to the implementation details and source code of the entire system and may provide arbitrary input to any of its components. A potential scenario could involve a web site which provides decompilation as a service and allows its users to interact with the various stages of the decompiler pipeline. The Retargetable Decompiler (see section \ref{retargetable_decomp_section}) provides such a service, except it only allows users to interact with the binary analysis stage of the pipeline and its source code is proprietary. The scope of this security assessment will be limited to the various components of the decompiler pipeline and their interaction. In particular security issues related to the operating system, network stack, web server and web page (e.g. SQL-injection and XSS vulnerabilities) of the decompilation service are intentionally excluded from the scope of the security assessment.
+To assess the security of the decompiler pipeline, lets imagine a scenario in which users are given access to the implementation details and source code of the entire system and may provide arbitrary input to any of its components. A potential scenario could involve a web site which provides decompilation as a service and allows its users to interact with the various stages of the decompiler pipeline. The Retargetable Decompiler (see section \ref{retargetable_decomp_section}) provides such a service, except it only allows users to interact with the binary analysis stage of the pipeline and its source code is proprietary. The scope of this security assessment will be limited to the various components of the decompiler pipeline and their interaction. In particular security issues related to the operating system, network stack, web server and web site (e.g. SQL-injection and XSS vulnerabilities) of the decompilation service are intentionally excluded from the scope of the security assessment.
 
 The objective of an attacker may be to escalate their privileges in a system by exploiting it to execute actions not intended by design. Since the security of any system is only as strong as its weakest link, it is critical to identify and isolate likely targets for attacks. Projects which consist of or depend on large C or C++ code bases may exhibit memory safety issues, such as buffer overflows or use-after-free vulnerabilities. These issues are considered low-hanging fruit for attackers and have a long history of successful exploitation \cite{for_fun_and_profit}. Several modern programming languages (including Go) provide memory safety guarantees and may solve these issues by inserting bounds-checking for array accesses and using garbage collection for memory management. Code written in memory safe languages may still contain other security vulnerabilities caused by logic errors or insufficient validation, sanitation and parametrization of input (e.g. command injection and directory traversal vulnerabilities).
 
-The number of lines of code in a project may give an indication to the project's complexity and to some extent its potential attack surface. As summarized in table \ref{loc_summary} every component of the decompiler pipeline except \texttt{iso} depends on LLVM. The LLVM code base contains approximately \numprint{800000} lines of C++ source code, and even if only a portion of the code will be linked into the executables it is an interesting target for attacks. One thing to keep in mind is that there are several high-end users of the LLVM project (such as Apple, Intel, NVIDIA and Sony \cite{llvm_users}) and it has a well established code reviewing process. Some of the LLVM developers are also very well educated in common security vulnerabilities and have developed the Clang Static Analyzer, which is a static source code analysis that locates bugs (such as buffer overflows and use-after-free issues) in C and C++ programs \cite{clang_analyzer}. The LLVM project may contain several security issues due to its size, but they are most likely difficult to discover since the low-hanging fruit have been caught by the Clang Static Analyzer.
+The number of lines of code in a project may give an indication to the project's complexity and to some extent its potential attack surface. As summarized in table \ref{loc_summary} every component of the decompiler pipeline except \texttt{iso} depends on LLVM. The LLVM code base contains approximately \numprint{800000} lines of C++ source code, and even if only a portion of the code will be linked into the executables it is an interesting target for attacks. One thing to keep in mind is that there are several high-end users of the LLVM project (such as Apple, Intel, NVIDIA and Sony \cite{llvm_users}) and it has a well established code reviewing process. Some of the LLVM developers are also very well educated in common security vulnerabilities and have developed the Clang Static Analyzer, which is a static source code analysis tool that locates bugs (such as buffer overflows and use-after-free issues) in C and C++ programs \cite{clang_analyzer}. The LLVM project may contain several security issues due to its size, but they are most likely difficult to discover since the low-hanging fruit have been caught already by the Clang Static Analyzer. Similarly, Google Protocol Buffers are used extensively by several companies and organizations and the likelyhood of discovering a simple security vulnerability in its code base is low.
 
 \begin{table}[htbp]
 	\begin{center}
@@ -923,7 +871,12 @@ The number of lines of code in a project may give an indication to the project's
 	\label{loc_summary}
 \end{table}
 
+There are still three potential targets which may contain memory related vulnerabilities, namely the front-end projects which translate binary executables, object code and shared libraries to LLVM IR.
+
+% easy to make mistakes in the parsing logic. Trust header fields without verifying.
+
 % TODO: Mention the unnamed hack (gain access to the names of anonymous basic blocks).
+%    - Unable to trust the integrity of the output of local files are tampered with. Trusting trust.
 
 % TODO: Security through obscurity
 % TODO: Defence in depth
@@ -1329,5 +1282,52 @@ My happiest moment during the project was when the larger components started wor
 
 \renewcommand{\refname}{\vskip -1cm}
 \bibliography{references}
+
+\pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Appendices
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% === [ Appendices ] ===========================================================
+
+\appendix
+\section*{Appendices}
+\addcontentsline{toc}{section}{Appendices}
+\renewcommand{\thesubsection}{\Alph{subsection}}
+
+% --- [ Project Initiation Document ] ------------------------------------------
+
+\subsection{Project Initiation Document}
+
+\includepdf[pages=-]{appendices/PID_orig.pdf} % TODO: Replace with PID.pdf (signed version).
+
+% --- [ Certificate of Ethics Review ] -----------------------------------------
+
+\subsection{Certificate of Ethics Review}
+
+\includepdf[pages=-]{appendices/ethics_review.pdf}
+
+% --- [ Gantt Chart ] ----------------------------------------------------------
+
+\subsection{Initial and Final Gantt Charts}
+
+\begin{figure}[htbp]
+	\begin{center}
+		\includegraphics[angle=270, width=0.9\textwidth]{appendices/gantt_initial.png}
+		\caption{Initial Gantt chart.}
+	\end{center}
+\end{figure}
+
+% TODO: Add final Gantt chart.
+
+\pagebreak
+
+% --- [ REIL Instruction Set ] -------------------------------------------------
+
+\subsection{REIL Instruction Set}
+\label{reil_appendix}
+
+\lstinputlisting[language=reil,style=nasm,caption={A full definition of the REIL instruction set. \label{reil_instruction_set}}]{inc/reil_instruction_set.asm}
 
 \end{document}
