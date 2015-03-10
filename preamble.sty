@@ -1,0 +1,28 @@
+\ProvidesPackage{preamble}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[margin=1in]{geometry}
+\usepackage[parfill]{parskip}
+\usepackage[hidelinks]{hyperref}
+\usepackage[nottoc]{tocbibind}
+\usepackage{graphicx}
+\usepackage{pdfpages}
+\usepackage{numprint}
+\usepackage{multirow}
+\usepackage{listings}
+\usepackage{latex/nasm/lang}
+\usepackage{latex/nasm/style}
+\usepackage{latex/reil/lang}
+\usepackage{cleveref}
+\bibliographystyle{ieeetr} % TODO: Change to APA 6th ed? snyft
+
+% Custom labels command by Ian Thompson and Henrik Bøgelund Lavstse.
+% ref: https://tex.stackexchange.com/questions/18191/defining-custom-labels/160035#160035
+% TODO: The hyper ref target seems off-by-one line, fix it.
+\makeatletter
+\newcommand{\customlabel}[2]{
+	\hypertarget{#1}{#2}
+	\protected@write \@auxout {}{\string \newlabel {#1}{{#2}{\thepage}{#2}{#1}{}} }
+}
+\makeatother
