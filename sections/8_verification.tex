@@ -34,7 +34,7 @@ PASS
 ok     github.com/mewrev/graphs/iso   0.62s
 		\end{verbatim}
 		\caption{An extract of the test cases used to verify the subgraph isomorphism search algorithm, as visualized by \texttt{go test}.}
-		\label{iso_test_cases}
+		\label{fig:iso_test_cases}
 	\end{center}
 \end{figure}
 
@@ -44,7 +44,7 @@ The code coverage is a measurement of how much of the code is exercised by the t
 
 % TODO: Add note on how the Go code coverage is calculated.
 
-While developing a lexer for the LLVM IR assembly language the intention was to strive for a 100\% code coverage of any code related to lexing and not related to input output errors (e.g. ``file not found'' errors). As illustrated in figure \ref{lexer_code_coverage}. The rigid testing made it possible to locate and correct a number of faulty assumptions in the lexing logic.
+While developing a lexer for the LLVM IR assembly language the intention was to strive for a 100\% code coverage of any code related to lexing and not related to input output errors (e.g. ``file not found'' errors). As illustrated in \cref{fig:lexer_code_coverage}. The rigid testing made it possible to locate and correct a number of faulty assumptions in the lexing logic.
 
 \begin{figure}[htbp]
 	\begin{center}
@@ -63,18 +63,18 @@ llvm/asm/lexer/state.go:585:   unescape       100.0%
 total:                         (statements)   97.5%
 		\end{verbatim}
 		\caption{A summary of the code coverage for a selection of the LLVM IR lexer functions, as visualized by the \texttt{cover} tool.}
-		\label{lexer_code_coverage}
+		\label{fig:lexer_code_coverage}
 	\end{center}
 \end{figure}
 
-The use of code coverage heat maps, which track how often statements are exercised by the test cases, were invaluable when stress testing the subgraph isomorphism search algorithm, and they were able to identify several tricky corner cases. \ref{iso_heat_map}
+The use of code coverage heat maps, which track how often statements are exercised by the test cases, were invaluable when stress testing the subgraph isomorphism search algorithm, and they were able to identify several tricky corner cases. foo \cref{fig:iso_heat_map}
 
 \begin{figure}[htbp]
 	\begin{center}
 		\includegraphics[width=\textwidth]{inc/iso_code_coverage_heat_map.png}
 		% TODO: Fix caption text.
 		\caption{Extract from the code coverage of the subgraph isomorphism search algorithm, represented as a heat map where red indicates that a statement was never visited and the intensity of green indicates the number of times a statement was visited. where bright green represents a statements that has been visited several times, faint green a statement only visited a few times, and red a statement that has never been visited.}
-		\label{iso_heat_map}
+		\label{fig:iso_heat_map}
 	\end{center}
 \end{figure}
 

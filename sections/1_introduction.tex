@@ -18,14 +18,14 @@ Decompilation enables source code reconstruction of binary applications and libr
 	\item Add new features to existing software
 \end{itemize}
 
-As recognized by Edsger W. Dijkstra in his 1972 ACM Turing Lecture (an extract from which is presented in figure \ref{dijkstra_lecture}) one of the most powerful tools for solving complex problems in Computer Science is the use of abstractions and separation of concerns. This paper explores a compositional approach to decompilation which facilitates abstractions to create a pipeline of self-contained components. Since each component interacts through language-agnostic interfaces (well-defined input and output) they may be written in a variety of programming languages. Furthermore, for each component of the decompilation pipeline there may exist multiple implementations with their individual strengths and weaknesses. The end user (e.g. malware analyst, security researcher, reverse engineer) may select the components which solves their task at hand the best.
+As recognized by Edsger W. Dijkstra in his 1972 ACM Turing Lecture (an extract from which is presented in \cref{fig:dijkstra_lecture}) one of the most powerful tools for solving complex problems in Computer Science is the use of abstractions and separation of concerns. This paper explores a compositional approach to decompilation which facilitates abstractions to create a pipeline of self-contained components. Since each component interacts through language-agnostic interfaces (well-defined input and output) they may be written in a variety of programming languages. Furthermore, for each component of the decompilation pipeline there may exist multiple implementations with their individual strengths and weaknesses. The end user (e.g. malware analyst, security researcher, reverse engineer) may select the components which solves their task at hand the best.
 
 \begin{figure}[htbp]
 	\begin{quote}
 		\textit{``We all know that the only mental tool by means of which a very finite piece of reasoning can cover a myriad cases is called ``abstraction''; as a result the effective exploitation of their powers of abstraction must be regarded as one of the most vital activities of a competent programmer. In this connection it might be worthwhile to point out that the purpose of abstracting is not to be vague, but to create a new semantic level in which one can be absolutely precise. Of course I have tried to find a fundamental cause that would prevent our abstraction mechanisms from being sufficiently effective. But no matter how hard I tried, I did not find such a cause. As a result I tend to the assumption -- up till now not disproved by experience -- that by suitable application of our powers of abstraction, the intellectual effort needed to conceive or to understand a program need not grow more than proportional to program length.''} \cite{abstractions_quote}
 	\end{quote}
 	\caption{An extract from the ACM Turing Lecture given by Edsger W. Dijkstra in 1972.}
-	\label{dijkstra_lecture}
+	\label{fig:dijkstra_lecture}
 \end{figure}
 
 \pagebreak % TODO: <layout> Remove pagebreak?
@@ -38,13 +38,20 @@ The aim of this project is to facilitate decompilation workflows using compositi
 
 In order to achieve this aim, the author will:
 \begin{enumerate}
-	\item Review traditional decompilation techniques, including control flow analysis and data flow analysis. \label{obj_review_decomp}
-	\item Critically evaluate a set of Intermediate Representations (IRs), which describes low-, medium- and high-level language semantics, to identify one or more suitable for the decompilation pipeline. \label{obj_review_suitable_ir}
-	\item Analyse the formal grammar (language specification) of the IR to verify that it is unambiguous. If the grammar is ambiguous or if no formal grammar exists, produce a formal grammar. This objective is critical for language-independence, as the IR works as a bridge between different programming languages. \label{obj_formal_ir}
-	\item Determine if any existing library for the IR satisfies our requirements; and if not develop one. The requirements would include a suitable in-memory representation, and support for on-disk file storage and arbitrary manipulations (inject, delete, etc) of the IR. \label{obj_ir_library}
-	\item Design and develop components which identify the structural patterns of high-level control structures using control flow analysis of the IR. \label{obj_structural_analysis_library}
-	\item Develop tools which perform one or more decompilation passes on a given IR. The tools will be reusable by other programming language environments as their input and output is specified by a formally defined IR. \label{obj_structural_analysis_tool}
-	\item As a future ambition, design and develop components which perform expression propagation using data flow analysis of the IR. \label{obj_data_analysis_library}
+	\item Review traditional decompilation techniques, including control flow analysis and data flow analysis.
+	\label{itm:obj_review_decomp}
+	\item Critically evaluate a set of Intermediate Representations (IRs), which describes low-, medium- and high-level language semantics, to identify one or more suitable for the decompilation pipeline.
+	\label{itm:obj_review_suitable_ir}
+	\item Analyse the formal grammar (language specification) of the IR to verify that it is unambiguous. If the grammar is ambiguous or if no formal grammar exists, produce a formal grammar. This objective is critical for language-independence, as the IR works as a bridge between different programming languages.
+	\label{itm:obj_formal_ir}
+	\item Determine if any existing library for the IR satisfies our requirements; and if not develop one. The requirements would include a suitable in-memory representation, and support for on-disk file storage and arbitrary manipulations (inject, delete, etc) of the IR.
+	\label{itm:obj_ir_library}
+	\item Design and develop components which identify the structural patterns of high-level control structures using control flow analysis of the IR.
+	\label{itm:obj_structural_analysis_library}
+	\item Develop tools which perform one or more decompilation passes on a given IR. The tools will be reusable by other programming language environments as their input and output is specified by a formally defined IR.
+	\label{itm:obj_structural_analysis_tool}
+	\item As a future ambition, design and develop components which perform expression propagation using data flow analysis of the IR.
+	\label{itm:obj_data_analysis_library}
 \end{enumerate}
 
 % --- [ Deliverables ] ---------------------------------------------------------
@@ -55,14 +62,14 @@ The source code and the report of this project have been released into the publi
 
 The following documents have been produced:
 \begin{itemize}
-	\item Project report; refer to objective \ref{obj_review_decomp} and \ref{obj_review_suitable_ir} \\ \url{https://github.com/mewpaper/decompilation}
+	\item Project report; refer to objective \ref{itm:obj_review_decomp} and \ref{itm:obj_review_suitable_ir} \\ \url{https://github.com/mewpaper/decompilation}
 \end{itemize}
 
 And the following system artefacts have been developed:
 \begin{itemize}
-	\item Library for interacting with LLVM IR (\textit{work in progress}); refer to objective \ref{obj_ir_library} \\ \url{https://github.com/mewlang/llvm}
-	\item LLVM IR Control Flow Graph generation tool; refer to objective \ref{obj_structural_analysis_library} \\ \url{https://github.com/mewrev/ll2dot}
-	\item Subgraph isomorphism search algorithms for reconstructing high-level control flow primitives and related tools; refer to objective \ref{obj_structural_analysis_library} and \ref{obj_structural_analysis_tool} \\ \url{https://github.com/mewrev/graphs}
+	\item Library for interacting with LLVM IR (\textit{work in progress}); refer to objective \ref{itm:obj_ir_library} \\ \url{https://github.com/mewlang/llvm}
+	\item LLVM IR Control Flow Graph generation tool; refer to objective \ref{itm:obj_structural_analysis_library} \\ \url{https://github.com/mewrev/ll2dot}
+	\item Subgraph isomorphism search algorithms for reconstructing high-level control flow primitives and related tools; refer to objective \ref{itm:obj_structural_analysis_library} and \ref{itm:obj_structural_analysis_tool} \\ \url{https://github.com/mewrev/graphs}
 	\item Decompiler back-end tool (\textit{proof of concept}) \\ \url{https://github.com/mewrev/ll2go}
 \end{itemize}
 
