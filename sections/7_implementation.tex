@@ -1,0 +1,103 @@
+% === [ Implementation ] =======================================================
+
+\section{Implementation}
+
+% TODO: Brainstorm about which sections are actually relevant and how they should be structured.
+
+% TODO: Mention the following trivias:
+%    - Identify unused tokens (hash and backspace) in the C++ code base and submit a patch which was commited to remove these. (http://reviews.llvm.org/D7248)
+%    - Discuss API design with members of the open source community.
+%    - Ask experienced LLVM developers of insight into possible inconsistencies with LLVM IR. Some highlighted inconsistent behaviour and some were intended behaviour. (LLVM-dev mailing list)
+
+% Hints for Computer System Design (1983) - Butler Lampson
+%    "Handle normal and worst case seperately"
+
+foo
+
+% --- [ Idiomatic Coding ] -----------------------------------------------------
+
+\subsection{Idiomatic Coding}
+
+Making effective use of a programming language requires more than simply learning its syntax and key features. With a reasonable understanding of the underlying design decisions behind a programming language and the historic factors which drove its development one may infer the governing principles and key beliefs of its developers. These principles and beliefs influence every aspect of the software development process; they determine how programs are structured and how problems are solved. One of the primary driving forces behind the development of the Go programming language is pragmatism, the idea of which was captured in the following quote by Samuel Tesla shortly after Go was released in 2009:
+
+\begin{quote}
+	\textit{``Go is not meant to innovate programming theory. It's meant to innovate programming practice.''} - Samuel Tesla, Dec 2009 \cite{pragmatic}
+\end{quote}
+
+In 2012 Rob Pike (one of the Go language inventors) gave a talk titled \textit{``Less is exponentially more''} which included a personal description of the historic events leading up to the inception of Go. The starting point of the language was C, not C++, which Go aimed to simplify further by removing cruft. This stands in direct contrast to the direction of C++ which gains more features with each passing release. The \textit{less is more} mindset is deeply rooted in the mentality of Go developers and there is a strong emphasis on the use of composition to solve problems.
+
+\begin{quote}
+	\itshape
+	``If C++ and Java are about type hierarchies and the taxonomy of types, Go is about composition.
+
+	Doug McIlroy, the eventual inventor of Unix pipes, wrote in 1964 (!):
+
+	\begin{quote}
+		We should have some ways of coupling programs like garden hose--screw in another segment when it becomes necessary to massage data in another way. This is the way of IO also.
+	\end{quote}
+
+	That is the way of Go also. Go takes that idea and pushes it very far. It is a language of composition and coupling.''
+	\normalfont
+	- Rob Pike, 2012 \cite{less_is_more}
+\end{quote}
+
+Every aspect of Go development embodies the UNIX philosophy (see figure \ref{unix_philosophy}) which comes as no surprise since Ken Thompson (one of the original inventors of UNIX) is part of the core Go team.
+
+\begin{figure}[htbp]
+	\begin{center}
+		\begin{quote}
+			\textit{``Write programs that do one thing and do it well. Write programs to work together.''} \cite{art_of_unix}
+		\end{quote}
+		\caption{The UNIX philosophy.}
+		\label{unix_philosophy}
+	\end{center}
+\end{figure}
+
+% --- [ LLVM IR Library ] ------------------------------------------------------
+
+\subsection{LLVM IR Library}
+
+foo
+
+% --- [ Control Flow Graph Generation Tool ] -----------------------------------
+
+\subsection{Control Flow Graph Generation Tool}
+
+foo
+
+% --- [ Subgraph Isomorphism Search Algorithm ] --------------------------------
+
+\subsection{Subgraph Isomorphism Search Algorithm}
+
+Implementing the subgraph isomorphism search algorithm was without doubt the most difficult endeavour of the entire project. It took roughly five iterations of implementing, evaluating and rethinking the algorithm to find an approach which felt right and another two iterations to develop a working implementation which passed all the test cases.
+
+% TODO: Incorporate notes from iso_algorithm_notes.txt.
+
+% --- [ Control Flow Analysis Tool ] -------------------------------------------
+
+\subsection{Control Flow Analysis Tool}
+
+foo
+
+% --- [ Decompiler Back-end Tool ] ---------------------------------------------
+
+\subsection{Decompiler Back-end Tool}
+
+foo
+
+% --- [ Documentation ] --------------------------------------------------------
+
+\subsection{Documentation}
+
+% TODO: Add example use cases (perhaps also covering related projects such as McSema)?
+
+A set of source code analysis tools are used to automate the generation and presentation of documentation. The main benefit of this approach is that only one version of the documentation has to be maintained and it is kept within the source code, thus preventing it from falling out of sync with the implementation. UNIX manual pages are generated for command line tools using \texttt{mango} \cite{mango}, which locates the relevant comments and command line flag definitions in the source code. Library documentation is presented using \texttt{godoc} \cite{godoc} (a tool similar to \texttt{doxygen}), and may be accessed through a web or command line interface.
+
+The GoDoc.org server hosts an instance of \texttt{godoc} which presents the documentation of publicly available source code repositories. An online version of the documentation has been made available for each artefact using this service.
+
+\begin{itemize}
+	\item Library for interacting with LLVM IR (\textit{work in progress}) \\ \url{https://godoc.org/github.com/mewlang/llvm}
+	\item LLVM IR Control Flow Graph generation tool \\ \url{https://godoc.org/github.com/mewrev/ll2dot}
+	\item Subgraph isomorphism search algorithms for reconstructing high-level control flow primitives and related tools \\ \url{https://godoc.org/github.com/mewrev/graphs}
+	\item Decompiler back-end tool (\textit{proof of concept}) \\ \url{https://godoc.org/github.com/mewrev/ll2go}
+\end{itemize}

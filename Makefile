@@ -9,4 +9,4 @@ inc:
 	make -C $@/
 
 clean:
-	rm -f *.aux *.log *.out *.toc *.bbl *.blg
+	rm -f *.aux *.log *.out *.toc *.bbl *.blg sections/*.aux

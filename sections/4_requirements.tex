@@ -1,0 +1,127 @@
+% === [ Requirements ] =========================================================
+
+\section{Requirements}
+
+The requirements of each deliverable have been outlined in the succeeding subsections, and are categorized using MoSCoW prioritization \cite{MoSCoW_analysis}; a definition of which is presented in table \ref{MoSCoW_priorities}. Each requirement is directly related to an objective as indicated by the requirements tables of the deliverables. The only objective not covered is objective \ref{obj_data_analysis_library} which was intentionally left as a future ambition.
+
+\begin{table}[htbp]
+	\begin{center}
+		\begin{tabular}{|l|l|}
+			\hline
+			Priority & Description \\
+			\hline
+			MUST & An essential requirement that \textit{must} be satisfied \\
+			SHOULD & An important requirement that \textit{should} be satisfied if possible \\
+			COULD & A desirable requirement that \textit{could} be satisfied but it is not necessary \\
+			WON'T & A future requirement that \textit{will not} be satisfied in this release \\
+			\hline
+		\end{tabular}
+	\end{center}
+	\caption{A summary of the MoSCoW (MUST, SHOULD, COULD, WON'T) priorities.}
+	\label{MoSCoW_priorities}
+\end{table}
+
+% --- [ Literature Review ] ----------------------------------------------------
+
+\subsection{Literature Review}
+
+A top priority of the literature review has been to gain insight into the structural analysis phase (\ref{req_review_structural_analysis}) as the software artefacts heavily depend on it. The other stages of the decompilation pipeline are important to convey the big picture of how components fit together, but the project could still be successful without satisfying \ref{req_review_decomp_stages}.
+
+Several years prior to the initiation of this project the author and his colleges were considering to use LLVM IR for decompilation purposes. In recent years other research groups have started to develop decompilers and reverse engineering components which rely on LLVM IR \cite{decomp_llvm,retargetable_decomp,mcsema}. There may exist an IR which is more suitable in theory, but in practise the collaboration and reuse of others efforts made possible by the vibrant LLVM community is a strong merit in and of itself. The project may therefore be successful even without identifying an optimal IR for decompilation (objective \ref{obj_review_suitable_ir} and \ref{req_review_suitable_ir}).
+
+\begin{table}[htbp]
+	\begin{center}
+		\begin{tabular}{|l|l|l|l|}
+			\hline
+			Obj. & Req. & Priority & Description \\
+			\hline
+			\ref{obj_review_decomp} & \customlabel{req_review_structural_analysis}{\textbf{R1}} & MUST & Describe common structural analysis techniques \\
+			\ref{obj_review_decomp} & \customlabel{req_review_decomp_stages}{\textbf{R2}} & SHOULD & Outline the general stages of the decompilation pipeline \\
+			\ref{obj_review_suitable_ir} & \customlabel{req_review_suitable_ir}{\textbf{R3}} & COULD & Identify a suitable IR for the decompilation pipeline \\
+			\hline
+		\end{tabular}
+	\end{center}
+	\caption{Requirements of the literature review.}
+\end{table}
+
+% --- [ LLVM IR Library ] ------------------------------------------------------
+
+\subsection{LLVM IR Library}
+
+The LLVM IR language defines several primitives directly related to code optimization and linking, neither of which convey any useful information for the decompilation pipeline. It is therefore sufficient for this project to support a subset of the LLVM IR language and the relevant requirements should be interpreted as referring to a subset of the language.
+
+The structural analysis tool interacts with other components using LLVM IR. It is therefore required to support reading from and writing to at least one of the representations of LLVM IR. The representations are isomorphic and the standard \texttt{llvm-as} and \texttt{llvm-dis} tools from the LLVM distribution may be used to convert between the assembly language and bitcode representation of LLVM IR. Access to the bitcode representation (\ref{req_ir_library_read_bitcode} and \ref{req_ir_library_write_bitcode}) has therefore been deferred in favour of the assembly language representation (\ref{req_ir_library_read_asm} and \ref{req_ir_library_write_asm}) which has the benefit of being human readable.
+
+The structural analysis library will inspect and manipulate an in-memory representation of LLVM IR (\ref{req_ir_library_mem}) to locate high-level structural patterns and store these findings respectively. Instead of working with sequential lists the structural analysis algorithms will operate on CFGs of basic blocks (\ref{req_ir_library_cfg}). To facilitate the implementation and debugging of these algorithms a visual representation of the CFGs would be beneficial (\ref{req_ir_library_cfg_debug}).
+
+To guarantee the language-agnostic interaction between components, objective \ref{obj_formal_ir} stated that a formal grammar for the LLVM IR had to be located or produced (\ref{req_formal_ir}). Previous efforts have only managed to produce formal grammars for subsets of the LLVM IR language \cite{formal_llvm_ir_spec,formalizing_llvm_ir} and no such grammar has been officially endorsed. The difficult nature of producing a formal grammar only became apparent after discussions with the project supervisor. With this in mind, objective \ref{obj_formal_ir} has been re-evaluated as a future ambition.
+
+\begin{table}[htbp]
+	\begin{center}
+		\begin{tabular}{|l|l|l|l|}
+			\hline
+			Obj. & Req. & Priority & Description \\
+			\hline
+			\ref{obj_ir_library} & \customlabel{req_ir_library_read_asm}{\textbf{R4}} & MUST & Read the assembly language representation of LLVM IR \\
+			\ref{obj_ir_library} & \customlabel{req_ir_library_write_asm}{\textbf{R5}} & MUST & Write the assembly language representation of LLVM IR \\
+			\ref{obj_ir_library} & \customlabel{req_ir_library_mem}{\textbf{R6}} & MUST & Interact with an in-memory representation of LLVM IR \\
+			\ref{obj_ir_library} & \customlabel{req_ir_library_cfg}{\textbf{R7}} & MUST & Produce CFGs from LLVM IR basic blocks \\
+			\ref{obj_ir_library} & \customlabel{req_ir_library_cfg_debug}{\textbf{R8}} & COULD & Visualize CFGs using the \texttt{DOT} graph description language \\
+			\ref{obj_ir_library} & \customlabel{req_ir_library_read_bitcode}{\textbf{R9}} & WON'T & Read the bitcode representation of LLVM IR \\
+			\ref{obj_ir_library} & \customlabel{req_ir_library_write_bitcode}{\textbf{R10}} & WON'T & Write the bitcode representation of LLVM IR \\
+			\ref{obj_formal_ir} & \customlabel{req_formal_ir}{\textbf{R11}} & WON'T & Provide a formal grammar of LLVM IR \\
+			\hline
+		\end{tabular}
+	\end{center}
+	\caption{Requirements of the LLVM IR library.}
+\end{table}
+
+% --- [ Structural Analysis Library ] ------------------------------------------
+
+\subsection{Structural Analysis Library}
+
+A decision was made early on to only support decompilation of compiler generated code from structured high-level languages (\ref{req_structural_analysis_library_reducible_graphs}). Support for arbitrary, unstructured and obfuscated code has been intentionally left out (\ref{req_structural_analysis_library_irreducible_graphs}) to avoid a myriad of special cases.
+
+The structural analysis library must recover the high-level control flow structures of pre-test loops (\ref{req_structural_analysis_library_pre_test_loop}), infinite loops (\ref{req_structural_analysis_library_inf_loop}) and 2-way conditionals (\ref{req_structural_analysis_library_2_way_cond}), as these are found in virtually every high-level language today. Post-test loops (\ref{req_structural_analysis_library_post_test_loop}) and n-way conditionals (\ref{req_structural_analysis_library_n_way_cond}) are also common - but not found in every language (e.g. Python has no \texttt{switch} statements and Go has no \texttt{do-while} loops) - and should therefore be recovered. Support for multi-exit loops (\ref{req_structural_analysis_library_multi_exit_loop}) and nested loops (\ref{req_structural_analysis_library_nested_loop}) could be included if time permits. The recovery of compound boolean expressions is intentionally deferred (\ref{req_structural_analysis_library_compound_bool_expr}) as it would require analysis of instructions within basic blocks in addition to the CFG analysis.
+
+\begin{table}[htbp]
+	\begin{center}
+		\begin{tabular}{|l|l|l|l|}
+			\hline
+			Obj. & Req. & Priority & Description \\
+			\hline
+			\ref{obj_structural_analysis_library} & \customlabel{req_structural_analysis_library_reducible_graphs}{\textbf{R12}} & MUST & Support analysis of reducible graphs \\
+			\ref{obj_structural_analysis_library} & \customlabel{req_structural_analysis_library_pre_test_loop}{\textbf{R13}} & MUST & Recover pre-test loops (e.g. \texttt{for}, \texttt{while}) \\
+			\ref{obj_structural_analysis_library} & \customlabel{req_structural_analysis_library_inf_loop}{\textbf{R14}} & MUST & Recover infinite loops (e.g. \texttt{while(TRUE)}) \\
+			\ref{obj_structural_analysis_library} & \customlabel{req_structural_analysis_library_2_way_cond}{\textbf{R15}} & MUST & Recover 2-way conditionals (e.g. \texttt{if}, \texttt{if-else}) \\
+			\ref{obj_structural_analysis_library} & \customlabel{req_structural_analysis_library_post_test_loop}{\textbf{R16}} & SHOULD & Recover post-test loops (e.g. \texttt{do-while}) \\
+			\ref{obj_structural_analysis_library} & \customlabel{req_structural_analysis_library_n_way_cond}{\textbf{R17}} & SHOULD & Recover n-way conditionals (e.g. \texttt{switch}) \\
+			\ref{obj_structural_analysis_library} & \customlabel{req_structural_analysis_library_multi_exit_loop}{\textbf{R18}} & COULD & Recover multi-exit loops \\
+			\ref{obj_structural_analysis_library} & \customlabel{req_structural_analysis_library_nested_loop}{\textbf{R19}} & COULD & Recover nested loops \\
+			\ref{obj_structural_analysis_library} & \customlabel{req_structural_analysis_library_irreducible_graphs}{\textbf{R20}} & WON'T & Support analysis of irreducible graphs \\
+			\ref{obj_structural_analysis_library} & \customlabel{req_structural_analysis_library_compound_bool_expr}{\textbf{R21}} & WON'T & Recover compound boolean expressions \\
+			\hline
+		\end{tabular}
+	\end{center}
+	\caption{Requirements of the structural analysis library.}
+\end{table}
+
+% --- [ Structural Analysis Tool ] ---------------------------------------------
+
+\subsection{Structural Analysis Tool}
+
+The primary intention of this project is to create self-contained components which may be used in the decompilation pipelines of other projects. It is therefore of vital importance that the components are able to interact with tools written in other programming languages (\ref{req_structural_analysis_tool_language_agnostic}). The structural analysis tool is one such component which aims to recovers a set of high-level control flow primitives from LLVM IR (\ref{req_structural_analysis_tool_decomp_pass}).
+
+\begin{table}[htbp]
+	\begin{center}
+		\begin{tabular}{|l|l|l|l|}
+			\hline
+			Obj. & Req. & Priority & Description \\
+			\hline
+			\ref{obj_structural_analysis_tool} & \customlabel{req_structural_analysis_tool_decomp_pass}{\textbf{R22}} & MUST & Perform structural decompilation passes on LLVM IR \\
+			\ref{obj_structural_analysis_tool} & \customlabel{req_structural_analysis_tool_language_agnostic}{\textbf{R23}} & MUST & Support language-agnostic interaction with other components \\
+			\hline
+		\end{tabular}
+	\end{center}
+	\caption{Requirements of the structural analysis tool.}
+\end{table}
