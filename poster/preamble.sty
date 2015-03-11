@@ -1,0 +1,60 @@
+\ProvidesPackage{preamble}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+% Add support for links.
+%
+% Options:
+%    hidelinks: don't show red boxes around links.
+%
+% Examples:
+%    \url{http://example.org/}
+\usepackage[hidelinks]{hyperref}
+
+% Import images.
+%
+% Examples:
+%    \includegraphics[width=\textwidth]{foo.png}
+\usepackage{graphicx}
+
+% Sub figures.
+%
+% Examples:
+%    \begin{figure}[H]
+%       \centering
+%       \begin{subfigure}[ht]{0.50\textwidth}
+%          foo
+%       \end{subfigure}
+%       \begin{subfigure}[ht]{0.50\textwidth}
+%          foo
+%       \end{subfigure}
+%       \caption{foo}
+%    \end{figure}
+\usepackage{subcaption}
+
+% Add [H] placement attribute for figures.
+\usepackage{float}
+
+% Source code listings, language definitions and styles (LLVM and Go).
+%
+% Examples:
+%    \lstinputlisting[language=llvm, style=nasm]{foo.ll}
+\usepackage{listings}
+\usepackage{latex/llvm/lang}
+\usepackage{latex/nasm/style}
+\usepackage{latex/go/lang}
+\usepackage{latex/go/style}
+
+% Make the margin above and below figures smaller.
+\setlength{\intextsep}{5pt}
+\setlength{\abovecaptionskip}{5pt}
+
+% Background image.
+\background{
+	\begin{tikzpicture}[remember picture,overlay]
+		\draw (current page.north west)+(-2em,2em) node[anchor=north west]{
+			\includegraphics[height=1.2\textheight]{inc/background_bright.png}
+		};
+	\end{tikzpicture}
+}

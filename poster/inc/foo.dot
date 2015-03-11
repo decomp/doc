@@ -1,0 +1,19 @@
+digraph main {
+	bgcolor=transparent
+	node [style=filled fillcolor=white]
+	ranksep=0.3
+
+	0->1
+	1->11
+	1->3
+	3->5
+	3->list0
+	5->list0
+	list0->1
+	0 [label="entry"]
+	1
+	11
+	3 [fillcolor=red]
+	5 [fillcolor=red]
+	list0 [fillcolor=red]
+}

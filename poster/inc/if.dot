@@ -1,0 +1,12 @@
+digraph if {
+	bgcolor=transparent
+	node [style=filled fillcolor=white]
+	ranksep=0.3
+
+	A
+	B
+	C
+	A->B
+	A->C
+	B->C
+}
