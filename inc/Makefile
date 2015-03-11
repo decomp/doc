@@ -1,3 +1,4 @@
+# *.dot -> *.png
 DOT = $(wildcard *.dot)
 PNG = $(DOT:.dot=.png)
 

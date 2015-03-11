@@ -12,4 +12,6 @@ TODO
 
 Decompilation is the process of transforming low-level machine-readable code into high-level human-readable code. The problem is complex as much information is lost through the process of compilation. The problem can however be broken into several smaller subproblems, which may be solved independently. This paper explores a compositional approach to decompilation, and creates a pipeline of independent components to solve the problems of each stage. A core focus is the language-agnostic aspects of composition, such that the various components may be written in any programming language.
 
+The control flow analysis component of the decompiler pipeline utilizes subgraph isomorphism search algorithms to identify and reconstruct high-level control flow primitives from LLVM IR, which is a platform-independent low-level intermediate representation used by the LLVM compiler framework.
+
 \end{abstract}
