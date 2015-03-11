@@ -1,7 +1,7 @@
 all: poster
 
 poster: inc
-	texi2pdf -c -q $@.tex
+	texi2pdf -I ../ -c -q $@.tex
 
 .PHONY: clean inc
 
