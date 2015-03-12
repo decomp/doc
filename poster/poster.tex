@@ -34,7 +34,7 @@
 
 \headerbox{Method}{column=0, below=auto, span=1}
 {
-	Identify control flow primitives using subgraph isomorphism search algorithms.
+	Identify control flow primitives using subgraph isomorphism search algorithms \cite{decomp_llvm}.
 
 	\begin{figure}[H]
 		\centering
@@ -49,7 +49,7 @@
 	\end{figure}
 }
 
-\headerbox{Results}{column=1, row=0, span=2}
+\headerbox{Results}{name=rbox, column=1, row=0, span=2}
 {
 	\begin{figure}[H]
 		\centering
@@ -64,11 +64,17 @@
 	\end{figure}
 }
 
-\headerbox{Source Code}{column=1, below=auto, span=1}
+\headerbox{Source Code}{column=1, below=rbox, span=1}
 {
 	\url{https://github.com/mewrev/graphs}
 	\url{https://github.com/mewrev/ll2dot}
 	\url{https://github.com/mewrev/ll2go}
+}
+
+\headerbox{References}{column=2, below=rbox, span=1}
+{
+	\renewcommand{\section}[2]{}
+	\bibliography{references}
 }
 
 \end{poster}
