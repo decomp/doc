@@ -9,7 +9,7 @@ define i32 @main(i32 %argc, i8** %argv) {
   %4 = icmp slt i32 %x.0, 100
   br i1 %4, label %5, label %8
 ; <label>:5
-  %6 = mul nsw i32 2, %i.0
+  %6 = mul nsw i32 3, %i.0
   %7 = add nsw i32 %x.0, %6
   br label %8
 ; <label>:8
