@@ -3,13 +3,11 @@ package main
 import "os"
 
 func main() {
-	i := 0
 	x := 0
-	for i < 10 {
+	for i := 0; i < 10; i++ {
 		if x < 100 {
 			x += 2 * i
 		}
-		i++
 	}
 	os.Exit(x)
 }

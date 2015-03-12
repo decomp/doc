@@ -6,7 +6,7 @@ all: $(GO_SRC) $(LL_SRC)
 
 %.go: $(LL_SRC)
 	ll2go -f $<
-	ll2gofix $@ ; echo $?
+	ll2gofix $@
 	@sar "\n\n" "\n" $@ > tmp_$@
 	@mv tmp_$@ $@
 	goimports -w $@
@@ -14,3 +14,6 @@ all: $(GO_SRC) $(LL_SRC)
 %.ll: %.c
 	clang -S -emit-llvm -o $@ $<
 	opt -S --mem2reg -o $@ $@
+
+clean:
+	rm -rf *.go *.ll *_graphs/
