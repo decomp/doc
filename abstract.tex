@@ -6,9 +6,36 @@
 %    - Not a contents list
 %    - Don't use acronyms unless well-understood
 % * Must be able to stand entirely on its own
-TODO
 
-	% Like a river, suddenly reversing the direction of its flow.
+% === [ Keywords ] ===
+%
+%    * Decompilation
+%
+%    * Composition
+%    * Decompilation pipeline
+%    * Stages
+%    * Language-agnostic
+%
+%    * LLVM IR
+%    * Control flow primitives
+%    * Subgraph isomorphism search
+%    * Control flow analysis
+%    * Recover / reconstruct
+%    * Basic block
+
+The majority of the production-quality binary analysis tools used for decompilation are monolithic to the end-user, and may at best offer scripting support or plugin extensibility. There exists a gap to fill which learns from successful software construction practices in other problem domains. Specifically the idea of composition.
+
+Composition is a battle-tested method for solving complex problems. Meanwhile the typical arsenal of tools available to the reverse engineer are provided as monolithic beasts, which at best provide scripting and plugin support.
+
+The composition of independent components which interact using well-defined interfaces is a battle-tested method for solving complex problems. Its core being the Unix philosophy of minimalistic programs which does one thing, and does it well. The users of such a system may replace a small component with another to tailor a solution which fits their needs. Meanwhile, if you are a reverse engineer chances are that your artillery of binary analysis tools consists of monolithic decompilers which only provide customization and extensibility through scripting and plugin support. This paper aims to investigate the feasibility of bringing the concept of composition to solve the complex task of decompilation using a pipeline of independent stages which may consist of one or more components written in a variety of programming languages.
+
+The intention is to expose the individual components of the decompilation pipeline to the end-user, who may for each subproblem select between a variety of components with their individual advantages and limitations. Inspiration is drawn from the Unix philosophy of developing small dedicated programs, each dealing with a specific task and solving it well.
+
+The Unix philosophy gave rise to a compositional approach to problem solving, which empowers its users with choice. No single tool may solve all imaginable problems but several small tools may solve dedicated subproblems and be composed to solve arbitrary complex problems.
+
+Any given problem may be broken down to several smaller subproblems.
+
+The Unix philosophy encourages the use of composition to solve complex problems. Each tool has a dedicated purpose and the end-user is given the power to compose a pipeline from a variety of tools, which massage, transform or manipulate the input in a certain way to solve a given problem.
 
 Decompilation is the process of transforming low-level machine-readable code into high-level human-readable code. The problem is complex as much information is lost through the process of compilation. The problem can however be broken into several smaller subproblems, which may be solved independently. This paper explores a compositional approach to decompilation, and creates a pipeline of independent components to solve the problems of each stage. A core focus is the language-agnostic aspects of composition, such that the various components may be written in any programming language.
 
