@@ -35,7 +35,9 @@
 
 Decompilation or reverse compilation is the process of translating low-level machine-readable code into high-level human-readable code. The problem is non-trivial due to the amount of information lost during compilation, but it can be divided into several smaller problems which may be solved independently. This report explores the feasability of composing a decompilation pipeline from independent components, and the potential of exposing those components to the end-user.
 
-% --- [ Methodology/design ] ---------------------------------------------------
+% --- [ Methodology ] ----------------------------------------------------------
+
+% * Design
 
 % 62 words.
 
@@ -49,24 +51,19 @@ The components of the decompilation pipeline are conceptually grouped into three
 
 % * What you found
 
-The decompilation pipeline has been proven capable of recovering nested pre-test and post-test loops (e.g. while, do-while), and 1-way and 2-way conditionals (e.g. if, if-else) from LLVM IR.
+The decompilation pipeline has been proven capable of recovering nested pre-test and post-test loops (e.g. \texttt{while}, \texttt{do-while}), and 1-way and 2-way conditionals (e.g. \texttt{if}, \texttt{if-else}) from LLVM IR. Each stage of the decompilation pipeline is extensible.
 
 A post-processing stage deals with language-specific features
 
-Each stage of the pipeline is extensible; and in practise it took less than 3 hours to extend the post-processing stage to simplify the loop-header of pre-test loops (from init;while(cond){post} to for(init; cond; post)) by locating surrounding initialization and post-statements
+Each stage of the pipeline is extensible.
 
-Each stage of the decompilation pipeline is easily extensible. For example the post-processing stage was extended to simplify pre-test loops by locating the initialization and post-statement
+Each stage of the decompilation pipeline is easily extensible
 
 The decompiler pipeline has proven easily extensible and flexible. It is capable of recovering nested pre-test loops, 2-way conditionals,
 
-%As an example, building upon the existing infrastructure and extending the post-translation source code cleanup; it took less than three hours to implement a source code translation rule which propagates initialization and post-statements of for-loops
+% --- [ Conclusion ] -----------------------------------------------------------
 
-%from the block statments to the for-loop header.
-
-%The decompiler pipeline successfully identifies and recovers high-level reconstructed smaller
-
-% --- [ Future work ] ----------------------------------------------------------
-
+% * Future work
 % * (recommendations)
 
 % 96 words.
