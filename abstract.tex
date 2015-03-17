@@ -1,35 +1,6 @@
 \begin{abstract}
-% * Summary of the _entire_ report.
-% * Must be 150-300 words
-% * Puts your work in context, how it was carried out and what its major
-%   successes/conclusions were
-%    - Not a contents list
-%    - Don't use acronyms unless well-understood
-% * Must be able to stand entirely on its own
-
-% * Add further sentences as required (as word count permits) first to results and conclusions and then to methodology – in that order.
-
-
-% === [ Keywords ] ===
-%
-%    * Decompilation
-%
-%    * Composition
-%    * Decompilation pipeline
-%    * Stages
-%    * Language-agnostic
-%
-%    * LLVM IR
-%    * Control flow primitives
-%    * Subgraph isomorphism search
-%    * Control flow analysis
-%    * Recover / reconstruct
-%    * Basic block
 
 % --- [ Background and purpose ] -----------------------------------------------
-
-% * What you set out to do and why
-% * Why is this interesting?
 
 % 66 words.
 
@@ -37,24 +8,17 @@ Decompilation or reverse compilation is the process of translating low-level mac
 
 % --- [ Methodology ] ----------------------------------------------------------
 
-% * Design
-
 % 62 words.
 
-The components of the decompilation pipeline are conceptually grouped into three modules. The front-end translates a source language (e.g. x86 assembler) into LLVM IR; a platform-independent low-level intermediate representation. The middle-end structures the LLVM IR by identifying high-level control flow primitives (e.g. pre-test loops, 2-way conditionals). Finally, the back-end translates the structured LLVM IR into a high-level target programming language (e.g. Go).
+The components of the decompilation pipeline are conceptually grouped into three modules. The front-end translates a source language (e.g. x86 assembly) into LLVM IR; a platform-independent low-level intermediate representation. The middle-end structures the LLVM IR by identifying high-level control flow primitives (e.g. pre-test loops, 2-way conditionals). Finally, the back-end translates the structured LLVM IR into a high-level target programming language (e.g. Go).
 
 % --- [ Results ] --------------------------------------------------------------
-
-% * What you found
 
 % 72 words.
 
 The decompilation pipeline has been proven capable of recovering nested pre-test and post-test loops (e.g. \texttt{while}, \texttt{do-while}), and 1-way and 2-way conditionals (e.g. \texttt{if}, \texttt{if-else}) from LLVM IR. The control flow analysis stage of the middle-end can easily be extended to identify new control flow primitives. It uses subgraph isomorphism search algorithms to locate control flow primitives in control flow graphs, both of which are described using the Graphviz DOT file format.
 
 % --- [ Conclusion ] -----------------------------------------------------------
-
-% * Future work
-% * (recommendations)
 
 % 96 words.
 
