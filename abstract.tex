@@ -33,15 +33,17 @@
 
 % 66 words.
 
-Decompilation or reverse compilation is the process of translating low-level machine-readable code into high-level human-readable code. The problem is non-trivial due to the amount of information lost during compilation, but it can be divided into several smaller problems which may be solved independently. This report explores the feasability of composing a decompilation pipeline from independent components, and the potential of exposing its components to the end-user.
+Decompilation or reverse compilation is the process of translating low-level machine-readable code into high-level human-readable code. The problem is non-trivial due to the amount of information lost during compilation, but it can be divided into several smaller problems which may be solved independently. This report explores the feasability of composing a decompilation pipeline from independent components, and the potential of exposing those components to the end-user.
 
 % --- [ Methodology/design ] ---------------------------------------------------
 
-The decompilation pipeline consists of several components which are conceptually grouped into three modules to separate logic related to the source. The front-end module translates a source language (e.g. x86 Assembly) into LLVM IR; a platform-independent low-level intermediate representation. The middle-end identifies high-level control flow primitives (e.g. 2-way conditionals, pre-test loops) in the LLVM IR. The back-end uses this information to translate the LLVM IR into a high-level target programming language (Go).
+% 62 words.
 
-% The control flow analysis component of the decompiler pipeline utilizes subgraph isomorphism search algorithms to identify and reconstruct high-level control flow primitives from LLVM IR, which is a platform-independent low-level intermediate representation used by the LLVM compiler framework.
+The components of the decompilation pipeline are conceptually grouped into three modules. The front-end translates a source language (e.g. x86 assembler) into LLVM IR; a platform-independent low-level intermediate representation. The middle-end structures the LLVM IR by identifying high-level control flow primitives (e.g. pre-test loops, 2-way conditionals). Finally, the back-end translates the structured LLVM IR into a high-level target programming language (e.g. Go).
 
-The control flow analysis operates directly on graphs and is not dependent on either LLVM IR or
+% The control flow analysis component of the decompiler pipeline utilizes subgraph isomorphism search algorithms to identify and reconstruct high-level control flow primitives from LLVM IR.
+
+% The control flow analysis operates directly on graphs and is not dependent on either LLVM IR or
 
 % --- [ Results ] --------------------------------------------------------------
 
