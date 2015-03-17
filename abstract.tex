@@ -33,7 +33,7 @@
 
 % 66 words.
 
-Decompilation or reverse compilation is the process of translating low-level machine-readable code into high-level human-readable code. The problem is non-trivial due to the amount of information lost during compilation, but it can be divided into several smaller problems which may be solved independently. This report explores the feasability of composing a decompilation pipeline from independent components, and the potential of exposing those components to the end-user.
+Decompilation or reverse compilation is the process of translating low-level machine-readable code into high-level human-readable code. The problem is non-trivial due to the amount of information lost during compilation, but it can be divided into several smaller problems which may be solved independently. This report explores the feasibility of composing a decompilation pipeline from independent components, and the potential of exposing those components to the end-user.
 
 % --- [ Methodology ] ----------------------------------------------------------
 
@@ -43,23 +43,13 @@ Decompilation or reverse compilation is the process of translating low-level mac
 
 The components of the decompilation pipeline are conceptually grouped into three modules. The front-end translates a source language (e.g. x86 assembler) into LLVM IR; a platform-independent low-level intermediate representation. The middle-end structures the LLVM IR by identifying high-level control flow primitives (e.g. pre-test loops, 2-way conditionals). Finally, the back-end translates the structured LLVM IR into a high-level target programming language (e.g. Go).
 
-% The control flow analysis component of the decompiler pipeline utilizes subgraph isomorphism search algorithms to identify and reconstruct high-level control flow primitives from LLVM IR.
-
-% The control flow analysis operates directly on graphs and is not dependent on either LLVM IR or
-
 % --- [ Results ] --------------------------------------------------------------
 
 % * What you found
 
-The decompilation pipeline has been proven capable of recovering nested pre-test and post-test loops (e.g. \texttt{while}, \texttt{do-while}), and 1-way and 2-way conditionals (e.g. \texttt{if}, \texttt{if-else}) from LLVM IR. Each stage of the decompilation pipeline is extensible.
+% 72 words.
 
-A post-processing stage deals with language-specific features
-
-Each stage of the pipeline is extensible.
-
-Each stage of the decompilation pipeline is easily extensible
-
-The decompiler pipeline has proven easily extensible and flexible. It is capable of recovering nested pre-test loops, 2-way conditionals,
+The decompilation pipeline has been proven capable of recovering nested pre-test and post-test loops (e.g. \texttt{while}, \texttt{do-while}), and 1-way and 2-way conditionals (e.g. \texttt{if}, \texttt{if-else}) from LLVM IR. The control flow analysis stage of the middle-end can easily be extended to identify new control flow primitives. It uses subgraph isomorphism search algorithms to locate control flow primitives in control flow graphs, both of which are described using the Graphviz DOT file format.
 
 % --- [ Conclusion ] -----------------------------------------------------------
 
