@@ -21,29 +21,6 @@ The requirements of each deliverable have been outlined in the succeeding subsec
 	\label{tbl:MoSCoW_priorities}
 \end{table}
 
-% --- [ Literature Review ] ----------------------------------------------------
-
-\subsection{Literature Review}
-
-A top priority of the literature review has been to gain insight into the structural analysis phase (\ref{req_review_structural_analysis}) as the software artefacts heavily depend on it. The other stages of the decompilation pipeline are important to convey the big picture of how components fit together, but the project could still be successful without satisfying \ref{req_review_decomp_stages}.
-
-Several years prior to the initiation of this project the author and his colleges were considering to use LLVM IR for decompilation purposes. In recent years other research groups have started to develop decompilers and reverse engineering components which rely on LLVM IR \cite{decomp_llvm,retargetable_decomp,mcsema}. There may exist an IR which is more suitable in theory, but in practise the collaboration and reuse of others efforts made possible by the vibrant LLVM community is a strong merit in and of itself. The project may therefore be successful even without identifying an optimal IR for decompilation (objective \ref{itm:obj_review_suitable_ir} and \ref{req_review_suitable_ir}).
-
-\begin{table}[htbp]
-	\begin{center}
-		\begin{tabular}{|l|l|l|l|}
-			\hline
-			Obj. & Req. & Priority & Description \\
-			\hline
-			\ref{itm:obj_review_decomp} & \customlabel{req_review_structural_analysis}{\textbf{R1}} & MUST & Describe common structural analysis techniques \\
-			\ref{itm:obj_review_decomp} & \customlabel{req_review_decomp_stages}{\textbf{R2}} & SHOULD & Outline the general stages of the decompilation pipeline \\
-			\ref{itm:obj_review_suitable_ir} & \customlabel{req_review_suitable_ir}{\textbf{R3}} & COULD & Identify a suitable IR for the decompilation pipeline \\
-			\hline
-		\end{tabular}
-	\end{center}
-	\caption{Requirements of the literature review.}
-\end{table}
-
 % --- [ LLVM IR Library ] ------------------------------------------------------
 
 \subsection{LLVM IR Library}
@@ -62,14 +39,14 @@ To guarantee the language-agnostic interaction between components, objective \re
 			\hline
 			Obj. & Req. & Priority & Description \\
 			\hline
-			\ref{itm:obj_ir_library} & \customlabel{req_ir_library_read_asm}{\textbf{R4}} & MUST & Read the assembly language representation of LLVM IR \\
-			\ref{itm:obj_ir_library} & \customlabel{req_ir_library_write_asm}{\textbf{R5}} & MUST & Write the assembly language representation of LLVM IR \\
-			\ref{itm:obj_ir_library} & \customlabel{req_ir_library_mem}{\textbf{R6}} & MUST & Interact with an in-memory representation of LLVM IR \\
-			\ref{itm:obj_ir_library} & \customlabel{req_ir_library_cfg}{\textbf{R7}} & MUST & Produce CFGs from LLVM IR basic blocks \\
-			\ref{itm:obj_ir_library} & \customlabel{req_ir_library_cfg_debug}{\textbf{R8}} & COULD & Visualize CFGs using the \texttt{DOT} graph description language \\
-			\ref{itm:obj_ir_library} & \customlabel{req_ir_library_read_bitcode}{\textbf{R9}} & WON'T & Read the bitcode representation of LLVM IR \\
-			\ref{itm:obj_ir_library} & \customlabel{req_ir_library_write_bitcode}{\textbf{R10}} & WON'T & Write the bitcode representation of LLVM IR \\
-			\ref{itm:obj_formal_ir} & \customlabel{req_formal_ir}{\textbf{R11}} & WON'T & Provide a formal grammar of LLVM IR \\
+			\ref{itm:obj_ir_library} & \customlabel{req_ir_library_read_asm}{\textbf{R1}} & MUST & Read the assembly language representation of LLVM IR \\
+			\ref{itm:obj_ir_library} & \customlabel{req_ir_library_write_asm}{\textbf{R2}} & MUST & Write the assembly language representation of LLVM IR \\
+			\ref{itm:obj_ir_library} & \customlabel{req_ir_library_mem}{\textbf{R3}} & MUST & Interact with an in-memory representation of LLVM IR \\
+			\ref{itm:obj_ir_library} & \customlabel{req_ir_library_cfg}{\textbf{R4}} & MUST & Produce CFGs from LLVM IR basic blocks \\
+			\ref{itm:obj_ir_library} & \customlabel{req_ir_library_cfg_debug}{\textbf{R5}} & COULD & Visualize CFGs using the \texttt{DOT} graph description language \\
+			\ref{itm:obj_ir_library} & \customlabel{req_ir_library_read_bitcode}{\textbf{R6}} & WON'T & Read the bitcode representation of LLVM IR \\
+			\ref{itm:obj_ir_library} & \customlabel{req_ir_library_write_bitcode}{\textbf{R7}} & WON'T & Write the bitcode representation of LLVM IR \\
+			\ref{itm:obj_formal_ir} & \customlabel{req_formal_ir}{\textbf{R8}} & WON'T & Provide a formal grammar of LLVM IR \\
 			\hline
 		\end{tabular}
 	\end{center}
@@ -90,16 +67,16 @@ The structural analysis library must recover the high-level control flow structu
 			\hline
 			Obj. & Req. & Priority & Description \\
 			\hline
-			\ref{itm:obj_structural_analysis_library} & \customlabel{req_structural_analysis_library_reducible_graphs}{\textbf{R12}} & MUST & Support analysis of reducible graphs \\
-			\ref{itm:obj_structural_analysis_library} & \customlabel{req_structural_analysis_library_pre_test_loop}{\textbf{R13}} & MUST & Recover pre-test loops (e.g. \texttt{for}, \texttt{while}) \\
-			\ref{itm:obj_structural_analysis_library} & \customlabel{req_structural_analysis_library_inf_loop}{\textbf{R14}} & MUST & Recover infinite loops (e.g. \texttt{while(TRUE)}) \\
-			\ref{itm:obj_structural_analysis_library} & \customlabel{req_structural_analysis_library_2_way_cond}{\textbf{R15}} & MUST & Recover 2-way conditionals (e.g. \texttt{if}, \texttt{if-else}) \\
-			\ref{itm:obj_structural_analysis_library} & \customlabel{req_structural_analysis_library_post_test_loop}{\textbf{R16}} & SHOULD & Recover post-test loops (e.g. \texttt{do-while}) \\
-			\ref{itm:obj_structural_analysis_library} & \customlabel{req_structural_analysis_library_n_way_cond}{\textbf{R17}} & SHOULD & Recover n-way conditionals (e.g. \texttt{switch}) \\
-			\ref{itm:obj_structural_analysis_library} & \customlabel{req_structural_analysis_library_multi_exit_loop}{\textbf{R18}} & COULD & Recover multi-exit loops \\
-			\ref{itm:obj_structural_analysis_library} & \customlabel{req_structural_analysis_library_nested_loop}{\textbf{R19}} & COULD & Recover nested loops \\
-			\ref{itm:obj_structural_analysis_library} & \customlabel{req_structural_analysis_library_irreducible_graphs}{\textbf{R20}} & WON'T & Support analysis of irreducible graphs \\
-			\ref{itm:obj_structural_analysis_library} & \customlabel{req_structural_analysis_library_compound_bool_expr}{\textbf{R21}} & WON'T & Recover compound boolean expressions \\
+			\ref{itm:obj_structural_analysis_library} & \customlabel{req_structural_analysis_library_reducible_graphs}{\textbf{R9}} & MUST & Support analysis of reducible graphs \\
+			\ref{itm:obj_structural_analysis_library} & \customlabel{req_structural_analysis_library_pre_test_loop}{\textbf{R10}} & MUST & Recover pre-test loops (e.g. \texttt{for}, \texttt{while}) \\
+			\ref{itm:obj_structural_analysis_library} & \customlabel{req_structural_analysis_library_inf_loop}{\textbf{R11}} & MUST & Recover infinite loops (e.g. \texttt{while(TRUE)}) \\
+			\ref{itm:obj_structural_analysis_library} & \customlabel{req_structural_analysis_library_2_way_cond}{\textbf{R12}} & MUST & Recover 2-way conditionals (e.g. \texttt{if}, \texttt{if-else}) \\
+			\ref{itm:obj_structural_analysis_library} & \customlabel{req_structural_analysis_library_post_test_loop}{\textbf{R13}} & SHOULD & Recover post-test loops (e.g. \texttt{do-while}) \\
+			\ref{itm:obj_structural_analysis_library} & \customlabel{req_structural_analysis_library_n_way_cond}{\textbf{R14}} & SHOULD & Recover n-way conditionals (e.g. \texttt{switch}) \\
+			\ref{itm:obj_structural_analysis_library} & \customlabel{req_structural_analysis_library_multi_exit_loop}{\textbf{R15}} & COULD & Recover multi-exit loops \\
+			\ref{itm:obj_structural_analysis_library} & \customlabel{req_structural_analysis_library_nested_loop}{\textbf{R16}} & COULD & Recover nested loops \\
+			\ref{itm:obj_structural_analysis_library} & \customlabel{req_structural_analysis_library_irreducible_graphs}{\textbf{R17}} & WON'T & Support analysis of irreducible graphs \\
+			\ref{itm:obj_structural_analysis_library} & \customlabel{req_structural_analysis_library_compound_bool_expr}{\textbf{R18}} & WON'T & Recover compound boolean expressions \\
 			\hline
 		\end{tabular}
 	\end{center}
@@ -118,8 +95,8 @@ The primary intention of this project is to create self-contained components whi
 			\hline
 			Obj. & Req. & Priority & Description \\
 			\hline
-			\ref{itm:obj_structural_analysis_tool} & \customlabel{req_structural_analysis_tool_decomp_pass}{\textbf{R22}} & MUST & Perform structural decompilation passes on LLVM IR \\
-			\ref{itm:obj_structural_analysis_tool} & \customlabel{req_structural_analysis_tool_language_agnostic}{\textbf{R23}} & MUST & Support language-agnostic interaction with other components \\
+			\ref{itm:obj_structural_analysis_tool} & \customlabel{req_structural_analysis_tool_decomp_pass}{\textbf{R19}} & MUST & Perform structural decompilation passes on LLVM IR \\
+			\ref{itm:obj_structural_analysis_tool} & \customlabel{req_structural_analysis_tool_language_agnostic}{\textbf{R20}} & MUST & Support language-agnostic interaction with other components \\
 			\hline
 		\end{tabular}
 	\end{center}

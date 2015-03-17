@@ -25,20 +25,51 @@
 
 % --- [ Background and purpose ] -----------------------------------------------
 
-A dynamic approach to problem solving is the composition of independent and specialized components which communicate using well-defined interfaces. The components may conceptually be arranged in a pipeline of stages which transform, massage or interpret the input in a certain way to solve a given task. This idea is promoted by the Unix philosophy and has had a large influence on software construction. Systems which expose their individual components to end-users facilitate dynamic workflows, as they enable users to modify and extend the system by replacing components and adding further stages respectively.
+% * What you set out to do and why
+% * Why is this interesting?
 
-% TODO: cleanup.
+Decompilation or reverse compilation is the process of translating low-level machine-readable code into high-level human-readable code. Due to the amount of information lost in the compilation process
 
-The majority of the production-quality binary analysis tools used for decompilation are monolithic to the end-user, and may at best offer scripting support or plugin extensibility. There exists a gap to fill which learns from successful software construction practices in other problem domains. Specifically the idea of composition.
+The problem is complex as much information is lost during the compilation process and decompilers often rely on inference to recover high-level control flow primitives and expressions from low-level code.
 
-Composition is a battle-tested method for solving complex problems. Meanwhile the typical arsenal of tools available to the reverse engineer are provided as monolithic beasts, which at best provide scripting and plugin support.
+% TODO: Make shorter.
 
-The users of such a system may replace a small component with another to tailor a solution which fits their needs. Meanwhile, if you are a reverse engineer chances are that your artillery of binary analysis tools consists of monolithic decompilers which only provide customization and extensibility through scripting and plugin support. This paper aims to investigate the feasibility of bringing the concept of composition to solve the complex task of decompilation using a pipeline of independent stages which may consist of one or more components written in a variety of programming languages.
+A dynamic approach to problem solving is the composition of independent and specialized components which communicate using well-defined interfaces. Several smaller components may conceptually be arranged in a pipeline of stages which transform, massage or interpret the input in a certain way to solve larger tasks. Systems which expose their individual components to end-users facilitate dynamic workflows, as they enable users to adapt and extend each part of the system. Meanwhile, the monolithic nature of most production-quality decompilers prevents reverse engineers from utilizing such workflows and may leave them with scripting and plugin support as a substitute. This report explores the potential of a decompilation pipeline which exposes its components to the end-user. A core focus is the language-agnostic aspects of composition, such that the various components may be written in any programming language and utilized by other projects.
 
-The intention is to expose the individual components of the decompilation pipeline to the end-user, who may for each subproblem select between a variety of components with their individual advantages and limitations. Inspiration is drawn from the Unix philosophy of developing small dedicated programs, each dealing with a specific task and solving it well.
+% The intention is to expose the individual components of the decompilation pipeline to the end-user, who may for each subproblem select between a variety of components with their individual advantages and limitations.
 
-Decompilation is the process of transforming low-level machine-readable code into high-level human-readable code. The problem is complex as much information is lost through the process of compilation. The problem can however be broken into several smaller subproblems, which may be solved independently. This paper explores a compositional approach to decompilation, and creates a pipeline of independent components to solve the problems of each stage. A core focus is the language-agnostic aspects of composition, such that the various components may be written in any programming language.
+% --- [ Methodology/design ] ---------------------------------------------------
 
-The control flow analysis component of the decompiler pipeline utilizes subgraph isomorphism search algorithms to identify and reconstruct high-level control flow primitives from LLVM IR, which is a platform-independent low-level intermediate representation used by the LLVM compiler framework.
+The decompilation pipeline consists of several components which are conceptually grouped into three modules. The front-end module translates a source language (e.g. x86 Assembly) into LLVM IR; a platform-independent low-level intermediate representation. The middle-end identifies high-level control flow primitives (e.g. 2-way conditionals, pre-test loops) in the LLVM IR. The back-end uses this information to translate the LLVM IR into a high-level target programming language (Go).
+
+% The control flow analysis component of the decompiler pipeline utilizes subgraph isomorphism search algorithms to identify and reconstruct high-level control flow primitives from LLVM IR, which is a platform-independent low-level intermediate representation used by the LLVM compiler framework.
+
+The control flow analysis operates directly on graphs and is not dependent on either LLVM IR or
+
+% --- [ Results ] --------------------------------------------------------------
+
+% * What you found
+
+The decompilation pipeline is composed of independent components and has been proven capable of recovering nested pre-test and post-test loops (e.g. while, do-while), and 1-way and 2-way conditionals (e.g. if, if-else) from LLVM IR.
+
+A post-processing stage deals with language-specific features
+
+Each stage of the pipeline is extensible; and in practise it took less than 3 hours to extend the post-processing stage to simplify the loop-header of pre-test loops (from init;while(cond){post} to for(init; cond; post)) by locating surrounding initialization and post-statements
+
+Each stage of the decompilation pipeline is easily extensible. For example the post-processing stage was extended to simplify pre-test loops by locating the initialization and post-statement
+
+The decompiler pipeline has proven easily extensible and flexible. It is capable of recovering nested pre-test loops, 2-way conditionals,
+
+%As an example, building upon the existing infrastructure and extending the post-translation source code cleanup; it took less than three hours to implement a source code translation rule which propagates initialization and post-statements of for-loops
+
+%from the block statments to the for-loop header.
+
+%The decompiler pipeline successfully identifies and recovers high-level reconstructed smaller
+
+% --- [ Future work ] ----------------------------------------------------------
+
+% * (recommendations)
+
+There exists huge potential for future development. Investigate adding further post-processing stages to make the Go output more idiomatic; e.g. the \texttt{grind} tool by Russ Cox moves variable declarations closer to their usage. Finish developing the LLVM IR library and replace the C++ binding with a pure Go implementation; consider \texttt{llgo} a potential future user. Validate the language-agnostic aspects of the design by implementing components in other languages; e.g. data flow analysis in Haskell. Verify that the middle-end handles decompilation heavy-lifting (i.e. control flow analysis, data flow analysis) by implementing additional back-ends (e.g. Python output).
 
 \end{abstract}

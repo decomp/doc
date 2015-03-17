@@ -2,6 +2,9 @@
 
 \section{Implementation}
 
+% TODO: Note from Janka: The Implementation section should be strictly related to the software itself.
+
+
 % TODO: Brainstorm about which sections are actually relevant and how they should be structured.
 
 % TODO: Mention the following trivias:
@@ -13,45 +16,6 @@
 %    "Handle normal and worst case seperately"
 
 foo
-
-% --- [ Idiomatic Coding ] -----------------------------------------------------
-
-\subsection{Idiomatic Coding}
-
-Making effective use of a programming language requires more than simply learning its syntax and key features. With a reasonable understanding of the underlying design decisions behind a programming language and the historic factors which drove its development one may infer the governing principles and key beliefs of its developers. These principles and beliefs influence every aspect of the software development process; they determine how programs are structured and how problems are solved. One of the primary driving forces behind the development of the Go programming language is pragmatism, the idea of which was captured in the following quote by Samuel Tesla shortly after Go was released in 2009:
-
-\begin{quote}
-	\textit{``Go is not meant to innovate programming theory. It's meant to innovate programming practice.''} - Samuel Tesla, Dec 2009 \cite{pragmatic}
-\end{quote}
-
-In 2012 Rob Pike (one of the Go language inventors) gave a talk titled \textit{``Less is exponentially more''} which included a personal description of the historic events leading up to the inception of Go. The starting point of the language was C, not C++, which Go aimed to simplify further by removing cruft. This stands in direct contrast to the direction of C++ which gains more features with each passing release. The \textit{less is more} mindset is deeply rooted in the mentality of Go developers and there is a strong emphasis on the use of composition to solve problems.
-
-\begin{quote}
-	\itshape
-	``If C++ and Java are about type hierarchies and the taxonomy of types, Go is about composition.
-
-	Doug McIlroy, the eventual inventor of Unix pipes, wrote in 1964 (!):
-
-	\begin{quote}
-		We should have some ways of coupling programs like garden hose--screw in another segment when it becomes necessary to massage data in another way. This is the way of IO also.
-	\end{quote}
-
-	That is the way of Go also. Go takes that idea and pushes it very far. It is a language of composition and coupling.''
-	\normalfont
-	- Rob Pike, 2012 \cite{less_is_more}
-\end{quote}
-
-Every aspect of Go development embodies the UNIX philosophy (see \cref{fig:unix_philosophy}) which comes as no surprise since Ken Thompson (one of the original inventors of UNIX) is part of the core Go team.
-
-\begin{figure}[htbp]
-	\begin{center}
-		\begin{quote}
-			\textit{``Write programs that do one thing and do it well. Write programs to work together.''} \cite{art_of_unix}
-		\end{quote}
-		\caption{The UNIX philosophy.}
-		\label{fig:unix_philosophy}
-	\end{center}
-\end{figure}
 
 % --- [ LLVM IR Library ] ------------------------------------------------------
 
