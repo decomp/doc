@@ -44,6 +44,9 @@ ok     github.com/mewrev/graphs/iso   0.62s
 
 \subsubsection{Code Coverage}
 
+\textbf{NOTE}: \textit{The following section is under construction :)}
+
+
 The code coverage is a measurement of how much of the code is exercised by the test cases.
 
 % TODO: Add note on how the Go code coverage is calculated.
@@ -90,6 +93,8 @@ foo
 
 % TODO: Rewrite, cleanup and verify (especially the \theta(...) claims!).
 
+\textbf{NOTE}: \textit{The following paragraph is more of a brain-dump. It will be used as a basis for a future rewrite.}
+
 Profiling was put to good use when optimizing the lexer, the code base of which is rather straight forward. When estimating the runtime complexity of the subgraph isomorphism search algorithm however the use of intuition and algorithm research was far more valuable. For this specific task the generic problem (subgraph isomorphism search of arbitrary input graphs) could be simplified (TODO: use generalized instead of simplified?) to a much easier problem as every node of the graph were known to be connected (TODO: find the succinct term in graph theory to express this concept). Exploiting this property lead to an algorithm that had a runtime complexity of $ \Theta(n*m) $ where $ m $ is known to be small rather than $ \Theta(n^m) $ as is the case for a brute force algorithm and $ \Theta(n^log(m)) $ (TODO: Find the correct runtime complexity of the Hillman iso search algo) as was the case of the Hillman subgraph isomorphism search algorithm which is capable of solving the generic case, improving on the brute force approach by applying heuristics (TODO: is heuristics the right word to use here?) to prune the search space.
 
 In summary, using profiling is great for simple problems. Using algorithm research, runtime complexity theory and intuition is needed for complex problems. Knowledge about specific properties of the problem which may be exploited.
@@ -99,6 +104,8 @@ foo
 \subsubsection{Benchmarks}
 
 percentage delta.
+
+foo
 
 \texttt{benchcmp}
 
@@ -163,6 +170,8 @@ Several text editors supports adding pre-save hooks which executes a command to 
 % The conventions
 
 % Coding conventions
+
+foo
 
 
 \texttt{golint}

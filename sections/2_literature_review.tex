@@ -125,6 +125,8 @@ As demonstrated in \cref{sec:executable_anatomy} parsing even a simple \textit{`
 
 The disassembly phase (referred to as the syntactic analysis phase in C. Cifuentes paper) is responsible for decoding the raw machine instructions of the executable segments into assembly. At first sight it may seem trivial to implement a disassembler; simply use a lookup table which translates a sequence of bytes to their corresponding assembly instructions.
 
+foo
+
 % TODO: Introduce the various approaches and highlight their individual
 % strengths and weaknesses.
 %
@@ -200,6 +202,8 @@ foo
 % TODO: Check http://indefinitestudies.org/2009/04/03/a-quick-survey-on-intermediate-representations-for-program-analysis/
 
 % TODO: Consider if this text belongs here, if it should be adapted to fit or if it should be removed entirely.
+
+\textbf{NOTE}: \textit{The following paragraph has been moved here from another section and will therefore feel out of place. The intention is to reformulate it.}
 
 Several years prior to the initiation of this project the author and his colleges were considering to use LLVM IR for decompilation purposes. In recent years other research groups have started to develop decompilers and reverse engineering components which rely on LLVM IR \cite{decomp_llvm,retargetable_decomp,mcsema}. There may exist an IR which is more suitable in theory, but in practise the collaboration and reuse of others efforts made possible by the vibrant LLVM community is a strong merit in and of itself. The project may therefore be successful even without identifying an optimal IR for decompilation (objective \ref{itm:obj_review_suitable_ir}).
 
