@@ -1,5 +1,8 @@
 % === [ Methodology ] ==========================================================
 
+% <howto>
+% * how is development structured? (life cycle)
+
 \section{Methodology}
 
 \textbf{QUESTION}: \textit{Should the methodology be written using future, current or past tense?}
@@ -10,22 +13,24 @@
 
 \textbf{NOTE}: \textit{The following paragraph has been moved here from the PID and will therefore feel out of place. The intention is to reformulate it.}
 
-No single methodology will be used for this project, but rather a combination of techniques which have been proven to work well in practice. Continuous Integration will be used throughout the development process to monitor the build status, test cases, and code coverage of each component. The API stability of each component will be governed using Semantic Versioning (vMAJOR.MINOR.PATCH). Prior to version 1.0 the components will be written using either throw-away prototyping or iterative development and the API may change drastically. The implementation correctness will be verified using Test Driven Development where feasible, with test cases written prior to the actual implementation of the API.
+No single methodology will be used for this project, but rather a combination of techniques which have been proven to work well in practice. Continuous Integration will be used throughout the development process to monitor the build status, test cases, and code coverage of each component. The API stability of each component will be governed using Semantic Versioning (vMAJOR.MINOR.PATCH). Prior to version 1.0 the components will be written using either throw-away prototyping or iterative development and the API may change drastically. The implementation correctness will be verified using Test-driven Development (TDD) where feasible, with test cases written prior to the actual implementation of the API.
 
 % TODO: Explain why this specific methodology was chosen, and justify the methods. The justification may be required to be quite detailed, with in-text references.
 
 % TODO: Add
 %    - Attempt to find flaws in the design by stress testing it through proof of concept implementations.
-%    - Engage in discussions with the open source community during the design process of any library intended for third party use; specifically the LLVM IR libraries.
 %    - Once the design is deemed mature, begin an iterative process of implementation and testing.
-%    - Don not be afraid to throw away code and trying new ideas, that is what revision control systems are for!
+
+% --- [ Open Source Development ] ----------------------------------------------
+
+\subsection{Open Source Development}
+
+% TODO: Add note about: Eric Raymond observed in his essay The Cathedral and the Bazaar that announcing the intent for a project is usually inferior to releasing a working project to the public.
+
+%    - Engage in discussions with the open source community during the design process of any library intended for third party use; specifically the LLVM IR libraries.
 
 % TODO: Add
 %    - All work was made available on GitHub from day one and the source code was released into the public domain to encourage open source adaptation and interaction.
-
-% --- [ Evolutionary Development and Throwaway Prototyping ] -------------------
-
-\subsection{Evolutionary Development and Throwaway Prototyping}
 
 foo
 
@@ -33,11 +38,14 @@ foo
 
 \subsubsection{Revision Control System}
 
+% TODO: Add
+% - Don not be afraid to throw away code and trying new ideas, that is what revision control systems are for!
+
 foo
 
 % --- [ Public Issue Tracking ] ------------------------------------------------
 
-\subsection{Public Issue Tracking}
+\subsubsection{Public Issue Tracking}
 
 % TODO: Add
 %    - The project plan will be organized using the GitHub issue tracker, where each issue corresponds to a task. Milestones, containing a set of issues, will track the progress of the project and enforce deadlines.
@@ -48,8 +56,20 @@ foo
 
 foo
 
-% --- [ Test Driven Development ] ----------------------------------------------
+% --- [ Throwaway Prototyping ] ------------------------------------------------
 
-\subsection{Test Driven Development}
+\subsection{Throwaway Prototyping}
+
+foo
+
+% --- [ Evolutionary Prototyping ] ---------------------------------------------
+
+\subsection{Evolutionary Prototyping}
+
+foo
+
+% --- [ Test-driven Development ] ----------------------------------------------
+
+\subsection{Test-driven Development}
 
 foo

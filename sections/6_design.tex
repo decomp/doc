@@ -21,6 +21,9 @@ foo
 
 % --- [ Decompiler Pipeline ] --------------------------------------------------
 
+% <howto>
+% * the overall structure of the software system (architecture)
+
 \subsection{Decompiler Pipeline}
 
 % TODO: Describe where the "restructure" component fits in the overall decompilation pipeline. Mention which projects and tools that may be used to fill the gaps. bin_descend and IDA python script of MC-Semantics -> Google Protocol Buffer -> cfg_to_bc -> LLVM IR
@@ -115,9 +118,12 @@ The back-end is responsible for translating the structured control flow graph of
 	\end{center}
 \end{figure}
 
-% --- [ System Architecture ] --------------------------------------------------
+% --- [ Component Design ] -----------------------------------------------------
 
-\subsection{System Architecture}
+% <howto>
+% * more detailed design of individual components (design)
+
+\subsection{Component Design}
 
 % TODO: Visualize the dependency graph of the "restructure" tool and describe in detail what input it expects and what output it produces.
 
