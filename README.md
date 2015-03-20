@@ -9,7 +9,7 @@ This paper was written for the [Final Year Engineering Project][PJE40] at [Ports
 
 The following poster summarizes the project outcomes. It was created for a student project conference which was held at Portsmouth University on the 18th of March 2015.
 
-[![Poster: Compositional Decompilation](https://raw.githubusercontent.com/mewpaper/decompilation/master/poster/poster.png)](https://raw.githubusercontent.com/mewpaper/decompilation/master/poster/poster.pdf)
+[![Poster: Compositional Decompilation](https://raw.githubusercontent.com/mewpaper/decompilation/master/poster/poster.png)](https://rawgit.com/mewpaper/decompilation/master/poster/poster.pdf)
 
 ## Public domain
 
