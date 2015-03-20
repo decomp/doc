@@ -19,66 +19,6 @@ A dynamic approach to problem solving is the composition of independent and spec
 
 foo
 
-% --- [ Programming Language Considerations ] ----------------------------------
-
-\subsection{Programming Language Considerations}
-
-% TODO: Clarify the benefits and drawbacks of using Go over C++ which would be the obvious choice for LLVM IR heavy projects. Choosing not to use C++ validates the language-agnostic aspects of the design.
-% - Compilation speed. ll2dot takes > 1.5m whereas a regular Go program takes < 1s.
-
-% TODO: Mention software composition.
-
-% TODO: Add and tie in to the pragmatic aspects of Go?
-%    * tooling?
-%       - "go get" can locate all dependencies.
-%       - compilation time is linear rather than exponential with regards to dependencies.
-%    * automation?
-
-foo
-
-% --- [ Idiomatic Coding ] -----------------------------------------------------
-
-\subsection{Idiomatic Coding}
-
-% TODO: Adapt the "Ideomatic Coding" section to fit the Design section. Choice of section title? Merge with the Programming Language Considerations section? Probably.
-
-\textbf{NOTE}: \textit{Still not sure where this section fits. It has been moved here from the Implementation section, but it needs to be reworked somehow. Perhaps it can be merged with the Programming Language Considerations section and adapted to fit better.}
-
-Making effective use of a programming language requires more than simply learning its syntax and key features. With a reasonable understanding of the underlying design decisions behind a programming language and the historic factors which drove its development one may infer the governing principles and key beliefs of its developers. These principles and beliefs influence every aspect of the software development process; they determine how programs are structured and how problems are solved. One of the primary driving forces behind the development of the Go programming language is pragmatism, the idea of which was captured in the following quote by Samuel Tesla shortly after Go was released in 2009:
-
-\begin{quote}
-	\textit{``Go is not meant to innovate programming theory. It's meant to innovate programming practice.''} - Samuel Tesla, Dec 2009 \cite{pragmatic}
-\end{quote}
-
-In 2012 Rob Pike (one of the Go language inventors) gave a talk titled \textit{``Less is exponentially more''} which included a personal description of the historic events leading up to the inception of Go. The starting point of the language was C, not C++, which Go aimed to simplify further by removing cruft. This stands in direct contrast to the direction of C++ which gains more features with each passing release. The \textit{less is more} mindset is deeply rooted in the mentality of Go developers and there is a strong emphasis on the use of composition to solve problems.
-
-\begin{quote}
-	\itshape
-	``If C++ and Java are about type hierarchies and the taxonomy of types, Go is about composition.
-
-	Doug McIlroy, the eventual inventor of Unix pipes, wrote in 1964 (!):
-
-	\begin{quote}
-		We should have some ways of coupling programs like garden hose--screw in another segment when it becomes necessary to massage data in another way. This is the way of IO also.
-	\end{quote}
-
-	That is the way of Go also. Go takes that idea and pushes it very far. It is a language of composition and coupling.''
-	\normalfont
-	- Rob Pike, 2012 \cite{less_is_more}
-\end{quote}
-
-Every aspect of Go development embodies the UNIX philosophy (see figure \ref{fig:unix_philosophy}) which comes as no surprise since Ken Thompson (one of the original inventors of UNIX) is part of the core Go team.
-
-\begin{figure}[htbp]
-	\begin{center}
-		\begin{quote}
-			\textit{``Write programs that do one thing and do it well. Write programs to work together.''} \cite{art_of_unix}
-		\end{quote}
-		\caption{The UNIX philosophy.}
-		\label{fig:unix_philosophy}
-	\end{center}
-\end{figure}
-
 % --- [ Decompiler Pipeline ] --------------------------------------------------
 
 \subsection{Decompiler Pipeline}
