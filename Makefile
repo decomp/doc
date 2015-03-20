@@ -1,7 +1,7 @@
-all: decompilation
+all: pdf
 
-decompilation: inc
-	texi2pdf -q -c $@.tex
+pdf: inc
+	texi2pdf -q -c decompilation.tex
 
 word:
 	latex decompilation
@@ -9,6 +9,7 @@ word:
 	latex decompilation
 	latex decompilation
 	pdflatex decompilation
+	latex2rtf decompilation
 
 .PHONY: clean inc
 
@@ -16,4 +17,4 @@ inc:
 	make -C $@/
 
 clean:
-	rm -f *.aux *.log *.out *.toc *.bbl *.blg *.dvi sections/*.aux
+	rm -f *.aux *.log *.out *.toc *.bbl *.blg *.dvi *.rtf sections/*.aux
