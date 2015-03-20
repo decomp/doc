@@ -126,6 +126,67 @@ foo
 
 foo
 
+% --- [ Security Assessment ] --------------------------------------------------
+
+\subsection{Security Assessment}
+
+% TODO: Section moved here from the Design section. Adapt the text to make it fit.
+
+To assess the security of the decompiler pipeline, lets imagine a scenario in which users are given access to the implementation details and source code of the entire system and may provide arbitrary input to any of its components. A potential scenario could involve a web site which provides decompilation as a service and allows its users to interact with the various stages of the decompiler pipeline. The Retargetable Decompiler (see \cref{sec:retargetable_decompiler}) provides such a service, except it only allows users to interact with the binary analysis stage of the pipeline (see \cref{sec:binary_analysis}) and its source code is proprietary. The scope of this security assessment will be limited to the various components of the decompiler pipeline and their interaction. In particular security issues related to the operating system, network stack, web server and web site (e.g. SQL-injection and XSS vulnerabilities) of the decompilation service are intentionally excluded from the scope of the security assessment.
+
+The objective of an attacker may be to escalate their privileges in a system by exploiting it to execute actions not intended by design. Since the security of any system is only as strong as its weakest link, it is critical to identify and isolate likely targets for attacks. Projects which consist of or depend on large C or C++ code bases may exhibit memory safety issues, such as buffer overflows or use-after-free vulnerabilities. These issues are considered low-hanging fruit for attackers and have a long history of successful exploitation \cite{for_fun_and_profit}. Several modern programming languages (including Go) provide memory safety guarantees and may solve these issues by inserting bounds-checking for array accesses and using garbage collection for memory management. Code written in memory safe languages may still contain other security vulnerabilities caused by logic errors or insufficient validation, sanitation and parametrization of input (e.g. command injection and directory traversal vulnerabilities).
+
+The number of lines of code in a project may give an indication to the project's complexity and to some extent its potential attack surface. As summarized in \cref{tbl:loc_summary} every component of the decompiler pipeline except \texttt{iso} depends on LLVM. The LLVM code base contains approximately \numprint{800000} lines of C++ source code, and even if only a portion of the code will be linked into the executables it is an interesting target for attacks. One thing to keep in mind is that there are several high-end users of the LLVM project (such as Apple, Intel, NVIDIA and Sony \cite{llvm_users}) and it has a well established code reviewing process. Some of the LLVM developers are also very well educated in common security vulnerabilities and have developed the Clang Static Analyzer, which is a static source code analysis tool that locates bugs (such as buffer overflows and use-after-free issues) in C and C++ programs \cite{clang_analyzer}. The LLVM project may contain several security issues due to its size, but they are most likely difficult to discover since the low-hanging fruit have been caught already by the Clang Static Analyzer. Similarly, Google Protocol Buffers are used extensively by several companies and organizations and the likelyhood of discovering a simple security vulnerability in its code base is low.
+
+\begin{table}[htbp]
+	\begin{center}
+		\begin{tabular}{|l|l|l|l|}
+			\hline
+			\textbf{Project} & \textbf{Language} & \textbf{Lines} & \textbf{Dependencies} \\
+			\hline
+			\multicolumn{4}{|l|}{\hspace{4ex} \textit{Front-end}} \\
+			\hline
+			Dagger & C++ & \numprint{2000} & LLVM \\
+			Fracture & C++ & \numprint{20000} & LLVM \\
+			MC-Semantics & C++ & \numprint{25000} & LLVM and Google Protocol Buffers \\
+			\hline
+			\multicolumn{4}{|l|}{\hspace{4ex} \textit{Middle-end}} \\
+			\hline
+			ll2dot & Go & \numprint{500} & LLVM and dot \\
+			iso & Go & \numprint{2000} & dot \\
+			\hline
+			\multicolumn{4}{|l|}{\hspace{4ex} \textit{Back-end}} \\
+			\hline
+			ll2go & Go & \numprint{1500} & LLVM, llvm (Go), iso and dot \\
+			\hline
+			\multicolumn{4}{|l|}{\hspace{4ex} \textit{Dependencies}} \\
+			\hline
+			LLVM & C++ & \numprint{800000} & - \\
+			Google Protocol Buffers & C++ & \numprint{125000} & - \\
+			llvm (Go) & Go & \numprint{5000} & - \\
+			dot & Go & \numprint{7000} & - \\
+			\hline
+		\end{tabular}
+	\end{center}
+	\caption{A rough summary of each project specifying their programming language, number of lines of code and dependencies.}
+	\label{tbl:loc_summary}
+\end{table}
+
+There are still three potential targets which may contain memory related vulnerabilities, namely the front-end projects which translate binary executables, object code and shared libraries to LLVM IR.
+
+foo
+
+% easy to make mistakes in the parsing logic. Trust header fields without verifying.
+
+% TODO: Mention the unnamed hack (gain access to the names of anonymous basic blocks).
+%    - Unable to trust the integrity of the output of local files are tampered with. Trusting trust.
+
+% TODO: Security through obscurity
+% TODO: Defence in depth
+%    - Use several layers of security such that one may fail without disrupting the integrity of the entire system (e.g. jail [chroot on steroids])
+% TODO: Memory Safety
+%    - Mitigated using security through obscurity (e.g. ASLR, ) and true security (e.g. W^X).
+
 % --- [ Continuous Integration ] -----------------------------------------------
 
 \subsection{Continuous Integration}
@@ -173,7 +234,6 @@ Several text editors supports adding pre-save hooks which executes a command to 
 
 foo
 
-
 \texttt{golint}
 
 % * Key word, conventions.
@@ -208,11 +268,5 @@ foo
 \subsubsection{Code Coverage}
 
 \texttt{go test -cover}
-
-foo
-
-\subsubsection{Data Race Detection}
-
-\texttt{go test -race}
 
 foo
