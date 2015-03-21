@@ -1,7 +1,5 @@
 \begin{abstract}
 
-% TODO: Merge the four parts into a single paragraph?
-
 % --- [ Background and purpose ] -----------------------------------------------
 
 % 66 words.
@@ -23,8 +21,6 @@ The decompilation pipeline has been proven capable of recovering nested pre-test
 % --- [ Conclusion ] -----------------------------------------------------------
 
 % 96 words.
-
-\textbf{QUESTION}: \textit{Does the future development part belong in the abstract? Is there any other part that an abstract would normally include that is missing?}
 
 There exists huge potential for future development. Investigate adding further post-processing stages to make the Go output more idiomatic; e.g. the \texttt{grind} tool by Russ Cox moves variable declarations closer to their usage. Finish developing the LLVM IR library to replace the C++ bindings with a pure Go implementation; consider \texttt{llgo} a potential future user. Validate the language-agnostic aspects of the design by implementing components in other languages; e.g. data flow analysis in Haskell. Verify that the middle-end handles heavy decompilation tasks (i.e. control flow analysis, data flow analysis) by implementing additional back-ends (e.g. Python output).
 
