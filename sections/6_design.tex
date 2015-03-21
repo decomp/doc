@@ -134,9 +134,7 @@ The back-end is responsible for translating the structured control flow graph of
 	\end{center}
 \end{figure}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% Component Design %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% --- [ Middle-end Components ] ------------------------------------------------
 
 % <howto>
 % * more detailed design of individual components (design)
@@ -144,47 +142,52 @@ The back-end is responsible for translating the structured control flow graph of
 % <howto>
 % * The intention is that the design should be detailed enough to provide a good guide for actual coding, including details of any particular algorithms to be used.
 
+\subsection{Middle-end Components}
+
 % TODO: Visualize the dependency graph of the "restructure" tool and describe in detail what input it expects and what output it produces.
 
 % TODO: Write about. Input and output LLVM IR to operate well with components written in other languages. Output LLVM IR with information about high-level control structures stored in the basic block names or in metadata.
 
 % TODO: Mention package division.
 
-% --- [ Control Flow Graph Generation ] ----------------------------------------
+foo
 
-\subsection{Control Flow Graph Generation}
+% ~~~ [ Control Flow Graph Generation ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{Control Flow Graph Generation}
 
 foo
 
-% --- [ Control Flow Analysis ] ------------------------------------------------
+% ~~~ [ Control Flow Analysis ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-\subsection{Control Flow Analysis}
+\subsubsection{Control Flow Analysis}
 
 % TODO: Add
 % * Subgraph Isomorphism Search Algorithm}
-
-foo
-
-\subsubsection{Data-driven Design}
 
 % * Data-driven Design (potential and limitations)
 % TODO: Mention: CFG invariants (e.g. single-entry, single-exit)
 % TODO: Add notes about the use of DOT-files to describe control flow primitives. Think if and how this could be pushed further to facilitate the development of future back-ends.
 
-foo
-
-\subsubsection{Limitations}
+% TODO: Add: Limitations
 
 % TODO: Add limitations related to the design choices. Which limitations are easily solvable given more time and which are fundamentally part of the design.
 %    - No support for n-way conditionals (e.g.switch-statements).
 
 foo
 
-% --- [ Decompiler Back-end ] --------------------------------------------------
+% --- [ Back-end Components ] --------------------------------------------------
 
-\subsection{Decompiler Back-end}
+\subsection{Back-end Components}
+
+% ~~~ [ Code Generation ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{Code Generation}
 
 foo
 
-% TODO: Add
-% * Post-processing stages.
+% ~~~ [ Post-processsing ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{Post-processing}
+
+foo
