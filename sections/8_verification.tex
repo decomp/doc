@@ -12,12 +12,23 @@ foo
 
 \subsection{Correctness of Implementation}
 
+% TODO: <note> remove?
+% * Test corner cases as they are often the cause of software bugs [x]; such as
+%   off- by-one issues and buffer overflow vulnerabilities.
+% * Where feasible test all possible inputs; e.g. uint8.
+
+
 foo
 
 \subsubsection{Test Cases}
 
+% * test in an attempt to break the code, test corner cases, try to imagine how to code may fail.
+
 % TODO: Add
 %    - Use the Clang compiler to produce test cases, as it is capable of emitting LLVM IR from C source code. The goal will be to reconstruct the high- level control flow structures (such as for- loops, if-else statements, etc) of the original C code from the LLVM IR.
+
+% TODO: Add: One risk is that testcases test what you built rather than what was specific in the requirements. TDD solves this.
+
 
 foo
 

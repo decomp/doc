@@ -1,9 +1,49 @@
 % === [ Literature Review ] ====================================================
 
+% <howto>
+% * Critical review of relevant literature
+%    - Not just what others have said, but also critique and reflect
+
+% <howto>
+% * Write brief notes on each source (your own words, not their abstract):
+%    - Key ideas (seminal sources, recognized theories)
+%    - Novel ideas (proposed or demonstrated)
+%    - Actual data (as distinct from mere argument)
+%    - Outliers (contradict what everyone else says)
+%    - Your critical evaluation: Is it convincing? Why? What are its
+%      limitations? Is it current or out-of-date? What does it fail to address?
+
+
 \section{Literature Review}
 \label{sec:literature_review}
 
+% TODO: <note> remove?
+% This section introduces a shared vocabulary, and discussess key concepts and ideas.
+
 foo
+
+% TODO: <note> Problems.
+%
+% * self-modifying code
+% * idioms
+%    - mul/div by powers of 2; left-shift/right-shift
+%    - long word addition
+%       add ecx, [ebp-8]
+%       add edx, [ebp-4]
+% * Architecture-dependent Restrictions
+%    Cannot be determined by step-by-step debugging; as the prefetch pipeline
+%    would behave differently.
+%       mov ax, 0x9090
+%       mov [jmpDef], ax
+%    jmpDef:
+%       jmp codeExecuted
+%    codeNotExecuted:
+%       foo
+%    codeExecuted:
+%       bar
+% * Subroutines included by the compiler and linker
+%    Bloat.
+
 
 % --- [ The Anatomy of an Executable ] -----------------------------------------
 
@@ -164,6 +204,9 @@ foo
 
 \subsubsection{Intermediate Code Generation}
 
+% TODO: <note> remove?
+% "Most compilers translate the source program first to some form of intermediate representation and convert from there into machine code. The intermediate representation is a machine- and language-independent version of the original source code. Although converting the code twice introduces another step, use of an intermediate representation provides advantages in increased abstraction, cleaner separation between the front and back ends, and adds possibilities for re-targeting/cross-compilation. Intermediate representations also lend themselves to supporting advanced compiler optimizations and most optimization is done on this form of the code."
+
 foo
 
 % ~~~ [ Control Flow Graph Generation ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -187,6 +230,9 @@ foo
 Control-Flow Graph (CFG)
 
 foo
+
+% TODO: Add notes about irriducible graphs; may be solved using node splitting.
+% * functional (semantics?) vs. forensic equivalence.
 
 % ~~~ [ Code Generation ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -225,5 +271,20 @@ The language was originally designed to assist static code analysis and translat
 % ~~~ [ LLVM IR ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 \subsubsection{LLVM IR}
+
+% TODO: <note> remove?
+% * Hierarchical structured
+%    - Module
+%       ~ Global Variables
+%       ~ Composite Types (“structs”)
+%       ~ Function Declarations
+%       ~ Function Definitions
+%    - Function Definition
+%       ~ Basic Blocks
+%          - Instructions
+
+% TODO: <note> reformulate!
+% LLVM IR is actually defined in three isomorphic forms: the textual format above, an in-memory data structure inspected and modified by optimizations themselves, and an efficient and dense on-disk binary "bitcode" format.
+
 
 foo
