@@ -16,12 +16,18 @@
 
 foo
 
-% --- [ Programming Language Considerations ] ----------------------------------
+% --- [ Language Considerations ] ----------------------------------------------
 
 % <howto>
 % * choice of programming language(s) (implementation)
 
-\subsection{Programming Language Considerations}
+\subsection{Language Considerations}
+
+As stated by H. Mayer there are no perfect programming languages; the right tool for the job. As described in section \ref{sec:design} this project seeks to explore the potential of a compositional approach to decompilation, and the language chosen reflects this aspect.
+
+\begin{quote}
+	\textit{``No programming language is perfect. There is not even a single best language; there are only languages well suited or perhaps poorly suited for particular purposes. Understanding the problem and associated programming requirements is necessary for choosing the language best suited for the solution.''} - H. Mayer, 1989 \cite{no_perfect_lang}
+\end{quote}
 
 % TODO: Clarify the benefits and drawbacks of using Go over C++ which would be the obvious choice for LLVM IR heavy projects. Choosing not to use C++ validates the language-agnostic aspects of the design.
 % - Compilation speed. ll2dot takes > 1.5m whereas a regular Go program takes < 1s.
@@ -33,16 +39,11 @@ foo
 %       - "go get" can locate all dependencies.
 %       - compilation time is linear rather than exponential with regards to dependencies.
 %    * automation?
+%    * IMPORTANT: Production quality AST library for Go which is in use by godoc, gofmt, ...
+
+% TODO: Reformulate to fit the section better. Move the pragmatic aspects to the end and add text discussing the production quality AST? Remove the "to make effective use ..." intro. State the requirements of the language clearly, and describe how Go vs. C++ (which would be the obvious choice because of LLVM interaction) lives up to them.
 
 foo
-
-% --- [ Idiomatic Coding ] -----------------------------------------------------
-
-\subsection{Idiomatic Coding}
-
-% TODO: Adapt the "Ideomatic Coding" section to fit the Design section. Choice of section title? Merge with the Programming Language Considerations section? Probably.
-
-\textbf{NOTE}: \textit{Still not sure where this section fits. It has been moved here from the Implementation section, but it needs to be reworked somehow. Perhaps it can be merged with the Programming Language Considerations section and adapted to fit better.}
 
 Making effective use of a programming language requires more than simply learning its syntax and key features. With a reasonable understanding of the underlying design decisions behind a programming language and the historic factors which drove its development one may infer the governing principles and key beliefs of its developers. These principles and beliefs influence every aspect of the software development process; they determine how programs are structured and how problems are solved. One of the primary driving forces behind the development of the Go programming language is pragmatism, the idea of which was captured in the following quote by Samuel Tesla shortly after Go was released in 2009:
 

@@ -1,10 +1,19 @@
 % === [ Design ] ===============================================================
 
+\begin{quote}
+	``There are two ways of constructing a software design: One way is to make it so simple that there are \textit{obviously} no deficiencies and the other way is to make it so complicated that there are no \textit{obvious} deficiencies. The first method is far more difficult.'' - Tony Hoare, 1980 \cite{hoare_acm_lecture}
+\end{quote}
+
 \section{Design}
+\label{sec:design}
 
 % TODO: Reformulate to fit the Design section.
 
+% TODO: Add: Separation of concern.
+
 \textbf{NOTE}: \textit{The following paragraph has been moved here from a previous version of the abstract and will therefore feel out of place. The intention is to reformulate it.}
+
+% TODO: Remove note about monolithic decompilers. Focus on the delivering good to the world instead of highlighting all that is bad in the world.
 
 A dynamic approach to problem solving is the composition of independent and specialized components which communicate using well-defined interfaces. Several smaller components may conceptually be arranged in a pipeline of stages which transform, massage or interpret the input in a certain way to solve larger tasks. A well composed pipeline is capable of solving more complex problems than each of its components, problems which may not even have been envisioned by the original component authors. This idea is embodied in the Unix philosophy and it has influenced software construction profoundly. Systems which expose their individual components to end-users facilitate dynamic workflows, as they enable users to adapt and extend each part of the system by adding, removing, replacing or refining components in one or more stages of the pipeline. Meanwhile, the monolithic nature of most production-quality decompilers prevents reverse engineers from utilizing such workflows and may leave them with scripting and plugin support as a substitute.
 
@@ -19,12 +28,19 @@ A dynamic approach to problem solving is the composition of independent and spec
 
 foo
 
-% --- [ Decompiler Pipeline ] --------------------------------------------------
+% --- [ System Architecture ] --------------------------------------------------
 
 % <howto>
 % * the overall structure of the software system (architecture)
 
-\subsection{Decompiler Pipeline}
+% <howto>
+% * Software architecture is concerned with deciding what has to be done, and which program component is going to do it (how something is done is left to the detailed design phase, below)
+% * It effectively defines the interface between the programs of the system.
+% * This stage does not need to consider non-functional requirements (e.g. response time, reliability, maintainability).
+
+\subsection{System Architecture}
+
+% Decompilation Pipeline
 
 % TODO: Describe where the "restructure" component fits in the overall decompilation pipeline. Mention which projects and tools that may be used to fill the gaps. bin_descend and IDA python script of MC-Semantics -> Google Protocol Buffer -> cfg_to_bc -> LLVM IR
 
@@ -118,32 +134,57 @@ The back-end is responsible for translating the structured control flow graph of
 	\end{center}
 \end{figure}
 
-% --- [ Component Design ] -----------------------------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Component Design %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % <howto>
 % * more detailed design of individual components (design)
 
-\subsection{Component Design}
+% <howto>
+% * The intention is that the design should be detailed enough to provide a good guide for actual coding, including details of any particular algorithms to be used.
 
 % TODO: Visualize the dependency graph of the "restructure" tool and describe in detail what input it expects and what output it produces.
 
 % TODO: Write about. Input and output LLVM IR to operate well with components written in other languages. Output LLVM IR with information about high-level control structures stored in the basic block names or in metadata.
 
-foo
-
 % TODO: Mention package division.
 
-\subsection{Data-driven Design}
+% --- [ Control Flow Graph Generation ] ----------------------------------------
+
+\subsection{Control Flow Graph Generation}
 
 foo
 
-% TODO: Mention: CFG invariants (e.g. single-entry, single-exit)
+% --- [ Control Flow Analysis ] ------------------------------------------------
 
+\subsection{Control Flow Analysis}
+
+% TODO: Add
+% * Subgraph Isomorphism Search Algorithm}
+
+foo
+
+\subsubsection{Data-driven Design}
+
+% * Data-driven Design (potential and limitations)
+% TODO: Mention: CFG invariants (e.g. single-entry, single-exit)
 % TODO: Add notes about the use of DOT-files to describe control flow primitives. Think if and how this could be pushed further to facilitate the development of future back-ends.
 
-\subsection{Limitations}
+foo
+
+\subsubsection{Limitations}
 
 % TODO: Add limitations related to the design choices. Which limitations are easily solvable given more time and which are fundamentally part of the design.
 %    - No support for n-way conditionals (e.g.switch-statements).
 
 foo
+
+% --- [ Decompiler Back-end ] --------------------------------------------------
+
+\subsection{Decompiler Back-end}
+
+foo
+
+% TODO: Add
+% * Post-processing stages.
