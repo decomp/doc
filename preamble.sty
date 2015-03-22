@@ -5,6 +5,41 @@
 \usepackage[margin=1in]{geometry}
 \usepackage[parfill]{parskip}
 
+% Use IEEE-style references.
+\usepackage[style=ieee]{biblatex}
+\bibliography{references}
+
+% Use fancy headers, e.g.
+%
+%    2.2 Decompilation Phases                           2 LITERATURE REVIEW
+%    ______________________________________________________________________
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+% Prevent "CONTENTS" from showing up twice in the fancy header.
+% ref: https://tex.stackexchange.com/a/48432
+\makeatletter
+\renewcommand\tableofcontents{
+	\section*{
+		\contentsname
+		\@mkboth{\MakeUppercase\contentsname}{}
+	}
+	\@starttoc{toc}
+}
+\makeatother
+
+% Prevent "REFERENCES" from showing up twice in the fancy header.
+\makeatletter
+\defbibheading{bibintoc}{
+	\cleardoublepage
+	\section*{
+		\addcontentsline{toc}{section}{\refname}
+		\refname
+		\@mkboth{\MakeUppercase\refname}{}
+	}
+}
+\makeatother
+
 % Add support for links.
 %
 % Options:
@@ -13,12 +48,6 @@
 % Examples:
 %    \url{http://example.org/}
 \usepackage[hidelinks]{hyperref}
-
-% Include bibliography in the table of contents.
-%
-% Options:
-%    nottoc: don't include the table of contents in the table of contents.
-\usepackage[nottoc]{tocbibind}
 
 % Import images.
 %
@@ -47,6 +76,3 @@
 % Examples:
 %    \multicolumn{4}{|l|}{foo}
 \usepackage{multirow}
-
-% Use IEEE-style references.
-\bibliographystyle{ieeetr} % TODO: Change to APA 6th ed? snyft
