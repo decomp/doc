@@ -9,7 +9,7 @@ digraph G {
 		label="Back-end"
 		color=blue
 		ll2go [label="ll2go" shape=box]
-		ll2gofix [label="ll2gofix" shape=box]
+		post [label="go-post" shape=box]
 	}
 
 	// Temporary output.
@@ -23,8 +23,8 @@ digraph G {
 
 	// Back-end -> output
 	ll2go -> tmp
-	tmp -> ll2gofix
-	ll2gofix -> Out
+	tmp -> post
+	post -> Out
 
-	{rank=same Middle ll2go ll2gofix Out}
+	{rank=same Middle ll2go post Out}
 }

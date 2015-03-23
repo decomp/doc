@@ -6,7 +6,7 @@ all: $(GO_SRC) $(LL_SRC)
 
 %.go: $(LL_SRC)
 	ll2go -f $<
-	ll2gofix $@
+	go-post $@
 	@sar "\n\n" "\n" $@ > tmp_$@
 	@mv tmp_$@ $@
 	goimports -w $@

@@ -60,7 +60,9 @@ foo
 
 \subsection{Language Considerations}
 
-As stated by H. Mayer there are no perfect programming languages; the right tool for the job. As described in section \ref{sec:design} this project seeks to explore the potential of a compositional approach to decompilation, and the language chosen reflects this aspect.
+% TODO: Rewrite paragraph.
+
+As stated by H. Mayer there are no perfect programming languages, and as such one should choose the right tool for the job. As described in section \ref{sec:design} this project seeks to explore the potential of a compositional approach to decompilation, and the language chosen reflects this aspect.
 
 \begin{quote}
 	\textit{``No programming language is perfect. There is not even a single best language; there are only languages well suited or perhaps poorly suited for particular purposes. Understanding the problem and associated programming requirements is necessary for choosing the language best suited for the solution.''} - H. Mayer, 1989 \cite{no_perfect_lang_quote}
@@ -165,8 +167,9 @@ A set of source code analysis tools are used to automate the generation and pres
 The GoDoc.org server hosts an instance of \texttt{godoc} which presents the documentation of publicly available source code repositories. An online version of the documentation has been made available for each artefact using this service.
 
 \begin{itemize}
-	\item Library for interacting with LLVM IR (\textit{work in progress}) \\ \url{https://godoc.org/github.com/mewlang/llvm}
-	\item LLVM IR Control Flow Graph generation tool \\ \url{https://godoc.org/github.com/mewrev/ll2dot}
-	\item Subgraph isomorphism search algorithms for reconstructing high-level control flow primitives and related tools \\ \url{https://godoc.org/github.com/mewrev/graphs}
-	\item Decompiler back-end tool (\textit{proof of concept}) \\ \url{https://godoc.org/github.com/mewrev/ll2go}
+	\item Library for interacting with LLVM IR (\textit{work in progress}) \\ \url{https://godoc.org/github.com/llir/llvm}
+	\item LLVM IR Control Flow Graph generation tool \\ \url{https://godoc.org/decomp.org/x/cmd/ll2dot}
+	\item Subgraph isomorphism search algorithms for reconstructing high-level control flow primitives and related tools \\ \url{https://godoc.org/decomp.org/x/graphs}
+	\item Go code generation tool (\textit{proof of concept}) \\ \url{https://godoc.org/decomp.org/x/cmd/ll2go}
+	\item Go post-processing tool \\ \url{https://godoc.org/decomp.org/x/cmd/go-post}
 \end{itemize}

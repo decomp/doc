@@ -35,7 +35,7 @@ foo
 \begin{figure}[htbp]
 	\begin{center}
 		\begin{verbatim}
-$ go test -v github.com/mewrev/graphs/iso
+$ go test -v decomp.org/x/graphs/iso
 === RUN TestCandidates
 --- PASS: TestCandidates (0.02s)
 === RUN TestEquationSolveUnique
@@ -47,7 +47,7 @@ $ go test -v github.com/mewrev/graphs/iso
 === RUN TestSearch
 --- PASS: TestSearch (0.20s)
 PASS
-ok     github.com/mewrev/graphs/iso   0.62s
+ok     decomp.org/x/graphs/iso   0.62s
 		\end{verbatim}
 		\caption{An extract of the test cases used to verify the subgraph isomorphism search algorithm, as visualized by \texttt{go test}.}
 		\label{fig:iso_test_cases}
@@ -68,7 +68,7 @@ While developing a lexer for the LLVM IR assembly language the intention was to 
 \begin{figure}[htbp]
 	\begin{center}
 		\begin{verbatim}
-$ go test -coverprofile=lexer.out github.com/mewlang/llvm/asm/lexer
+$ go test -coverprofile=lexer.out github.com/llir/llvm/asm/lexer
 $ go tool cover -func=lexer.out
 llvm/asm/lexer/lexer.go:36:    ParseFile      80.0%
 llvm/asm/lexer/lexer.go:118:   emit           100.0%

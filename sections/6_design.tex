@@ -73,12 +73,12 @@ The decompilation pipeline is made of up several components which are conceptual
 %    - binary -> LLVM IR ([MC-Semantics](https://github.com/trailofbits/mcsema), [Dagger](http://dagger.repzret.org/) or [Fracture](https://github.com/draperlaboratory/fracture))
 %    - source code -> LLVM IR (clang, ghc, rustc, ...)
 % * Middle-end
-%    - LLVM IR -> Unstructured CFG ([ll2dot](https://github.com/mewrev/ll2dot))
-%    - Unstructured CFG -> Structured CFG ([iso](https://github.com/mewrev/graphs) and [merge](https://github.com/mewrev/graphs).)
+%    - LLVM IR -> Unstructured CFG ([ll2dot](http://decomp.org/x/cmd/ll2dot))
+%    - Unstructured CFG -> Structured CFG ([iso](http://decomp.org/x/graphs/cmd/iso) and [merge](http://decomp.org/x/graphs/cmd/merge).)
 %       + Truthfully `ll2go` doesn't make direct use of `iso` or `merge` but rather the graph libraries. A future ambition is to allow `iso` and `merge` to output JSON such that they may be used directly by `ll2go`.
 % * Back-end
-%    - Structured CFG -> Go ([ll2go](https://github.com/mewrev/ll2go))
-
+%    - Structured CFG -> Go ([ll2go](http://decomp.org/x/cmd/ll2go))
+%    - Unpolished -> Go ([go-post](http://decomp.org/x/cmd/go-post))
 
 \begin{figure}[htbp]
 	\begin{center}
@@ -148,7 +148,7 @@ The middle-end is responsible for lifting the LLVM IR to a high-level representa
 
 \textbf{NOTE}: \textit{The following paragraph is more of a brain-dump. It is intended to be used as a basis for a future rewrite.}
 
-The back-end is responsible for translating the structured control flow graph of the LLVM IR into a target programming language. The \texttt{ll2go} tool is a proof of concept back-end which produces unpolished Go source code. The polishing is done by separate tools which fixes potential compilation issues and makes the code more idiomatic. The interaction between the middle-end and the back-end is illustrated in figure \ref{fig:back-end}. Currently the \texttt{ll2gofix} replaces return-statements in the \texttt{main} function with calls to \texttt{os.Exit}, which is required since the \texttt{main} function has no return arguments in Go. Instead the Go runtime calls \texttt{os.Exit} with the status-code \texttt{0} once \texttt{main} returns to signal successful termination. This eliminates the need to always end the \texttt{main} function with a \texttt{return 0;} statement as is common practise in C. A future ambition is to make use of and possibly contribute to the \texttt{grind} tool which moves variable declarations closer to their usage, and thus improving readability of the code. Generally the aim is to keep the \texttt{ll2go} tool as simple as possible. The middle-end is responsible for the structural analysis, and as a future ambition the data flow analysis. Since the complexity of the back-end is kept to a minimum it should be trivial to implement support for other output languages.
+The back-end is responsible for translating the structured control flow graph of the LLVM IR into a target programming language. The \texttt{ll2go} tool is a proof of concept back-end which produces unpolished Go source code. The polishing is done by separate tools which fixes potential compilation issues and makes the code more idiomatic. The interaction between the middle-end and the back-end is illustrated in figure \ref{fig:back-end}. Currently the \texttt{go-post} replaces return-statements in the \texttt{main} function with calls to \texttt{os.Exit}, which is required since the \texttt{main} function has no return arguments in Go. Instead the Go runtime calls \texttt{os.Exit} with the status-code \texttt{0} once \texttt{main} returns to signal successful termination. This eliminates the need to always end the \texttt{main} function with a \texttt{return 0;} statement as is common practise in C. A future ambition is to make use of and possibly contribute to the \texttt{grind} tool which moves variable declarations closer to their usage, and thus improving readability of the code. Generally the aim is to keep the \texttt{ll2go} tool as simple as possible. The middle-end is responsible for the structural analysis, and as a future ambition the data flow analysis. Since the complexity of the back-end is kept to a minimum it should be trivial to implement support for other output languages.
 
 \begin{figure}[htbp]
 	\begin{center}
