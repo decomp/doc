@@ -1,5 +1,5 @@
 digraph G {
-	newrank=true
+	rankdir=LR
 
 	// Front-end
 	Front [label="Front-end" shape=box style=dashed color=blue]
@@ -9,22 +9,27 @@ digraph G {
 		label="Middle-end"
 		color=blue
 		ll2dot [label="ll2dot" shape=box]
-		iso [label="iso" shape=box]
+		restructure [label="restructure" shape=box]
 	}
-
-	// Temporary output.
-	tmp [label="Unstructured CFG (*.dot)"]
 
 	// Back-end
 	Back [label="Back-end" shape=box style=dashed color=blue]
 
+	// Temporary output.
+	tmpll [label="LLVM IR"]
+	tmpdot [label="Unstructured CFG (*.dot)"]
+	tmpjson [label="Structured CFG (*.json)"]
+
 	// Front-end -> middle-end
-	Front -> ll2dot [label="LLVM IR" minlen=4]
+	Front -> tmpll
+	tmpll -> ll2dot
+
+	// Front-end -> back-end
+	tmpll -> Back
 
 	// Middle-end -> back-end
-	ll2dot -> tmp
-	tmp -> iso
-	iso -> Back [label="Structured CFG" minlen=5]
-
-	{rank=same Front ll2dot iso Back}
+	ll2dot -> tmpdot
+	tmpdot -> restructure
+	restructure -> tmpjson
+	tmpjson -> Back
 }

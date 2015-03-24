@@ -1,10 +1,7 @@
 digraph G {
-	ranksep=0.6
-
-	In1 [label="PE (x86)"]
-	In2 [label="ELF (x86)"]
-	In3 [label="ELF (ARM)"]
-	In4 [label="…"]
+	In1 [label="x86 (PE or ELF)"]
+	In2 [label="ARM (ELF)"]
+	In3 [label="…"]
 	Front [label="Front-end" shape=box color=blue]
 	Middle [label="Middle-end" shape=box color=blue]
 	Back [label="Back-end" shape=box color=blue]
@@ -16,7 +13,6 @@ digraph G {
 	In1 -> Front
 	In2 -> Front
 	In3 -> Front
-	In4 -> Front
 
 	Front -> Middle [label="low-level IR"]
 	Middle -> Back [label="high-level IR"]

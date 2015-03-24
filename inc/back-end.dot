@@ -13,17 +13,18 @@ digraph G {
 	}
 
 	// Temporary output.
-	tmp [label="Go (unpolished)"]
+	tmpgo [label="Go (unpolished)"]
 
 	// Output
 	Out [label="Go"]
 
 	// Middle-end -> back-end
 	Middle -> ll2go [label="Structured CFG" minlen=5]
+	Middle -> ll2go [label="LLVM IR"]
 
 	// Back-end -> output
-	ll2go -> tmp
-	tmp -> post
+	ll2go -> tmpgo
+	tmpgo -> post
 	post -> Out
 
 	{rank=same Middle ll2go post Out}

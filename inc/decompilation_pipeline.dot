@@ -26,5 +26,6 @@ digraph G {
 	{In1 In2 In3 In4 In5 In6 In7} -> Front
 	Front -> Middle [label="LLVM IR"]
 	Middle -> Back [label="Structured CFG"]
+	Middle -> Back [label="LLVM IR"]
 	Back -> Out
 }
