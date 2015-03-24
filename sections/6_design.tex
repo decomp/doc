@@ -15,7 +15,7 @@
 \section{Design}
 \label{sec:design}
 
-The principle of separation of concern has had a core influence on the design of the decompilation system. It has motivated a system architecture based on the composition of independent components, where each component has access to the least amount of information required to successfully accomplish its task. Furthermore, a data-driven design separates this information from the source code to facilitate extensibility.
+The principle of separation of concern has had a core influence on the design of the decompilation system. It has motivated a system architecture based on the composition of independent components, where each component has access to the least amount of information required to successfully accomplish its task. Furthermore, a data-driven design separates code from data to facilitate the extensibility of components.
 
 % TODO: Reformulate to fit the Design section.
 
@@ -63,8 +63,8 @@ The decompilation pipeline is made of up several components which are conceptual
 %    - source code -> LLVM IR (clang, ghc, rustc, ...)
 % * Middle-end
 %    - LLVM IR -> Unstructured CFG ([ll2dot](http://decomp.org/x/cmd/ll2dot))
-%    - Unstructured CFG -> Structured CFG ([iso](http://decomp.org/x/graphs/cmd/iso) and [merge](http://decomp.org/x/graphs/cmd/merge).)
-%       + Truthfully `ll2go` doesn't make direct use of `iso` or `merge` but rather the graph libraries. A future ambition is to allow `iso` and `merge` to output JSON such that they may be used directly by `ll2go`.
+%    - Unstructured CFG -> Structured CFG ([restructure](http://decomp.org/x/graphs/cmd/restructure).)
+%       + Truthfully `ll2go` doesn't make direct use of `restructure` but rather the graph libraries.
 % * Back-end
 %    - Structured CFG -> Go ([ll2go](http://decomp.org/x/cmd/ll2go))
 %    - Unpolished -> Go ([go-post](http://decomp.org/x/cmd/go-post))
@@ -108,11 +108,9 @@ The front-end module is responsible for converting the input into LLVM IR. Two c
 
 % TODO: Rewrite and clarify.
 
-% TODO: Create a restructure tool which replaces the use of iso.
-
 \textbf{NOTE}: \textit{The following paragraph is more of a brain-dump. It is intended to be used as a basis for a future rewrite.}
 
-The middle-end is responsible for lifting the LLVM IR to a high-level representation through a series of decompilation passes. The \texttt{ll2dot} tool generates a CFG (in the DOT file format) for each function of a given LLVM IR input file. The \texttt{iso} tool searches for subgraph isomorphisms of control flow primitives in a given CFG. Once located the nodes identified subgraph are merged into a single node which is labeled with the high-level control flow primitive. Successive iterations continue to simplify the CFG until only one node is left, at which point the high-level control flow structure has been recovered. Should the \texttt{iso} tool fail to reduce the graph into a single node, the graph is considered irreducible with regards to the supported high-level control flow primitives. The interaction between the front-end, the \texttt{ll2dot} and \texttt{iso} tools of the middle-end and the back-end is illustrated in figure \ref{fig:middle-end}.
+The middle-end is responsible for lifting the LLVM IR to a high-level representation through a series of decompilation passes. The \texttt{ll2dot} tool generates a CFG (in the DOT file format) for each function of a given LLVM IR input file. The \texttt{restructure} tool searches for subgraph isomorphisms of control flow primitives in a given CFG. Once located the nodes identified subgraph are merged into a single node which is labeled with the high-level control flow primitive. Successive iterations continue to simplify the CFG until only one node is left, at which point the high-level control flow structure has been recovered. Should the \texttt{restructure} tool fail to reduce the graph into a single node, the graph is considered irreducible with regards to the supported high-level control flow primitives. The interaction between the front-end, the \texttt{ll2dot} and \texttt{restructure} tools of the middle-end and the back-end is illustrated in figure \ref{fig:middle-end}.
 
 % TODO: Write about the choice of subgraph isomorphism search algorithm. The
 % properties of the control flow graph allows us to optimize.
