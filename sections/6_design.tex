@@ -15,24 +15,16 @@
 \section{Design}
 \label{sec:design}
 
-% TODO: <note> remove?
-% Each component is self-contained any may be replated or used individually. It is possible to start with any component and use existing tools to bridge the gaps.
+The principle of separation of concern has had a core influence on the design of the decompilation system. It has motivated a system architecture based on the composition of independent components, where each component has access to the least amount of information required to successfully accomplish its task. Furthermore, a data-driven design separates this information from the source code to facilitate extensibility.
 
 % TODO: Reformulate to fit the Design section.
 
-% TODO: Add: Separation of concern.
-
-% TODO: Consider breaking part of the design section into an appendix; "Design document"
+The composition of independent and specialized components, which communicate using well-defined interfaces, is a dynamic approach to problem solving. Several smaller components may conceptually be arranged in a pipeline of stages which transform, massage or interpret the input in a certain way to solve larger tasks. A well composed pipeline is capable of solving more complex problems than each of its components, problems which may not even have been envisioned by the original component authors \cite{simplicity_and_collaboration}. This idea is embodied in the Unix philosophy and it has influenced software construction profoundly \cite{art_of_unix}. Furthermore, systems which expose their individual components to end-users facilitate dynamic workflows, as they enable users to adapt and extend each part of the system by adding, removing, replacing or refining components in one or more stages of the pipeline.
 
 % TODO: <note> remove?
-% * Decompilation is a complex task that could benefit from a compositional approach to software construction. foo bar baz
+% Each component is self-contained any may be replated or used individually. It is possible to start with any component and use existing tools to bridge the gaps. <<< MOTIVATION: several starting points for a complex problem.
 
-
-\textbf{NOTE}: \textit{The following paragraph has been moved here from a previous version of the abstract and will therefore feel out of place. The intention is to reformulate it.}
-
-% TODO: Remove note about monolithic decompilers. Focus on the delivering good to the world instead of highlighting all that is bad in the world.
-
-A dynamic approach to problem solving is the composition of independent and specialized components which communicate using well-defined interfaces. Several smaller components may conceptually be arranged in a pipeline of stages which transform, massage or interpret the input in a certain way to solve larger tasks. A well composed pipeline is capable of solving more complex problems than each of its components, problems which may not even have been envisioned by the original component authors. This idea is embodied in the Unix philosophy and it has influenced software construction profoundly. Systems which expose their individual components to end-users facilitate dynamic workflows, as they enable users to adapt and extend each part of the system by adding, removing, replacing or refining components in one or more stages of the pipeline. Meanwhile, the monolithic nature of most production-quality decompilers prevents reverse engineers from utilizing such workflows and may leave them with scripting and plugin support as a substitute.
+% TODO: Consider breaking part of the design section into an appendix; "Design document"
 
 % TODO: Add design notes
 %    - The LLVM IR libraries are developed as reusable components for compilers, decompilers, and other semantic analysis tools. They aim to support generic semantic analysis applications, while satisfying the explicit requirements [1] of the third party llgo compiler.
@@ -40,10 +32,7 @@ A dynamic approach to problem solving is the composition of independent and spec
 % [1]: https://github.com/go-llvm/llvm/issues/40
 
 % TODO: Add
-%   - A decompilation system composed of individual components and based on the principle of separation of concerns.
 %   - The system must be language-agnostic so that decompilation passes can be reused from other programming language environments.
-
-% TODO Add: Separation of concerns
 
 foo
 
