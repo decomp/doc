@@ -5,7 +5,7 @@
 
 A compiler is a piece of software which translates human readable high-level programming languages (e.g. C) to machine readable low-level languages (e.g. Assembly). In the usual flow of compilation, code is lowered through a set of transformations from a high-level to a low-level representation. The decompilation process (originally referred to as reverse compilation \cite{rev_comp}) moves in the opposite direction by lifting code from a low-level to a high-level representation.
 
-Decompilation enables source code reconstruction of binary applications and libraries. Both security researchers and software engineers may benefit from decompilation as it facilitates analysis, modification and reconstruction of object code. The applications of decompilation are versatile, and may include one of the following use cases:
+Decompilation enables source code reconstruction of binary applications and libraries. Both security researchers and software engineers may benefit from decompilation as it facilitates analysis, modification and reconstruction of object code. The applications of decompilation are versatile, and may include one of the following uses:
 
 \begin{itemize}
 	\item Analyze malware
@@ -19,7 +19,7 @@ Decompilation enables source code reconstruction of binary applications and libr
 	\item Add new features to existing software
 \end{itemize}
 
-As recognized by Edsger W. Dijkstra in his 1972 ACM Turing Lecture (an extract from which is presented in figure \ref{fig:dijkstra_lecture}) one of the most powerful tools for solving complex problems in Computer Science is the use of abstractions and separation of concerns. This paper explores a compositional approach to decompilation which facilitates abstractions to create a pipeline of self-contained components. Since each component interacts through language-agnostic interfaces (well-defined input and output) they may be written in a variety of programming languages. Furthermore, for each component of the decompilation pipeline there may exist multiple implementations with their individual strengths and weaknesses. The end user (e.g. malware analyst, security researcher, reverse engineer) may select the components which solves their task at hand the best.
+As recognized by Edsger W. Dijkstra in his 1972 ACM Turing Lecture (an extract from which is presented in figure \ref{fig:dijkstra_lecture}) one of the most powerful tools for solving complex problems in Computer Science is the use of abstractions and separation of concerns. This paper explores a compositional approach to decompilation which facilitates abstractions to create a pipeline of self-contained components. Since each component interacts through language-agnostic interfaces (well-defined input and output) they may be written in a variety of programming languages. Furthermore, for each component of the decompilation pipeline there may exist multiple implementations with their individual strengths and weaknesses. The end user (e.g. malware analyst, security researcher, reverse engineer) may select the components which solves their task most efficiently.
 
 \begin{figure}[htbp]
 	\begin{quote}
@@ -29,7 +29,7 @@ As recognized by Edsger W. Dijkstra in his 1972 ACM Turing Lecture (an extract f
 	\label{fig:dijkstra_lecture}
 \end{figure}
 
-\pagebreak % TODO: <layout> Remove pagebreak?
+\pagebreak % <layout>
 
 % --- [ Project Aim and Objectives ] -------------------------------------------
 
@@ -37,7 +37,7 @@ As recognized by Edsger W. Dijkstra in his 1972 ACM Turing Lecture (an extract f
 
 The aim of this project is to facilitate decompilation workflows using composition of language-agnostic decompilation passes; specifically the reconstruction of high-level control structures and, as a future ambition, expressions.
 
-In order to achieve this aim, the author will:
+To achieve this aim, the following objectives have been identified:
 \begin{enumerate}
 	\item Review traditional decompilation techniques, including control flow analysis and data flow analysis.
 	\label{itm:obj_review_decomp}
@@ -45,7 +45,7 @@ In order to achieve this aim, the author will:
 	\label{itm:obj_review_suitable_ir}
 	\item Analyse the formal grammar (language specification) of the IR to verify that it is unambiguous. If the grammar is ambiguous or if no formal grammar exists, produce a formal grammar. This objective is critical for language-independence, as the IR works as a bridge between different programming languages.
 	\label{itm:obj_formal_ir}
-	\item Determine if any existing library for the IR satisfies our requirements; and if not develop one. The requirements would include a suitable in-memory representation, and support for on-disk file storage and arbitrary manipulations (inject, delete, etc) of the IR.
+	\item Determine if any existing library for the IR satisfies the requirements; and if not develop one. The requirements would include a suitable in-memory representation, and support for on-disk file storage and arbitrary manipulations (inject, delete, etc) of the IR.
 	\label{itm:obj_ir_library}
 	\item Design and develop components which identify the structural patterns of high-level control structures using control flow analysis of the IR.
 	\label{itm:obj_structural_analysis_library}
