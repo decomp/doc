@@ -67,9 +67,27 @@
 % Examples:
 %    \lstinputlisting[language=nasm, style=nasm]{foo.asm}
 \usepackage{listings}
+\usepackage{latex/go/lang}
+\usepackage{latex/go/style}
+\usepackage{latex/llvm/lang}
 \usepackage{latex/nasm/lang}
 \usepackage{latex/nasm/style}
 \usepackage{latex/reil/lang}
+
+% Sub figures.
+%
+% Examples:
+%    \begin{figure}[H]
+%       \centering
+%       \begin{subfigure}[ht]{0.50\textwidth}
+%          foo
+%       \end{subfigure}
+%       \begin{subfigure}[ht]{0.50\textwidth}
+%          foo
+%       \end{subfigure}
+%       \caption{foo}
+%    \end{figure}
+\usepackage{subcaption}
 
 % Add multi-column and multi-row support for tables.
 %
