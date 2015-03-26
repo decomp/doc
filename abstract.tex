@@ -8,8 +8,8 @@ Decompilation or reverse compilation is the process of translating low-level mac
 
 % --- [ Results and Conclusion ] -----------------------------------------------
 
-% 46 + 79 words.
+% 46 + 82 words.
 
-The decompilation pipeline has been proven capable of recovering nested pre-test and post-test loops (e.g. \texttt{while}, \texttt{do-while}), and 1-way and 2-way conditionals (e.g. \texttt{if}, \texttt{if-else}) from LLVM IR. Furthermore, the data-driven design of the control flow analysis stage facilitates extensions to identify new control flow primitives. There is huge potential for future development. The Go output could be made more idiomatic by adding further post-processing stages; e.g. the \texttt{grind} tool by Russ Cox moves variable declarations closer to their usage. The language-agnostic aspects of the design will be validated by implementing components in other languages; e.g. data flow analysis in Haskell. Additional back-ends (e.g. Python output) will be implemented to verify that the middle-end handles heavy decompilation tasks (i.e. control flow analysis, data flow analysis).
+The decompilation pipeline has been proven capable of recovering nested pre-test and post-test loops (e.g. \texttt{while}, \texttt{do-while}), and 1-way and 2-way conditionals (e.g. \texttt{if}, \texttt{if-else}) from LLVM IR. Furthermore, the data-driven design of the control flow analysis stage facilitates extensions to identify new control flow primitives. There is huge potential for future development. The Go output could be made more idiomatic by adding further post-processing stages; e.g. the \texttt{grind} tool by Russ Cox moves variable declarations closer to their usage. The language-agnostic aspects of the design will be validated by implementing components in other languages; e.g. data flow analysis in Haskell. Additional back-ends (e.g. Python output) will be implemented to verify that the major decompilation tasks (e.g. control flow analysis, data flow analysis) are handled by the middle-end.
 
 \end{abstract}

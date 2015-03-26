@@ -15,7 +15,7 @@
 \section{Design}
 \label{sec:design}
 
-The principle of separation of concern has had a core influence on the design of the decompilation system. It has motivated a system architecture based on the composition of independent components, where each component has access to the least amount of information required to successfully accomplish its task. Furthermore, a data-driven design separates data from source code to facilitate the extensibility of components.
+The principle of separation of concern has had a core influence on the design of the decompilation system. It has motivated a system architecture which resembles a pipeline composed of independent components, each with access to the least amount of information required to successfully accomplish its task. Furthermore, a data-driven design separates data from source code to facilitate the extensibility of components.
 
 Several smaller components may conceptually be arranged in a pipeline of stages which transform, massage or interpret the input in a certain way to solve larger tasks. A well composed pipeline is capable of solving more complex problems than each of its components, problems which may not even have been envisioned by the original component authors \cite{simplicity_and_collaboration}. This idea is embodied in the Unix philosophy and it has influenced software construction profoundly \cite{art_of_unix}. Furthermore, systems which expose their individual components to end-users facilitate dynamic workflows, as they enable users to adapt and extend each part of the system by adding, removing, replacing or refining components in one or more stages of the pipeline.
 
@@ -42,15 +42,13 @@ Several smaller components may conceptually be arranged in a pipeline of stages 
 
 \subsection{System Architecture}
 
-% Decompilation Pipeline
-
 % TODO: Describe where the "restructure" component fits in the overall decompilation pipeline. Mention which projects and tools that may be used to fill the gaps. bin_descend and IDA python script of MC-Semantics -> Google Protocol Buffer -> cfg_to_bc -> LLVM IR
 
-% TODO: Rewrite and clarify.
+The decompilation pipeline conceptually consists of three modules which separate the major decompilation tasks (e.g. control flow analysis) from concerns related to the source or target language. Firstly, the front-end translates a variety of inputs (e.g. x86 or ARM assembly, Haskell or Rust source code, …) to LLVM IR by utilizing several independent open source projects. Secondly, the middle-end structures the LLVM IR by locating high-level control flow primitives. Lastly, the back-end translates the structured LLVM IR to a high-level target programming language (e.g. Go). The interaction between the front-end, middle-end and back-end modules is visualized in figure \ref{fig:decompilation_pipeline}.
 
-\textbf{NOTE}: \textit{The following paragraph is more of a brain-dump. It is intended to be used as a basis for a future rewrite.}
+% TODO: Find and add ref for \cite{llvm_architecture} and \cite{gcc_architecture}.
 
-The decompilation pipeline is made of up several components which are conceptually grouped into three modules. The front-end module translates a variety of inputs (such as binary files and source code) into LLVM IR by utilizing a collection of tools developed by several independent open source projects. The middle-end lifts the LLVM IR to a high-level representation by conducting a control flow analysis which generates a structured CFG of each function. The back-end generates high-level control flow primitives such as if-statements and for-loops based on the structured CFG. In addition it translates the individual instructions of the LLVM IR to expressions and statements of the target programming language (in this case Go). The interaction between the front-end, middle-end and back-end modules is visualized in figure \ref{fig:decompilation_pipeline}.
+The main benefit with this decompiler architecture is that it scales well when adding support for new source languages (e.g. MIPS or PowerPC assembly) or target languages (e.g. Python), as the major decompilation tasks only have to be implemented once. The decompiler architecture is an adaptation of the one presented by C. Cifuentes back in 1994 (as described in section \ref{sec:decompilation_phases}), which was heavily inspired by the architecture of compilers that separated major optimization tasks (e.g. constant propagation) from concerns related to the source programming language (e.g. C) or target computer architecture (e.g. x86). The compiler architecture has been proven so effective at separating concerns that it remains in use by several production-quality compilers. %\cite{llvm_architecture,gcc_architecture}.
 
 % * Front-end
 %    - binary -> LLVM IR ([MC-Semantics](https://github.com/trailofbits/mcsema), [Dagger](http://dagger.repzret.org/) or [Fracture](https://github.com/draperlaboratory/fracture))
@@ -128,6 +126,8 @@ The middle-end is responsible for lifting the LLVM IR to a high-level representa
 % TODO: Proof-of-concept. Implement a back-end for another language and written in another language. This would stress test the language-agnostic aspects of the design, thus making sure that the heavy-lifting is done in the middle-end and not in ll2go.
 
 \textbf{NOTE}: \textit{The following paragraph is more of a brain-dump. It is intended to be used as a basis for a future rewrite.}
+
+The back-end generates high-level control flow primitives such as if-statements and for-loops based on the structured CFG. In addition it translates the individual instructions of the LLVM IR to expressions and statements of the target programming language (in this case Go).
 
 The back-end is responsible for translating the structured control flow graph of the LLVM IR into a target programming language. The \texttt{ll2go} tool is a proof of concept back-end which produces unpolished Go source code. The polishing is done by separate tools which fixes potential compilation issues and makes the code more idiomatic. The interaction between the middle-end and the back-end is illustrated in figure \ref{fig:back-end}. Currently the \texttt{go-post} replaces return-statements in the \texttt{main} function with calls to \texttt{os.Exit}, which is required since the \texttt{main} function has no return arguments in Go. Instead the Go runtime calls \texttt{os.Exit} with the status-code \texttt{0} once \texttt{main} returns to signal successful termination. This eliminates the need to always end the \texttt{main} function with a \texttt{return 0;} statement as is common practise in C. A future ambition is to make use of and possibly contribute to the \texttt{grind} tool which moves variable declarations closer to their usage, and thus improving readability of the code. Generally the aim is to keep the \texttt{ll2go} tool as simple as possible. The middle-end is responsible for the structural analysis, and as a future ambition the data flow analysis. Since the complexity of the back-end is kept to a minimum it should be trivial to implement support for other output languages.
 
