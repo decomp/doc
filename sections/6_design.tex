@@ -136,6 +136,7 @@ The middle-end is responsible for lifting the LLVM IR to a high-level representa
 % ~~~ [ Control Flow Graph Generation ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 \subsubsection{Control Flow Graph Generation}
+\label{sec:cfg_generation}
 
 %    - LLVM IR -> Unstructured CFG ([ll2dot](http://decomp.org/x/cmd/ll2dot))
 
@@ -172,18 +173,19 @@ foo
 
 %    - Unstructured CFG -> Structured CFG ([restructure](http://decomp.org/x/graphs/cmd/restructure).)
 
-The control flow analysis component structures low-level code by identifying high-level control flow primitives in the control flow graphs of the code. As demonstrated in figure \ref{fig:graphs_and_primitives}, high-level control flow primitives may be represented using graphs. Therefore, the problem of structuring low-level code may be reformulated as the problem of locating subgraphs (e.g. the graphs of control flow primitives) in graphs (e.g. the control flow graphs of low-level code) without considering node names. This problem is generally referred to as \textit{subgraph isomorphism search} and has been well studied \cite{subgraph_isomorphism_algorithms}.
+The control flow analysis component structures low-level code by identifying high-level control flow primitives in the control flow graphs generated from the code (see section \ref{sec:cfg_generation}). As demonstrated in figure \ref{fig:representation_and_identification_of_primitive}, high-level control flow primitives may be represented using graphs. The problem of structuring low-level code may therefore be reformulated as the problem of locating subgraphs (e.g. the graphs of control flow primitives) in graphs (e.g. the control flow graphs of low-level code) without considering node names. This problem is generally referred to as \textit{subgraph isomorphism search} and has been well studied \cite{subgraph_isomorphism_algorithms}.
 
 \begin{figure}[htbp]
 	\centering
 	\begin{subfigure}[ht]{0.10\textwidth}
 		\lstinputlisting[language=go, style=go, breaklines=false, numbers=none]{poster/inc/if.c}
-	\end{subfigure}
-	\enskip
-	\begin{subfigure}[ht]{0.10\textwidth}
 		\includegraphics[width=\textwidth]{poster/inc/if.png}
 	\end{subfigure}
-	\caption{Pseudo-code (left) and graph representation (right) of an if-statement. If \texttt{A} is true then do \texttt{B} followed by \texttt{C}, otherwise do \texttt{C}.\label{fig:graphs_and_primitives}}
+	\enskip
+	\begin{subfigure}[ht]{0.18\textwidth}
+		\includegraphics[width=\textwidth]{poster/inc/foo.png}
+	\end{subfigure}
+	\caption{The left side contains the pseudo-code (top left) and graph representation (bottom left) of an if-statement; if \texttt{A} is true then do \texttt{B} followed by \texttt{C}, otherwise do \texttt{C}. The right side highlights (in red) an identified isomorphism of the if-statement's graph representation in the control flow graph of a simple function.\label{fig:representation_and_identification_of_primitive}} % control flow graph (right) of a simple function.
 \end{figure}
 
 % --- [ Back-end Components ] --------------------------------------------------
