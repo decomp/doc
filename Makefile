@@ -21,6 +21,8 @@ clean:
 
 # TODO: Remove temporary rules for sections.
 
+tmpsec: intro lit_review rel_work method req design impl ver eval con
+
 intro: inc
 	texi2pdf -q -c 1_intro.tex
 
