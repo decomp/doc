@@ -5,9 +5,14 @@
 \usepackage[margin=1in]{geometry}
 \usepackage[parfill]{parskip}
 
+% Include bibliography in the table of contents.
+%
+% Options:
+%    nottoc: don't include the table of contents in the table of contents.
+\usepackage[nottoc]{tocbibind}
+
 % Use IEEE-style references.
-\usepackage[style=ieee, backend=bibtex]{biblatex}
-\addbibresource{references.bib}
+\bibliographystyle{ieeetr} % TODO: Change to APA 6th ed? snyft
 
 % Use fancy headers, e.g.
 %
@@ -15,30 +20,6 @@
 %    ______________________________________________________________________
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-
-% Prevent "CONTENTS" from showing up twice in the fancy header.
-% ref: https://tex.stackexchange.com/a/48432
-\makeatletter
-\renewcommand\tableofcontents{
-	\section*{
-		\contentsname
-		\@mkboth{\MakeUppercase\contentsname}{}
-	}
-	\@starttoc{toc}
-}
-\makeatother
-
-% Prevent "REFERENCES" from showing up twice in the fancy header.
-\makeatletter
-\defbibheading{bibintoc}{
-	\cleardoublepage
-	\section*{
-		\addcontentsline{toc}{section}{\refname}
-		\refname
-		\@mkboth{\MakeUppercase\refname}{}
-	}
-}
-\makeatother
 
 % Add support for links.
 %
