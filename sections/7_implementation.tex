@@ -164,16 +164,15 @@ foo
 
 \subsection{Documentation}
 
-% TODO: Add example use cases (perhaps also covering related projects such as McSema)?
-
 A set of source code analysis tools are used to automate the generation and presentation of documentation. The main benefit of this approach is that only one version of the documentation has to be maintained and it is kept within the source code, thus preventing it from falling out of sync with the implementation. UNIX manual pages are generated for command line tools using \texttt{mango} \cite{mango}, which locates the relevant comments and command line flag definitions in the source code. Library documentation is presented using \texttt{godoc} \cite{godoc} (a tool similar to \texttt{doxygen}), and may be accessed through a web or command line interface.
 
 The GoDoc.org server hosts an instance of \texttt{godoc} which presents the documentation of publicly available source code repositories. An online version of the documentation has been made available for each artefact using this service.
 
 \begin{itemize}
 	\item Library for interacting with LLVM IR (\textit{work in progress}) \\ \url{https://godoc.org/github.com/llir/llvm}
-	\item LLVM IR Control Flow Graph generation tool \\ \url{https://godoc.org/decomp.org/x/cmd/ll2dot}
+	\item LLVM IR control flow graph generation tool \\ \url{https://godoc.org/decomp.org/x/cmd/ll2dot}
 	\item Subgraph isomorphism search algorithms for reconstructing high-level control flow primitives and related tools \\ \url{https://godoc.org/decomp.org/x/graphs}
+	\item Control flow analysis tool \\ \url{https://godoc.org/decomp.org/x/cmd/restructure}
 	\item Go code generation tool (\textit{proof of concept}) \\ \url{https://godoc.org/decomp.org/x/cmd/ll2go}
 	\item Go post-processing tool \\ \url{https://godoc.org/decomp.org/x/cmd/go-post}
 \end{itemize}
