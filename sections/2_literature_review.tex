@@ -165,7 +165,7 @@ The representation of executables, shared libraries and relocatable object code 
 	\label{tbl:elf_sections}
 \end{table}
 
-To gain a better understanding of the anatomy of executables the remainder of this section describes the structure of ELF files and presents the dissection of a simple \textit{``hello world''} ELF executable, largely inspired by Eric Youngdale's article on \textit{The ELF Object File Format by Dissection} \cite{elf_dissection}. Although the ELF and PE file formats differ with regards to specific details, the general principles are applicable to both formats.
+To gain a better understanding of the anatomy of executables the remainder of this section describes the structure of ELF files and presents the dissection of a simple \textit{``hello world''} ELF executable, largely inspired by Eric Youngdale's article on \textit{The ELF Object File Format by Dissection} \cite{elf_by_dissection}. Although the ELF and PE file formats differ with regards to specific details, the general principles are applicable to both formats.
 
 In general, ELF files consist of a file header, zero or more program headers, zero or more section headers and data referred to by the program or section headers, as depicted in figure \ref{fig:elf_file_structure}.
 
@@ -239,7 +239,7 @@ To summarise, the execution of a dynamically linked executable can roughly be de
 \subsection{Decompilation Phases}
 \label{sec:decompilation_phases}
 
-A core principle utilized in decompilers is the separation of concern through the use of abstractions, and extensive work involves translating into and breaking out of various abstraction layers. In general, a decompiler is composed of distinct phases which parses, analyses or transforms the input. These phases are conceptually grouped into three modules to separate concerns regarding source machine language and target programming language. Firstly, the front-end module parses executable files and translates their platform dependent assembly into a platform independent intermediate representation (IR). Secondly, the middle-end module performs a set of decompilation passes to lift the IR, from a low-level to a high-level representation, by reconstructing high-level control structures and expressions. Lastly, the back-end module translates the high-level IR to a specific target programming language \cite{rev_comp}. Figure \ref{fig:modules_overview} gives an overview of the decompilation modules and visualizes their relationship.
+A core principle utilized in decompilers is the separation of concern through the use of abstractions, and extensive work involves translating into and breaking out of various abstraction layers. In general, a decompiler is composed of distinct phases which parses, analyses or transforms the input. These phases are conceptually grouped into three modules to separate concerns regarding source machine language and target programming language. Firstly, the front-end module parses executable files and translates their platform dependent assembly into a platform independent intermediate representation (IR). Secondly, the middle-end module performs a set of decompilation passes to lift the IR, from a low-level to a high-level representation, by reconstructing high-level control structures and expressions. Lastly, the back-end module translates the high-level IR to a specific target programming language \cite{reverse_comp}. Figure \ref{fig:modules_overview} gives an overview of the decompilation modules and visualizes their relationship.
 
 \begin{figure}[htbp]
 	\begin{center}
@@ -249,7 +249,7 @@ A core principle utilized in decompilers is the separation of concern through th
 	\end{center}
 \end{figure}
 
-The remainder of this section describes the distinct decompilation phases, most of which have been outlined by Cristina Cifuentes in her influential paper \textit{``Reverse Compilation Techniques''} \cite{rev_comp}.
+The remainder of this section describes the distinct decompilation phases, most of which have been outlined by Cristina Cifuentes in her influential paper \textit{``Reverse Compilation Techniques''} \cite{reverse_comp}.
 
 % ~~~ [ Binary Analysis ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -319,7 +319,7 @@ foo
 
 foo
 
-\cite{type_decomp}
+\cite{type_based_decomp}
 
 % ~~~ [ Control Flow Analysis ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -348,7 +348,7 @@ The main purpose of the type analysis stage is to infer the types of variables a
 
 
 
-In contrast to A. Mycroft et al. \cite{type_decomp}, I. Guilfanov argues that the type analysis stage should be deferred to as late as possible. Only then may one resonably solve the type equations \cite{hexrays}.
+In contrast to A. Mycroft et al. \cite{type_based_decomp}, I. Guilfanov argues that the type analysis stage should be deferred to as late as possible. Only then may one resonably solve the type equations \cite{hexrays}.
 
 foo
 
@@ -368,7 +368,7 @@ Decompilers face similar problems as both binary analysis tools and compilers. T
 
 \subsubsection{REIL}
 
-The Reverse Engineering Intermediate Language (REIL) is a very simple and platform independent assembly language. REIL's instruction set contains only 17 different instructions, each with exactly three (possibly empty) operands. The first two operands are always used for input and the third for output (except for the conditional jump instruction which uses the third operand as the jump target). Furthermore, each instruction has at most one effect on the global state and never any side-effects (such as setting flags) \cite{reil,reil_spec}.
+The Reverse Engineering Intermediate Language (REIL) is a very simple and platform independent assembly language. REIL's instruction set contains only 17 different instructions, each with exactly three (possibly empty) operands. The first two operands are always used for input and the third for output (except for the conditional jump instruction which uses the third operand as the jump target). Furthermore, each instruction has at most one effect on the global state and never any side-effects (such as setting flags) \cite{reil_paper,reil_spec}.
 
 % TODO: Operands have a type, a value and a size.
 
@@ -387,6 +387,9 @@ A fourth implementation was released at the 15th of March 2015 however, and in l
 
 \subsubsection{LLVM IR}
 
+\cite{llvm_lang_ref}
+\cite{ssa_for_decomp}
+
 % TODO: <note> remove?
 % * Hierarchical structured
 %    - Module
@@ -403,6 +406,6 @@ A fourth implementation was released at the 15th of March 2015 however, and in l
 
 % TODO: Consider if this text belongs here, if it should be adapted to fit or if it should be removed entirely.
 
-In recent years other research groups have started to develop decompilers and reverse engineering components which rely on LLVM IR \cite{decomp_llvm,retargetable_decomp,mcsema}. An IR may exist which is more suitable in theory, but in practise the collaboration and reuse of others efforts made possible by the vibrant LLVM community is a strong merit in and of itself. The project may therefore be successful without even identifying an optimal IR for decompilation (objective \ref{itm:obj_review_suitable_ir}).
+In recent years other research groups have started to develop decompilers \cite{decomp_of_llvm,retargetable_decomp} and reverse engineering components \cite{mcsema} which rely on LLVM IR. An IR may exist which is more suitable in theory, but in practise the collaboration and reuse of others efforts made possible by the vibrant LLVM community is a strong merit in and of itself. The project may therefore be successful without even identifying an optimal IR for decompilation (objective \ref{itm:obj_review_suitable_ir}).
 
 foo
