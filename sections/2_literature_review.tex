@@ -172,10 +172,11 @@ In general, ELF files consist of a file header, zero or more program headers, ze
 \begin{figure}[htbp]
 	\begin{center}
 		\includegraphics[width=0.5\textwidth]{inc/elf_file_structure.png}
-		\caption{The basic structure of an ELF file. \textit{Image license:} CC BY-SA \cite{elf_structure_orig}}
+		\caption{The basic structure of an ELF file. \protect\footnotemark}
 		\label{fig:elf_file_structure}
 	\end{center}
 \end{figure}
+\footnotetext{Original image (CC BY-SA): \url{https://en.wikipedia.org/wiki/File:Elf-layout--en.svg}}
 
 All ELF files starts with the four byte identifier \texttt{0x7F}, \texttt{'E'}, \texttt{'L'}, \texttt{'F'} which marks the beginning of the ELF file header. The ELF file header contains general information about a binary, such as its object file type (executable, relocatable or shared object), its assembly architecture (x86-64, ARM, …), the virtual address of its entry point which indicates the starting point of program execution, and the file offsets to the program and section headers.
 
