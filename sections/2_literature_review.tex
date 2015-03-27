@@ -361,15 +361,7 @@ foo
 
 \subsection{Evaluation of Intermediate Representations}
 
-% TODO: Very interesting read about the evaluation of IRs specifically for reverse engineering: An Intermediate Representation for Integrating Reverse Engineering Analyses.
-
-% TODO: Check http://indefinitestudies.org/2009/04/03/a-quick-survey-on-intermediate-representations-for-program-analysis/
-
-% TODO: Consider if this text belongs here, if it should be adapted to fit or if it should be removed entirely.
-
-\textbf{NOTE}: \textit{The following paragraph has been moved here from another section and will therefore feel out of place. The intention is to reformulate it.}
-
-In recent years other research groups have started to develop decompilers and reverse engineering components which rely on LLVM IR \cite{decomp_llvm,retargetable_decomp,mcsema}. An IR may exist which is more suitable in theory, but in practise the collaboration and reuse of others efforts made possible by the vibrant LLVM community is a strong merit in and of itself. The project may therefore be successful without even identifying an optimal IR for decompilation (objective \ref{itm:obj_review_suitable_ir}).
+Decompilers face similar problems as both binary analysis tools and compilers. Therefore, it seems reasonable that the intermediate representations (IRs) used in these domains may be well suited for decompilation purposes. This section evaluates one IR from each domain with regards to their suitability for recovering high-level control flow primitives (objective \ref{itm:obj_control_flow_analysis_component}) and expressions (objective \ref{itm:obj_data_analysis_library}).
 
 % ~~~ [ REIL ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -382,6 +374,9 @@ The Reverse Engineering Intermediate Language (REIL) is a very simple and platfo
 Thanks to the simplicity of REIL a full definition of its instruction set has been provided in appendix \ref{app:reil_instructions}, which includes examples of each instruction and defines their syntax and semantics (in pseudo C-code).
 
 % TODO: Incorporate notes from "REIL - notes.txt"
+
+% TODO: Mention that REIL does not have the notion of basic blocks.
+% TODO: Mention that REIL is not in SSA form.
 
 The language was originally designed to assist static code analysis and translators from native assembly (x86, PowerPC-32 and ARM-32) to REIL are commercially available. However, the project home page has not been updated since Google acquired zynamics in 2011. Since then approximately 10 papers have been published which references REIL and the adaptation of the language within the open source community seems limited. As of 2015-01-04 only three implementations existed on GitHub (two in Python \cite{barf,pyreil} and one in C \cite{bit}), and the most popular had less than 25 watchers, 80 stars and 15 forks.
 
@@ -405,5 +400,8 @@ A fourth implementation was released at the 15th of March 2015 however, and in l
 % TODO: <note> reformulate!
 % LLVM IR is actually defined in three isomorphic forms: the textual format above, an in-memory data structure inspected and modified by optimizations themselves, and an efficient and dense on-disk binary "bitcode" format.
 
+% TODO: Consider if this text belongs here, if it should be adapted to fit or if it should be removed entirely.
+
+In recent years other research groups have started to develop decompilers and reverse engineering components which rely on LLVM IR \cite{decomp_llvm,retargetable_decomp,mcsema}. An IR may exist which is more suitable in theory, but in practise the collaboration and reuse of others efforts made possible by the vibrant LLVM community is a strong merit in and of itself. The project may therefore be successful without even identifying an optimal IR for decompilation (objective \ref{itm:obj_review_suitable_ir}).
 
 foo
