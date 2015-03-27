@@ -173,7 +173,7 @@ foo
 
 %    - Unstructured CFG -> Structured CFG ([restructure](http://decomp.org/x/graphs/cmd/restructure).)
 
-The control flow analysis component structures low-level code by identifying high-level control flow primitives in the control flow graphs generated from the code (see section \ref{sec:cfg_generation}). As demonstrated in figure \ref{fig:representation_and_identification_of_primitive}, high-level control flow primitives may be represented using graphs. The problem of structuring low-level code may therefore be reformulated as the problem of locating subgraphs (e.g. the graphs of control flow primitives) in graphs (e.g. the control flow graphs of low-level code) without considering node names. This problem is generally referred to as \textit{subgraph isomorphism search} and has been well studied \cite{subgraph_isomorphism_algorithms}.
+The control flow analysis component structures low-level code by identifying high-level control flow primitives in the control flow graphs generated from the code (see section \ref{sec:cfg_generation}). As demonstrated in figure \ref{fig:representation_and_identification_of_primitive}, high-level control flow primitives may be represented using graphs. The problem of structuring low-level code may therefore be reformulated as the problem of locating subgraphs (e.g. the graph representations of control flow primitives) in graphs (e.g. the control flow graphs of low-level code) without considering node names. This problem is generally referred to as \textit{subgraph isomorphism search} and has been well studied \cite{subgraph_isomorphism_algorithms}.
 
 \begin{figure}[htbp]
 	\centering
