@@ -1,6 +1,6 @@
 all: pdf
 
-pdf: inc
+pdf: inc cover
 	texi2pdf -q -c decompilation.tex
 
 word: inc
@@ -11,13 +11,16 @@ word: inc
 	pdflatex decompilation
 	latex2rtf decompilation
 
-.PHONY: clean inc
+.PHONY: clean inc cover
 
 inc:
 	make -C $@/
 
+cover:
+	make -C $@/
+
 clean:
-	rm -f *.aux *.log *.out *.toc *.bbl *.blg *.dvi *.rtf *.bcf *.run.xml sections/*.aux
+	rm -f *.aux *.log *.out *.toc *.bbl *.blg *.dvi *.rtf *.bcf *-blx.bib *.run.xml sections/*.aux
 
 # TODO: Remove temporary rules for sections.
 
