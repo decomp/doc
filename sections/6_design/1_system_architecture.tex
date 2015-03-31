@@ -1,0 +1,25 @@
+% --- [ System Architecture ] --------------------------------------------------
+
+% <howto>
+% * the overall structure of the software system (architecture)
+
+% <howto>
+% * Software architecture is concerned with deciding what has to be done, and which program component is going to do it (how something is done is left to the detailed design phase, below)
+% * It effectively defines the interface between the programs of the system.
+% * This stage does not need to consider non-functional requirements (e.g. response time, reliability, maintainability).
+
+\subsection{System Architecture}
+
+The decompilation pipeline conceptually consists of three modules which separate the major decompilation tasks (e.g. control flow analysis) from concerns related to the source or target language. Firstly, the front-end translates a variety of inputs (e.g. x86 or ARM assembly, Haskell or Rust source code, …) to LLVM IR by utilizing several independent open source projects. Secondly, the middle-end structures the LLVM IR by locating high-level control flow primitives. Lastly, the back-end translates the structured LLVM IR to a high-level target programming language (e.g. Go). The interaction between the front-end, middle-end and back-end modules is visualized in figure \ref{fig:decompilation_pipeline}.
+
+\begin{figure}[htbp]
+	\begin{center}
+		\includegraphics[width=\textwidth]{inc/decompilation_pipeline.png}
+		\caption{The front-end of the decompilation pipeline translates a variety of inputs (e.g. native code or source code) to LLVM IR, the middle-end structures the LLVM IR through control flow analysis, and the back-end translates the structured LLVM IR to a high-level programming language (e.g. Go).}
+		\label{fig:decompilation_pipeline}
+	\end{center}
+\end{figure}
+
+% TODO: Find and add ref for \cite{llvm_architecture} and \cite{gcc_architecture}.
+
+The main benefit with this decompiler architecture is that it scales well when adding support for new source languages (e.g. MIPS or PowerPC assembly) or target languages (e.g. Python), as the major decompilation tasks only have to be implemented once. The decompiler architecture is an adaptation of the one presented by C. Cifuentes back in 1994 (as described in section \ref{sec:decompilation_phases}), which was heavily inspired by the architecture of compilers that separated major optimization tasks (e.g. constant propagation) from concerns related to the source programming language (e.g. C) or target computer architecture (e.g. x86). The compiler architecture has been proven so effective at separating concerns that it remains in use today by several production-quality compilers. %\cite{llvm_architecture,gcc_architecture}.

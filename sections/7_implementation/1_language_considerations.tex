@@ -1,0 +1,59 @@
+% --- [ Language Considerations ] ----------------------------------------------
+
+% <howto>
+% * choice of programming language(s) (implementation)
+
+\subsection{Language Considerations}
+
+As stated by H. Mayer, no programming language is perfect for every purpose (see figure \ref{fig:no_perfect_lang}). The choice of language must be guided by an understanding of the problem and associated programming requirements to select one well suited for the solution. As described in section \ref{sec:design} this project seeks to explore the potential of a compositional approach to decompilation, and the language chosen emphasises composition at its core.
+
+\begin{figure}[htbp]
+	\begin{quote}
+		\textit{``No programming language is perfect. There is not even a single best language; there are only languages well suited or perhaps poorly suited for particular purposes. Understanding the problem and associated programming requirements is necessary for choosing the language best suited for the solution.''} \cite{no_perfect_lang_quote}
+	\end{quote}
+	\caption{An extract from \textit{Advanced C programming on the IBM PC} by H. Mayer in 1989.}
+	\label{fig:no_perfect_lang}
+\end{figure}
+
+In 2012 Rob Pike (one of the Go language inventors) gave a talk titled \textit{``Less is exponentially more''} which included a personal description of the historic events leading up to the inception of Go. The starting point of the language was C, not C++, which Go aimed to simplify further by removing cruft. This is in direct contrast to the direction of C++ which gains more features with each passing release. The \textit{less is more} mindset is deeply rooted in the mentality of Go developers and there is a strong emphasis on the use of composition to solve problems, as indicated by the following extract from Rob Pike's talk.
+
+\begin{quote}
+	\itshape
+	``If C++ and Java are about type hierarchies and the taxonomy of types, Go is about composition.
+
+	Doug McIlroy, the eventual inventor of Unix pipes, wrote in 1964 (!):
+
+	\begin{quote}
+		We should have some ways of coupling programs like garden hose--screw in another segment when it becomes necessary to massage data in another way. This is the way of IO also.
+	\end{quote}
+
+	That is the way of Go also. Go takes that idea and pushes it very far. It is a language of composition and coupling.''
+	\normalfont
+	- Rob Pike, 2012 \cite{less_is_more}
+\end{quote}
+
+Every aspect of Go development embodies the UNIX philosophy (see figure \ref{fig:unix_philosophy}) which comes as no surprise since Ken Thompson (one of the original inventors of UNIX) is part of the core Go team.
+
+\begin{figure}[htbp]
+	\begin{center}
+		\begin{quote}
+			\textit{``Write programs that do one thing and do it well. Write programs to work together.''} \cite{art_of_unix}
+		\end{quote}
+		\caption{The UNIX philosophy.}
+		\label{fig:unix_philosophy}
+	\end{center}
+\end{figure}
+
+% TODO: Clarify the benefits and drawbacks of using Go over C++ which would be the obvious choice for LLVM IR heavy projects. Choosing not to use C++ validates the language-agnostic aspects of the design.
+% - Compilation speed. ll2dot takes > 1.5m whereas a regular Go program takes < 1s.
+
+% TODO: Mention software composition.
+
+% TODO: Add and tie in to the pragmatic aspects of Go?
+%    * tooling?
+%       - "go get" can locate all dependencies.
+%       - compilation time is linear rather than exponential with regards to dependencies.
+%    * automation?
+%    * IMPORTANT: Production quality AST library for Go which is in use by godoc, gofmt, ...
+
+% TODO: Reformulate to fit the section better. Move the pragmatic aspects to the end and add text discussing the production quality AST? Remove the "to make effective use ..." intro. State the requirements of the language clearly, and describe how Go vs. C++ (which would be the obvious choice because of LLVM interaction) lives up to them.

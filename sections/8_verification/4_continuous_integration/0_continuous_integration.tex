@@ -1,0 +1,9 @@
+% --- [ Continuous Integration ] -----------------------------------------------
+
+\subsection{Continuous Integration}
+
+% TODO: Move CI from Verification to Methodology?
+
+The Continuous Integration (CI) practise originated from the Extreme Programming methodology \cite{extreme_programming} but has reached a much broader audience in recent years. Today most large scale software projects rely on CI server farms which continuously compile and test new versions of the source code.
+
+This project makes use of Travis CI, which is tightly integrated with GitHub, to run a series of automated tests for each commit to the source code repository. The tests are varied and range from identifying source code formatting and coding style issues to monitoring the build status and test coverage. A future ambition is to run benchmarks for each commit to quickly identify performance regressions.

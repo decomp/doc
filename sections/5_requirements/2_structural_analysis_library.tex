@@ -1,0 +1,29 @@
+% --- [ Structural Analysis Library ] ------------------------------------------
+
+\subsection{Structural Analysis Library}
+
+A decision was made early on to only support decompilation of compiler generated code from structured high-level languages (\textbf{R9}). Support for arbitrary, unstructured and obfuscated code has been intentionally omitted (\textbf{R17}) to avoid a myriad of special cases.
+
+The structural analysis library must recover the high-level control flow primitives of pre-test loops (\textbf{R10}), infinite loops (\textbf{R11}) and 2-way conditionals (\textbf{R12}), as these are found in virtually every high-level language today \cite{reverse_comp}. Post-test loops (\textbf{R13}) and n-way conditionals (\textbf{R14}) are also common - but not found in every language (e.g. Python has no \texttt{switch} statements and Go has no \texttt{do-while} loops) - and should therefore be recovered. Support for multi-exit loops (\textbf{R15}) and nested loops (\textbf{R16}) could be included if time permits. The recovery of compound boolean expressions is intentionally deferred (\textbf{R18}) as it would require analysis of instructions within basic blocks in addition to the CFG analysis.
+
+\begin{table}[htbp]
+	\begin{center}
+		\begin{tabular}{|l|l|l|l|}
+			\hline
+			Obj. & Req. & Priority & Description \\
+			\hline
+			\ref{itm:obj_control_flow_analysis_component} & \textbf{R9} & MUST & Support analysis of reducible graphs \\
+			\ref{itm:obj_control_flow_analysis_component} & \textbf{R10} & MUST & Recover pre-test loops (e.g. \texttt{for}, \texttt{while}) \\
+			\ref{itm:obj_control_flow_analysis_component} & \textbf{R11} & MUST & Recover infinite loops (e.g. \texttt{while(TRUE)}) \\
+			\ref{itm:obj_control_flow_analysis_component} & \textbf{R12} & MUST & Recover 2-way conditionals (e.g. \texttt{if}, \texttt{if-else}) \\
+			\ref{itm:obj_control_flow_analysis_component} & \textbf{R13} & SHOULD & Recover post-test loops (e.g. \texttt{do-while}) \\
+			\ref{itm:obj_control_flow_analysis_component} & \textbf{R14} & SHOULD & Recover n-way conditionals (e.g. \texttt{switch}) \\
+			\ref{itm:obj_control_flow_analysis_component} & \textbf{R15} & COULD & Recover multi-exit loops \\
+			\ref{itm:obj_control_flow_analysis_component} & \textbf{R16} & COULD & Recover nested loops \\
+			\ref{itm:obj_control_flow_analysis_component} & \textbf{R17} & WON'T & Support analysis of irreducible graphs \\
+			\ref{itm:obj_control_flow_analysis_component} & \textbf{R18} & WON'T & Recover compound boolean expressions \\
+			\hline
+		\end{tabular}
+	\end{center}
+	\caption{Requirements of the structural analysis library.}
+\end{table}

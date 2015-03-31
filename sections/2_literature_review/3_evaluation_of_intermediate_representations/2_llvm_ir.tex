@@ -1,0 +1,26 @@
+% ~~~ [ LLVM IR ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{LLVM IR}
+
+\cite{llvm_lang_ref}
+\cite{ssa_for_decomp}
+
+% TODO: <note> remove?
+% * Hierarchical structured
+%    - Module
+%       ~ Global Variables
+%       ~ Composite Types (“structs”)
+%       ~ Function Declarations
+%       ~ Function Definitions
+%    - Function Definition
+%       ~ Basic Blocks
+%          - Instructions
+
+% TODO: <note> reformulate!
+% LLVM IR is actually defined in three isomorphic forms: the textual format above, an in-memory data structure inspected and modified by optimizations themselves, and an efficient and dense on-disk binary "bitcode" format.
+
+% TODO: Consider if this text belongs here, if it should be adapted to fit or if it should be removed entirely.
+
+In recent years other research groups have started to develop decompilers \cite{decomp_of_llvm,retargetable_decomp} and reverse engineering components \cite{mcsema} which rely on LLVM IR. An IR may exist which is more suitable in theory, but in practise the collaboration and reuse of others efforts made possible by the vibrant LLVM community is a strong merit in and of itself. The project may therefore be successful without even identifying an optimal IR for decompilation (objective \ref{itm:obj_review_suitable_ir}).
+
+foo

@@ -1,0 +1,29 @@
+% ~~~ [ Disassembly ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{Disassembly}
+
+The disassembly phase (referred to as the syntactic analysis phase in C. Cifuentes paper) is responsible for decoding the raw machine instructions of the executable segments into assembly. At first sight it may seem trivial to implement a disassembler; simply use a lookup table which translates a sequence of bytes to their corresponding assembly instructions.
+
+foo
+
+% TODO: Introduce the various approaches and highlight their individual
+% strengths and weaknesses.
+%
+% NAIVE APPROACH: linear descent disassemblers.
+% PROBLEM: Highlight problems with linear descent disassemblers.
+%    - rodata (e.g. "hello world") and jump tables in code.
+%
+% SOLUTION: recursive descent disassemblers.
+% PROBLEM: Highlight problems with recursive descent disassemblers.
+%    - Distinguish between code and data (e.g. find entry points of functions).
+%      Not add functions are directly referred to (e.g. callback functions which
+%      are commonly used by GUI applications).
+%    - Easy to fool.
+%       xor eax, eax
+%       cmp eax, 0
+%       jz foo+1 ; Cannot disassembly both foo and foo+1.
+% foo:
+%       add eax, 3
+%
+% SOLUTION: symbolic execution engines.
+% PROBLEM: security, performance, ...?
