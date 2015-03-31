@@ -1,6 +1,6 @@
 all: pdf
 
-pdf: inc cover
+pdf: inc cover/cover.pdf
 	texi2pdf -q -c decompilation.tex
 
 word: inc
@@ -16,8 +16,8 @@ word: inc
 inc:
 	make -C $@/
 
-cover:
-	make -C $@/
+cover/cover.pdf:
+	make -C cover/
 
 clean:
 	rm -f *.aux *.log *.out *.toc *.bbl *.blg *.dvi *.rtf *.bcf *-blx.bib *.run.xml sections/*.aux
