@@ -2,9 +2,40 @@
 
 \subsubsection{Disassembly}
 
-The disassembly phase (referred to as the syntactic analysis phase in C. Cifuentes paper) is responsible for decoding the raw machine instructions of the executable segments into assembly. At first sight it may seem trivial to implement a disassembler; simply use a lookup table which translates a sequence of bytes to their corresponding assembly instructions.
+The disassembly phase (referred to as the \textit{syntactic analysis phase} by C. Cifuentes) is responsible for decoding the raw machine instructions of the executable segments into assembly. The computer architecture dictates how the assembly instructions and their associated operands are encoded. Generally CISC architectures (e.g. x86) use variable length instruction encoding (e.g. instructions occupy between 1 and 17 bytes in x86) and allow memory addressing modes for most instructions (e.g. arithmetic instructions may refer to memory locations in x86) \cite{x86_manual}. In contract, RISC architectures (e.g. ARM) generally use fixed-length instruction encoding (e.g. instructions always occupy 4 bytes in AArch64) and only allow memory access through load-store instructions (e.g. arithmetic instructions may only refer to registers or immediate values in ARM) \cite{arm_manual}.
 
-foo
+One of the main problems of the disassembly phase is how to separate code from data. In the Von Neumann architecture the same memory unit may contain both code and data. Furthermore, the data stored in a given memory location may be interpreted as code by one part of the program, and as data by another part. In contrast, the Harvard architecture uses separate memory units for code and data \cite{von_neumann_vs_harvard}. Since the use of the Von Neumann architecture is wide spread, solving this problem is fundamental for successful disassemblers.
+
+% TODO: Add switch tables example.
+
+A solution to the problem of separating code from data is to use recursive descent instead of linear descent when parsing assembly instructions.
+
+% TODO: Add description of recursive descent and linear descent.
+
+% TODO: Add example of trying to decode "hello world" using both linear descent and recursive descent.
+
+One problem faced by both linear descent and recursive descent disassemblers is the need for a starting point. In practise, exported entry point symbols (e.g. \texttt{main}, \texttt{start}, \texttt{DLLMain}, …) works well.
+
+% TODO: Verify that it is called symbolic execution/symbolic execution engine.
+
+Another problem for recursive descent disassemblers is indirect branches (e.g. jump to the address stored in a register). In the case of indirect branches, it is impossible to know the branch target by only looking at the individual instructions. One solution is to use symbolic execution, which emulates the processor and executes instructions to give information about the value stored in registers. With this method the target of indirect jumps may be calculated. There are problems to consider when designing a symbolic execution engine, for instance the impact of cached memory access. See figure \ref{foo} for an example of where cache details matter for the execution flow.
+
+% TODO: Add example where the cache impacts execution flow. *addr = 5; jmp addr
+
+Another issue is the use of callbacks, which is common in GUI applications.
+% TODO: Solution? Run program and use breakpoints?
+
+There exists several anti-disassembly techniques which are commonly used by malware. One such technique exploits the fact that recursive descent parsers follow both the true and the false branch of conditional branch instructions, as demonstrated in figure \ref{foo}.
+
+% TODO: Add anti-disassembly example with conditional branch to foo and foo+1.
+%    mov eax, 0
+%    cmp eax, 0
+%    je  foo+1
+% foo: add eax, 3
+
+The anti-disassembly technique presented in figure \ref{foo} may be mitigated using symbolic execution, which could verify that the conditional jump always takes the true branch and therefore allow the instruction to be replaced with an unconditional jump to the target of the true branch. This quickly becomes a game of cat-and-mouse, as the anti-disassembly techniques could be extended to rely on network activity, file contents, or other external sources which would render the symbolic exeuction useless.
+
+To conclude the disassembly phase deals with non-trivial problems, some of which are difficult to automate. Advanced disassemblers therefore provide interactive capabilities and rely on human intuition to solve ambiguities and direct the disassembler out of corner cases. See section \ref{sec:hex-rays_decompiler} for further details on such disassemblers.
 
 % TODO: Introduce the various approaches and highlight their individual
 % strengths and weaknesses.
