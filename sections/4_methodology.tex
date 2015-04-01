@@ -1,4 +1,45 @@
-\input{sections/4_methodology/0_methodology}
+% === [ Methodology ] ==========================================================
+
+% <howto>
+% * how is development structured? (life cycle)
+% * tense: usually simple past and passive.
+
+\section{Methodology}
+\label{sec:methodology}
+
+% TODO: <note> remove?
+% "An evolutionary approach to development of the software artifact has been applied. New ideas have been tested out and explored further if early results are productive."
+
+% TODO: <note> remove?
+% * Throwaway Prototyping.
+% * TDD (test driven design): Design the API first; write test cases; and
+%   implement.
+% * Revision control (GIT); Semantical Versioning.
+% * CI (Continious Integration)
+%    - Coverage
+%    - Test cases
+%    - Benchmarks
+% * Profiling
+
+
+\textbf{QUESTION}: \textit{Should the methodology be written using future, current or past tense?}
+
+% TODO: <ask> Should the methodology be written using future, current or past tense?
+
+% TODO: Rewrite to make this section feel right. It is currently too succinct. Elaborate on some topics, and potentially split into multiple sections.
+
+\textbf{NOTE}: \textit{The following paragraph has been moved here from the PID and will therefore feel out of place. The intention is to reformulate it.}
+
+No single methodology will be used for this project, but rather a combination of techniques which have been proven to work well in practice. Continuous Integration will be used throughout the development process to monitor the build status, test cases, and code coverage of each component. The API stability of each component will be governed using Semantic Versioning (vMAJOR.MINOR.PATCH). Prior to version 1.0 the components will be written using either throw-away prototyping or iterative development and the API may change drastically. The implementation correctness will be verified using Test-driven Development (TDD) where feasible, with test cases written prior to the actual implementation of the API.
+
+% TODO: Explain why this specific methodology was chosen, and justify the methods. The justification may be required to be quite detailed, with in-text references.
+
+% TODO: Add
+%    - Attempt to find flaws in the design by stress testing it through proof of concept implementations.
+%    - Once the design is deemed mature, begin an iterative process of implementation and testing.
+
+% === [ Subsections ] ==========================================================
+
 \input{sections/4_methodology/1_open_source_development}
 \input{sections/4_methodology/2_prototyping}
 \input{sections/4_methodology/3_test-driven_development}
