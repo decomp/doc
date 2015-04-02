@@ -16,7 +16,7 @@ A solution to the problem of separating code from data is to use recursive desce
 	\centering
 	\begin{subfigure}[t]{0.49\textwidth}
 		\lstinputlisting[language=nasm, style=nasm, tabsize=2]{inc/hello/hello_linear.asm}
-		\caption{Disassembly from \texttt{ndisasm} and \texttt{objdump}.}
+		\caption{Disassembly from \texttt{objdump} and \texttt{ndisasm}\protect\footnotemark.}
 	\end{subfigure}
 	\qquad
 	\begin{subfigure}[t]{0.35\textwidth}
@@ -25,6 +25,7 @@ A solution to the problem of separating code from data is to use recursive desce
 	\end{subfigure}
 	\caption{The disassembly produced by a linear descent parser (left) and a recursive descent parser (right) when analyzing a simple \textit{``hello world''} program that stores the \texttt{hello} string in the executable segment.}
 \end{figure}
+\footnotetext{The Netwide Disassembler: \url{http://www.nasm.us/doc/nasmdoca.html}}
 
 One problem faced by both linear descent and recursive descent disassemblers is the need for a starting point. In practise, exported entry point symbols (e.g. \texttt{main}, \texttt{start}, \texttt{DLLMain}, …) works well.
 

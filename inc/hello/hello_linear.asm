@@ -3,7 +3,6 @@ _start:
 	call printf
 	mov  rdi, 0
 	call exit
-	mov  rax, 0
 	ret
 hello:
 	push qword 0x6F6C6C65 ; "hello"
