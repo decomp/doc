@@ -4,7 +4,7 @@
 
 % TODO: Re-read one last time.
 
-Reverse engineering has fascinated me for quite some time and I have experimented with a variety of tools, ranging from disassemblers and decompilers to debuggers and tracers. Many tools have been outstanding on an individual level and some have featured powerful extensibility through plugin and scripting support. I have never been bothered by the capabilities of these tools, but rather by the workflow they enforce and the environment they lock you in.
+Reverse engineering has fascinated me for quite some time and I have experimented with a variety of tools, ranging from disassemblers and decompilers to debuggers and tracers. Many tools have been outstanding on an individual level and some have featured powerful extensibility through plugin and scripting support. I have never been bothered by the capabilities of these tools, but rather by the workflow they enforce and the entrapment of their environment.
 
 The de facto tools for binary analysis are monolithic in nature with regards to the end-user, as they do not expose their individual components. Imagine trying to reuse the control flow analysis of IDA Pro and the Hex-Rays Decompiler to implement control flow aware folding support in an IDE for x86 assembly development (e.g. group and toggle assembly code segments based on their corresponding high-level control flow structures). This idea is not limited by any technical issues; IDA Pro and the Hex-Rays Decompiler have support for recovering high-level control flow primitives from x86 assembly. If the IDE was given access to the control flow analysis component it would be trivial to implement sophisticated folding support for x86 assembly.
 
