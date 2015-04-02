@@ -1,4 +1,3 @@
-; Produced by objdump and ndisasm
 _start:
 	mov  rdi, hello
 	call printf

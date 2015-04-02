@@ -16,10 +16,12 @@ A solution to the problem of separating code from data is to use recursive desce
 	\centering
 	\begin{subfigure}[t]{0.49\textwidth}
 		\lstinputlisting[language=nasm, style=nasm, tabsize=2]{inc/hello/hello_linear.asm}
+		\caption{Disassembly from \texttt{ndisasm} and \texttt{objdump}.}
 	\end{subfigure}
 	\qquad
 	\begin{subfigure}[t]{0.35\textwidth}
 		\lstinputlisting[language=nasm, style=nasm, tabsize=2]{inc/hello/hello_recursive.asm}
+		\caption{Disassembly from IDA Pro.}
 	\end{subfigure}
 	\caption{The disassembly produced by a linear descent parser (left) and a recursive descent parser (right) when analyzing a simple \textit{``hello world''} program that stores the \texttt{hello} string in the executable segment.}
 \end{figure}
@@ -30,18 +32,32 @@ One problem faced by both linear descent and recursive descent disassemblers is 
 
 Another problem for recursive descent disassemblers is indirect branches (e.g. jump to the address stored in a register). In the case of indirect branches, it is impossible to know the branch target by only looking at the individual instructions. One solution is to use symbolic execution, which emulates the processor and executes instructions to give information about the value stored in registers. With this method the target of indirect jumps may be calculated. There are problems to consider when designing a symbolic execution engine, for instance the impact of cached memory access. See figure \ref{foo} for an example of where cache details matter for the execution flow.
 
-% TODO: Add example where the cache impacts execution flow. *addr = 5; jmp addr
+% TODO: Add example where the cache impacts execution flow (pipeline pre-schedules). *addr = 5; jmp addr
 
 Another issue is the use of callbacks, which is common in GUI applications.
 % TODO: Solution? Run program and use breakpoints?
 
-There exists several anti-disassembly techniques which are commonly used by malware. One such technique exploits the fact that recursive descent parsers follow both the true and the false branch of conditional branch instructions, as demonstrated in figure \ref{foo}.
+There exists several anti-disassembly techniques which are commonly used by malware. One such technique exploits the fact that recursive descent parsers follow both the true and the false branch of conditional branch instructions, as demonstrated in figure \ref{fig:anti-disassembly}.
 
-% TODO: Add anti-disassembly example with conditional branch to foo and foo+1.
-%    mov eax, 0
-%    cmp eax, 0
-%    je  foo+1
-% foo: add eax, 3
+The recursive descent parser cannot parse both the false and the true-branch of the conditional branch instruction at line 3, because the true branch targets the middle of a \texttt{jmp} instruction.
+
+The conditional branch instruction at line 3 always takes the true branch, which points to the middle of the \texttt{jmp} instruction decoded when parsing the false branch. The recursive descent parser cannot disassembly both branches and is forced to choose one of them, in this case the \texttt{fake} branch.
+
+The recursive descent parser fails by using a conditional branch instruction (\texttt{jz}) which always takes the true-branches \texttt{fake+1} which is in the middle of an instruction.
+
+\begin{figure}[htbp]
+	\centering
+	\begin{subfigure}[t]{0.59\textwidth}
+		\lstinputlisting[language=nasm, style=nasm, tabsize=2]{inc/hello/anti_orig.asm}
+		\caption{Original assembly.}
+	\end{subfigure}
+	\qquad
+	\begin{subfigure}[t]{0.34\textwidth}
+		\lstinputlisting[language=nasm, style=nasm, tabsize=2]{inc/hello/anti_fail.asm}
+		\caption{Disassembly from IDA Pro.}
+	\end{subfigure}
+	\caption{The original assembly (left) contains an anti-disassembly trick which causes the recursive descent parser to fail (right).\label{fig:anti-disassembly}}
+\end{figure}
 
 The anti-disassembly technique presented in figure \ref{foo} may be mitigated using symbolic execution, which could verify that the conditional jump always takes the true branch and therefore allow the instruction to be replaced with an unconditional jump to the target of the true branch. This quickly becomes a game of cat-and-mouse, as the anti-disassembly techniques could be extended to rely on network activity, file contents, or other external sources which would render the symbolic exeuction useless.
 
