@@ -3,13 +3,13 @@
 \subsection{Future Work}
 \label{sec:future_work}
 
-% TODO: Check that tertiary means what I think it does.
-
 The primary focus for planned future work is to stress test the design of the decompilation pipeline and its individual components. A secondary focus is to improve the quality and the reliability of the components. A tertiary focus is to extend the capabilities of the decompilation pipeline. This prioritization strives to validate the core of the system before extending it.
 
 The principle of separation of concern has influenced every aspect of the design of the decompilation pipeline and its individual components. Conceptually, the components of the decompilation pipeline are grouped into three modules which separate concerns regarding the source language (front-end module), the general decompilation tasks (middle-end module), and the target language (back-end module). This conceptual separation is a vital aspect of the decompilation pipeline design, and it will therefore be thoroughly examined. Should a component violate the principle of separation of concern, either in isolation or within the system as a whole, it must be redesigned or reimplemented. To identify such issues, key areas of the decompilation pipeline will be extended to put pressure on the design.
 
-% TODO: Check spelling and use of leverage (in this context).
+% ~~~ [ Primary: validate design ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+% TODO: Find other word for leverage.
 
 Firstly, an additional back-end (e.g. support for Python as a target language) will be implemented to put pressure on the design of the middle-end module. The second back-end would only be able to leverage the target-independent information of the general decompilation tasks (e.g. control flow analysis) if the middle-end module was implemented correctly.
 
@@ -41,7 +41,10 @@ The separation of the front-end and middle-end has already been validated. These
 
 
 
-% ~~~ [ Primary: validate design ] ~~~
+
+The data-driven design of the control flow analysis component has both advantages and limitations.
+
+It facilitates extensibility, as support for new control flow primitives may be added by describing their control flow with a directed graph
 
 % TODO: Investigate various ways to mitigate the limitations of the control flow analysis design.
 
@@ -54,7 +57,11 @@ The separation of the front-end and middle-end has already been validated. These
 % * Formal Grammar for a subset of LLVM IR
 %    - Mention previous (partial but incomplete) work.
 
-% ~~~ [ Teritary: extend capabilities ] ~~~
+% ~~~ [ Tertiary: extend capabilities ] ~~~
+
+In programs written in C
+
+Further post-processing stages will be added to the Go back-end to make the output more idiomatic.
 
 % TODO: Add notes from decomp.org/ll2go/IDEAS.txt.
 %    - grind (add footnote to rsc's grind tool)
