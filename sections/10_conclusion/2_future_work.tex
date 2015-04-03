@@ -5,12 +5,12 @@
 
 The primary focus for planned future work is to stress test the design of the decompilation pipeline and its individual components. A secondary focus is to improve the quality and the reliability of the components. A tertiary focus is to extend the capabilities of the decompilation pipeline. This prioritization strives to validate the core of the system before extending it.
 
-The principle of separation of concern has influenced every aspect of the design of the decompilation pipeline and its individual components. Conceptually, the components of the decompilation pipeline are grouped into three modules which separate concerns regarding the source language (front-end module), the general decompilation tasks (middle-end module), and the target language (back-end module). This conceptual separation is a vital aspect of the decompilation pipeline design, and it will therefore be thoroughly examined. Should a component violate the principle of separation of concern, either in isolation or within the system as a whole, it must be redesigned or reimplemented. To identify such issues, key areas of the decompilation pipeline will be extended to put pressure on the design.
-
 % ~~~ [ Design Validation ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 \subsubsection{Design Validation}
 \label{sec:design_validation}
+
+The principle of separation of concern has influenced every aspect of the design of the decompilation pipeline and its individual components. Conceptually, the components of the decompilation pipeline are grouped into three modules which separate concerns regarding the source language (front-end module), the general decompilation tasks (middle-end module), and the target language (back-end module). This conceptual separation is a vital aspect of the decompilation pipeline design, and it will therefore be thoroughly examined. Should a component violate the principle of separation of concern, either in isolation or within the system as a whole, it must be redesigned or reimplemented. To identify such issues, key areas of the decompilation pipeline will be extended to put pressure on the design.
 
 % TODO: Can leverage be used in this context?
 
@@ -24,19 +24,50 @@ The separation of the front-end and middle-end has already been validated. These
 
 \subsubsection{Reliability Improvements}
 
-\textit{``argument of incompatible type!''}
+As described in section \ref{sec:go_bindings_for_llvm}, there are many reliability issues caused by the Go bindings for LLVM. To mitigate these issues a pure Go implementation of an LLVM IR library is being developed (see section \ref{sec:llvm_ir_library}).
 
-The C++ binding for LLVM has proved vital for delivering a working set of artefacts on schedule.
 
-The API of the C++ binding for LLVM provides a \texttt{Value} type which defines the methods of all underlying value types, and it is the callers responsibility to only call a given method if the underlying type of the value is known to implement the method. This approach results in very fragile applications; e.g. the \texttt{Value} type defines two methods, \texttt{InstructionOpcode} and \texttt{Opcode}, both of which return an \texttt{Opcode} integer. Calling the opcode
 
-which declares a superset of the  which defines the methods of all values, and it is the callers responsibility to only call a given method if the underlying type of the value is known to implement the method. This approach results in fragile applications (e.g. the \texttt{Value} interface both the \texttt{InstructionOpcode} and the \texttt{Opcode} method returns an \texttt{Opcode} value, but calling the wrong one will result in a runtime crash).
 
-To improve the stability of the individual components an LLVM IR library is being developed to replace the C++ binding with a pure Go implementation.
 
-Applications built using the C++ binding are fragile The API of the C++ binding is fragile
 
-The single largest reliability issue is caused by
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \textit{``argument of incompatible type!''}
+
+% The C++ binding for LLVM has proved vital for delivering a working set of artefacts on schedule.
+
+% The API of the C++ binding for LLVM provides a \texttt{Value} type which defines the methods of all underlying value types, and it is the callers responsibility to only call a given method if the underlying type of the value is known to implement the method. This approach results in very fragile applications; e.g. the \texttt{Value} type defines two methods, \texttt{InstructionOpcode} and \texttt{Opcode}, both of which return an \texttt{Opcode} integer. Calling the opcode
+
+% which declares a superset of the  which defines the methods of all values, and it is the callers responsibility to only call a given method if the underlying type of the value is known to implement the method. This approach results in fragile applications (e.g. the \texttt{Value} interface both the \texttt{InstructionOpcode} and the \texttt{Opcode} method returns an \texttt{Opcode} value, but calling the wrong one will result in a runtime crash).
+
+% To improve the stability of the individual components an LLVM IR library is being developed to replace the C++ binding with a pure Go implementation.
+
+% Applications built using the C++ binding are fragile The API of the C++ binding is fragile
+
+% The single largest reliability issue is caused by
 
 % * Finish developing the LLVM IR library and replace the C++ binding with a pure Go implementation. This should decrese build times significantly and simplify the overall complexity of the project by several orders of magnitude.
 %    - Third Party Adaptation
@@ -47,23 +78,23 @@ The single largest reliability issue is caused by
 
 % TODO: Investigate various ways to mitigate the limitations of the control flow analysis design.
 
-The data-driven design of the control flow analysis component has both advantages and limitations.
+% The data-driven design of the control flow analysis component has both advantages and limitations.
 
-It facilitates extensibility, as support for new control flow primitives may be added by describing their control flow with a directed graph
+% It facilitates extensibility, as support for new control flow primitives may be added by describing their control flow with a directed graph
 
 % ~~~ [ Extended Capabilities ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 \subsubsection{Extended Capabilities}
 
-Several extensions to the decompilation pipeline are planned, apart from the second back-end and the data flow analysis component already described in section \ref{sec:design_validation}.
+% Several extensions to the decompilation pipeline are planned, apart from the second back-end and the data flow analysis component already described in section \ref{sec:design_validation}.
 
-In programs written in C
+% In programs written in C
 
-The post-processing stage of the Go back-end can easily be extended to make the output more idiomatic.
+% The post-processing stage of the Go back-end can easily be extended to make the output more idiomatic.
 
-The output of the Go back-end will be made mode idiomatic by introducing further post-processing stages.
+% The output of the Go back-end will be made mode idiomatic by introducing further post-processing stages.
 
-Further post-processing stages will be added to the Go back-end to make the output more idiomatic.
+% Further post-processing stages will be added to the Go back-end to make the output more idiomatic.
 
 % TODO: Add grind (add footnote to rsc's grind tool)
 
