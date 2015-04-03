@@ -5,41 +5,19 @@
 
 % TODO: Check that tertiary means what I think it does.
 
-The primary focus for planned future work is to stress test the design of the decompilation pipeline and its individual components. A secondary focus is to improve the quality and the reliability of the components. A tertiary focus is to extend the capabilities of the decompilation pipeline.
+The primary focus for planned future work is to stress test the design of the decompilation pipeline and its individual components. A secondary focus is to improve the quality and the reliability of the components. A tertiary focus is to extend the capabilities of the decompilation pipeline. This prioritization strives to validate the core of the system before extending it.
 
-The principle of separation of concern has influenced every aspect of the design of the decompilation pipeline and its individual components. Conceptually, the components of the decompilation pipeline are grouped into three modules which separate concerns regarding the source language (front-end module), the heavy decompilation tasks (middle-end module), and the target language (back-end module). This conceptual separation is a vital aspect of the decompilation pipeline design and it will be thoroughly examined. Should a component violate the principle of separation of concern, either in isolation or within the system as a whole, it must be redesigned. To identify such issues, key areas of the decompilation pipeline will be extended to put pressure on the design.
+The principle of separation of concern has influenced every aspect of the design of the decompilation pipeline and its individual components. Conceptually, the components of the decompilation pipeline are grouped into three modules which separate concerns regarding the source language (front-end module), the general decompilation tasks (middle-end module), and the target language (back-end module). This conceptual separation is a vital aspect of the decompilation pipeline design, and it will therefore be thoroughly examined. Should a component violate the principle of separation of concern, either in isolation or within the system as a whole, it must be redesigned or reimplemented. To identify such issues, key areas of the decompilation pipeline will be extended to put pressure on the design.
 
 % TODO: Check spelling and use of leverage (in this context).
 
-Firstly, an additional back-end (e.g. support for Python as a target language) will be implemented to put pressure on the design of the middle-end module. The second back-end would only be able to leverage the target-independent information of the heavy decompilation tasks (e.g. control flow analysis) if the middle-end module was implemented correctly.
+Firstly, an additional back-end (e.g. support for Python as a target language) will be implemented to put pressure on the design of the middle-end module. The second back-end would only be able to leverage the target-independent information of the general decompilation tasks (e.g. control flow analysis) if the middle-end module was implemented correctly.
 
-Secondly, the component in other language...
+Secondly, a key component (e.g. data flow analysis) will be implemented in separate programming language (e.g. Haskell, Rust, Prolog, …) to validate the language-agnostic aspects of the design. This component would only be able to interact with the rest of the decompilation pipeline, through well-defined input and output (e.g. LLVM IR, JSON, DOT, …), if the other components were implemented correctly.
 
-The interaction between the front-end module and the middle-end module has already been verified by the support for a wide variety of source languages made possible by the use of several independent open source projects (e.g. Dagger, Fracture, MC-Semantic, Clang, …).
+% TODO: Reformulate the following paragraph.
 
-The design of the decompilation pipeline is fundamentally influenced by the principle of separation of concern.
-
-Should a component violate this principle
-
-The separation of concern principle has had a fundamental
-
-A fundamental principle for the design of the decompilation pipeline is the separation of concern.
-
-A fundamental aspect of the decompilation pipeline design
-
-The concept of three
-
-Fundamental to the design of the decompilation pipeline is the concept
-
-Additional back-ends ()
-
-First, and foremost
-
-
-
-
-
-The main focus of the future work that
+The only interaction between the front-end module and the middle-end module is through an intermediate representation (LLVM IR), thus clearly separating them from one another. Furthermore, a variety of source languages are already supported by the front-end which consists of several independent open source project (e.g. Dagger, Fracture, MC-Semantic, Clang, …).
 
 
 
@@ -67,15 +45,9 @@ The main focus of the future work that
 
 
 
-
-
-
-
-
-% The middle-end module of the decompilation pipeline uses an intermediate representation (LLVM IR) to separate heavy decompilation tasks (e.g. control flow analysis) from concerns related to the source (e.g. x86 assembly) and target (e.g. Go) language; thus making it easy to implement additional front-ends (e.g. support for MIPS assembly) or back-ends (e.g. support for Python output).
-
-% TODO: Add notes from IDEAS.txt.
+% TODO: Add notes from decomp.org/ll2go/IDEAS.txt.
 %    - grind
+% TODO: Add footnote to rsc's grind tool.
 
 % * Finish developing the LLVM IR library and replace the C++ binding with a pure Go implementation. This should decrese build times significantly and simplify the overall complexity of the project by several orders of magnitude.
 
@@ -83,14 +55,6 @@ The main focus of the future work that
 %    - Mention previous (partial but incomplete) work.
 
 % * Third Party Adaptation
-
-% * Data Flow Analysis.
-
-% TODO: Proof-of-concept. Implement a back-end for another language and written in another language. This would stress test the language-agnostic aspects of the design, thus making sure that the heavy-lifting is done in the middle-end and not in ll2go.
-
-% TODO: Add ref to rsc's grind tool.
-
-% * Stress test the design by implementing another back-end written in and for another programming language.
 
 % TODO: Fuzz the LLVM IR parser by generating valid LLVM from the EBNF grammar (similar to gosmith).
 
