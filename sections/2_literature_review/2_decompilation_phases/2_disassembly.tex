@@ -57,7 +57,8 @@ The recursive descent parser fails by using a conditional branch instruction (\t
 		\lstinputlisting[language=nasm, style=nasm, tabsize=2]{inc/hello/anti_fail.asm}
 		\caption{Disassembly from IDA Pro.}
 	\end{subfigure}
-	\caption{The original assembly (left) contains an anti-disassembly trick which causes the recursive descent parser to fail (right).\label{fig:anti-disassembly}}
+	\caption{The original assembly (left) contains an anti-disassembly trick which causes the recursive descent parser to fail (right).}
+	\label{fig:anti-disassembly}
 \end{figure}
 
 The anti-disassembly technique presented in figure \ref{foo} may be mitigated using symbolic execution, which could verify that the conditional jump always takes the true branch and therefore allow the instruction to be replaced with an unconditional jump to the target of the true branch. This quickly becomes a game of cat-and-mouse, as the anti-disassembly techniques could be extended to rely on network activity, file contents, or other external sources which would render the symbolic exeuction useless.
