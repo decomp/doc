@@ -24,7 +24,7 @@ The separation of the front-end and middle-end has already been validated. These
 
 \subsubsection{Reliability Improvements}
 
-As described in section \ref{sec:go_bindings_for_llvm}, there are many reliability issues caused by the Go bindings for LLVM. To mitigate these issues a pure Go implementation of an LLVM IR library is being developed (see section \ref{sec:llvm_ir_library}).
+As described in section \ref{sec:go_bindings_for_llvm}, there are many reliability issues caused by the Go bindings for LLVM. To mitigate these issues a pure Go library is being developed for interacting with LLVM IR (see section \ref{sec:llvm_ir_library}). This library will be reusable by other projects, and the requirements of the third-party Go compiler \texttt{llgo}\footnote{LLVM-based compiler for Go: \url{https://llvm.org/svn/llvm-project/llgo/trunk/README.TXT}} are actively being tracked\footnote{Requirements · Issue \#3: \url{https://github.com/llir/llvm/issues/3}}.
 
 
 
@@ -50,27 +50,6 @@ As described in section \ref{sec:go_bindings_for_llvm}, there are many reliabili
 
 
 
-
-
-
-
-
-% \textit{``argument of incompatible type!''}
-
-% The C++ binding for LLVM has proved vital for delivering a working set of artefacts on schedule.
-
-% The API of the C++ binding for LLVM provides a \texttt{Value} type which defines the methods of all underlying value types, and it is the callers responsibility to only call a given method if the underlying type of the value is known to implement the method. This approach results in very fragile applications; e.g. the \texttt{Value} type defines two methods, \texttt{InstructionOpcode} and \texttt{Opcode}, both of which return an \texttt{Opcode} integer. Calling the opcode
-
-% which declares a superset of the  which defines the methods of all values, and it is the callers responsibility to only call a given method if the underlying type of the value is known to implement the method. This approach results in fragile applications (e.g. the \texttt{Value} interface both the \texttt{InstructionOpcode} and the \texttt{Opcode} method returns an \texttt{Opcode} value, but calling the wrong one will result in a runtime crash).
-
-% To improve the stability of the individual components an LLVM IR library is being developed to replace the C++ binding with a pure Go implementation.
-
-% Applications built using the C++ binding are fragile The API of the C++ binding is fragile
-
-% The single largest reliability issue is caused by
-
-% * Finish developing the LLVM IR library and replace the C++ binding with a pure Go implementation. This should decrese build times significantly and simplify the overall complexity of the project by several orders of magnitude.
-%    - Third Party Adaptation
 
 % * Formal Grammar for a subset of LLVM IR
 %    - Mention previous (partial but incomplete) work.
