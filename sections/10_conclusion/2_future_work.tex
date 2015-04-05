@@ -18,6 +18,8 @@ Secondly, a key component (e.g. data flow analysis) will be implemented in a sep
 
 The separation of the front-end and middle-end has already been validated. These modules are only interacting through an intermediate representation (i.e. LLVM IR), and a variety of source languages are already supported by the front-end module which consists of components from several independent open source project (e.g. Dagger, Fracture, MC-Semantic, Clang, …).
 
+The design of the control flow analysis component has both advantages and limitations, as discussed in section \ref{sec:design_control_flow_analysis}. The most significant limitation is the lack of support for control flow primitives with a variable number of nodes in their graph representation (e.g. n-way conditionals). To gain a better understanding of this issue, an analysis of control flow primitives from different high-level languages will be conducted. Should the n-node control flow primitives prove to be rare, hard-coded support for n-way conditionals (e.g. \texttt{switch}-statements) and similar control flow primitives would suffice. Otherwise, a general solution to the problem will be required (such as the introduction of a domain specific language which describes dynamic properties of the nodes and edges in DOT files). The OpenCL decompiler presented by Moll solved this problem by converting n-way conditionals into a set of 2-way conditionals \cite{decomp_of_llvm}.
+
 % ~~~ [ Reliability Improvements ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 \subsubsection{Reliability Improvements}
@@ -29,8 +31,6 @@ To ensure reliable interoperability between components written in different prog
 % ~~~ [ Extended Capabilities ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 \subsubsection{Extended Capabilities}
-
-The design of the control flow analysis component has both advantages and limitations, as discussed in section \ref{sec:design_control_flow_analysis}. The most significant limitation is the lack of support for control flow primitives with a variable number of nodes in their graph representation (e.g. n-way conditionals). To gain a better understanding of this issue, an analysis of control flow primitives from different high-level languages will be conducted. Should the n-node control flow primitives prove to be rare, hard-coded support for n-way conditionals (e.g. \texttt{switch}-statements) and similar control flow primitives would suffice. Otherwise, a general solution to the problem will be required (such as the introduction of a domain specific language which describes dynamic properties of the nodes and edges in DOT files). The OpenCL decompiler presented by Moll solved this problem by converting n-way conditionals into a set of 2-way conditionals \cite{decomp_of_llvm}.
 
 % Several extensions to the decompilation pipeline are planned, apart from the second back-end and the data flow analysis component already described in section \ref{sec:design_validation}.
 
