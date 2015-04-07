@@ -9,8 +9,8 @@ foo
 \begin{figure}[htbp]
 	\begin{center}
 		\begin{verbatim}
-$ git checkout old; go test -bench=. > old.txt
-$ git checkout new; go test -bench=. > new.txt
+$ git checkout old; go test -bench=ParseString > old.txt
+$ git checkout new; go test -bench=ParseString > new.txt
 $ benchcmp old.txt new.txt
 benchmark                old ns/op     new ns/op     delta
 BenchmarkParseString     737625        204010        -72.34%
@@ -19,4 +19,4 @@ BenchmarkParseString     737625        204010        -72.34%
 		\label{fig:benchmark_delta}
 	\end{center}
 \end{figure}
-\footnotetext{Display performance changes between benchmarks: \url{https://golang.org/x/tools/cmd/benchcmp}}
+\footnotetext{Benchcmp displays performance changes between benchmarks: \url{https://golang.org/x/tools/cmd/benchcmp}}
