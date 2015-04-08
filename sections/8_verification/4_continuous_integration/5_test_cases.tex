@@ -2,6 +2,4 @@
 
 \subsubsection{Test Cases}
 
-\texttt{go test}
-
-foo
+Travis CI has been configured to run the test cases for each component with race detection\footnote{Introducing the Go Race Detector: \url{https://blog.golang.org/race-detector}} enabled. This may help identify data races, which occur when concurrent code read from and write to the same memory locations.
