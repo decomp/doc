@@ -32,6 +32,8 @@ To ensure reliable interoperability between components written in different prog
 
 \subsubsection{Extended Capabilities}
 
+% TODO: Double check Go 1.5 release date.
+
 The official Go compiler was automatically translated from C to Go in preparation for the 1.5 release (to be released in August 2015) \cite{go_compiler_c2go}. To make the C-style Go source code more idiomatic, Russ Cox wrote a tool called \texttt{grind}\footnote{Grind polishes Go programs: \url{https://github.com/rsc/grind}} which moves variable declarations closer to their usage. This tool is a perfect fit for the decompilation pipeline, and may be used as-is to extend the post-processing stage of the Go back-end.
 
 In the far future, a type analysis component will be implement to support type recovery during decompilation. As type analysis requires type constraints equations to be solved, the component will be implemented in a language with good support support for constraints programming (e.g. Prolog). At this stage, more research is required to determine how generic type inference algorithms (e.g. Algorithm W \cite{algorithm_w}) may influence the design.
