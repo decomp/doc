@@ -35,6 +35,20 @@ Another problem for recursive descent disassemblers is indirect branches (e.g. j
 
 % TODO: Add example where the cache impacts execution flow (pipeline pre-schedules). *addr = 5; jmp addr
 
+% Problems:
+% * self-modifying code
+% * Architecture-dependent Restrictions
+%    Cannot be determined by step-by-step debugging; as the prefetch pipeline
+%    would behave differently.
+%       mov ax, 0x9090
+%       mov [jmpDef], ax
+%    jmpDef:
+%       jmp codeExecuted
+%    codeNotExecuted:
+%       foo
+%    codeExecuted:
+%       bar
+
 Another issue is the use of callbacks, which is common in GUI applications.
 % TODO: Solution? Run program and use breakpoints?
 
