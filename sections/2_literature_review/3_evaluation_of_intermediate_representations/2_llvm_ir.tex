@@ -2,25 +2,12 @@
 
 \subsubsection{LLVM IR}
 
-\cite{llvm_lang_ref}
-\cite{ssa_for_decomp}
+The LLVM compiler framework defines an intermediate representation called LLVM IR, which works as a language-agnostic and platform-independent bridge between high-level programming languages and low-level machine architectures. The majority of the optimizations of the LLVM compiler framework target LLVM IR, thus separating concerns related to the source language and target architecture \cite{llvm_architecture}.
 
-% TODO: <note> remove?
-% * Hierarchical structured
-%    - Module
-%       ~ Global Variables
-%       ~ Composite Types (“structs”)
-%       ~ Function Declarations
-%       ~ Function Definitions
-%    - Function Definition
-%       ~ Basic Blocks
-%          - Instructions
+There exist three isomorphic forms of LLVM IR; a human-readable assembly representation, an in-memory data structure, and an efficient binary bitcode file format. Several tools are provided by the LLVM compiler framework to convert LLVM IR between the various representations. The LLVM IR instruction set is comparable in size to the MIPS instruction set, and both uses a load/store architecture \cite{mips_ref,llvm_lang_ref}.
 
-% TODO: <note> reformulate!
-% LLVM IR is actually defined in three isomorphic forms: the textual format above, an in-memory data structure inspected and modified by optimizations themselves, and an efficient and dense on-disk binary "bitcode" format.
+Function definitions in LLVM IR consist of a set of basic blocks. A basic block is a sequence of zero or more non-branching instructions (e.g. \texttt{add}), followed by a terminating instruction (e.g. \texttt{br}, \texttt{ret}). The key idea behind a basic block is that if one instruction of the basic block is executed, all instructions are executed. This concept vastly simplifies control flow analysis (see section \ref{sec:control_flow_analysis}) as multiple instructions may be regarded as a single unit \cite{decomp_of_llvm}.
 
-% TODO: Consider if this text belongs here, if it should be adapted to fit or if it should be removed entirely.
+LLVM IR is represented in Static Single Assignment (SSA) form, which guarantees that every variable is assigned exactly once, and that every variable is defined before being used. These properties simplifies a range of optimizations (e.g. constant propagation, dead code elimination). The Boomerang decompiler uses an IR in SSA form for the same reasons, to simplify expression propagation \cite{ssa_for_decomp}.
 
-In recent years other research groups have started to develop decompilers \cite{decomp_of_llvm,retargetable_decomp} and reverse engineering components \cite{mcsema} which rely on LLVM IR. An IR may exist which is more suitable in theory, but in practise the collaboration and reuse of others efforts made possible by the vibrant LLVM community is a strong merit in and of itself. The project may therefore be successful without even identifying an optimal IR for decompilation (objective \ref{itm:obj_review_suitable_ir}).
-
-foo
+In recent years other research groups have started developing decompilers \cite{decomp_of_llvm,retargetable_decomp} and reverse engineering components \cite{mcsema} which rely on LLVM IR. There may exist an IR which is more suitable in theory, but in practise the collaboration and reuse of others efforts made possible by the vibrant LLVM community is a strong merit in and of itself.
