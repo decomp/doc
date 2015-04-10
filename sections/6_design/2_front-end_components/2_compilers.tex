@@ -3,8 +3,6 @@
 \subsubsection{Compilers}
 \label{sec:compilers}
 
-% TODO: compiler, transpiler. compilation, transpilation. Check transpilation word.
-
 One important aspect of utilizing the IR of a compiler framework, is that the decompilation pipeline automatically gains support for transpilation (i.e. translating one programming language into another) in addition to reverse compilation. An increasing number of open source compilers (e.g. Clang, GHC, \texttt{rustc}) are capable of translating a range of source languages (e.g. C, Haskell, Rust) into LLVM IR. These compilers may be used as-is by the front-end module (see figure \ref{fig:front-end_source}), thereby extending the supported source languages of the decompilation pipeline. Using this approach, the decompilation pipeline may translate $ n $ source languages into $ m $ target languages by implementing $ n + m $ front-end and back-end modules, instead of $ n * m $ transpilers.
 
 \begin{figure}[htbp]
