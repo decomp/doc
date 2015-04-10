@@ -5,10 +5,10 @@ digraph G {
 	In1 [label="x86 (ELF, PE or COFF)"]
 	// Fracture input
 	In2 [label="AArch32 (ELF or PE)"]
+	// Clang input
+	In3 [label="C source code (*.c)"]
 	// GHC input
-	In3 [label="Haskell source code (*.hs)"]
-	// rustc input
-	In4 [label="Rust source code (*.rs)"]
+	In4 [label="Haskell source code (*.hs)"]
 	// Any LLVM compiler input
 	In5 [label="…"]
 
