@@ -3,6 +3,10 @@
 \subsection{LLVM IR Library}
 \label{sec:llvm_ir_library}
 
+The design of the LLVM IR lexer has been hugely influenced by a talk given by Rob Pike in 2011, titled \textit{``Lexical Scanning in Go''} \cite{lexical_scanning_in_go}. In this talk, Pike introduces the notion of a state function which is a function that returns a state function. These state functions are able to record the state of the lexer, and signal the transition from one state to another by returning the appropriate state function based on the current character of the input. For instance, if the current character is a digit, return the state function which lexes numeric constants; and if the current character is a double quote, return the state function which lexes string literals. Implementing a lexer in this way was straight forward and resulted in a well structured library.
+
+In addition to the LLVM IR language specification, the implementation of the reference lexer in LLVM was reviewed to establish a full listing of the valid tokens in LLVM IR. This review uncovered two tokens which were defined but never used in the code base of LLVM. In collaboration with members of the LLVM community, a patch was commited to the LLVM code base which removed these tokens\footnote{Remove unused tokens from AsmParser: \url{http://reviews.llvm.org/D7248}}.
+
 % TODO: Mention that the LLVM IR library is incomplete. Only the lexer is complete, support for constants and types is partial. Parsing support is being implemented.
 
 % TODO: <note> incorporate inconsistencies: ref llvm_inconsistencies.txt
