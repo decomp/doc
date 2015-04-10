@@ -11,7 +11,8 @@
 \subsection{System Architecture}
 \label{sec:system_architecture}
 
-The decompilation pipeline conceptually consists of three modules which separate the general decompilation tasks (e.g. control flow analysis) from concerns related to the source language and the target language. Firstly, the front-end translates a variety of source languages (e.g. x86 or ARM assembly, C or Haskell source code, …) to LLVM IR by utilizing several independent open source projects. Secondly, the middle-end structures the LLVM IR by identifying high-level control flow primitives in the control flow graphs generated from the intermediate representation. Lastly, the back-end translates the structured LLVM IR to a high-level target programming language (e.g. Go). The interaction between these modules is visualized in figure \ref{fig:decompilation_pipeline}.
+The decompilation pipeline conceptually consists of three modules which separate the general decompilation tasks (e.g. control flow analysis) from concerns related to the source language and the target language. Firstly, the front-end translates a variety of source languages (e.g. x86 or ARM assembly, C or Haskell source code, …) to LLVM IR by utilizing several independent open source projects. Secondly, the middle-end structures the LLVM IR by identifying high-level control flow primitives in the control flow graphs generated from the intermediate representation. Lastly, the back-end translates the structured LLVM IR to a high-level target programming language (e.g. Go). The interaction between these modules is visualized in figure \ref{fig:decompilation_pipeline}, and the individual components of the front-end, middle-end and back-end modules are further described in section \ref{sec:front-end_components}, \ref{sec:middle-end_components} and \ref{sec:back-end_components} respectively.
+
 
 \begin{figure}[htbp]
 	\begin{center}
