@@ -6,7 +6,7 @@
 % The \texttt{restructure} tool searches for subgraph isomorphisms of control flow primitives in a given CFG. Once located the nodes identified subgraph are merged into a single node which is labeled with the high-level control flow primitive. Successive iterations continue to simplify the CFG until only one node is left, at which point the high-level control flow primitive has been recovered. Should the \texttt{restructure} tool fail to reduce the graph into a single node, the graph is considered irreducible with regards to the supported high-level control flow primitives.
 
 % TODO: Write about the choice of subgraph isomorphism search algorithm. The
-% properties of the control flow graph allows us to optimize.
+% properties of the CFG allows us to optimize.
 %
 % \cite{subgraph_isomorphism_algorithms}
 
@@ -14,7 +14,7 @@
 
 %TODO: Add: A data-driven design separates data from source code to facilitate the extensibility of components.
 
-% TODO: Refer back to "each with access to the least amount of information required to successfully accomplish its task". Working on control flow graph, oblivious to the presence of LLVM IR or instructions for that matter.
+% TODO: Refer back to "each with access to the least amount of information required to successfully accomplish its task". Working on CFG, oblivious to the presence of LLVM IR or instructions for that matter.
 
 % TODO: Add
 % * Subgraph Isomorphism Search Algorithm}
@@ -37,7 +37,7 @@
 
 %    - Unstructured CFG -> Structured CFG ([restructure](http://decomp.org/x/graphs/cmd/restructure).)
 
-The control flow analysis component structures low-level code by identifying high-level control flow primitives in the control flow graphs generated from the code (see section \ref{sec:design_control_flow_graph_generation}). As demonstrated in figure \ref{fig:representation_and_identification_of_primitive}, high-level control flow primitives may be represented using graphs. The problem of structuring low-level code may therefore be reformulated as the problem of locating subgraphs (e.g. the graph representations of control flow primitives) in graphs (e.g. the control flow graphs of low-level code) without considering node names. This problem is generally referred to as \textit{subgraph isomorphism search} and has been well studied \cite{subgraph_isomorphism_algorithms}.
+The control flow analysis component structures low-level code by identifying high-level control flow primitives in the CFGs generated from the code (see section \ref{sec:design_control_flow_graph_generation}). As demonstrated in figure \ref{fig:representation_and_identification_of_primitive}, high-level control flow primitives may be represented using graphs. The problem of structuring low-level code may therefore be reformulated as the problem of locating subgraphs (e.g. the graph representations of control flow primitives) in graphs (e.g. the CFGs of low-level code) without considering node names. This problem is generally referred to as \textit{subgraph isomorphism search} and has been well studied \cite{subgraph_isomorphism_algorithms}.
 
 \begin{figure}[htbp]
 	\centering
@@ -49,7 +49,7 @@ The control flow analysis component structures low-level code by identifying hig
 	\begin{subfigure}[ht]{0.18\textwidth}
 		\includegraphics[width=\textwidth]{poster/inc/foo.png}
 	\end{subfigure}
-	\caption{The left side contains the pseudo-code (top left) and graph representation (bottom left) of an if-statement; if \texttt{A} is true then do \texttt{B} followed by \texttt{C}, otherwise do \texttt{C}. The right side highlights (in red) an identified isomorphism of the if-statement's graph representation in the control flow graph of a simple function.}
+	\caption{The left side contains the pseudo-code (top left) and graph representation (bottom left) of an if-statement; if \texttt{A} is true then do \texttt{B} followed by \texttt{C}, otherwise do \texttt{C}. The right side highlights (in red) an identified isomorphism of the if-statement's graph representation in the CFG of a simple function.}
 	\label{fig:representation_and_identification_of_primitive}
-	% control flow graph (right) of a simple function.
+	% CFG (right) of a simple function.
 \end{figure}
