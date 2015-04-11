@@ -1,0 +1,8 @@
+digraph if {
+	A
+	B
+	C
+	A->B
+	A->C
+	B->C
+}

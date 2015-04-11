@@ -1,0 +1,3 @@
+do {
+	A
+} while B

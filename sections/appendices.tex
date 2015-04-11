@@ -58,4 +58,22 @@ The following patch ensures that the assembly printer of LLVM 3.6.0 always print
 \subsection{Control Flow Analysis Example}
 \label{app:control_flow_analysis_example}
 
-This section provides a step-by-step demonstration of how the control flow analysis of an example function is conducted.
+% TODO: Verify C4 name (lower of upper case C?)
+
+This section provides a step-by-step demonstration of how the control flow analysis is conducted, by analysing the \texttt{stmt} function of the C4 compiler\footnote{C in four functions: \url{https://github.com/rswier/c4}}.
+
+Prior to the control flow analysis stage, the front-end has translated the C source code of C4 to LLVM IR using the Clang compiler, and the \texttt{ll2dot} tool has generated a control flow graph for each function of the LLVM IR. The original control flow graph of the \texttt{stmt} function is presented in figure foo. %\ref{fig:stmt_cfg_0}.
+
+\begin{figure}[htbp]
+	\centering
+	\begin{subfigure}[t]{0.45\textwidth}
+		\includegraphics[width=\textwidth]{appendices/stmt_example/stmt_0.png}
+		\caption{Step 0, original control flow graph of the \texttt{stmt} function.}
+	\end{subfigure}
+	\qquad
+	\begin{subfigure}[t]{0.45\textwidth}
+		\includegraphics[width=\textwidth]{appendices/stmt_example/stmt_1.png}
+		\caption{bar}
+	\end{subfigure}
+	\caption{baz}
+\end{figure}

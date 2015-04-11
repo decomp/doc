@@ -1,0 +1,7 @@
+digraph if_return {
+	A
+	B
+	C
+	A->B
+	A->C
+}

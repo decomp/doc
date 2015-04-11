@@ -1,0 +1,8 @@
+digraph pre_loop {
+	A
+	B
+	C
+	A->B
+	B->A
+	A->C
+}
