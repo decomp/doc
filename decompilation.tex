@@ -62,12 +62,16 @@
 
 \begin{document}
 
-% === [ Cover page ] ===========================================================
+% === [ Front matter ] =========================================================
+
+\pagenumbering{roman}
+
+% --- [ Cover page ] -----------------------------------------------------------
 
 % TODO: Remember to include the cover page.
-%\includepdf[pages=-]{cover/cover.pdf}
+\includepdf[pages=-]{cover/cover.pdf}
 
-% === [ Title page ] ===========================================================
+% --- [ Title page ] -----------------------------------------------------------
 
 \maketitle
 
@@ -79,18 +83,22 @@
 	\textit{``What we call chaos is just patterns we haven't recognized. What we call random is just patterns we can't decipher.''} - Chuck Palahniuk \cite{patterns_quote}
 \end{quote}
 
-\pagebreak
+\cleardoublepage
 
-% === [ Acknowledgements ] =====================================================
+% --- [ Acknowledgements ] -----------------------------------------------------
 
 % TODO: Remember to include the acknowledgements page.
-%\include{sections/0_acknowledgements}
+\include{sections/0_acknowledgements}
 
-% === [ Table of contents ] ====================================================
+% --- [ Table of contents ] ----------------------------------------------------
 
 \tableofcontents
 
-% === [ Sections ] =============================================================
+\cleardoublepage
+
+% === [ Main matter ] ==========================================================
+
+\pagenumbering{arabic}
 
 \include{sections/1_introduction}
 \include{sections/2_literature_review}
@@ -103,11 +111,13 @@
 \include{sections/9_evaluation}
 \include{sections/10_conclusion}
 
-% === [ References ] ===========================================================
+% === [ Back matter ] ==========================================================
+
+% --- [ References ] -----------------------------------------------------------
 
 \bibliography{references}
 
-% === [ Appendices ] ===========================================================
+% --- [ Appendices ] -----------------------------------------------------------
 
 % TODO: Remember to include the appendices.
 \include{sections/appendices}
