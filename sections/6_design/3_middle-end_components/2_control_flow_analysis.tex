@@ -3,6 +3,13 @@
 \subsubsection{Control Flow Analysis}
 \label{sec:design_control_flow_analysis}
 
+% The \texttt{restructure} tool searches for subgraph isomorphisms of control flow primitives in a given CFG. Once located the nodes identified subgraph are merged into a single node which is labeled with the high-level control flow primitive. Successive iterations continue to simplify the CFG until only one node is left, at which point the high-level control flow primitive has been recovered. Should the \texttt{restructure} tool fail to reduce the graph into a single node, the graph is considered irreducible with regards to the supported high-level control flow primitives.
+
+% TODO: Write about the choice of subgraph isomorphism search algorithm. The
+% properties of the control flow graph allows us to optimize.
+%
+% \cite{subgraph_isomorphism_algorithms}
+
 % TODO: Describe where the "restructure" component fits in the overall decompilation pipeline. Mention which projects and tools that may be used to fill the gaps. bin_descend and IDA python script of MC-Semantics -> Google Protocol Buffer -> cfg_to_bc -> LLVM IR
 
 %TODO: Add: A data-driven design separates data from source code to facilitate the extensibility of components.
@@ -30,7 +37,7 @@
 
 %    - Unstructured CFG -> Structured CFG ([restructure](http://decomp.org/x/graphs/cmd/restructure).)
 
-The control flow analysis component structures low-level code by identifying high-level control flow primitives in the control flow graphs generated from the code (see section \ref{sec:cfg_generation}). As demonstrated in figure \ref{fig:representation_and_identification_of_primitive}, high-level control flow primitives may be represented using graphs. The problem of structuring low-level code may therefore be reformulated as the problem of locating subgraphs (e.g. the graph representations of control flow primitives) in graphs (e.g. the control flow graphs of low-level code) without considering node names. This problem is generally referred to as \textit{subgraph isomorphism search} and has been well studied \cite{subgraph_isomorphism_algorithms}.
+The control flow analysis component structures low-level code by identifying high-level control flow primitives in the control flow graphs generated from the code (see section \ref{sec:design_control_flow_graph_generation}). As demonstrated in figure \ref{fig:representation_and_identification_of_primitive}, high-level control flow primitives may be represented using graphs. The problem of structuring low-level code may therefore be reformulated as the problem of locating subgraphs (e.g. the graph representations of control flow primitives) in graphs (e.g. the control flow graphs of low-level code) without considering node names. This problem is generally referred to as \textit{subgraph isomorphism search} and has been well studied \cite{subgraph_isomorphism_algorithms}.
 
 \begin{figure}[htbp]
 	\centering

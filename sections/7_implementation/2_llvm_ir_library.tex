@@ -3,7 +3,19 @@
 \subsection{LLVM IR Library}
 \label{sec:llvm_ir_library}
 
-The design of the LLVM IR lexer has been hugely influenced by a talk given by Rob Pike in 2011, titled \textit{``Lexical Scanning in Go''} \cite{lexical_scanning_in_go}. In this talk, Pike introduces the notion of a state function which is a function that returns a state function. These state functions are able to record the state of the lexer, and signal the transition from one state to another by returning the appropriate state function based on the current character of the input. For instance, if the current character is a digit, return the state function which lexes numeric constants; and if the current character is a double quote, return the state function which lexes string literals. Implementing a lexer in this way was straight forward and resulted in a well structured library.
+% TODO: Clarify how state functions work.
+
+The design of the LLVM IR lexer has been hugely influenced by a talk given by Rob Pike in 2011, titled \textit{``Lexical Scanning in Go''} \cite{lexical_scanning_in_go}. In this talk, Pike introduces the notion of a state function which is a function that returns a state function. The state of the lexer is represented by the active state function, which may transition into another stage by returning the corresponding state function.
+
+For instance, when \texttt{lexLineComment} is active, the context of the lexer is known to be a line comment. Any character is valid within line comments, except new lines which terminate the token and
+
+The active state function represents the state of the lexer (e.g. if the \texttt{lexLineComment} function is active )
+
+State functions are able to record the state of the lexer (e.g. the \texttt{lexLineComment} state function ), and signal the transition from one state to another by returning the appropriate state function based on the current character of the input. For instance, if the active state function is lexing the
+
+a state function which lexes numeric constants may be returned if the current character is a digit
+
+, and a state function which lexes string literals may be returned if the current character is a double quote. Implementing a lexer in this way was straight forward and resulted in a well structured library.
 
 In addition to the LLVM IR language specification, the implementation of the reference lexer in LLVM was reviewed to establish a full listing of the valid tokens in LLVM IR. This review uncovered two tokens which were defined but never used in the code base of LLVM. In collaboration with members of the LLVM community, a patch was commited to the LLVM code base which removed these tokens\footnote{Remove unused tokens from AsmParser: \url{http://reviews.llvm.org/D7248}}.
 
