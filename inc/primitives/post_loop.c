@@ -1,3 +1,3 @@
 do {
-	A
-} while B
+} while A
+B

@@ -22,6 +22,7 @@ foo
 			\includegraphics[width=\textwidth]{inc/primitives/if.png}
 		\end{subfigure}
 		\caption{1-way conditional; entry: \texttt{A}, exit: \texttt{C}.}
+		\label{fig:if_graph_representation}
 	\end{subfigure}
 	\qquad
 	% if_else
@@ -34,6 +35,7 @@ foo
 			\includegraphics[width=\textwidth]{inc/primitives/if_else.png}
 		\end{subfigure}
 		\caption{2-way conditional; entry: \texttt{A}, exit: \texttt{D}.}
+		\label{fig:if_else_graph_representation}
 	\end{subfigure}
 	\qquad
 	% if_return
@@ -46,12 +48,9 @@ foo
 			\includegraphics[width=\textwidth]{inc/primitives/if_return.png}
 		\end{subfigure}
 		\caption{1-way condition with return statement in body; entry: \texttt{A}, exit: \texttt{C}.}
+		\label{fig:if_return_graph_representation}
 	\end{subfigure}
-	\caption{Pseudo-code and graph representations of various conditional statements.}
-\end{figure}
-
-\begin{figure}[htbp]
-	\centering
+	\qquad
 	% pre_loop
 	\begin{subfigure}[ht]{0.32\textwidth}
 		\centering
@@ -62,6 +61,7 @@ foo
 			\includegraphics[width=\textwidth]{inc/primitives/pre_loop.png}
 		\end{subfigure}
 		\caption{pre-test loop; entry: \texttt{A}, exit: \texttt{C}.}
+		\label{fig:pre_loop_graph_representation}
 	\end{subfigure}
 	\qquad
 	% post_loop
@@ -74,6 +74,7 @@ foo
 			\includegraphics[width=\textwidth]{inc/primitives/post_loop.png}
 		\end{subfigure}
 		\caption{post-test loop; entry: \texttt{A}, exit: \texttt{B}.}
+		\label{fig:post_loop_graph_representation}
 	\end{subfigure}
 	\qquad
 	% list
@@ -86,6 +87,8 @@ foo
 			\includegraphics[width=\textwidth]{inc/primitives/list.png}
 		\end{subfigure}
 		\caption{consecutive statements; entry: \texttt{A}, exit: \texttt{B}.}
+		\label{fig:list_graph_representation}
 	\end{subfigure}
-	\caption{Pseudo-code and graph representations of various loops and consecutive statements.}
+	\caption{The pseudo-code and graph representation of various high-level control flow primitives with denoted entry and exit nodes.}
+	\label{fig:graph_representations}
 \end{figure}
