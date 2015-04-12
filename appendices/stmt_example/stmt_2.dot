@@ -24,8 +24,8 @@ digraph stmt {
 	109->110;
 	98->list0[ label=true ];
 	list0->106;
-	list1->24[ label=true ];
 	list1->32[ label=false ];
+	list1->24[ label=true ];
 	39->list2[ label=true ];
 	list2->52[ label=false ];
 	list2->list3[ label=true ];
