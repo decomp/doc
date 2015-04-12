@@ -1,4 +1,4 @@
-stmt_example: stmt_1.png stmt_2.png stmt_3.png stmt_4.png stmt_5.png
+all: stmt_1.png stmt_2.png stmt_3.png stmt_4.png stmt_5.png
 
 stmt_1.png: stmt_0.dot
 	merge -img -o stmt_1.dot pre_loop.dot $<

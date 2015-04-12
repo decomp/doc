@@ -1,8 +1,10 @@
 package main
 
+import "os"
+
 func main() {
-	i = 0
-	x = 0
+	i := 0
+	x := 0
 	for i < 10 {
 		_4 := x < 100
 		x = x
@@ -15,5 +17,5 @@ func main() {
 		i = _10
 		x = x
 	}
-	return x
+	os.Exit(x)
 }

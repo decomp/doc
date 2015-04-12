@@ -150,3 +150,105 @@ The last step of the control flow analysis stage reduces the CFG of \textbf{step
 The \texttt{restructure} tool produces structured CFGs (in JSON format) from unstructured CFGs (in the DOT file format), as described in section \ref{sec:impl_control_flow_analysis_tool}. Listing \ref{lst:restructure_output} demonstrates the output of the restructure tool when analysing the CFG of the \texttt{stmt} function of the c4 compiler, which is presented on the left side of figure \ref{fig:step_1}.
 
 \lstinputlisting[language=go, style=go, caption={The structured control flow graph (in JSON format) produced by the \texttt{restructure} tool when analysing the CFG of the \texttt{stmt} function of the c4 compiler. \label{lst:restructure_output}}]{appendices/stmt_example/stmt.json}
+
+\clearpage
+
+% --- [ Post-processing Example ] ----------------------------------------------
+
+\subsection{Post-processing Example}
+
+foo
+
+% unresolved
+\begin{figure}[htbp]
+	\centering
+	\begin{subfigure}[t]{0.45\textwidth}
+		\lstinputlisting[language=go, style=go]{appendices/post_example/foo_0.go}
+	\end{subfigure}
+	\qquad
+	\begin{subfigure}[t]{0.45\textwidth}
+		\lstinputlisting[language=go, style=go]{appendices/post_example/foo_1.go}
+	\end{subfigure}
+	\caption{foo}
+	\label{fig:foo}
+\end{figure}
+
+foo
+
+% mainret
+\begin{figure}[htbp]
+	\centering
+	\begin{subfigure}[t]{0.45\textwidth}
+		\lstinputlisting[language=go, style=go]{appendices/post_example/foo_1.go}
+	\end{subfigure}
+	\qquad
+	\begin{subfigure}[t]{0.45\textwidth}
+		\lstinputlisting[language=go, style=go]{appendices/post_example/foo_2.go}
+	\end{subfigure}
+	\caption{foo}
+	\label{fig:foo}
+\end{figure}
+
+foo
+
+% localid
+\begin{figure}[htbp]
+	\centering
+	\begin{subfigure}[t]{0.45\textwidth}
+		\lstinputlisting[language=go, style=go]{appendices/post_example/foo_2.go}
+	\end{subfigure}
+	\qquad
+	\begin{subfigure}[t]{0.45\textwidth}
+		\lstinputlisting[language=go, style=go]{appendices/post_example/foo_3.go}
+	\end{subfigure}
+	\caption{foo}
+	\label{fig:foo}
+\end{figure}
+
+foo
+
+% assignbinop
+\begin{figure}[htbp]
+	\centering
+	\begin{subfigure}[t]{0.45\textwidth}
+		\lstinputlisting[language=go, style=go]{appendices/post_example/foo_3.go}
+	\end{subfigure}
+	\qquad
+	\begin{subfigure}[t]{0.45\textwidth}
+		\lstinputlisting[language=go, style=go]{appendices/post_example/foo_4.go}
+	\end{subfigure}
+	\caption{foo}
+	\label{fig:foo}
+\end{figure}
+
+foo
+
+% deadassign
+\begin{figure}[htbp]
+	\centering
+	\begin{subfigure}[t]{0.45\textwidth}
+		\lstinputlisting[language=go, style=go]{appendices/post_example/foo_4.go}
+	\end{subfigure}
+	\qquad
+	\begin{subfigure}[t]{0.45\textwidth}
+		\lstinputlisting[language=go, style=go]{appendices/post_example/foo_5.go}
+	\end{subfigure}
+	\caption{foo}
+	\label{fig:foo}
+\end{figure}
+
+foo
+
+% forloop
+\begin{figure}[htbp]
+	\centering
+	\begin{subfigure}[t]{0.45\textwidth}
+		\lstinputlisting[language=go, style=go]{appendices/post_example/foo_5.go}
+	\end{subfigure}
+	\qquad
+	\begin{subfigure}[t]{0.45\textwidth}
+		\lstinputlisting[language=go, style=go]{appendices/post_example/foo_6.go}
+	\end{subfigure}
+	\caption{foo}
+	\label{fig:foo}
+\end{figure}

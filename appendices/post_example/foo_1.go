@@ -1,8 +1,8 @@
 package main
 
 func main() {
-	i = 0
-	x = 0
+	i := 0
+	x := 0
 	for i < 10 {
 		_4 := x < 100
 		x = x
