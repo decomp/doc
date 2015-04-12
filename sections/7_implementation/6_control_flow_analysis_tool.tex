@@ -1,5 +1,9 @@
 % --- [ Control Flow Analysis Tool ] -------------------------------------------
 
 \subsection{Control Flow Analysis Tool}
+\label{sec:impl_control_flow_analysis_tool}
 
-foo
+The \texttt{restructure} tool produces structured CFGs (in JSON format) from unstructured CFGs (in the DOT file format), by utilizing the subgraph isomorphism search library (see section \ref{sec:subgraph_isomorphism_search_algorithm}) to identify high-level control flow primitives in a similar fashion as demonstrated in appendix \ref{app:control_flow_ana
+lysis_example}. The main difference is that the \texttt{restructure} tool uses an \textit{ordered} sequence of subgraphs, which is iterated in order to identify and reduce one subgraph at the time. If no subgraphs are found, the graph is considered irreducible with regards to the supported high-level control flow primitives, which are described in figure \ref{fig:graph_representations} of section \ref{sec:control_flow_analysis}. Otherwise, the first located subgraph is replaced with a single node, and the process is repeated until the entire CFG has been reduced into a single node, or the graph has been considered irreducible. This approach was inspired by Markov algorithms, which uses an ordered sequence of production rules to translate an input into an output string.
+
+foo \ref{app:restructure_example}
