@@ -1,6 +1,6 @@
 all: pdf
 
-pdf: inc cover/cover.pdf
+pdf: inc cover/cover.pdf appendices/stmt_example
 	texi2pdf -q -c decompilation.tex
 
 word: inc
@@ -11,13 +11,16 @@ word: inc
 	pdflatex decompilation
 	latex2rtf decompilation
 
-.PHONY: clean inc cover
+.PHONY: clean inc cover appendices/stmt_example
 
 inc:
 	make -C $@/
 
 cover/cover.pdf:
 	make -C cover/
+
+appendices/stmt_example:
+	make -C appendices/stmt_example/
 
 clean:
 	rm -f *.aux *.log *.out *.toc *.bbl *.blg *.dvi *.rtf *.bcf *-blx.bib *.run.xml sections/*.aux
