@@ -139,3 +139,14 @@ The last step of the control flow analysis stage reduces the CFG of \textbf{step
 	\caption{\textbf{Step 5}. The CFG from \textbf{step 4} (left) and a simplified CFG (right) after identifying 2-way conditionals (see figure \ref{fig:if_else_graph_representation}).}
 	\label{fig:step_5}
 \end{figure}
+
+\clearpage
+
+% --- [ Restructure Example ] --------------------------------------------------
+
+\subsection{Restructure Example}
+\label{app:restructure_example}
+
+The \texttt{restructure} tool produces structured CFGs (in JSON format) from unstructured CFGs (in the DOT file format), as described in section \ref{sec:impl_control_flow_analysis_tool}. Listing \ref{lst:restructure_output} demonstrates the output of the restructure tool when analysing the CFG of the \texttt{stmt} function of the c4 compiler, which is presented on the left side of figure \ref{fig:step_1}.
+
+\lstinputlisting[language=go, style=go, caption={The structured control flow graph (in JSON format) produced by the \texttt{restructure} tool when analysing the CFG of the \texttt{stmt} function of the c4 compiler. \label{lst:restructure_output}}]{appendices/stmt_example/stmt.json}
