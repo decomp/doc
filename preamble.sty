@@ -82,3 +82,11 @@
 % Examples:
 %    \multicolumn{4}{|l|}{foo}
 \usepackage{multirow}
+
+% Force the first float on float-only pages to be top-aligned.
+%
+% ref: http://tex.stackexchange.com/a/28565
+\makeatletter
+\setlength{\@fptop}{0pt}
+\setlength{\@fpbot}{0pt plus 1fil}
+\makeatother
