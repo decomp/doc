@@ -184,11 +184,9 @@ When the CFG has been reduced into a single node, a structured control flow grap
 \subsection{Restructure Example}
 \label{app:restructure_example}
 
-% TODO: Update section to refer to the main function of the foo example.
+The \texttt{restructure} tool produces structured CFGs (in JSON format) from unstructured CFGs (in the DOT file format), as described in section \ref{sec:impl_control_flow_analysis_tool}. Listing \ref{lst:restructure_output} demonstrates the output of the restructure tool when analysing the CFG of the \texttt{main} function presented in figure \ref{fig:example1_cfg}.
 
-The \texttt{restructure} tool produces structured CFGs (in JSON format) from unstructured CFGs (in the DOT file format), as described in section \ref{sec:impl_control_flow_analysis_tool}. Listing \ref{lst:restructure_output} demonstrates the output of the restructure tool when analysing the CFG of the \texttt{stmt} function of the c4 compiler, which is presented on the left side of figure \ref{fig:step_1}.
-
-\lstinputlisting[language=go, style=go, caption={The structured control flow graph (in JSON format) produced by the \texttt{restructure} tool when analysing the CFG of the \texttt{stmt} function of the c4 compiler. \label{lst:restructure_output}}]{appendices/restructure_example/example1_graphs/main.json}
+\lstinputlisting[language=go, style=go, caption={The structured control flow graph (in JSON format) produced by the \texttt{restructure} tool when analysing the CFG of the \texttt{main} function presented in figure \ref{fig:example1_cfg}. \label{lst:restructure_output}}]{appendices/restructure_example/example1_graphs/main.json}
 
 \clearpage
 
