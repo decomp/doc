@@ -1,9 +1,4 @@
-; ModuleID = 'post_loop.ll'
-target datalayout = "e-m:e-i64:64-f80:128-n8:16:32:64-S128"
-target triple = "x86_64-unknown-linux-gnu"
-
-; Function Attrs: nounwind uwtable
-define i32 @main(i32 %argc, i8** %argv) #0 {
+define i32 @main(i32 %argc, i8** %argv) {
   br label %1
 
 ; <label>:1                                       ; preds = %10, %0
@@ -35,9 +30,3 @@ define i32 @main(i32 %argc, i8** %argv) #0 {
   %13 = srem i32 %n.1, 123
   ret i32 %13
 }
-
-attributes #0 = { nounwind uwtable "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "stack-protector-buffer-size"="8" "unsafe-fp-math"="false" "use-soft-float"="false" }
-
-!llvm.ident = !{!0}
-
-!0 = !{!"clang version 3.6.0 (tags/RELEASE_360/final)"}

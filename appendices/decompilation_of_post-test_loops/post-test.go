@@ -7,11 +7,11 @@ func main() {
 	n := 1
 	for {
 		if i < 10 {
-			n *= 2
 			i++
+			n *= 2
 		} else {
-			n *= 4
 			i += 3
+			n *= 4
 		}
 		if !(i < 15) {
 			break

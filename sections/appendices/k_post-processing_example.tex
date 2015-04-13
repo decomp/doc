@@ -7,6 +7,8 @@ The post-processing components seeks to improve the quality of the unpolished Go
 
 The remainder of this section demonstrates the rewriting capabilities of the \texttt{go-post} tool, by successively simplifying the unpolished Go source code presented in the left side of figure \ref{fig:rewrite_1}, through a series of six rewrites which are illustrated in figure \ref{fig:rewrite_1}, \ref{fig:rewrite_2}, \ref{fig:rewrite_3}, \ref{fig:rewrite_4}, \ref{fig:rewrite_5} and \ref{fig:rewrite_6} respectively.
 
+For comparison, the original C source code is presented alongside of the decompiled Go output from \textbf{rewrite 6} in figure \ref{fig:example1_comparison}. Please note that the middle-end and back-end modules of the decompilation pipeline are only given access to the LLVM IR (see listing \ref{lst:example1_ll}) produced by the front-end (as described in appendix \ref{app:clang_example}), and are completely unaware of the original C source code. When decompiling LLVM IR generated from native code, the original names of identifiers may be missing.
+
 % unresolved
 \begin{figure}[htbp]
 	\centering
@@ -89,4 +91,19 @@ The remainder of this section demonstrates the rewriting capabilities of the \te
 	\end{subfigure}
 	\caption{\textbf{Rewrite 6}. The Go source code from \textbf{rewrite 5} (left) and the simplified Go source code (right) after propagating the initialization statement on line 6 and the post-statement on line 12 to the for-loop header on line 7.}
 	\label{fig:rewrite_6}
+\end{figure}
+
+% Comparison between the original C source code and the decompiled Go output
+% from rewrite 6.
+\begin{figure}[htbp]
+	\centering
+	\begin{subfigure}[t]{0.49\textwidth}
+		\lstinputlisting[language=C, style=c]{appendices/clang_example/example1.c}
+	\end{subfigure}
+	\qquad
+	\begin{subfigure}[t]{0.45\textwidth}
+		\lstinputlisting[language=go, style=go]{appendices/post_example/example1_6.go}
+	\end{subfigure}
+	\caption{The original C source code (left) and the decompiled Go output from \textbf{rewrite 6} (right).}
+	\label{fig:example1_comparison}
 \end{figure}
