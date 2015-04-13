@@ -1,0 +1,10 @@
+% --- [ Clang Example ] --------------------------------------------------------
+
+\subsection{Clang Example}
+\label{app:clang_example}
+
+The Clang compiler supports emitting LLVM IR from C source code. Using the Clang compiler and the LLVM IR optimizer of the LLVM compiler framework, the source code of the simple C program presented in listing \ref{lst:example1_c} was translated into the LLVM IR assembly presented in listing \ref{lst:example1_ll}.
+
+\lstinputlisting[language=C, style=go, caption={The source code of a simple C program which iterates over a pre-test loop to conditionally increment an accumulator. The final value of the accumulator \texttt{x} determines the status code of the program. \label{lst:example1_c}}]{appendices/clang_example/example1.c}
+
+\lstinputlisting[language=llvm, style=nasm, caption={An optimized version of the LLVM IR assmebly, which was emitted by Clang when compiling the C source code of listing \ref{lst:example1_c}. \label{lst:example1_ll}}]{appendices/clang_example/example1.ll}

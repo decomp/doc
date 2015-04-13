@@ -1,0 +1,93 @@
+% --- [ Post-processing Example ] ----------------------------------------------
+
+\subsection{Post-processing Example}
+
+The post-processing components seeks to improve the quality of the unpolished Go source code, which was produced by the earlier stages of the decompilation pipeline. One such component is the \texttt{grind} tool by Russ Cox (see section \ref{sec:extended_capabilities}), which improves the quality of Go code by moving variable declarations closer to their usage. Another such component is the \texttt{go-post} tool, which improve the quality of Go source code by declaring unresolved identifiers, applying Go conventions for exit status codes, propagating temporary variables into expressions, simplifying binary operations, removing dead assignment statements, and promoting the initialization statement and post-statement of for-loops to the loop header.
+
+The remainder of this section demonstrates the rewriting capabilities of the \texttt{go-post} tool, by successively simplifying the unpolished Go source code presented in the left side of figure \ref{fig:rewrite_1}, through a series of six rewrites which are illustrated in figure \ref{fig:rewrite_1}, \ref{fig:rewrite_2}, \ref{fig:rewrite_3}, \ref{fig:rewrite_4}, \ref{fig:rewrite_5} and \ref{fig:rewrite_6} respectively.
+
+% unresolved
+\begin{figure}[htbp]
+	\centering
+	\begin{subfigure}[t]{0.45\textwidth}
+		\lstinputlisting[language=go, style=go]{appendices/post_example/example1_0.go}
+	\end{subfigure}
+	\qquad
+	\begin{subfigure}[t]{0.45\textwidth}
+		\lstinputlisting[language=go, style=go]{appendices/post_example/example1_1.go}
+	\end{subfigure}
+	\caption{\textbf{Rewrite 1}. The original unpolished Go source code (left) and the simplified Go source code (right) after declaring unresolved identifiers. The assignment statements of line 4 and 5 have been rewritten into declare-and-initialize statements.}
+	\label{fig:rewrite_1}
+\end{figure}
+
+% mainret
+\begin{figure}[htbp]
+	\centering
+	\begin{subfigure}[t]{0.45\textwidth}
+		\lstinputlisting[language=go, style=go]{appendices/post_example/example1_1.go}
+	\end{subfigure}
+	\qquad
+	\begin{subfigure}[t]{0.45\textwidth}
+		\lstinputlisting[language=go, style=go]{appendices/post_example/example1_2.go}
+	\end{subfigure}
+	\caption{\textbf{Rewrite 2}. The Go source code from \textbf{rewrite 1} (left) and the simplified Go source code (right) after applying Go conventions for exit status codes. The return statement of line 18 have been rewritten into an \texttt{os.Exit} function call and the \textit{``os''} package have been imported on line 3.}
+	\label{fig:rewrite_2}
+\end{figure}
+
+% localid
+\begin{figure}[htbp]
+	\centering
+	\begin{subfigure}[t]{0.45\textwidth}
+		\lstinputlisting[language=go, style=go]{appendices/post_example/example1_2.go}
+	\end{subfigure}
+	\qquad
+	\begin{subfigure}[t]{0.45\textwidth}
+		\lstinputlisting[language=go, style=go]{appendices/post_example/example1_3.go}
+	\end{subfigure}
+	\caption{\textbf{Rewrite 3}. The Go source code from \textbf{rewrite 2} (left) and the simplified Go source code (right) after propagating temporary variables into expressions. The temporary variables declared at line 9, 12, 13 and 16 have been propagated into the expressions at line 10, 11 and 13.}
+	\label{fig:rewrite_3}
+\end{figure}
+
+% assignbinop
+\begin{figure}[htbp]
+	\centering
+	\begin{subfigure}[t]{0.45\textwidth}
+		\lstinputlisting[language=go, style=go]{appendices/post_example/example1_3.go}
+	\end{subfigure}
+	\qquad
+	\begin{subfigure}[t]{0.45\textwidth}
+		\lstinputlisting[language=go, style=go]{appendices/post_example/example1_4.go}
+	\end{subfigure}
+	\caption{\textbf{Rewrite 4}. The Go source code from \textbf{rewrite 3} (left) and the simplified Go source code (right) after simplifying binary assignment statements. The assignment statements on line 11 and 13 have been rewritten into an addition assignment operation and an increment statement respectively.}
+	\label{fig:rewrite_4}
+\end{figure}
+
+% deadassign
+\begin{figure}[htbp]
+	\centering
+	\begin{subfigure}[t]{0.45\textwidth}
+		\lstinputlisting[language=go, style=go]{appendices/post_example/example1_4.go}
+	\end{subfigure}
+	\qquad
+	\begin{subfigure}[t]{0.45\textwidth}
+		\lstinputlisting[language=go, style=go]{appendices/post_example/example1_5.go}
+	\end{subfigure}
+	\caption{\textbf{Rewrite 5}. The Go source code from \textbf{rewrite 4} (left) and the simplified Go source code (right) after removing dead assignment statements. The assignment statements on line 9 and 14 have been removed.}
+	\label{fig:rewrite_5}
+\end{figure}
+
+% TODO: Fix layout; the last figure should be positioned at the top of the page.
+
+% forloop
+\begin{figure}[htbp]
+	\centering
+	\begin{subfigure}[t]{0.45\textwidth}
+		\lstinputlisting[language=go, style=go]{appendices/post_example/example1_5.go}
+	\end{subfigure}
+	\qquad
+	\begin{subfigure}[t]{0.45\textwidth}
+		\lstinputlisting[language=go, style=go]{appendices/post_example/example1_6.go}
+	\end{subfigure}
+	\caption{\textbf{Rewrite 6}. The Go source code from \textbf{rewrite 5} (left) and the simplified Go source code (right) after propagating the initialization statement on line 6 and the post-statement on line 12 to the for-loop header on line 7.}
+	\label{fig:rewrite_6}
+\end{figure}

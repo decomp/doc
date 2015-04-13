@@ -1,0 +1,8 @@
+% --- [ Patch for Unnamed Basic Blocks of LLVM ] -------------------------------
+
+\subsection{Patch for Unnamed Basic Blocks of LLVM}
+\label{app:unnamed_patch}
+
+The following patch ensures that the assembly printer of LLVM 3.6.0 always prints the generated names of unnamed basic blocks.
+
+\lstinputlisting[language=diff, style=diff, caption={Always print the generated names of unnamed basic blocks. \label{lst:unnamed_patch}}]{appendices/unnamed.patch}
