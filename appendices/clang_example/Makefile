@@ -6,4 +6,3 @@ example1.ll: example1.c
 	sar -i '^; ModuleID(.|[\n])*define' 'define' $@
 	sar -i '#0 {' '{' $@
 	sar -i '}(.|[\n])*' '}\n' $@
-	sar -i '[ ]*; pred.*\n' '\n' $@

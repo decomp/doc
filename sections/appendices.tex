@@ -58,11 +58,35 @@ The following patch ensures that the assembly printer of LLVM 3.6.0 always print
 \subsection{Clang Example}
 \label{app:clang_example}
 
-The Clang compiler supports emitting LLVM IR from C source code. Using the Clang compiler and the LLVM IR optimizer of the LLVM compiler framework, the source code of the simple C program presented in figure \ref{lst:example1_c} has been translated into the LLVM IR code presented in figure \ref{lst:example1_ll}.
+The Clang compiler supports emitting LLVM IR from C source code. Using the Clang compiler and the LLVM IR optimizer of the LLVM compiler framework, the source code of the simple C program presented in listing \ref{lst:example1_c} was translated into the LLVM IR code presented in listing \ref{lst:example1_ll}.
 
 \lstinputlisting[language=C, style=go, caption={The source code of a simple C program which iterates over a pre-test loop to conditionally increment an accumulator. The final value of the accumulator \texttt{x} determines the status code of the program. \label{lst:example1_c}}]{appendices/clang_example/example1.c}
 
 \lstinputlisting[language=llvm, style=nasm, caption={The emitted LLVM IR code when compiling the C source code of listing \ref{lst:example1_c} with Clang. \label{lst:example1_ll}}]{appendices/clang_example/example1.ll}
+
+\clearpage
+
+% --- [ Control Flow Graph Generation Example ] --------------------------------
+
+\subsection{Control Flow Graph Generation Example}
+\label{app:control_flow_graph_generation_example}
+
+The \texttt{ll2dot} tool generates CFGs (in the DOT file format) from LLVM IR assembly files, as described in section \ref{sec:control_flow_graph_generation_tool}. Using the \texttt{ll2dot} tool, a CFG was generated from the \texttt{main} function of the LLVM IR assembly in listing \ref{lst:example1_ll}. A textual representation and an image representation of the CFG are presented on the left and right side of figure \ref{fig:example1_cfg} respectively. The image representation was generated using the \texttt{dot} tool of the Graphviz project.
+
+% TODO: Add support for DOT syntax to latex.
+
+\begin{figure}[htbp]
+	\centering
+	\begin{subfigure}[ht]{0.36\textwidth}
+		\lstinputlisting[language=go, style=go]{appendices/ll2dot_example/example1_graphs/main.dot}
+	\end{subfigure}
+	\qquad
+	\begin{subfigure}[ht]{0.20\textwidth}
+		\includegraphics[width=\textwidth]{appendices/ll2dot_example/example1_graphs/main.png}
+	\end{subfigure}
+	\caption{A textual representation in the DOT file format (left) and an image representation (right) of the CFG which was generated from the LLVM IR \texttt{main} function of listing \ref{lst:example1_ll}.}
+	\label{fig:example1_cfg}
+\end{figure}
 
 \clearpage
 
@@ -81,11 +105,11 @@ For this demonstration, the CFG of the \texttt{stmt} function is the starting po
 
 \begin{figure}[htbp]
 	\centering
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[ht]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{appendices/control_flow_analysis_example/stmt_0.png}
 	\end{subfigure}
 	\qquad
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[ht]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{appendices/control_flow_analysis_example/stmt_1.png}
 	\end{subfigure}
 	\caption{\textbf{Step 1}. The original CFG of the \texttt{stmt} function (left) and a simplified CFG (right) after identifying pre-test loops (see figure \ref{fig:pre_test_graph_representation}).}
@@ -96,11 +120,11 @@ The second step further simplifies the CFG of \textbf{step 1} by recursively rep
 
 \begin{figure}[htbp]
 	\centering
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[ht]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{appendices/control_flow_analysis_example/stmt_1.png}
 	\end{subfigure}
 	\qquad
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[ht]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{appendices/control_flow_analysis_example/stmt_2.png}
 	\end{subfigure}
 	\caption{\textbf{Step 2}. The CFG from \textbf{step 1} (left) and a simplified CFG (right) after identifying consecutive statements (see figure \ref{fig:list_graph_representation}).}
@@ -111,11 +135,11 @@ The third step further simplifies the CFG of \textbf{step 2} by recursively repl
 
 \begin{figure}[htbp]
 	\centering
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[ht]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{appendices/control_flow_analysis_example/stmt_2.png}
 	\end{subfigure}
 	\qquad
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[ht]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{appendices/control_flow_analysis_example/stmt_3.png}
 	\end{subfigure}
 	\caption{\textbf{Step 3}. The CFG from \textbf{step 2} (left) and a simplified CFG (right) after identifying 1-way conditionals (see figure \ref{fig:if_graph_representation}).}
@@ -126,11 +150,11 @@ The fourth step further simplifies the CFG of \textbf{step 3} by recursively rep
 
 \begin{figure}[htbp]
 	\centering
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[ht]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{appendices/control_flow_analysis_example/stmt_3.png}
 	\end{subfigure}
 	\qquad
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[ht]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{appendices/control_flow_analysis_example/stmt_4.png}
 	\end{subfigure}
 	\caption{\textbf{Step 4}. The CFG from \textbf{step 3} (left) and a simplified CFG (right) after identifying 1-way conditionals with body return statements (see figure \ref{fig:if_return_graph_representation}).}
@@ -141,11 +165,11 @@ The last step of the control flow analysis stage reduces the CFG of \textbf{step
 
 \begin{figure}[htbp]
 	\centering
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[ht]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{appendices/control_flow_analysis_example/stmt_4.png}
 	\end{subfigure}
 	\qquad
-	\begin{subfigure}[t]{0.45\textwidth}
+	\begin{subfigure}[ht]{0.45\textwidth}
 		\centering
 		\includegraphics[width=0.3\textwidth]{appendices/control_flow_analysis_example/stmt_5.png}
 	\end{subfigure}
