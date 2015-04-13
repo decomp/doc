@@ -1,4 +1,4 @@
-all: foo_graphs/main.png
+all: example1_graphs/main.png
 
-foo_graphs/main.png: foo.ll
+example1_graphs/main.png: example1.ll
 	ll2dot -f -img $<

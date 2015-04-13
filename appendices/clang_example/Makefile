@@ -1,6 +1,6 @@
-clang_example: foo.ll
+clang_example: example1.ll
 
-foo.ll: foo.c
+example1.ll: example1.c
 	clang -S -emit-llvm -o $@ $<
 	opt --mem2reg -S -o $@ $@
 	sar -i '^; ModuleID(.|[\n])*define' 'define' $@
