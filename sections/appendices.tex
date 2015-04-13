@@ -58,11 +58,11 @@ The following patch ensures that the assembly printer of LLVM 3.6.0 always print
 \subsection{Clang Example}
 \label{app:clang_example}
 
-The Clang compiler has support for emitting LLVM IR from C source code. Using Clang, the source code the simple C program presented in figure \ref{lst:example_1_c_source} has been translated into the LLVM IR code presented in figure \ref{foo}.
+The Clang compiler supports emitting LLVM IR from C source code. Using the Clang compiler and the LLVM IR optimizer of the LLVM compiler framework, the source code of the simple C program presented in figure \ref{lst:example1_c} has been translated into the LLVM IR code presented in figure \ref{lst:example1_ll}.
 
-\lstinputlisting[language=C, style=go, caption={The source code of a simple C program which iterates over a pre-test loop to conditionally increment an accumulator. The final value of the accumulator \texttt{x} determines the status code of the program. \label{lst:example_1_c_source}}]{appendices/clang_example/example1.c}
+\lstinputlisting[language=C, style=go, caption={The source code of a simple C program which iterates over a pre-test loop to conditionally increment an accumulator. The final value of the accumulator \texttt{x} determines the status code of the program. \label{lst:example1_c}}]{appendices/clang_example/example1.c}
 
-\lstinputlisting[language=llvm, style=nasm, caption={foo}]{appendices/clang_example/example1.ll}
+\lstinputlisting[language=llvm, style=nasm, caption={The emitted LLVM IR code when compiling the C source code of listing \ref{lst:example1_c} with Clang. \label{lst:example1_ll}}]{appendices/clang_example/example1.ll}
 
 \clearpage
 
@@ -269,3 +269,9 @@ foo
 	\caption{\textbf{Rewrite 6}. The Go source code from \textbf{rewrite 5} (left) and the simplified Go source code (right) after propagating the initialization statement on line 6 and the post-statement on line 12 to the for-loop header on line 7.}
 	\label{fig:rewrite_6}
 \end{figure}
+
+% --- [ Decompilation of Nested Primitives ] -----------------------------------
+
+\subsection{Decompilation of Nested Primitives}
+
+foo
