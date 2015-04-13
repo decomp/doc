@@ -71,20 +71,20 @@ The Clang compiler supports emitting LLVM IR from C source code. Using the Clang
 \subsection{Control Flow Graph Generation Example}
 \label{app:control_flow_graph_generation_example}
 
-The \texttt{ll2dot} tool generates CFGs (in the DOT file format) from LLVM IR assembly files, as described in section \ref{sec:control_flow_graph_generation_tool}. Using the \texttt{ll2dot} tool, a CFG was generated from the \texttt{main} function of the LLVM IR assembly in listing \ref{lst:example1_ll}. A textual representation and an image representation of the CFG are presented on the left and right side of figure \ref{fig:example1_cfg} respectively. The image representation was generated using the \texttt{dot} tool of the Graphviz project.
+The \texttt{ll2dot} tool generates CFGs (in the DOT file format) from LLVM IR assembly files, as described in section \ref{sec:control_flow_graph_generation_tool}. Using the \texttt{ll2dot} tool, a CFG was generated from the \texttt{main} function of the LLVM IR assembly in listing \ref{lst:example1_ll}. A textual representation and an image representation of the CFG are presented on the left and the right side of figure \ref{fig:example1_cfg} respectively. The image representation was generated using the \texttt{dot} tool of the Graphviz project.
 
 % TODO: Add support for DOT syntax to latex.
 
 \begin{figure}[htbp]
 	\centering
-	\begin{subfigure}[ht]{0.36\textwidth}
+	\begin{subfigure}[ht]{0.38\textwidth}
 		\lstinputlisting[language=go, style=go]{appendices/ll2dot_example/example1_graphs/main.dot}
 	\end{subfigure}
 	\qquad
 	\begin{subfigure}[ht]{0.20\textwidth}
 		\includegraphics[width=\textwidth]{appendices/ll2dot_example/example1_graphs/main.png}
 	\end{subfigure}
-	\caption{A textual representation in the DOT file format (left) and an image representation (right) of the CFG which was generated from the LLVM IR \texttt{main} function of listing \ref{lst:example1_ll}.}
+	\caption{A textual representation in the DOT file format (left) and an image representation (right) of the CFG which was generated from the LLVM IR \texttt{main} function of listing \ref{lst:example1_ll}, using the \texttt{ll2dot} tool.}
 	\label{fig:example1_cfg}
 \end{figure}
 
