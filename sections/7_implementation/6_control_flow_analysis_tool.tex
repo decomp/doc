@@ -3,6 +3,12 @@
 \subsection{Control Flow Analysis Tool}
 \label{sec:impl_control_flow_analysis_tool}
 
+The control flow analysis stage uses subgraph isomorphism search algorithms to locate isomorphisms of the graph representations of high-level control flow primitives in the CFG of a given function, as further described in section \ref{sec:design_control_flow_analysis}. The CFG is simplified by recursively replacing the identified subgraphs with single nodes until the entire CFG has been reduced into a single node. By recoding the node names of the identified subgraph isomorphisms and the name of their corresponding high-level control flow primitives, a structured CFG may be produced in which all nodes are known to belong to a high-level control flow primitive.
+
+The pseudo-code and graph representations of the supported high-level control flow primitives are presented in figure \ref{fig:graph_representations} of section \ref{sec:control_flow_analysis}. Should the control flow analysis fail to reduce a CFG into a single node, the CFG is considered irreducible with regards to the supported high-level control flow primitives; in which case a structured CFG cannot be produced.
+
+% TODO: Rephrase the following paragraph so it fits with the preceding paragraphs.
+
 The \texttt{restructure} tool provides an implementation of the control flow analysis component described in section \ref{sec:design_control_flow_analysis}. It structures CFGs by utilizing the subgraph isomorphism search library (see section \ref{sec:subgraph_isomorphism_search_algorithm}) to identify high-level control flow primitives in a similar fashion as demonstrated in appendix \ref{app:control_flow_analysis_example}. One problem with the demonstrated approach is that it may fail to reduce CFGs if smaller subgraphs are replaced before larger subgraphs. This is because subgraph isomorphisms of the smaller subgraphs may exist in the larger subgraphs, as is the case with .
 
 it may fail to recover complex high-level primitives if simple
