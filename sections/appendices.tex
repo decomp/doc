@@ -53,6 +53,19 @@ The following patch ensures that the assembly printer of LLVM 3.6.0 always print
 
 \clearpage
 
+% --- [ Clang Example ] --------------------------------------------------------
+
+\subsection{Clang Example}
+\label{app:clang_example}
+
+foo
+
+\lstinputlisting[language=C, style=go, caption={foo}]{appendices/clang_example/foo.c}
+
+\lstinputlisting[language=llvm, style=nasm, caption={foo}]{appendices/clang_example/foo.ll}
+
+\clearpage
+
 % --- [ Control Flow Analysis Example ] ----------------------------------------
 
 \subsection{Control Flow Analysis Example}
@@ -69,11 +82,11 @@ For this demonstration, the CFG of the \texttt{stmt} function is the starting po
 \begin{figure}[htbp]
 	\centering
 	\begin{subfigure}[t]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{appendices/stmt_example/stmt_0.png}
+		\includegraphics[width=\textwidth]{appendices/control_flow_analysis_example/stmt_0.png}
 	\end{subfigure}
 	\qquad
 	\begin{subfigure}[t]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{appendices/stmt_example/stmt_1.png}
+		\includegraphics[width=\textwidth]{appendices/control_flow_analysis_example/stmt_1.png}
 	\end{subfigure}
 	\caption{\textbf{Step 1}. The original CFG of the \texttt{stmt} function (left) and a simplified CFG (right) after identifying pre-test loops (see figure \ref{fig:pre_test_graph_representation}).}
 	\label{fig:step_1}
@@ -84,11 +97,11 @@ The second step further simplifies the CFG of \textbf{step 1} by recursively rep
 \begin{figure}[htbp]
 	\centering
 	\begin{subfigure}[t]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{appendices/stmt_example/stmt_1.png}
+		\includegraphics[width=\textwidth]{appendices/control_flow_analysis_example/stmt_1.png}
 	\end{subfigure}
 	\qquad
 	\begin{subfigure}[t]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{appendices/stmt_example/stmt_2.png}
+		\includegraphics[width=\textwidth]{appendices/control_flow_analysis_example/stmt_2.png}
 	\end{subfigure}
 	\caption{\textbf{Step 2}. The CFG from \textbf{step 1} (left) and a simplified CFG (right) after identifying consecutive statements (see figure \ref{fig:list_graph_representation}).}
 	\label{fig:step_2}
@@ -99,11 +112,11 @@ The third step further simplifies the CFG of \textbf{step 2} by recursively repl
 \begin{figure}[htbp]
 	\centering
 	\begin{subfigure}[t]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{appendices/stmt_example/stmt_2.png}
+		\includegraphics[width=\textwidth]{appendices/control_flow_analysis_example/stmt_2.png}
 	\end{subfigure}
 	\qquad
 	\begin{subfigure}[t]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{appendices/stmt_example/stmt_3.png}
+		\includegraphics[width=\textwidth]{appendices/control_flow_analysis_example/stmt_3.png}
 	\end{subfigure}
 	\caption{\textbf{Step 3}. The CFG from \textbf{step 2} (left) and a simplified CFG (right) after identifying 1-way conditionals (see figure \ref{fig:if_graph_representation}).}
 	\label{fig:step_3}
@@ -114,11 +127,11 @@ The fourth step further simplifies the CFG of \textbf{step 3} by recursively rep
 \begin{figure}[htbp]
 	\centering
 	\begin{subfigure}[t]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{appendices/stmt_example/stmt_3.png}
+		\includegraphics[width=\textwidth]{appendices/control_flow_analysis_example/stmt_3.png}
 	\end{subfigure}
 	\qquad
 	\begin{subfigure}[t]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{appendices/stmt_example/stmt_4.png}
+		\includegraphics[width=\textwidth]{appendices/control_flow_analysis_example/stmt_4.png}
 	\end{subfigure}
 	\caption{\textbf{Step 4}. The CFG from \textbf{step 3} (left) and a simplified CFG (right) after identifying 1-way conditionals with body return statements (see figure \ref{fig:if_return_graph_representation}).}
 	\label{fig:step_4}
@@ -129,12 +142,12 @@ The last step of the control flow analysis stage reduces the CFG of \textbf{step
 \begin{figure}[htbp]
 	\centering
 	\begin{subfigure}[t]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{appendices/stmt_example/stmt_4.png}
+		\includegraphics[width=\textwidth]{appendices/control_flow_analysis_example/stmt_4.png}
 	\end{subfigure}
 	\qquad
 	\begin{subfigure}[t]{0.45\textwidth}
 		\centering
-		\includegraphics[width=0.3\textwidth]{appendices/stmt_example/stmt_5.png}
+		\includegraphics[width=0.3\textwidth]{appendices/control_flow_analysis_example/stmt_5.png}
 	\end{subfigure}
 	\caption{\textbf{Step 5}. The CFG from \textbf{step 4} (left) and a simplified CFG (right) after identifying 2-way conditionals (see figure \ref{fig:if_else_graph_representation}).}
 	\label{fig:step_5}
@@ -147,9 +160,11 @@ The last step of the control flow analysis stage reduces the CFG of \textbf{step
 \subsection{Restructure Example}
 \label{app:restructure_example}
 
+% TODO: Update section to refer to the main function of the foo example.
+
 The \texttt{restructure} tool produces structured CFGs (in JSON format) from unstructured CFGs (in the DOT file format), as described in section \ref{sec:impl_control_flow_analysis_tool}. Listing \ref{lst:restructure_output} demonstrates the output of the restructure tool when analysing the CFG of the \texttt{stmt} function of the c4 compiler, which is presented on the left side of figure \ref{fig:step_1}.
 
-\lstinputlisting[language=go, style=go, caption={The structured control flow graph (in JSON format) produced by the \texttt{restructure} tool when analysing the CFG of the \texttt{stmt} function of the c4 compiler. \label{lst:restructure_output}}]{appendices/stmt_example/stmt.json}
+\lstinputlisting[language=go, style=go, caption={The structured control flow graph (in JSON format) produced by the \texttt{restructure} tool when analysing the CFG of the \texttt{stmt} function of the c4 compiler. \label{lst:restructure_output}}]{appendices/restructure_example/main.json}
 
 \clearpage
 
