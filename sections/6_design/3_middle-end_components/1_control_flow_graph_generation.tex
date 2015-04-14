@@ -3,8 +3,8 @@
 \subsubsection{Control Flow Graph Generation}
 \label{sec:design_control_flow_graph_generation}
 
-%    - LLVM IR -> Unstructured CFG ([ll2dot](http://decomp.org/x/cmd/ll2dot))
+The control flow graph generation component generates a CFG for each function of a given LLVM IR assembly file. As described in section \ref{sec:foo}, a function definition in LLVM IR consists of a set of basic blocks; and a basic block consists of zero or more non-branching instructions followed by a terminating instruction (such as \texttt{br} or \texttt{ret}) which changes the control flow. Therefore, the control flow graph generation component may focus on analysing the last instruction of each basic block, as they will determine the control flow.
 
-The control flow generation tool generates CFGs (in the DOT file format) from LLVM IR.
+To generate the CFG of a given function, a directed graph is created and populated with one node per basic block, and with zero or more directed edges between the nodes of the graph. The node names are determined by the basic block labels, and the directed edges are determined by the terminating instructions; for instance, a return instruction produces no directed edges; and a conditional branch instruction produces two directed edges, which start at the node of the terminating instruction's basic block, and end at the nodes of the target basic blocks (i.e. one directed edge for the \textit{true} condition, and another directed edge for the \textit{false} condition).
 
-foo
+The \texttt{ll2dot} tool generates CFGs from LLVM IR in the DOT file format, which is a well-defined textual representation of graphs used by the Graphviz project. One benefit of expressing CFGs in this format, is that the existing Graphviz tools may be facilitated to produce image representations of the CFGs; as demonstrated in appendix \ref{app:control_flow_graph_generation_example}.

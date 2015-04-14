@@ -8,9 +8,9 @@ One important aspect of utilizing the IR of a compiler framework, is that the de
 \begin{figure}[htbp]
 	\begin{center}
 		\includegraphics[width=\textwidth]{inc/front-end_source.png}
-		\caption{Several open source compilers translate high-level programming languages to LLVM IR. Three such compilers are Clang, the Glasgow Haskell Compiler and the Rust compiler which translate C, Haskell and Rust respectively to LLVM IR.}
+		\caption{Several open source compilers translate high-level programming languages into LLVM IR. Three such compilers are Clang, the Glasgow Haskell Compiler and the Rust compiler which translate C, Haskell and Rust respectively into LLVM IR.}
 		\label{fig:front-end_source}
 	\end{center}
 \end{figure}
 
-Another important aspect of utilizing LLVM IR, is that a wide range of optimizations have been implemented already by the LLVM compiler framework. This allows the front-end components to focus on translating the source languages into LLVM IR, without having to worry about producing highly optimized output. The LLVM IR may later be optimized by invoking the \texttt{opt} tool of LLVM to remove dead code, propagate constants, and promote memory accesses to registers.
+Another important aspect of utilizing LLVM IR, is that a wide range of optimizations have been implemented already by the LLVM compiler framework. This allows the front-end components to focus on translating the source languages into LLVM IR, without having to worry about producing highly optimized output. The LLVM IR may later be optimized by invoking the \texttt{opt} tool of LLVM to remove dead code, propagate constants, and promote memory accesses to registers, for instance.
