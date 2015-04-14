@@ -3,7 +3,7 @@
 \subsubsection{Control Flow Analysis}
 \label{sec:design_control_flow_analysis}
 
-The control flow analysis component produces structured CFGs (in JSON format) from unstructured CFGs (in the DOT file format), by identifying high-level control flow primitives within the graph. The control flow structure is recorded by relating each node of the CFG to a specific node within the graph representation of a high-level control flow primitives, as illustrated in figure \ref{fig:representation_and_identification_of_primitive}.
+The key idea behind the control flow analysis (see section \ref{sec:control_flow_analysis}), is that high-level control flow primitives may be represented using directed graphs. The problem of structuring low-level code may therefore be rephrased as the problem of identifying subgraphs (e.g. the graph representation of high-level control flow primitives) in graphs (e.g. the CFGs of low-level code) without considering node names, as illustrated in figure \ref{fig:representation_and_identification_of_primitive}. This problem is generally referred to as \textit{subgraph isomorphism search} and has been well studied \cite{subgraph_isomorphism_algorithms}. Rephrasing the problem in this manner aligns with the design principle of giving each component access to the least amount of information required to successfully accomplish its task. The control flow analysis component is only given access to control flow information (e.g. CFGs), and is oblivious of the underlying LLVM IR. This enables the component to be reused as-is when analyzing the control flow of other languages, such as REIL.
 
 \begin{figure}[htbp]
 	\centering
@@ -15,31 +15,14 @@ The control flow analysis component produces structured CFGs (in JSON format) fr
 	\begin{subfigure}[ht]{0.18\textwidth}
 		\includegraphics[width=\textwidth]{poster/inc/foo.png}
 	\end{subfigure}
-	\caption{The left side contains the pseudo-code (top left) and graph representation (bottom left) of an if-statement; if \texttt{A} is true then do \texttt{B} followed by \texttt{C}, otherwise do \texttt{C}. The right side highlights (in red) an identified isomorphism of the if-statement's graph representation in the CFG of a simple function.}
+	\caption{The left side contains the pseudo-code (top left) and graph representation (bottom left) of an if-statement; if \texttt{A} is true then do \texttt{B} followed by \texttt{C}, otherwise do \texttt{C}. The right side highlights (in red) an identified isomorphism of the if-statement's graph representation, in the CFG of the \texttt{main} function presented in appendix \ref{app:clang_example}.}
 	\label{fig:representation_and_identification_of_primitive}
 \end{figure}
 
-% The \texttt{restructure} tool searches for subgraph isomorphisms of control flow primitives in a given CFG. Once located the nodes identified subgraph are merged into a single node which is labeled with the high-level control flow primitive. Successive iterations continue to simplify the CFG until only one node is left, at which point the high-level control flow primitive has been recovered. Should the \texttt{restructure} tool fail to reduce the graph into a single node, the graph is considered irreducible with regards to the supported high-level control flow primitives.
+The \texttt{restructure} tool uses subgraph isomorphism search algorithms to locate isomorphisms of the graph representations of high-level control flow primitives in the CFG of a given function. The CFG is simplified by recursively replacing the identified subgraphs with single nodes until the entire CFG has been reduced into a single node; a step-by-step demonstration of which is presented in appendix \ref{app:control_flow_analysis_example}. By recoding the node names of the identified subgraph isomorphisms and the name of their corresponding high-level control flow primitives, a structured CFG may be produced in which all nodes are known to belong to a high-level control flow primitive; as demonstrated in appendix \ref{app:restructure_example}.
 
-%TODO: Add: A data-driven design separates data from source code to facilitate the extensibility of components.
+The pseudo-code and graph representations of the supported high-level control flow primitives are presented in figure \ref{fig:graph_representations} of section \ref{sec:control_flow_analysis}. Should the control flow analysis fail to reduce a CFG into a single node, the CFG is considered irreducible with regards to the supported high-level control flow primitives, in which case a structured CFG cannot be produced.
 
-% TODO: Refer back to "each with access to the least amount of information required to successfully accomplish its task". Working on CFG, oblivious to the presence of LLVM IR or instructions for that matter.
+The \texttt{restructure} tool relies entirely on subgraph isomorphism search to produce structured CFGs (in JSON format) from unstructured CFGs (in the DOT file format). The supported high-level control flow primitives are defined using DOT files, thus promoting a data-driven design which separates data regarding the primitives from the implementation of the \texttt{restructure} tool. A major benefit with this approach is that the \texttt{restructure} tool may -- without modification -- search for any high-level control flow primitive that can be expressed in the DOT file format.
 
-% * Data-driven Design (potential and limitations)
-% TODO: Mention: CFG invariants (e.g. single-entry, single-exit)
-
-% TODO: Add: Limitations
-
-% TODO: Add limitations related to the design choices. Which limitations are easily solvable given more time and which are fundamentally part of the design.
-%    - No support for n-way conditionals (e.g.switch-statements). Potential solution: Domain Specific Language; e.g. switch could be written as:
-%
-%    digraph switch {
-%       A -> B [label="expr='n > 2'; label='case %d'"]
-%       A -> C
-%       B -> C
-%    }
-%    - No support for inf-loops (because of the CFG invariant). Potential solution: relax invariant to support control flow primitive descriptors which only specify an entry node? These control flow primitives would have to be marked as no-exit.
-
-%    - Unstructured CFG -> Structured CFG ([restructure](http://decomp.org/x/graphs/cmd/restructure).)
-
-%The control flow analysis component structures low-level code by identifying high-level control flow primitives in the CFGs generated from LLVM IR (see section \ref{sec:design_control_flow_graph_generation}). As demonstrated in figure \ref{fig:representation_and_identification_of_primitive}, high-level control flow primitives may be represented using graphs. The problem of structuring low-level code may therefore be reformulated as the problem of locating subgraphs (e.g. the graph representations of control flow primitives) in graphs (e.g. the CFGs of low-level code) without considering node names. This problem is generally referred to as \textit{subgraph isomorphism search} and has been well studied \cite{subgraph_isomorphism_algorithms}.
+One limitation with this approach is that it does not support graph representations of high-level control flow primitives with a variable number of nodes, as they cannot be described in the DOT file format. For this reason, the \texttt{restructure} tool does not support the recovery of n-way conditionals (e.g. \texttt{switch}-statements). Furthermore, the current design enforces a single-entry/single-exit invariant on the graph representation of high-level control flow primitives. This prevents the recovery of infinite loops, as their graph representation has no exit node. Section \ref{sec:design_validation} discusses how these issues may be mitigated in the future.

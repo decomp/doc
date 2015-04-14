@@ -16,9 +16,8 @@ To generate the CFG of a given function, a directed graph is created and populat
 	\begin{subfigure}[ht]{0.22\textwidth}
 		\includegraphics[width=\textwidth]{inc/cfg_gen_example.png}
 	\end{subfigure}
-	\caption{The return instructions of basic block \texttt{bar} and \texttt{baz} produces no directed edges, while the conditional branch instruction of basic block \texttt{foo} produces two directed edges, one for each target branch (i.e. \texttt{bar} and \texttt{baz}).}
+	\caption{The return instructions of basic block \texttt{bar} and \texttt{baz} produces no directed edges, while the conditional branch instruction of basic block \texttt{foo} produces two directed edges in the CFG, one for each target branch (i.e. \texttt{bar} and \texttt{baz}).}
 	\label{fig:cfg_gen_example}
 \end{figure}
-
 
 The \texttt{ll2dot} tool generates CFGs from LLVM IR in the DOT file format, which is a well-defined textual representation of graphs used by the Graphviz project. One benefit of expressing CFGs in this format, is that the existing Graphviz tools may be facilitated to produce image representations of the CFGs; as demonstrated in appendix \ref{app:control_flow_graph_generation_example}.
