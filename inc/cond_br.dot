@@ -1,0 +1,7 @@
+digraph f {
+	foo->bar [label="true"];
+	foo->baz [label="false"];
+	foo;
+	bar;
+	baz;
+}
