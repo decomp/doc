@@ -1,5 +1,18 @@
 % === [ Evaluation ] ===========================================================
 
+% <mark>
+% - Description of plan for evaluating outcome.
+% - Convincing evidence that artefact meets requirements with explanation where
+%   it doesn't.
+% - Justification of evaluation method.
+% - Shows awareness of limits of evaluation.
+%
+% - How well does the report describe and justify the means by which the outcome
+%   of the project was evaluated?
+% - How well is it shown whether the specification of the requirements has been
+%   satisfied?
+% - How well explained are areas where it hasn't?
+
 % <howto> Relationship between sections.
 %
 %    Requirements -----> Evaluation
@@ -13,10 +26,10 @@
 \section{Evaluation}
 \label{sec:evaluation}
 
-% TODO: Merge with Verification? Verification and Evaluation
-
-foo
+The artefacts of the decompilation system are evaluated in the succeeding subsections, against the requirements outlined in section \ref{sec:requirements}. Specific test cases and decompilation scenarios aim to assess the capabilities of the individual components.
 
 % === [ Subsections ] ==========================================================
 
-\input{sections/9_evaluation/1_evaluation_against_requirements}
+\input{sections/9_evaluation/1_llvm_ir_library}
+\input{sections/9_evaluation/2_control_flow_analysis_library}
+\input{sections/9_evaluation/3_control_flow_analysis_tool}
