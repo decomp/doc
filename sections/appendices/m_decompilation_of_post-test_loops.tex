@@ -1,6 +1,7 @@
 % --- [ Decompilation of Post-test Loops ] -------------------------------------
 
 \subsection{Decompilation of Post-test Loops}
+\label{app:decompilation_of_post-test_loops}
 
 The following section demonstrates the decompilation of a source program which contains post-test loops. For comparison, the original C source code is presented alongside of the decompiled Go output in figure \ref{fig:post-test_comparison}. Please note that the middle-end and back-end modules of the decompilation pipeline are only given access to the LLVM IR (see listing \ref{lst:post-test_ll}) produced by the front-end (as described in appendix \ref{app:clang_example}), and are completely unaware of the original C source code. When decompiling LLVM IR generated from native code, the original names of identifiers may be missing.
 

@@ -2,6 +2,8 @@
 
 \subsubsection{Post-processing}
 
+The post-processing components seeks to improve the quality of the unpolished Go source code, which was produced by the earlier stages of the decompilation pipeline. One such component is the \texttt{grind} tool by Russ Cox (see section \ref{sec:con_extended_capabilities}), which improves the quality of Go code by moving variable declarations closer to their usage. Another such component is the \texttt{go-post} tool, which improve the quality of Go source code by declaring unresolved identifiers, applying Go conventions for exit status codes, propagating temporary variables into expressions, simplifying binary operations, removing dead assignment statements, and promoting the initialization statement and post-statement of for-loops to the loop header.
+
 %    - Unpolished Go -> Go ([go-post](http://decomp.org/x/cmd/go-post))
 
 foo

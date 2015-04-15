@@ -3,7 +3,76 @@
 \subsection{Control Flow Analysis Library}
 \label{sec:eval_control_flow_analysis_library}
 
-In total four essential (\textbf{R9}, \textbf{R10}, \textbf{R11} and \textbf{R12}), two important (\textbf{R13} and \textbf{R14}), two desirable (\textbf{R15} and \textbf{R16}), and two future (\textbf{R17} and \textbf{R18}) requirements were identified for the control flow analysis library (see section \ref{sec:req_control_flow_analysis_library}).
+In total five essential (\textbf{R9}, \textbf{R10}, \textbf{R11}, \textbf{R12} and \textbf{R13}), two important (\textbf{R14} and \textbf{R15}), two desirable (\textbf{R16} and \textbf{R17}), and two future (\textbf{R18} and \textbf{R19}) requirements were identified for the control flow analysis library (see section \ref{sec:req_control_flow_analysis_library}). The current implementation of the control flow library satisfies six out of nine requirements (not counting future requirements), and fails to satisfy one essential, one important, and one desirable requirement; as summarized in table \ref{tbl:eval_summary_of_control_flow_analysis_library}. Section \ref{sec:eval_control_flow_analysis_library_essential_requirements}, \ref{sec:eval_control_flow_analysis_library_important_requirements} and \ref{sec:eval_control_flow_analysis_library_desirable_requirements} provides a detailed evaluation of the essential, important and desirable requirements, respectively.
+
+% TODO: Create green, red and grey background for the yes, no and N/A rows respectively. Use different levels of green/red for MUST, SHOULD, COULD. WON'T is always grey.
+
+% TODO: Apply a similar colour scheme to the tables in the requirements section for the sake of familiarity? Using different shades of grey/blue? Probably not.
+
+% TODO: Use tick boxes instead of yes/no? Probably not.
+
+\begin{table}[htbp]
+	\begin{center}
+		\begin{tabular}{|l|l|l|l|}
+			\hline
+			Satisfied? & Req. & Priority & Description \\
+			\hline
+			Yes & \textbf{R9} & MUST & Support analysis of reducible graphs \\
+			Yes & \textbf{R10} & MUST & Recover pre-test loops (e.g. \texttt{for}, \texttt{while}) \\
+			No & \textbf{R11} & MUST & Recover infinite loops (e.g. \texttt{while(TRUE)}) \\
+			Yes & \textbf{R12} & MUST & Recover 1-way conditionals (e.g. \texttt{if}) \\
+			Yes & \textbf{R13} & MUST & Recover 2-way conditionals (e.g. \texttt{if-else}) \\
+			Yes & \textbf{R14} & SHOULD & Recover post-test loops (e.g. \texttt{do-while}) \\
+			No & \textbf{R15} & SHOULD & Recover n-way conditionals (e.g. \texttt{switch}) \\
+			No & \textbf{R16} & COULD & Recover multi-exit loops \\
+			Yes & \textbf{R17} & COULD & Recover nested loops \\
+			N/A & \textbf{R18} & WON'T & Support analysis of irreducible graphs \\
+			N/A & \textbf{R19} & WON'T & Recover compound boolean expressions \\
+			\hline
+		\end{tabular}
+	\end{center}
+	\caption{A summary of the evaluation against requirements of the control flow analysis library.}
+	\label{tbl:eval_summary_of_control_flow_analysis_library}
+\end{table}
+
+% ~~~ [ Essential Requirements ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{Essential Requirements}
+\label{sec:eval_control_flow_analysis_library_essential_requirements}
+
+The current implementation of the control flow analysis library supports analysis of reducible graphs (\textbf{R9}), as demonstrated by the step-by-step analysis of the reducible CFG in appendix \ref{app:control_flow_analysis_example}.
+
+The \texttt{restructure} tool relies on the control flow analysis library to produce structured CFGs from unstructured CFGs, as further described in section \ref{sec:design_control_flow_analysis}. The successful recovery of 1-way conditionals (\textbf{R12}) and pre-test loops (\textbf{R10}) is demonstrated in appendix \ref{app:restructure_example}, by invoking the \texttt{restructure} tool to analyzing an unstructured CFG of a function containing these high-level control flow primitives.
+
+% ~~~ [ Important Requirements ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{Important Requirements}
+\label{sec:eval_control_flow_analysis_library_important_requirements}
+
+foo
+
+% ~~~ [ Desirable Requirements ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{Desirable Requirements}
+\label{sec:eval_control_flow_analysis_library_desirable_requirements}
+
+foo
+
+
+
+The successful recovery of various high-level control flow primitives is demonstrated in three parts; firstly, the recovery of foo and bar is demonstrated in appendix \ref{app:post-processing_example}; secondly, the recovery of foo and bar is demonstrated in appendix \ref{foo}; and lastly, the recovery of foo and bar is demonstrated in appendix \ref{foo}.
+
+The successful recovery of pre-test loops (xxx) and 1-way conditionals (xxx) is demonstrated in appendix \ref{app:post-processing_example}.
+
+
+The recovery of pre-test loops (xxx), 2-way conditionals (xxx), and nested loops (xxx) is supported as demonstrated in \ref{app:decompilation_of_nested_primitives}. Appendix \ref{app:decompilation_of_post-test_loops} demonstrates the recovery of
+
+Appendix \ref{foo} demonstrates the recover of 1-way conditionals (\textbf{R12}), 2-way conditionals (\textbf{R13}) and pre-test loops (\textbf{R10}). The recovery of post-test loops (\textbf{R}) is demonstrated in
+
+
+The current implementation of the control flow analysis library satisfies all essential requirements except \textbf{R11} (recover infinite loops).
+
+, \textbf{SHOULD} and \textbf{COULD}
 
 %The control flow analysis library
 
@@ -12,12 +81,5 @@ In total four essential (\textbf{R9}, \textbf{R10}, \textbf{R11} and \textbf{R12
 %requires an a single entry and a single exit node
 
 % single-entry, single-exit an invariant of the
-
-%\begin{itemize}
-%	\item \textbf{R9}: Support analysis of reducible graphs
-%	\item \textbf{R10}: Recover pre-test loops (e.g. \texttt{for}, \texttt{while})
-%	\item \textbf{R11}: Recover infinite loops (e.g. \texttt{while(TRUE)})
-%	\item \textbf{R12}: Recover 2-way conditionals (e.g. \texttt{if}, \texttt{if-else})
-%\end{itemize}
 
 foo
