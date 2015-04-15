@@ -40,14 +40,38 @@ In total five essential (\textbf{R9}, \textbf{R10}, \textbf{R11}, \textbf{R12} a
 \subsubsection{Essential Requirements}
 \label{sec:eval_control_flow_analysis_library_essential_requirements}
 
-The current implementation of the control flow analysis library supports analysis of reducible graphs (\textbf{R9}), as demonstrated by the step-by-step analysis of the reducible CFG in appendix \ref{app:control_flow_analysis_example}.
+% * R9 - Support analysis of reducible graphs
 
-The \texttt{restructure} tool relies on the control flow analysis library to produce structured CFGs from unstructured CFGs, as further described in section \ref{sec:design_control_flow_analysis}. The successful recovery of 1-way conditionals (\textbf{R12}) and pre-test loops (\textbf{R10}) is demonstrated in appendix \ref{app:restructure_example}, by invoking the \texttt{restructure} tool to analyzing an unstructured CFG of a function containing these high-level control flow primitives.
+The current implementation of the control flow analysis library supports analysis of reducible graphs (\textbf{R9}), as demonstrated by the step-by-step analysis of a reducible CFG in appendix \ref{app:control_flow_analysis_example}.
+
+% * R10 - Recover pre-test loops
+% * R12 - Recover 1-way conditionals
+
+The successful recovery of pre-test loops (\textbf{R10}) and 1-way conditionals (\textbf{R12}) is demonstrated in four steps, using components which depend on the control flow analysis library. Firstly, the \texttt{ll2dot} tool (see section \ref{sec:design_control_flow_graph_generation}) is used to generate an unstructured CFG for each function of an LLVM IR assmebly file; as demonstrated in appendix \ref{app:control_flow_graph_generation_example}. Secondly, the \texttt{restructure} tool (see section \ref{sec:design_control_flow_analysis}) analyzes the unstructured CFG of an LLVM IR assembly function to produce a structured CFG; as demonstrated in appendix \ref{app:restructure_example}. Thirdly, the \texttt{ll2go} tool (see section \ref{sec:design_code_generation}) uses the high-level control flow information of the structured CFG to decompile the LLVM IR function into unpolished Go code; as demonstrated in appendix \ref{app:code_generation_example}. Lastly, the \texttt{go-post} tool applies source code transformations to the unpolished Go code in order to improve its quality; as demonstrated in appendix \ref{app:post-processing_example}. The final Go output, which is presented on the right side of figure \ref{fig:example1_comparison} in appendix \ref{app:post-processing_example}, contains both a \texttt{for}-loop and an \texttt{if}-statement, thus proving that pre-test loops and 1-way conditionals may be recovered.
+
+% * R13 - Recover 2-way conditionals
+
+The successful decompilation of 2-way conditionals (\textbf{R13}) is demonstrated in appendix \ref{app:decompilation_of_nested_primitives}, which provides a contrived example that implicitly uses the same decompilation steps as described above. The final Go output, which is presented on the right side of figure \ref{fig:nested_comparison} in appendix \ref{app:decompilation_of_nested_primitives}, contains an \texttt{if-else} statement, thus proving that 2-way conditionals may be recovered.
+
+% * R11 - Recover infinite loops
+
+foo
+
+% TODO: Add
+% * The current implementation of the control flow analysis library enforces an invariant on the graph representation of high-level control flow primitives; they must have a single entry and a single exit node. This invariant simplifies the implementation
+% * requires an a single entry and a single exit node
+% * single-entry, single-exit an invariant of the
 
 % ~~~ [ Important Requirements ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 \subsubsection{Important Requirements}
 \label{sec:eval_control_flow_analysis_library_important_requirements}
+
+% * R14 - Recover post-test loops
+
+The successful decompilation of post-test loops (\textbf{R14}) is demonstrated in appendix \ref{app:decompilation_of_post-test_loops}, which provides a contrived example that implicitly uses the same decompilation steps as described above. The final Go output, which is presented on the right side of figure \ref{fig:post-test_comparison} in appendix \ref{app:decompilation_of_post-test_loops}, contains an infinite \texttt{for}-loop with a conditional break statement as the last statement of the loop body (Go does not have native support for \texttt{do-while} loops, so the semantics of the a post-test loop have been imitated using the available control flow primitives), thus proving that post-test loops may be recovered.
+
+% * R15 - Recover n-way conditionals
 
 foo
 
@@ -56,30 +80,10 @@ foo
 \subsubsection{Desirable Requirements}
 \label{sec:eval_control_flow_analysis_library_desirable_requirements}
 
-foo
-
-
-
-The successful recovery of various high-level control flow primitives is demonstrated in three parts; firstly, the recovery of foo and bar is demonstrated in appendix \ref{app:post-processing_example}; secondly, the recovery of foo and bar is demonstrated in appendix \ref{foo}; and lastly, the recovery of foo and bar is demonstrated in appendix \ref{foo}.
-
-The successful recovery of pre-test loops (xxx) and 1-way conditionals (xxx) is demonstrated in appendix \ref{app:post-processing_example}.
-
-
-The recovery of pre-test loops (xxx), 2-way conditionals (xxx), and nested loops (xxx) is supported as demonstrated in \ref{app:decompilation_of_nested_primitives}. Appendix \ref{app:decompilation_of_post-test_loops} demonstrates the recovery of
-
-Appendix \ref{foo} demonstrates the recover of 1-way conditionals (\textbf{R12}), 2-way conditionals (\textbf{R13}) and pre-test loops (\textbf{R10}). The recovery of post-test loops (\textbf{R}) is demonstrated in
-
-
-The current implementation of the control flow analysis library satisfies all essential requirements except \textbf{R11} (recover infinite loops).
-
-, \textbf{SHOULD} and \textbf{COULD}
-
-%The control flow analysis library
-
-%The current implementation of the control flow analysis library enforces an invariant on the graph representation of high-level control flow primitives; they must have a single entry and a single exit node. This invariant simplifies the implementation
-
-%requires an a single entry and a single exit node
-
-% single-entry, single-exit an invariant of the
+% * R16 - Recover multi-exit loops
 
 foo
+
+% * R17 - Recover nested loops
+
+The successful decompilation of nested loops (\textbf{R17}) is demonstrated in appendix \ref{app:decompilation_of_nested_primitives}, which provides a contrived example that implicitly uses the same decompilation steps as described above. The final Go output, which is presented on the right side of figure \ref{fig:nested_comparison} in appendix \ref{app:decompilation_of_nested_primitives}, contains nested \texttt{for}-loops (one inner loop and one outer loop), thus proving that nested loops may be recovered.

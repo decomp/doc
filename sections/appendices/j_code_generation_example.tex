@@ -1,6 +1,7 @@
 % --- [ Code Generation Example ] ----------------------------------------------
 
 \subsection{Code Generation Example}
+\label{app:code_generation_example}
 
 The \texttt{ll2go} tool translates LLVM IR assembly into unpolished Go source code, as described in section \ref{sec:design_code_generation}. Using the \texttt{ll2go} tool, the LLVM IR assembly of listing \ref{lst:example1_ll} was translated into the unpolished Go source code presented in listing \ref{lst:example1_go}. Please note that the \texttt{ll2go} tool produces unpolished Go source code which may not compile, as it does not follow Go conventions for program status codes and may include undeclared identifiers. Appendix \ref{app:post-processing_example} demonstrates how the post-processing stage may improve the quality of the unpolished Go source code.
 
