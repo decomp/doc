@@ -7,14 +7,14 @@ The following section demonstrates the decompilation of a source program which c
 \begin{figure}[htbp]
 	\centering
 	\begin{subfigure}[t]{0.49\textwidth}
-		\lstinputlisting[language=C, style=c]{appendices/decompilation_of_post-test_loops/post-test.c}
+		\lstinputlisting[language=C, style=c]{inc/appendices/decompilation_of_post-test_loops/post-test.c}
 	\end{subfigure}
 	\qquad
 	\begin{subfigure}[t]{0.31\textwidth}
-		\lstinputlisting[language=go, style=go]{appendices/decompilation_of_post-test_loops/post-test.go}
+		\lstinputlisting[language=go, style=go]{inc/appendices/decompilation_of_post-test_loops/post-test.go}
 	\end{subfigure}
 	\caption{The original C source code (left) and the decompiled Go output (right).}
 	\label{fig:post-test_comparison}
 \end{figure}
 
-\lstinputlisting[language=llvm, style=nasm, caption={The LLVM IR assembly which was produced by Clang when compiling the C source code presented on the left side of listing \ref{fig:post-test_comparison}. \label{lst:post-test_ll}}]{appendices/decompilation_of_post-test_loops/post-test.ll}
+\lstinputlisting[language=llvm, style=nasm, caption={The LLVM IR assembly which was produced by Clang when compiling the C source code presented on the left side of listing \ref{fig:post-test_comparison}. \label{lst:post-test_ll}}]{inc/appendices/decompilation_of_post-test_loops/post-test.ll}

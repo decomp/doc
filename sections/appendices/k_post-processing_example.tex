@@ -13,11 +13,11 @@ For comparison, the original C source code is presented alongside of the decompi
 \begin{figure}[htbp]
 	\centering
 	\begin{subfigure}[t]{0.45\textwidth}
-		\lstinputlisting[language=go, style=go]{appendices/post_example/example1_0.go}
+		\lstinputlisting[language=go, style=go]{inc/appendices/post_example/example1_0.go}
 	\end{subfigure}
 	\qquad
 	\begin{subfigure}[t]{0.45\textwidth}
-		\lstinputlisting[language=go, style=go]{appendices/post_example/example1_1.go}
+		\lstinputlisting[language=go, style=go]{inc/appendices/post_example/example1_1.go}
 	\end{subfigure}
 	\caption{\textbf{Rewrite 1}. The original unpolished Go source code (left) and the simplified Go source code (right) after declaring unresolved identifiers. The assignment statements of line 4 and 5 have been rewritten into declare-and-initialize statements.}
 	\label{fig:rewrite_1}
@@ -27,11 +27,11 @@ For comparison, the original C source code is presented alongside of the decompi
 \begin{figure}[htbp]
 	\centering
 	\begin{subfigure}[t]{0.45\textwidth}
-		\lstinputlisting[language=go, style=go]{appendices/post_example/example1_1.go}
+		\lstinputlisting[language=go, style=go]{inc/appendices/post_example/example1_1.go}
 	\end{subfigure}
 	\qquad
 	\begin{subfigure}[t]{0.45\textwidth}
-		\lstinputlisting[language=go, style=go]{appendices/post_example/example1_2.go}
+		\lstinputlisting[language=go, style=go]{inc/appendices/post_example/example1_2.go}
 	\end{subfigure}
 	\caption{\textbf{Rewrite 2}. The Go source code from \textbf{rewrite 1} (left) and the simplified Go source code (right) after applying Go conventions for exit status codes. The return statement of line 18 have been rewritten into an \texttt{os.Exit} function call and the \textit{``os''} package have been imported on line 3.}
 	\label{fig:rewrite_2}
@@ -41,11 +41,11 @@ For comparison, the original C source code is presented alongside of the decompi
 \begin{figure}[htbp]
 	\centering
 	\begin{subfigure}[t]{0.45\textwidth}
-		\lstinputlisting[language=go, style=go]{appendices/post_example/example1_2.go}
+		\lstinputlisting[language=go, style=go]{inc/appendices/post_example/example1_2.go}
 	\end{subfigure}
 	\qquad
 	\begin{subfigure}[t]{0.45\textwidth}
-		\lstinputlisting[language=go, style=go]{appendices/post_example/example1_3.go}
+		\lstinputlisting[language=go, style=go]{inc/appendices/post_example/example1_3.go}
 	\end{subfigure}
 	\caption{\textbf{Rewrite 3}. The Go source code from \textbf{rewrite 2} (left) and the simplified Go source code (right) after propagating temporary variables into expressions. The temporary variables declared at line 9, 12, 13 and 16 have been propagated into the expressions at line 10, 11 and 13.}
 	\label{fig:rewrite_3}
@@ -55,11 +55,11 @@ For comparison, the original C source code is presented alongside of the decompi
 \begin{figure}[htbp]
 	\centering
 	\begin{subfigure}[t]{0.45\textwidth}
-		\lstinputlisting[language=go, style=go]{appendices/post_example/example1_3.go}
+		\lstinputlisting[language=go, style=go]{inc/appendices/post_example/example1_3.go}
 	\end{subfigure}
 	\qquad
 	\begin{subfigure}[t]{0.45\textwidth}
-		\lstinputlisting[language=go, style=go]{appendices/post_example/example1_4.go}
+		\lstinputlisting[language=go, style=go]{inc/appendices/post_example/example1_4.go}
 	\end{subfigure}
 	\caption{\textbf{Rewrite 4}. The Go source code from \textbf{rewrite 3} (left) and the simplified Go source code (right) after simplifying binary assignment statements. The assignment statements on line 11 and 13 have been rewritten into an addition assignment operation and an increment statement respectively.}
 	\label{fig:rewrite_4}
@@ -69,11 +69,11 @@ For comparison, the original C source code is presented alongside of the decompi
 \begin{figure}[htbp]
 	\centering
 	\begin{subfigure}[t]{0.45\textwidth}
-		\lstinputlisting[language=go, style=go]{appendices/post_example/example1_4.go}
+		\lstinputlisting[language=go, style=go]{inc/appendices/post_example/example1_4.go}
 	\end{subfigure}
 	\qquad
 	\begin{subfigure}[t]{0.45\textwidth}
-		\lstinputlisting[language=go, style=go]{appendices/post_example/example1_5.go}
+		\lstinputlisting[language=go, style=go]{inc/appendices/post_example/example1_5.go}
 	\end{subfigure}
 	\caption{\textbf{Rewrite 5}. The Go source code from \textbf{rewrite 4} (left) and the simplified Go source code (right) after removing dead assignment statements. The assignment statements on line 9 and 14 have been removed.}
 	\label{fig:rewrite_5}
@@ -83,11 +83,11 @@ For comparison, the original C source code is presented alongside of the decompi
 \begin{figure}[htbp]
 	\centering
 	\begin{subfigure}[t]{0.45\textwidth}
-		\lstinputlisting[language=go, style=go]{appendices/post_example/example1_5.go}
+		\lstinputlisting[language=go, style=go]{inc/appendices/post_example/example1_5.go}
 	\end{subfigure}
 	\qquad
 	\begin{subfigure}[t]{0.45\textwidth}
-		\lstinputlisting[language=go, style=go]{appendices/post_example/example1_6.go}
+		\lstinputlisting[language=go, style=go]{inc/appendices/post_example/example1_6.go}
 	\end{subfigure}
 	\caption{\textbf{Rewrite 6}. The Go source code from \textbf{rewrite 5} (left) and the simplified Go source code (right) after propagating the initialization statement on line 6 and the post-statement on line 12 to the for-loop header on line 7.}
 	\label{fig:rewrite_6}
@@ -98,11 +98,11 @@ For comparison, the original C source code is presented alongside of the decompi
 \begin{figure}[htbp]
 	\centering
 	\begin{subfigure}[t]{0.49\textwidth}
-		\lstinputlisting[language=C, style=c]{appendices/clang_example/example1.c}
+		\lstinputlisting[language=C, style=c]{inc/appendices/clang_example/example1.c}
 	\end{subfigure}
 	\qquad
 	\begin{subfigure}[t]{0.45\textwidth}
-		\lstinputlisting[language=go, style=go]{appendices/post_example/example1_6.go}
+		\lstinputlisting[language=go, style=go]{inc/appendices/post_example/example1_6.go}
 	\end{subfigure}
 	\caption{The original C source code (left) and the decompiled Go output from \textbf{rewrite 6} (right).}
 	\label{fig:example1_comparison}
