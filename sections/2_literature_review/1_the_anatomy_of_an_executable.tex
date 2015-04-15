@@ -28,7 +28,7 @@ In general, ELF files consist of a file header, zero or more program headers, ze
 
 \begin{figure}[htbp]
 	\begin{center}
-		\includegraphics[width=0.5\textwidth]{inc/elf_file_structure.png}
+		\includegraphics[width=0.5\textwidth]{inc/2_lit_review/elf_file_structure.png}
 		\caption{The basic structure of an ELF file.\protect\footnotemark}
 		\label{fig:elf_file_structure}
 	\end{center}
@@ -41,7 +41,7 @@ Each program and section header describes a continuous segment or section of mem
 
 \begin{figure}[htbp]
 	\begin{center}
-		\includegraphics[width=\textwidth]{inc/elf_dissection.png}
+		\includegraphics[width=\textwidth]{inc/2_lit_review/elf_dissection.png}
 		\caption{The entire contents of a simple \textit{``hello world''} ELF executable with colour-coded file offsets, sections, segments and program headers. Each file offset is 8 bytes in width and coloured using a darker shade of its corresponding segment, section or program header.}
 		\label{fig:elf_dissection}
 	\end{center}
@@ -79,9 +79,9 @@ The dynamic string table contains the names of libraries (e.g. \textit{``libc.so
 
 To reflect on how dynamic linking is accomplished on a Linux system lets review the assembly instructions of the executable \texttt{.text} and \texttt{.plt} sections as outlined in listing \ref{lst:elf_text,lst:elf_plt} respectively.
 
-\lstinputlisting[language=nasm, style=nasm, caption={The assembly instructions of the \texttt{.text} section. \label{lst:elf_text}}]{inc/elf_text.asm}
+\lstinputlisting[language=nasm, style=nasm, caption={The assembly instructions of the \texttt{.text} section. \label{lst:elf_text}}]{inc/2_lit_review/elf_text.asm}
 
-\lstinputlisting[language=nasm, style=nasm, caption={The assembly instructions of the \texttt{.plt} section. \label{lst:elf_plt}}]{inc/elf_plt.asm}
+\lstinputlisting[language=nasm, style=nasm, caption={The assembly instructions of the \texttt{.plt} section. \label{lst:elf_plt}}]{inc/2_lit_review/elf_plt.asm}
 
 As visualized in listing \ref{lst:elf_text} the first call instruction of the \texttt{.text} section targets the \texttt{.printf} label of the \texttt{.plt} section instead of the actual address of the \textit{printf} function in the \textit{libc} library. The Procedure Linkage Table (PLT) provides a level of indirection between call instructions and actual function (procedure) addresses, and contains one entity per external function as outlined in listing \ref{lst:elf_plt}. The \texttt{.printf} entity of the PLT contains a jump instruction which targets the address stored in the \texttt{.printf} entity of the GOT. Initially this address points to the next instruction, i.e. the instruction denoted by the \texttt{.resolve\_printf} label in the PLT. On the first invokation of \textit{printf} the linker replaces this address with the actual address of the \textit{printf} function in the \textit{libc} library, and any subsequent invokation of \textit{printf} will target the resolved function address directly.
 

@@ -1,13 +1,12 @@
-# *.dot -> *.png
-DOT = $(wildcard *.dot)
-PNG = $(DOT:.dot=.png)
+all: 2_lit_review 6_design 8_ver
 
-all: $(PNG) primitives
+.PHONY: 2_lit_review 6_design 8_ver
 
-%.png: %.dot
-	dot -Tpng -o $@ $<
+2_lit_review:
+	make -C $@/
 
-.PHONY: primitives
+6_design:
+	make -C $@/
 
-primitives:
+8_ver:
 	make -C $@/

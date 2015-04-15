@@ -15,12 +15,12 @@ A solution to the problem of separating code from data is to use recursive desce
 \begin{figure}[htbp]
 	\centering
 	\begin{subfigure}[t]{0.49\textwidth}
-		\lstinputlisting[language=nasm, style=nasm, tabsize=2]{inc/hello/hello_linear.asm}
+		\lstinputlisting[language=nasm, style=nasm, tabsize=2]{inc/2_lit_review/hello/hello_linear.asm}
 		\caption{Disassembly from \texttt{objdump} and \texttt{ndisasm}\protect\footnotemark.}
 	\end{subfigure}
 	\qquad
 	\begin{subfigure}[t]{0.35\textwidth}
-		\lstinputlisting[language=nasm, style=nasm, tabsize=2]{inc/hello/hello_recursive.asm}
+		\lstinputlisting[language=nasm, style=nasm, tabsize=2]{inc/2_lit_review/hello/hello_recursive.asm}
 		\caption{Disassembly from IDA Pro.}
 	\end{subfigure}
 	\caption{The disassembly produced by a linear descent parser (left) and a recursive descent parser (right) when analyzing a simple \textit{``hello world''} program that stores the \texttt{hello} string in the executable segment.}
@@ -63,12 +63,12 @@ The recursive descent parser fails by using a conditional branch instruction (\t
 \begin{figure}[htbp]
 	\centering
 	\begin{subfigure}[t]{0.59\textwidth}
-		\lstinputlisting[language=nasm, style=nasm, tabsize=2]{inc/hello/anti_orig.asm}
+		\lstinputlisting[language=nasm, style=nasm, tabsize=2]{inc/2_lit_review/hello/anti_orig.asm}
 		\caption{Original assembly.}
 	\end{subfigure}
 	\qquad
 	\begin{subfigure}[t]{0.34\textwidth}
-		\lstinputlisting[language=nasm, style=nasm, tabsize=2]{inc/hello/anti_fail.asm}
+		\lstinputlisting[language=nasm, style=nasm, tabsize=2]{inc/2_lit_review/hello/anti_fail.asm}
 		\caption{Disassembly from IDA Pro.}
 	\end{subfigure}
 	\caption{The original assembly (left) contains an anti-disassembly trick which causes the recursive descent parser to fail (right).}
