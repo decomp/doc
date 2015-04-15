@@ -75,9 +75,9 @@ The recursive descent parser fails by using a conditional branch instruction (\t
 	\label{fig:anti-disassembly}
 \end{figure}
 
-The anti-disassembly technique presented in figure \ref{foo} may be mitigated using symbolic execution, which could verify that the conditional jump always takes the true branch and therefore allow the instruction to be replaced with an unconditional jump to the target of the true branch. This quickly becomes a game of cat-and-mouse, as the anti-disassembly techniques could be extended to rely on network activity, file contents, or other external sources which would render the symbolic exeuction useless.
+The anti-disassembly technique presented in figure \ref{fig:anti-disassembly} may be mitigated using symbolic execution, which could verify that the conditional jump always takes the true branch and therefore allow the instruction to be replaced with an unconditional jump to the target of the true branch. This quickly becomes a game of cat-and-mouse, as the anti-disassembly techniques could be extended to rely on network activity, file contents, or other external sources which would render the symbolic exeuction useless.
 
-To conclude, the disassembly phase deals with non-trivial problems, some of which are difficult to automate. Advanced disassemblers therefore provide interactive capabilities and rely on human intuition to solve ambiguities and direct the disassembler out of corner cases. See section \ref{sec:hex-rays_decompiler} for further details on such disassemblers.
+To conclude, the disassembly phase deals with non-trivial problems, some of which are difficult to automate. Advanced disassemblers therefore provide interactive capabilities and rely on human intuition to solve ambiguities and direct the disassembler out of corner cases. See section \ref{sec:related_work_hex-rays_decompiler} for further details on such disassemblers.
 
 % TODO: Introduce the various approaches and highlight their individual
 % strengths and weaknesses.
