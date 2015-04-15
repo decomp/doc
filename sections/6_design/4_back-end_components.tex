@@ -7,7 +7,7 @@ The back-end module translates structured LLVM IR into a target high-level progr
 
 \begin{figure}[htbp]
 	\begin{center}
-		\includegraphics[width=\textwidth]{inc/6_design/back-end.png}
+		\includegraphics[width=0.8\textwidth]{inc/6_design/back-end.png}
 		\caption{The back-end module decompiles structured LLVM IR into Go source code, using two components. The \texttt{ll2go} tool translates structured LLVM IR assembly into unpolished Go code, which is post-processed by the \texttt{go-post} tool to improve the quality of the output.}
 		\label{fig:back-end}
 	\end{center}

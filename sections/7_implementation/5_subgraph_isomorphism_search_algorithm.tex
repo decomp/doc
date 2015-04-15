@@ -5,7 +5,61 @@
 
 Implementing the subgraph isomorphism search algorithm was without doubt the most difficult endeavour of the entire project. It took roughly five iterations of implementing, evaluating and rethinking the algorithm to find an approach which felt right and another two iterations to develop a working implementation which passed all the test cases.
 
+* throw away prototyping -> find a solution that feels right -> try to find corner cases that doesn't work (for-loops) -> write test cases from the bottom up (testing independent behaviour and then testing functionality which depends on the now known to be correct functionality) -> factor code into known good until all code has been tested
+
 foo
 
-% TODO: Incorporate notes from iso_algorithm_notes.txt.
-% TODO: Incorporate notes from iso_bug_notes.txt.
+% # Set-backs and how they were dealt with...
+%
+% Isomorphism returns false as soon as it hits the end of any branch in the tree. It incorrectly assumes that all graphs have only one exit node. This is why iso handles list.dot correctly for the upper parts of the graph.
+
+
+
+% ### iso algorithm implementation notes ###
+
+%Take 0: (not tracked by git) Very early throwaway prototype using Ullman's Subgraph Isomorphism algorithm.
+%
+%Take 1 (https://github.com/decomp/graphs/commit/73b4bc66f47459461c2fa3ab195468f625f9f164):
+%	Non-deterministic algorithm which sometimes failed to locate a subgraph isomorphism when executed repeatedly. Did not take graph cycles into account.
+%Take 1 [fix] (https://github.com/decomp/graphs/commit/c4a497990cbe42cd0bdb7ad189c02ea06d9a278f)
+%	Hack to fix problems with graph cycles.
+%Take 1 [debug] (https://github.com/decomp/graphs/commit/9f990942a5cb9f0d9c884fcd345b6dab76f557e9) (https://github.com/decomp/graphs/commit/7c08eccb89963e860ff5c2e692912ef1fad02d48)
+%	Make deterministic. Always succeed or always fail.
+%
+%Take 2 (https://github.com/decomp/graphs/commit/878e483bbedd3df2f03a202891d050a700dc3902) (https://github.com/decomp/graphs/commit/3b643012c550429fc266268b2a061d6ea124ad1e)
+%	Rethink implementation: separate candidate discovery and candidate validation logic. Still incomplete algorithm that fails to locate some valid subgraph isomorphisms.
+%
+%Take 3 (https://github.com/decomp/graphs/commit/95e65fefd0b6ab30dfa08aae1a2fa229249ee3e4) (https://github.com/decomp/graphs/commit/454417df3d83704dbad2b108be99dd8b06aea938):
+%	Learn from take 2, separating candidate discovery and candidate validation logic is the way to go. Start thinking of the node pair mapping as an equation which may be solved. Only capable of solving simple equations by locating unique node pair mappings and successivly simplifying the equation until it is either solved or unsolved.
+%
+%		"A": {"A", "B", "C"}
+%		"B": {"B", "C"}
+%		"C": {"C"}
+%
+%		First "C": "C" gives the new equation:
+%
+%		"A": {"A", "B"}
+%		"B": {"B"}
+%
+%		"B": "B" gives the new equation:
+%
+%		"A": {"A"}
+%
+%		"A": "A" solves the equation.
+%
+%	The algorithm would however fail to solve the following equation:
+%
+%		"A": {"A", "B"}
+%		"B": {"A", "B"}
+%
+%Take 4 (https://github.com/decomp/graphs/commit/c56cf8e563d2c0882f3c182cd50499eda3f3a61b) (https://github.com/decomp/graphs/commit/e45339b2a48a2416f80ff1a2df74cbe1c4816708) (https://github.com/decomp/graphs/commit/f2e9a232c2b3bd3caf605f5388745f6a1a2e5c35)
+%	Duplicate an equation and try different candidate mappings recursively to find a solution. Try to solve the various equations concurrently and relay the solution ("valid or not valid") through the use of channels.
+%
+%Take 5 (https://github.com/decomp/graphs/commit/b51a48682cdfb4d2816ee2afbe4167325b3fbd64) (https://github.com/decomp/graphs/commit/fad6516071997fa3b208240f1c2de8008a65ad51) (https://github.com/decomp/graphs/commit/b15e97172cb2c941341238122b4048537bb41e30) (https://github.com/decomp/graphs/commit/b67ce12e6f328be6174efc0a7881e056340a22e1) (https://github.com/decomp/graphs/commit/5261b8ae8db0ffc6dab8f81b09980e919307e7c4) (https://github.com/decomp/graphs/commit/8ebffc397dda60653ccdb81e761274c165b337ac)
+%	The approach feels right. Start testing and factoring working implementations into a "known good" file!
+%
+%Take 6 (https://github.com/decomp/graphs/commit/a820a006a70affaf786d0ac598dffa4f3fa05059) (https://github.com/decomp/graphs/commit/c7e58dafc22b29ec6bee8a1c3b7a97cd28b317e3)
+%	Reimplement equation solver. New version no longer concurrent. Greatly simplified. The new version passes the previous test cases!
+%
+%Final solution (https://github.com/decomp/graphs/pull/1)
+%	The final implementation of the subgraph isomorphism search algorithm was a cleaned and heavily tested version of take 6. It was developed in the "isobug" branch and merged once stable into the "master" branch. The pull request tracking this work is located at "Fix implementation of subgraph isomorphism search". (https://github.com/decomp/graphs/pull/1)
