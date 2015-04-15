@@ -11,5 +11,7 @@ inc/pre_loop.png:
 inc/if.png:
 	dot -Tpng -o inc/if.png inc/if.dot
 
+.PHONY: clean
+
 clean:
 	rm -f *.aux *.log *.out *.toc

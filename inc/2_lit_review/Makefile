@@ -2,12 +2,7 @@
 DOT = $(wildcard *.dot)
 PNG = $(DOT:.dot=.png)
 
-all: $(PNG) primitives
+all: $(PNG)
 
 %.png: %.dot
 	dot -Tpng -o $@ $<
-
-.PHONY: primitives
-
-primitives:
-	make -C $@/

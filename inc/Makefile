@@ -1,6 +1,6 @@
-all: 2_lit_review 6_design 8_ver appendices
+all: 2_lit_review 6_design 8_ver appendices primitives
 
-.PHONY: 2_lit_review 6_design 8_ver appendices
+.PHONY: 2_lit_review 6_design 8_ver appendices primitives
 
 2_lit_review:
 	make -C $@/
@@ -12,4 +12,7 @@ all: 2_lit_review 6_design 8_ver appendices
 	make -C $@/
 
 appendices:
+	make -C $@/
+
+primitives:
 	make -C $@/

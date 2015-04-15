@@ -8,12 +8,12 @@ The key idea behind the control flow analysis (see section \ref{sec:lit_review_c
 \begin{figure}[htbp]
 	\centering
 	\begin{subfigure}[ht]{0.10\textwidth}
-		\lstinputlisting[language=go, style=go, breaklines=false, numbers=none]{poster/inc/if.c}
-		\includegraphics[width=\textwidth]{poster/inc/if.png}
+		\lstinputlisting[language=go, style=go, breaklines=false, numbers=none]{inc/primitives/if.c}
+		\includegraphics[width=\textwidth]{inc/primitives/if.png}
 	\end{subfigure}
 	\enskip
 	\begin{subfigure}[ht]{0.18\textwidth}
-		\includegraphics[width=\textwidth]{poster/inc/foo.png}
+		\includegraphics[width=\textwidth]{inc/6_design/example1_highlight.png}
 	\end{subfigure}
 	\caption{The left side contains the pseudo-code (top left) and graph representation (bottom left) of an if-statement; if \texttt{A} is true then do \texttt{B} followed by \texttt{C}, otherwise do \texttt{C}. The right side highlights (in red) an identified isomorphism of the if-statement's graph representation, in the CFG of the \texttt{main} function presented in appendix \ref{app:clang_example}.}
 	\label{fig:representation_and_identification_of_primitive}

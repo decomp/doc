@@ -17,5 +17,7 @@ all: $(GO_SRC) $(LL_SRC)
 	sar -i '#[0-9]+ {' '{' $@
 	sar -i '}\n\nattributes(.|[\n])*' '}\n' $@
 
+.PHONY: clean
+
 clean:
 	rm -rf *.go *.ll *_graphs/
