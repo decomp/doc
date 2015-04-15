@@ -2,6 +2,10 @@
 
 \subsubsection{MC-Semantics}
 
+Dagger and MC-Semantics uses a structure to keep track of all registers and passes a pointer to this structure as an argument to each function. Reads from and writes to registers are made using loads and stores.
+
+With proper use-def chains the *input* and *output* of a function could be made apparent, removing the need to pass the entire structure to each function. Registers could be passed by value as parameters which would facilitate several optimization passes.
+
 % TODO: Evaluate and highlight key differences between Dagger, Fracture and McSema.
 % Dagger and Fracture rely on TableGen for instruction semantics, McSema does not.
 
