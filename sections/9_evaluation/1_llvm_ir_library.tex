@@ -2,6 +2,37 @@
 
 \subsection{LLVM IR Library}
 
-In total four essential (\textbf{R1}, \textbf{R2}, \textbf{R3} and \textbf{R4}), one desirable (\textbf{R5}), and three future (\textbf{R6}, \textbf{R7} and \textbf{R8}) requirements were identified for the LLVM IR library (see section \ref{sec:req_llvm_ir_library}).
+In total four essential (\textbf{R1}, \textbf{R2}, \textbf{R3} and \textbf{R4}), one desirable (\textbf{R5}), and three future (\textbf{R6}, \textbf{R7} and \textbf{R8}) requirements were identified for the LLVM IR library (see section \ref{sec:req_llvm_ir_library}). The modified Go bindings for LLVM (see section \ref{sec:impl_go_bindings_for_llvm}), the control flow graph generation component (see section \ref{sec:design_control_flow_graph_generation}) and the \texttt{dot}\footnote{Drawing Graphs with dot: \url{http://www.graphviz.org/pdf/dotguide.pdf}} tool of the Graphviz project, collectively satisfies all five requirements (not counting future requirements); as summarized in table \ref{tbl:eval_summary_of_llvm_ir_library}. Section \ref{sec:eval_llvm_ir_library_essential_requirements} and \ref{sec:eval_llvm_ir_library_desirable_requirements} provides a detailed evaluation of the essential and the desirable requirements, respectively.
 
-foo
+\begin{table}[htbp]
+	\begin{center}
+		\begin{tabular}{|l|l|l|l|}
+			\hline
+			Sat. & Req. & Priority & Description \\
+			\hline
+			\rowcolor{light_green_3}
+			Yes & \textbf{R1} & MUST & Read the assembly language representation of LLVM IR \\
+			\rowcolor{light_green_3}
+			Yes & \textbf{R2} & MUST & Write the assembly language representation of LLVM IR \\
+			\rowcolor{light_green_3}
+			Yes & \textbf{R3} & MUST & Interact with an in-memory representation of LLVM IR \\
+			\rowcolor{light_green_3}
+			Yes & \textbf{R4} & MUST & Produce CFGs from LLVM IR basic blocks \\
+			\hline
+			\rowcolor{light_green_3}
+			Yes & \textbf{R5} & COULD & Visualize CFGs using the \texttt{DOT} graph description language \\
+			\hline
+			N/A & \textbf{R6} & WON'T & Read the bitcode representation of LLVM IR \\
+			N/A & \textbf{R7} & WON'T & Write the bitcode representation of LLVM IR \\
+			N/A & \textbf{R8} & WON'T & Provide a formal grammar of LLVM IR \\
+			\hline
+		\end{tabular}
+	\end{center}
+	\caption{A summary of the evaluation against requirements of the LLVM IR library, which specifies what requirements (abbreviated as ``Req.'') that have been satisfied (abbreviated as ``Sat.'').}
+	\label{tbl:eval_summary_of_llvm_ir_library}
+\end{table}
+
+% --- [ Subsections ] ----------------------------------------------------------
+
+\input{sections/9_evaluation/1_llvm_ir_library/1_essential_requirements}
+\input{sections/9_evaluation/1_llvm_ir_library/3_desirable_requirements}
