@@ -3,13 +3,7 @@
 \subsection{Control Flow Analysis Library}
 \label{sec:eval_control_flow_analysis_library}
 
-In total five essential (\textbf{R9}, \textbf{R10}, \textbf{R11}, \textbf{R12} and \textbf{R13}), two important (\textbf{R14} and \textbf{R15}), two desirable (\textbf{R16} and \textbf{R17}), and two future (\textbf{R18} and \textbf{R19}) requirements were identified for the control flow analysis library (see section \ref{sec:req_control_flow_analysis_library}). The current implementation of the control flow library satisfies six out of nine requirements (not counting future requirements), and fails to satisfy one essential, one important, and one desirable requirement; as summarized in table \ref{tbl:eval_summary_of_control_flow_analysis_library}. Section \ref{sec:eval_control_flow_analysis_library_essential_requirements}, \ref{sec:eval_control_flow_analysis_library_important_requirements} and \ref{sec:eval_control_flow_analysis_library_desirable_requirements} provides a detailed evaluation of the essential, important and desirable requirements, respectively.
-
-% TODO: Create green, red and grey background for the yes, no and N/A rows respectively. Use different levels of green/red for MUST, SHOULD, COULD. WON'T is always grey.
-
-% TODO: Apply a similar colour scheme to the tables in the requirements section for the sake of familiarity? Using different shades of grey/blue? Probably not.
-
-% TODO: Use tick boxes instead of yes/no? Probably not.
+In total five essential (\textbf{R9}, \textbf{R10}, \textbf{R11}, \textbf{R12} and \textbf{R13}), two important (\textbf{R14} and \textbf{R15}), two desirable (\textbf{R16} and \textbf{R17}), and two future (\textbf{R18} and \textbf{R19}) requirements were identified for the control flow analysis library (see section \ref{sec:req_control_flow_analysis_library}). The current implementation of the control flow analysis library satisfies six out of nine requirements (not counting future requirements), and fails to satisfy one essential, one important, and one desirable requirement; as summarized in table \ref{tbl:eval_summary_of_control_flow_analysis_library}. Section \ref{sec:eval_control_flow_analysis_library_essential_requirements}, \ref{sec:eval_control_flow_analysis_library_important_requirements} and \ref{sec:eval_control_flow_analysis_library_desirable_requirements} provides a detailed evaluation of the essential, important and desirable requirements, respectively.
 
 \begin{table}[htbp]
 	\begin{center}
@@ -17,15 +11,27 @@ In total five essential (\textbf{R9}, \textbf{R10}, \textbf{R11}, \textbf{R12} a
 			\hline
 			Satisfied? & Req. & Priority & Description \\
 			\hline
+			\rowcolor{light_green_3}
 			Yes & \textbf{R9} & MUST & Support analysis of reducible graphs \\
+			\rowcolor{light_green_3}
 			Yes & \textbf{R10} & MUST & Recover pre-test loops (e.g. \texttt{for}, \texttt{while}) \\
+			\rowcolor{light_red_3}
 			No & \textbf{R11} & MUST & Recover infinite loops (e.g. \texttt{while(TRUE)}) \\
+			\rowcolor{light_green_3}
 			Yes & \textbf{R12} & MUST & Recover 1-way conditionals (e.g. \texttt{if}) \\
+			\rowcolor{light_green_3}
 			Yes & \textbf{R13} & MUST & Recover 2-way conditionals (e.g. \texttt{if-else}) \\
+			\hline
+			\rowcolor{light_green_3}
 			Yes & \textbf{R14} & SHOULD & Recover post-test loops (e.g. \texttt{do-while}) \\
+			\rowcolor{light_red_3}
 			No & \textbf{R15} & SHOULD & Recover n-way conditionals (e.g. \texttt{switch}) \\
+			\hline
+			\rowcolor{light_red_3}
 			No & \textbf{R16} & COULD & Recover multi-exit loops \\
+			\rowcolor{light_green_3}
 			Yes & \textbf{R17} & COULD & Recover nested loops \\
+			\hline
 			N/A & \textbf{R18} & WON'T & Support analysis of irreducible graphs \\
 			N/A & \textbf{R19} & WON'T & Recover compound boolean expressions \\
 			\hline
@@ -47,7 +53,7 @@ The current implementation of the control flow analysis library supports analysi
 % * R10 - Recover pre-test loops
 % * R12 - Recover 1-way conditionals
 
-The successful recovery of pre-test loops (\textbf{R10}) and 1-way conditionals (\textbf{R12}) is demonstrated in four steps, using components which depend on the control flow analysis library. Firstly, the \texttt{ll2dot} tool (see section \ref{sec:design_control_flow_graph_generation}) is used to generate an unstructured CFG for each function of an LLVM IR assmebly file; as demonstrated in appendix \ref{app:control_flow_graph_generation_example}. Secondly, the \texttt{restructure} tool (see section \ref{sec:design_control_flow_analysis}) analyzes the unstructured CFG of an LLVM IR assembly function to produce a structured CFG; as demonstrated in appendix \ref{app:restructure_example}. Thirdly, the \texttt{ll2go} tool (see section \ref{sec:design_code_generation}) uses the high-level control flow information of the structured CFG to decompile the LLVM IR function into unpolished Go code; as demonstrated in appendix \ref{app:code_generation_example}. Lastly, the \texttt{go-post} tool applies source code transformations to the unpolished Go code in order to improve its quality; as demonstrated in appendix \ref{app:post-processing_example}. The final Go output, which is presented on the right side of figure \ref{fig:example1_comparison} in appendix \ref{app:post-processing_example}, contains both a \texttt{for}-loop and an \texttt{if}-statement, thus proving that pre-test loops and 1-way conditionals may be recovered.
+The successful recovery of pre-test loops (\textbf{R10}) and 1-way conditionals (\textbf{R12}) is demonstrated in four steps, through the use of components which depend on the control flow analysis library. Firstly, the \texttt{ll2dot} tool (see section \ref{sec:design_control_flow_graph_generation}) is used to generate an unstructured CFG for each function of an LLVM IR assmebly file; as demonstrated in appendix \ref{app:control_flow_graph_generation_example}. Secondly, the \texttt{restructure} tool (see section \ref{sec:design_control_flow_analysis}) analyzes the unstructured CFG of an LLVM IR assembly function to produce a structured CFG; as demonstrated in appendix \ref{app:restructure_example}. Thirdly, the \texttt{ll2go} tool (see section \ref{sec:design_code_generation}) uses the high-level control flow information of the structured CFG to decompile the LLVM IR function into unpolished Go code; as demonstrated in appendix \ref{app:code_generation_example}. Lastly, the \texttt{go-post} tool improves the quality of the unpolished Go code, by applying a set of source code transformations; as demonstrated in appendix \ref{app:post-processing_example}. The final Go output, which is presented on the right side of figure \ref{fig:example1_comparison} in appendix \ref{app:post-processing_example}, contains both a \texttt{for}-loop and an \texttt{if}-statement, thus proving that pre-test loops and 1-way conditionals may be recovered.
 
 % * R13 - Recover 2-way conditionals
 
@@ -55,12 +61,7 @@ The successful decompilation of 2-way conditionals (\textbf{R13}) is demonstrate
 
 % * R11 - Recover infinite loops
 
-foo
-
-% TODO: Add
-% * The current implementation of the control flow analysis library enforces an invariant on the graph representation of high-level control flow primitives; they must have a single entry and a single exit node. This invariant simplifies the implementation
-% * requires an a single entry and a single exit node
-% * single-entry, single-exit an invariant of the
+The current design of the control flow analyis stage enforces a single-entry/single-exit invariant on the graph representation of high-level control flow primitives. In other words, high-level control flow primitives must be modelled as directed graphs with a single entry and a single exit node. This invariant simplifies the control flow analysis, as it allows identified subgraphs to be merged into single nodes, which inherit the predecessors of the entry node and the successors of the exit node; as demonstrated by the step-by-step simplification of the CFG in appendix \ref{app:control_flow_analysis_example}. This restriction prevents infinite loops (\textbf{R11}) from being modelled however, as they have no exit node. Future work will try to determine if this invariant may be relaxed to include single-entry/no-exit graphs, as further described in section \ref{sec:con_design_validation}.
 
 % ~~~ [ Important Requirements ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -69,11 +70,11 @@ foo
 
 % * R14 - Recover post-test loops
 
-The successful decompilation of post-test loops (\textbf{R14}) is demonstrated in appendix \ref{app:decompilation_of_post-test_loops}, which provides a contrived example that implicitly uses the same decompilation steps as described above. The final Go output, which is presented on the right side of figure \ref{fig:post-test_comparison} in appendix \ref{app:decompilation_of_post-test_loops}, contains an infinite \texttt{for}-loop with a conditional break statement as the last statement of the loop body (Go does not have native support for \texttt{do-while} loops, so the semantics of the a post-test loop have been imitated using the available control flow primitives), thus proving that post-test loops may be recovered.
+The successful decompilation of post-test loops (\textbf{R14}) is demonstrated in appendix \ref{app:decompilation_of_post-test_loops}, which provides a contrived example that implicitly uses the same decompilation steps as described above. The final Go output, which is presented on the right side of figure \ref{fig:post-test_comparison} in appendix \ref{app:decompilation_of_post-test_loops}, contains an infinite \texttt{for}-loop with a conditional break statement as the last statement of the loop body (which is semantically equivalent to a post-test loop), thus proving that post-test loops may be recovered. Even though Go does not provide native support for post-test loops, the back-end was capable of translating the source program into semantically equivalent Go code, by combining a set of primitives available in Go. The same approach may be used to support missing primitives for other target programming languages (eg. \texttt{switch}-statements in Python).
 
 % * R15 - Recover n-way conditionals
 
-foo
+A data-driven design separates the implementation of the control flow analysis component from the definition of supported high-level control flow primitives, which are expressed in the DOT file format. The design is motivated by the principle of separation of concern (e.g. the control flow analysis may be reused to analyze the control flow of REIL) and extensibility (e.g. support for new high-level control flow primitives may be added without changing the source code), as further described in section \ref{sec:design_control_flow_analysis}. One limitation with this design however, is that it does not support n-way conditionals (\textbf{R15}) or any other high-level control flow primitives with a variable number of nodes in their graph representations, as these cannot be expressed in the DOT file format. A discussion on how to mitigate this issue in the future is provided in section \ref{sec:con_design_validation}.
 
 % ~~~ [ Desirable Requirements ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -82,7 +83,7 @@ foo
 
 % * R16 - Recover multi-exit loops
 
-foo
+Implementation strategies for desirable requirements were only considered as time permitted. The support for multi-exit loops (\textbf{R16}) was intentionally omitted from this release, to allocate time for the essential requirements. More research is required to determine how the current design of the control flow analysis stage may be refined to support the recovery of multi-exit loops.
 
 % * R17 - Recover nested loops
 

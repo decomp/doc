@@ -18,10 +18,13 @@ The control flow analysis library must recover the high-level control flow primi
 			\ref{itm:obj_control_flow_analysis_component} & \textbf{R11} & MUST & Recover infinite loops (e.g. \texttt{while(TRUE)}) \\
 			\ref{itm:obj_control_flow_analysis_component} & \textbf{R12} & MUST & Recover 1-way conditionals (e.g. \texttt{if}) \\
 			\ref{itm:obj_control_flow_analysis_component} & \textbf{R13} & MUST & Recover 2-way conditionals (e.g. \texttt{if-else}) \\
+			\hline
 			\ref{itm:obj_control_flow_analysis_component} & \textbf{R14} & SHOULD & Recover post-test loops (e.g. \texttt{do-while}) \\
 			\ref{itm:obj_control_flow_analysis_component} & \textbf{R15} & SHOULD & Recover n-way conditionals (e.g. \texttt{switch}) \\
+			\hline
 			\ref{itm:obj_control_flow_analysis_component} & \textbf{R16} & COULD & Recover multi-exit loops \\
 			\ref{itm:obj_control_flow_analysis_component} & \textbf{R17} & COULD & Recover nested loops \\
+			\hline
 			\ref{itm:obj_control_flow_analysis_component} & \textbf{R18} & WON'T & Support analysis of irreducible graphs \\
 			\ref{itm:obj_control_flow_analysis_component} & \textbf{R19} & WON'T & Recover compound boolean expressions \\
 			\hline
