@@ -3,4 +3,12 @@
 \subsubsection{Essential Requirements}
 \label{sec:eval_control_flow_analysis_tool_essential_requirements}
 
+% * R20 - Identify high-level control flow primitives in LLVM IR
+
 foo
+
+% * R21 - Support language-agnostic interaction with other components
+
+% TODO: Add lang ref links.
+
+The components of the decompilation pipeline support language-agnostic interaction with other components (\textbf{R21}), as they only communicate using well-defined input and output; specifically LLVM IR\footnote{foo}, DOT\footnote{foo}, JSON\footnote{foo} and Go\footnote{foo} input and output. The interaction between the components of the decompilation pipeline is demonstrated in four steps, when decompilation LLVM IR to Go. Firstly, the control flow graph generation component (see section \ref{sec:design_control_flow_graph_generation}) parses LLVM IR assembly to produce an unstructured CFG (in the DOT file format); as demonstrated in appendix \ref{app:control_flow_graph_generation_example}. Secondly, the control flow analysis component (see section \ref{sec:design_control_flow_analysis}) analyzes the unstructured CFG (in the DOT file format) to produce a structured CFG (in JSON format); as demonstrated in appendix \ref{app:restructure_example}. Thirdly, the code generation component (see section \ref{sec:design_code_generation}) decompiles the structured LLVM IR assembly into unpolished Go code; as demonstrated in appendix \ref{app:code_generation_example}. Lastly, the post-processing tool (see section \ref{sec:design_post-processing}) improves the quality of the unpolished Go code, by applying a set of source code transformations; as demonstrated in appendix \ref{app:post-processing_example}.

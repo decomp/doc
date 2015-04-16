@@ -33,3 +33,4 @@ This section evaluates the artefacts of the decompilation system against the req
 \input{sections/9_evaluation/1_llvm_ir_library}
 \input{sections/9_evaluation/2_control_flow_analysis_library}
 \input{sections/9_evaluation/3_control_flow_analysis_tool}
+% TODO: Add a confidence section. The control flow analysis component is considered mature. The code generation and post-processing components are considered as proof of concept implementations. Specifically the post-processing provides rudamentary support for expression propagation, which works for simple programs, but will most certainly be inaccurate for more complex programs. All source code transformation rules of the \texttt{go-post} tool may be optionally enabled or disabled. Proper support for data flow analysis will be implemented in the future, as described in section \ref{foo}.
