@@ -11,7 +11,7 @@
 %
 % * Further details of the crash in iso_crash_fix/
 
-The \texttt{restructure} tool provides an implementation of the control flow analysis component described in section \ref{sec:design_control_flow_analysis}. It structures CFGs by utilizing the subgraph isomorphism search library (see section \ref{sec:impl_subgraph_isomorphism_search_algorithm}) to identify high-level control flow primitives in a similar fashion as demonstrated in appendix \ref{app:control_flow_analysis_example}. One problem with the demonstrated approach is that it may fail to reduce CFGs if smaller subgraphs are replaced before larger subgraphs. This is because subgraph isomorphisms of the smaller subgraphs may exist in the larger subgraphs, as is the case with .
+The \texttt{restructure} tool provides an implementation of the control flow analysis component described in section \ref{sec:design_control_flow_analysis}. It structures CFGs by utilizing the subgraph isomorphism search library (see section \ref{sec:impl_subgraph_isomorphism_search_library}) to identify high-level control flow primitives in a similar fashion as demonstrated in appendix \ref{app:control_flow_analysis_example}. One problem with the demonstrated approach is that it may fail to reduce CFGs if smaller subgraphs are replaced before larger subgraphs. This is because subgraph isomorphisms of the smaller subgraphs may exist in the larger subgraphs, as is the case with .
 
 it may fail to recover complex high-level primitives if simple
 
