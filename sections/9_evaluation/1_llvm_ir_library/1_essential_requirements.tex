@@ -3,4 +3,12 @@
 \subsubsection{Essential Requirements}
 \label{sec:eval_llvm_ir_library_essential_requirements}
 
-foo
+% * R1 - Read the assembly language representation of LLVM IR
+% * R3 - Interact with an in-memory representation of LLVM IR
+% * R4 - Generate CFGs from LLVM IR basic blocks
+
+The modified Go bindings for LLVM (see section \ref{sec:impl_go_bindings_for_llvm}) includes read (\textbf{R1}) and write (\textbf{R2}) support for the assembly language representation of LLVM IR, and enables interaction with an in-memory representation of LLVM IR (\textbf{R3}). The \texttt{ll2dot} tool depends on \textbf{R1} and \textbf{R3} for parsing LLVM IR assembly files and inspecting their in-memory representation, which is required to gain access to information about the basic blocks of each function and their terminating instructions. This information determines the node names and the directed edges, when generating CFGs from LLVM IR; as further described in section \ref{sec:design_control_flow_graph_generation}. Appendix \ref{app:control_flow_graph_generation_example} demonstrates that the \texttt{ll2dot} tool is capable of generating CFGs from LLVM IR (\textbf{R4}), thus proving that \textbf{R1}, \textbf{R3} and \textbf{R4} have been satisfied.
+
+% * R2 - Write the assembly language representation of LLVM IR
+
+To support generating CFGs for LLVM IR assembly which contains unnamed basic blocks, the \texttt{ll2dot} tool requires access to the names of unnamed basic blocks. These names are not available from the API of the original Go bindings for LLVM however, as they are generated on the fly by the assembly printer. To work around this issue, the assembly printer of LLVM 3.6 was patched to always print the generated names of unnamed basic blocks (see appendix \ref{app:unnamed_patch}). With this patch in place, the debug facilitites of the modified Go bindings for LLVM could be utilized to write (\textbf{R2}) the assembly to temporary files, which were parsed to gain access to the names of unnamed basic blocks; as further described in section \ref{sec:impl_go_bindings_for_llvm}. The generated CFG presented in appendix \ref{app:control_flow_graph_generation_example} contains the names of unnamed basic blocks (e.g. basic blocks with numeric names), thus proving that \textbf{R2} has been satisfied.
