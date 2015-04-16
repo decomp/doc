@@ -1,6 +1,7 @@
 % ~~~ [ Reliability Improvements ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 \subsubsection{Reliability Improvements}
+\label{sec:con_reliability_improvements}
 
 As described in section \ref{sec:impl_go_bindings_for_llvm}, there are many reliability issues caused by the Go bindings for LLVM. To mitigate these issues a pure Go library is being developed for interacting with LLVM IR (see section \ref{sec:impl_llvm_ir_library}). This library will be reusable by other projects, and the requirements of the third-party Go compiler \texttt{llgo}\footnote{LLVM-based compiler for Go: \url{https://llvm.org/svn/llvm-project/llgo/trunk/README.TXT}} are actively being tracked\footnote{Requirements · Issue \#3: \url{https://github.com/llir/llvm/issues/3}}.
 
