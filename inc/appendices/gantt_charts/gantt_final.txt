@@ -9,7 +9,7 @@ Report
     Design (2015-03-03 - XXXX-XX-XX)
     Implementation (2015-03-04 - XXXX-XX-XX)
     Verification (2015-03-05 - XXXX-XX-XX)
-    Evaluation (XXXX-XX-XX - XXXX-XX-XX)
+    Evaluation (2015-04-15 - 2015-04-16)
     Conclusion (2015-03-05 - 2015-04-08)
 Artifact
     LLVM IR library (2014-09-19 - 2015-03-04)
