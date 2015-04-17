@@ -4,7 +4,9 @@
 
 The Dagger project is a fork of the LLVM compiler framework, which provides a component for translating native code into LLVM IR, and extends the capabilities of the disassembly library by implementing support for recursive descent parsing (see section \ref{sec:lit_review_disassembly}). Some of these changes have been submitted upstream and merged into the LLVM project.
 
-The LLVM compiler framework defines a platform-independent representation of low-level machine instructions called \texttt{MCInst}, which describes the semantics of native instructions. For each supported architecture (e.g. x86) there
+The LLVM compiler framework defines a platform-independent representation of low-level machine instructions called \texttt{MCInst}, which describes the semantics of native instructions. For each supported architecture (e.g. x86) there exists a table which maps the native machine instructions to the \texttt{MCInst} representation. foo
+
+The Dagger project takes a unique approach to translating native code into LLVM IR. Similar to other projects, the native code is parsed (see section \ref{sec:lit_review_binary_analysis}) and disassembled (see section \ref{sec:lit_review_disassembly}). The native instructions are then converted into the \texttt{MCInst} representation. Unline other projects, the Dagger project models the native computer architectures using C data structures, and converts each \texttt{MCInst} instance into semantically equivalent C code which refers to the data structures of the modelled computer architecture, instead of native registers and memory locations. Once this conversion is complete, the resulting C program is compiled with Clang to LLVM IR, which is then optimized by the LLVM compiler framework to remove redundant code (e.g. unused flags).
 
 foo \cite{dagger}
 

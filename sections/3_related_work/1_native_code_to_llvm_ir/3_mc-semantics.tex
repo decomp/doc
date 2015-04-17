@@ -2,6 +2,14 @@
 
 \subsubsection{MC-Semantics}
 
+% TODO: Find the correct and succinct term for the "control flow recover" component.
+
+The system architecture of MC-Semantics defines two distinct components which separate concerns related to the disassembly stage (see section \ref{sec:lit_review_disassembly}) from the ones related to the intermediate code generation stage (see section \ref{sec:lit_review_intermediate_code_generation}). These components interact using well-defined input and output (e.g. Google Protocol Buffers), which has enabled two independent implementations of the control flow recover component, which deals with the disassembly stage. Furthermore, these two implementations are written in different programming languages (i.e. Python and C++), which validates the language-agnostic aspects of the design.
+
+% TODO: Add illustration of the interaction between the components of the MC-Semantics project.
+
+An illustration of the interaction between the components of the MC-Semantics project is presented in figure \ref{foo}.
+
 Dagger and MC-Semantics uses a structure to keep track of all registers and passes a pointer to this structure as an argument to each function. Reads from and writes to registers are made using loads and stores.
 
 With proper use-def chains the *input* and *output* of a function could be made apparent, removing the need to pass the entire structure to each function. Registers could be passed by value as parameters which would facilitate several optimization passes.
