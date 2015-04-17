@@ -1,4 +1,4 @@
-for (A) {
+while A {
 	B
 }
 C
