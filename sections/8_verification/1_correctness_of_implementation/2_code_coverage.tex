@@ -3,15 +3,9 @@
 \subsubsection{Code Coverage}
 \label{sec:ver_code_coverage}
 
-\textbf{NOTE}: \textit{The following section is under construction :)}
+Code coverage is a measurement for tracking what parts of the code that gets executed when running test cases. The Go project takes an interesting approach to tracking code coverage, which utilizes the production quality source code analysis and transformation libraries available in Go. Instead of generating platform-dependent assembly which tracks the execution of various branches, Go inject unique tracking statements on each line of the original source code. This approach is platform-independent by design, and may easily be extended to support heat maps which track how often each line gets executed \cite{go_cover}.
 
-The code coverage is a measurement of how much of the code is exercised by the test cases.
-
-% As stated by Rob Pike, \textit{``Go was designed with tools in mind.''} \cite{go_cover}
-
-The Go project takes an interesting approach to tracking code coverage. Instead of generating platform-dependent assembly which tracks the execution of various branches, Go exploits its support for source code analysis and manipulation to inject unique tracking statements on each line of the original source code \cite{go_cover}.
-
-While developing a lexer for the LLVM IR assembly language the intention was to strive for a 100\% code coverage of any code related to lexing and not related to input output errors (e.g. ``file not found'' errors). As illustrated in figure \ref{fig:lexer_code_coverage}. The rigid testing made it possible to locate and correct a number of faulty assumptions in the lexing logic.
+As the lexer of any language is a fundamental building block on which other libraries and components depend, the test cases of the LLVM IR lexer aimed for a 100\% code coverage of any code not related to input/output errors (e.g. ``file not found''); as illustrated in figure \ref{fig:lexer_code_coverage}. This rigorous testing uncovered several faulty assumptions in the lexing logic, which were later corrected.
 
 \begin{figure}[htbp]
 	\begin{center}
@@ -27,24 +21,40 @@ llvm/asm/lexer/state.go:131:   lexComment     100.0%
 …
 llvm/asm/lexer/state.go:364:   lexQuote       100.0%
 llvm/asm/lexer/state.go:585:   unescape       100.0%
-total:                         (statements)   97.5%
+total:                         (statements)   97.6%
 		\end{verbatim}
 		\caption{A summary of the code coverage for a selection of the LLVM IR lexer functions, as visualized by the \texttt{cover} tool.}
 		\label{fig:lexer_code_coverage}
 	\end{center}
 \end{figure}
 
-The use of code coverage heat maps, which track how often statements are exercised by the test cases, were invaluable when stress testing the subgraph isomorphism search algorithm, and they were able to identify several tricky corner cases. foo figure \ref{fig:iso_heat_map}
+A breif summary of the code coverage for the various software artefacts is presented in figure \ref{tbl:code_coverage_summary}.
+
+\begin{table}[htbp]
+	\begin{center}
+		\begin{tabular}{|l|l|}
+			\hline
+			Code coverage & Component \\
+			\hline
+			97.6\% & LLVM IR lexer \\
+			0.0\% & Control flow generation tool \\
+			94.8\% & Subgraph isomorphism search library \\
+			40.0\% & Control flow analysis tool \\
+			0.0\% & Code generation tool \\
+			38.0\% & Post-processing tool \\
+			\hline
+		\end{tabular}
+	\end{center}
+	\caption{A summary of the code coverage of each component, presented roughly in the same order as they appear in the decompilation pipeline.}
+	\label{tbl:code_coverage_summary}
+\end{table}
+
+Code coverage heat maps may be used to gain clarity in how often a line gets executed by the test cases. The use of heat maps were invaluable when stress testing the various prototypes of the subgraph isomorphism search algorithm, as they were able to identify several tricky corner cases; such as the ones illustrated in figure \ref{fig:iso_heat_map}
 
 \begin{figure}[htbp]
 	\begin{center}
 		\includegraphics[width=\textwidth]{inc/8_ver/iso_heat_map.png}
-		% TODO: Fix caption text.
-		\caption{Extract from the code coverage of the subgraph isomorphism search algorithm, represented as a heat map where red indicates that a statement was never visited and the intensity of green indicates the number of times a statement was visited. where bright green represents a statements that has been visited several times, faint green a statement only visited a few times, and red a statement that has never been visited.}
+		\caption{An extract from the code coverage heat maps of the subgraph isomorphism search algorithm, which has identified two corner cases that may require further validation. The first return statement is seldomly executed (as indicated by the \textit{gray} color), and the second return statement is never executed.}
 		\label{fig:iso_heat_map}
 	\end{center}
 \end{figure}
-
-foo
-
-% TODO: Add a table which summarizes the code coverage of the various artefacts!
