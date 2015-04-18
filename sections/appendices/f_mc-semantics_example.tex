@@ -1,0 +1,10 @@
+% --- [ MC-Semantics Example ] -------------------------------------------------
+
+\subsection{MC-Semantics Example}
+\label{app:mc-semantics_example}
+
+The MC-Semantics project may be used to translate native code into LLVM IR. Using MC-Semantics, the x86 assembly (presented in figure \ref{lst:example1_asm}) of a 32-bit ELF object code file was decompiled into the LLVM IR assembly presented in figure \ref{lst:example1_mcsema_ll}. An intermediate step of the translation process produced a serialized CFG (in Google Protocol Buffer format) of the native code, which has been obmitted from the example listings for the sake of brevity.
+
+\lstinputlisting[language=nasm, style=nasm, caption={Disassembly of an object code file, which was produced from the C source code presented in listing \ref{lst:example1_c}. \label{lst:example1_asm}}]{inc/appendices/mcsema_example/example1.asm}
+
+\lstinputlisting[language=llvm, style=nasm, caption={Decompiled LLVM IR, which was produced by MC-Semantics when analyzing an object code file containing the assembly presented in listing \ref{lst:example1_asm}. \label{lst:example1_mcsema_ll}}]{inc/appendices/mcsema_example/example1.ll}
