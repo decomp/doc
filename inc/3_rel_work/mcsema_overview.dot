@@ -1,0 +1,40 @@
+digraph G {
+	newrank=true
+	rankdir=LR
+
+	// Control flow recovery
+	subgraph cluster1 {
+		label="Control flow recovery"
+		color=blue
+		bin2cfg_cpp [label="bin_descend (C++)" shape=box]
+		bin2cfg_py [label="bin_descend (Python)" shape=box]
+	}
+
+	// Instruction translation
+	subgraph cluster2 {
+		label="Instruction translation"
+		color=blue
+		cfg2bc [label="cfg_to_bc" shape=box]
+	}
+
+	// Input
+	In [label="x86 (ELF or PE)"]
+
+	// Temporary output
+	tmpcfg [label="serialized CFG"]
+
+	// Output
+	Out [label="LLVM IR"]
+
+	// Input -> control flow recovery
+	In -> bin2cfg_cpp
+	In -> bin2cfg_py
+
+	// Control flow recovery -> instruction translation
+	bin2cfg_cpp -> tmpcfg
+	bin2cfg_py -> tmpcfg
+	tmpcfg -> cfg2bc
+
+	// Instruction translation -> output
+	cfg2bc -> Out
+}
