@@ -61,11 +61,11 @@ To stress test the implementation of the decompilation components and to get an 
 
 Each step of the decompilation pipeline completed in resonable time (i.e. polynomial with regards to $ n $) except for one, namely the \textit{``localid''} rewrite rule (see figure \ref{fig:rewrite_3} of appendix \ref{app:post-processing_example}) of the post-processing stage. As discussed in section \ref{sec:evaluation}, most of the post-processing rewrite rules are considered experimental and the \textit{``localid''} rewrite rule suffers from both inaccuracy and performance issues. The \textit{``localid''} rewrite rule optionally provides rudamentary expression propagation support until the middle-end is extended to include a proper data flow analysis component (see section \ref{sec:con_design_validation}).
 
-As the size of $ n $ doubles, the execution time of \texttt{ll2dot} roughly quadruples. The time complexity of \texttt{ll2dot} is therefore estimated to be $ \Theta(n^{2}) $. Please note that this may not hold true for larger values of $ n $, as a formal time complexity analysis of the algorithm is yet to be conducted. Similarly, as the size of $ n $ double, the execution time of \texttt{restructure} roughly octuples. The time complexity of \texttt{restructure} is therefore estimated to be $ \Theta(n^{3}) $. The same logic and caveats may be applied to the other components to estimate their time complexities; a summary of which is presented below.
+As the size of $ n $ doubles, the execution time of \texttt{ll2dot} roughly quadruples. The time complexity of \texttt{ll2dot} is therefore estimated to be $ \Omega(n^{2}) $. Please note that this may not hold true for larger values of $ n $, as a formal time complexity analysis of the algorithm is yet to be conducted. Similarly, as the size of $ n $ double, the execution time of \texttt{restructure} roughly octuples. The time complexity of \texttt{restructure} is therefore estimated to be $ \Omega(n^{3}) $. The same logic and caveats may be applied to the other components to estimate their time complexities; a summary of which is presented below.
 
 \begin{itemize}
-	\item \texttt{ll2dot}: $ \Theta(n^{2}) $
-	\item \texttt{restructure}: $ \Theta(n^{3}) $
+	\item \texttt{ll2dot}: $ \Omega(n^{2}) $
+	\item \texttt{restructure}: $ \Omega(n^{3}) $
 \end{itemize}
 
 %%% TODO: [/under construction]
