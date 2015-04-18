@@ -30,24 +30,26 @@ total:                         (statements)   97.6%
 
 A breif summary of the code coverage for the various software artefacts is presented in figure \ref{tbl:code_coverage_summary}.
 
-\begin{table}[htbp]
-	\begin{center}
-		\begin{tabular}{|l|l|}
-			\hline
-			Code coverage & Component \\
-			\hline
-			97.6\% & LLVM IR lexer \\
-			0.0\% & Control flow generation tool \\
-			94.8\% & Subgraph isomorphism search library \\
-			40.0\% & Control flow analysis tool \\
-			0.0\% & Code generation tool \\
-			38.0\% & Post-processing tool \\
-			\hline
-		\end{tabular}
-	\end{center}
-	\caption{A summary of the code coverage of each component, presented roughly in the same order as they appear in the decompilation pipeline.}
-	\label{tbl:code_coverage_summary}
-\end{table}
+\begin{savenotes}
+	\begin{table}[htbp]
+		\begin{center}
+			\begin{tabular}{|l|l|}
+				\hline
+				Code coverage & Component \\
+				\hline
+				97.6\% & LLVM IR lexer\footnote{As of Git revision \texttt{44ad8192192c1a34960903348b0c2e0df63ce5f0}} \\
+				0.0\% & Control flow generation tool \\
+				94.8\% & Subgraph isomorphism search library\footnote{As of Git revision \texttt{70967487ea73284c68a89e3fc566bc706603b6f7}} \\
+				40.0\% & Control flow analysis tool\footnote{As of Git revision \texttt{019e846bc7058f8fb9f7517568505c96eeed97bf}} \\
+				0.0\% & Code generation tool \\
+				38.0\% & Post-processing tool\footnote{As of Git revision \texttt{02d38d1fbbf1c05bb11de89360a7cd8c38329a14}} \\
+				\hline
+			\end{tabular}
+		\end{center}
+		\caption{A summary of the code coverage of each component, presented roughly in the same order as they appear in the decompilation pipeline.}
+		\label{tbl:code_coverage_summary}
+	\end{table}
+\end{savenotes}
 
 Code coverage heat maps may be used to gain clarity in how often a line gets executed by the test cases. The use of heat maps were invaluable when stress testing the various prototypes of the subgraph isomorphism search algorithm, as they were able to identify several tricky corner cases; such as the ones illustrated in figure \ref{fig:iso_heat_map}
 
