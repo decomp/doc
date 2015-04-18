@@ -1,0 +1,43 @@
+internal_funcs {
+  blocks {
+    insts {
+      inst_bytes: "U"
+      inst_addr: 0
+      true_target: -1
+      false_target: -1
+      inst_len: 1
+      reloc_offset: 0
+    }
+    // ...
+    insts {
+      inst_bytes: "\017\215/\000\000\000"
+      inst_addr: 46
+      true_target: 99
+      false_target: 52
+      inst_len: 6
+      reloc_offset: 0
+    }
+    base_address: 0
+    block_follows: 99
+    block_follows: 52
+  }
+  // ...
+  blocks {
+    insts {
+      inst_bytes: "\351\000\000\000\000"
+      inst_addr: 78
+      true_target: 83
+      false_target: -1
+      inst_len: 5
+      reloc_offset: 0
+    }
+    base_address: 78
+    block_follows: 83
+  }
+  entry_address: 0
+}
+module_name: "example1"
+entries {
+  entry_name: "main"
+  entry_address: 0
+}
