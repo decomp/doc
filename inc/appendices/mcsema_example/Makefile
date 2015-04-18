@@ -17,7 +17,7 @@ all: $(OBJ) $(CFG) $(CFG_TXT) $(BC) $(LL_SRC)
 	protoc --decode Module CFG.proto < $< > $@
 
 %.bc: %.cfg
-	cfg_to_bc -i=$< -driver=foo,main,2,return,C -o $@
+	cfg_to_bc -i=$< -driver=main,main,2,return,C -o $@
 
 %.ll: %.bc
 	llvm-dis $<

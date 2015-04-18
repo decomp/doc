@@ -4,7 +4,7 @@ target triple = "i686-pc-linux-gnu"
 
 %struct.rlimit = type { i32, i32 }
 
-define i32 @foo(i32, i32) {
+define i32 @main(i32, i32) {
 driverBlock:
   %rl = alloca %struct.rlimit, align 8
   %2 = bitcast %struct.rlimit* %rl to i64*
