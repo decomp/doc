@@ -7,7 +7,7 @@ The MC-Semantics project may be used to decompile native code into LLVM IR. MC-S
 
 The clear separation between the two decompilation stages in MC-Semantics has enabled two independent implementations of the control flow recovery component in two different programming languages (i.e. C++ and Python), thus validating the language-agnostic aspects of its design. The C++ component is called \texttt{bin\_descend} and it implements a recursive descent disassembler which translates the native code into serialized CFGs. As described in section \ref{sec:lit_review_disassembly}, implementing a disassembler which correctly separates code form data is made difficult by a range of problems; e.g. indirect branches, intermixed code and data in executable segments, callbacks. Interactive disassemblers (such as IDA Pro) solve these issues, by relying on human problem solving skills to resolve ambiguities and inform the disassembler. The second implementation of the control flow recovery component is an IDAPython script which produces serialized CFGs from IDA Pro.
 
-An illustration of the interaction between the components of the MC-Semantics project is presented in figure \ref{fig:mcsema_overview}.
+The interaction between the components of the MC-Semantics project is illustrated in figure \ref{fig:mcsema_overview}.
 
 \begin{figure}[htbp]
 	\includegraphics[width=\textwidth]{inc/3_rel_work/mcsema_overview.png}

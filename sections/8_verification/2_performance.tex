@@ -4,15 +4,32 @@
 
 The performance characteristics of the various components have been considered during every stage of the development process, but the initial prototypes have prioritized correctness and simplicity over performance. These prototypes have aimed at identifying suitable data structures and algorithms for the problems, through iterative redesigns and reimplementations. Once the major design decisions stabilized, production quality prototypes were being developed and thoroughly tested. To limit the risk of premature optimizations, micro-level performance work was intentionally postponed to the later stages of development.
 
-Components with straight forward implementations (e.g. the LLVM IR library) have been profiled to identify performance bottle necks, as further described in section \ref{sec:ver_profiling}. When estimating the time complexity of various subgraph isomorphism search algorithms however, algorithm research and the use of intuition proved far more valuable. One of the first throw-away prototypes provided a partial implementation of the subgraph isomorphism algorithm proposed by Ullman. After further research the prototype was eventually discarded as the Ullman algorithm had been proven to scale poorly for randomly connected graphs with more than 700 nodes \cite{iso_performance_comparison}. To put this into perspective, the \texttt{main} function of the c4\footnote{C in four functions: \url{https://github.com/rswier/c4}} compiler consists of 248 basic blocks. In other words, the CFG of the \texttt{main} function is a connected graph (every node is reachable from the entry node) with 248 nodes. This leaves a margin, for the number of basic blocks in functions, of less than an order of magnitude before the Ullman algorithm starts to perform poorly.
+Components with straight forward implementations (e.g. the LLVM IR library) have been profiled to identify performance bottle necks, as further described in section \ref{sec:ver_profiling}. When estimating the time complexity of various subgraph isomorphism search algorithms however, algorithm research and the use of intuition proved far more valuable. One of the first throw-away prototypes provided a partial implementation of the subgraph isomorphism algorithm proposed by Ullman. After further research the prototype was eventually discarded as the Ullman algorithm had been proven to scale poorly for randomly connected graphs with more than 700 nodes \cite{iso_performance_comparison}. To put this into perspective, the \texttt{main} function of the c4\footnote{C in four functions: \url{https://github.com/rswier/c4}} compiler consists of 248 basic blocks; in other words, the CFG of the \texttt{main} function is a connected graph (every node is reachable from the entry node) with 248 nodes. This leaves a margin (for the number of basic blocks in functions) of less than an order of magnitude before the Ullman algorithm starts to perform poorly.
 
-There exist several subgraph isomorphism algorithms which scale better than the Ullman algorithm for graphs with a large number of nodes; such as the VF2 algorithm for dense graphs and McKay's nauty algorithm for sparse graphs \cite{iso_performance_comparison,subgraph_isomorphism_algorithms}. In the case of the c4 compiler, the CFGs are sparse with $ 1.35 $ edges per node in average, which would favour the nauty algorithm.
+There exist several subgraph isomorphism algorithms which scale better than the Ullman algorithm for graphs with a large number of nodes; such as the VF2 algorithm for dense graphs and McKay's nauty algorithm for sparse graphs \cite{iso_performance_comparison,subgraph_isomorphism_algorithms}. In the case of the c4 compiler, the CFGs are sparse with $ 1.35 $ edges per node in average, which would favour the nauty algorithm. The specific properties of CFGs (e.g. spase connected graphs) guided the design of the subgraph isomorphism search algorithm, as further described in section \ref{sec:impl_subgraph_isomorphism_search_library}.
 
-% TODO: The time complexity is most certainly wrong. Reformulate the following paragraph and remove the reference to the time complexity.
+%%% TODO: [under construction]
 
-The aformentioned subgraph isomorphism algorithms have been designed to support both connected and disconnected graphs, but the CFG are known to always be connected. By exploiting this property, a subgraph isomorphism search algorithm has been implemented which has a time complexity of $ \Theta{n \cdot m} $, where $ n $ is the number of nodes in the graph (i.e. the CFG) and $ m $ is the number of nodes in the subgraph (i.e. the graph representation of the high-level control flow primitive). Furthermore, $ m $ is known to be at most $ 4 $ for the currently supported high-level control flow primitives, which are presented in figure \ref{fig:graph_representations}.
+% TODO: Update 1 <= x <= 12.
 
-In summary, profiling is great for optimizing the implementations of simple problems. Algorithm research, runtime complexity theory and intuition is essential for implementing performant solutions for complex problems. Furthermore, knowledge about specific properties of the problem may be exploited to design a performant algorithm.
+To stress test the implementation of the decompilation components and to get an approximation of their time complexities, a set of C programs were automatically generated\footnote{Generate nested C programs: \url{https://gist.github.com/mewmew/677994ee8da60bee1de9}} with $ 2^x $ nested \texttt{if}-statements (where $ 1 \le x \le 12 $). These C programs were converted to LLVM IR and decompiled into Go using the same steps as described in appendix \ref{app:decompilation_of_nested_primitives}. The time complexity of each step may be approxiated by monitoring how the execution time changes with regards to $ n $, where $ n $ represents the number of nodes in the CFG of the generated programs. The CFG of each generated program contains twice as many nodes as nested \texttt{if}-statements, i.e. $ n = 2^{x+1} $.
+
+By comparing the execution time of each step
+
+The execution time of each step  was recorded as $ n $ goes from $ 2 ^ 1 $ to $ 2 ^ 12 $ , a summary of which is presented in table \ref{tbl:run_time_summary}.
+ regards to $ n $, where $ n $ is the number of nested \texttt{if}-statements of the source program.
+
+Each step of the decompilation pipeline completed in resonable time, except for the \textit{``localid''} rewrite rule (see figure \ref{fig:rewrite_3} of appendix \ref{app:post-processing_example}) of the post-processing stage
+
+failed to complete in 5 minutes.
+
+ except for one of the post-processing source code transformations. The \textit{``localid''} rewrite rule (see figure \ref{fig:rewrite_3} of appendix \ref{app:post-processing_example}) failed to complete in 5 minutes.
+
+After several iterations, a subgraph isomorphism search algorithm had been developed which
+
+%%% TODO: [/under construction]
+
+In summary, profiling is great for optimizing the implementations of simple problems. Algorithm research, runtime complexity theory and intuition is essential for implementing performant solutions for complex problems. Furthermore, knowledge about specific properties of the problem may be exploited to design performant algorithms.
 
 % --- [ Subsubsections ] -------------------------------------------------------
 
