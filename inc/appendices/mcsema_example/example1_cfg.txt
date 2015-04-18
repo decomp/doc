@@ -1,0 +1,270 @@
+internal_funcs {
+  blocks {
+    insts {
+      inst_bytes: "U"
+      inst_addr: 0
+      true_target: -1
+      false_target: -1
+      inst_len: 1
+      reloc_offset: 0
+    }
+    insts {
+      inst_bytes: "\211\345"
+      inst_addr: 1
+      true_target: -1
+      false_target: -1
+      inst_len: 2
+      reloc_offset: 0
+    }
+    insts {
+      inst_bytes: "\203\354\024"
+      inst_addr: 3
+      true_target: -1
+      false_target: -1
+      inst_len: 3
+      reloc_offset: 0
+    }
+    insts {
+      inst_bytes: "\213E\014"
+      inst_addr: 6
+      true_target: -1
+      false_target: -1
+      inst_len: 3
+      reloc_offset: 0
+    }
+    insts {
+      inst_bytes: "\213M\010"
+      inst_addr: 9
+      true_target: -1
+      false_target: -1
+      inst_len: 3
+      reloc_offset: 0
+    }
+    insts {
+      inst_bytes: "\307E\374\000\000\000\000"
+      inst_addr: 12
+      true_target: -1
+      false_target: -1
+      inst_len: 7
+      reloc_offset: 0
+    }
+    insts {
+      inst_bytes: "\211M\370"
+      inst_addr: 19
+      true_target: -1
+      false_target: -1
+      inst_len: 3
+      reloc_offset: 0
+    }
+    insts {
+      inst_bytes: "\211E\364"
+      inst_addr: 22
+      true_target: -1
+      false_target: -1
+      inst_len: 3
+      reloc_offset: 0
+    }
+    insts {
+      inst_bytes: "\307E\354\000\000\000\000"
+      inst_addr: 25
+      true_target: -1
+      false_target: -1
+      inst_len: 7
+      reloc_offset: 0
+    }
+    insts {
+      inst_bytes: "\307E\360\000\000\000\000"
+      inst_addr: 32
+      true_target: -1
+      false_target: -1
+      inst_len: 7
+      reloc_offset: 0
+    }
+    insts {
+      inst_bytes: "\201}\360\n\000\000\000"
+      inst_addr: 39
+      true_target: -1
+      false_target: -1
+      inst_len: 7
+      reloc_offset: 0
+    }
+    insts {
+      inst_bytes: "\017\215/\000\000\000"
+      inst_addr: 46
+      true_target: 99
+      false_target: 52
+      inst_len: 6
+      reloc_offset: 0
+    }
+    base_address: 0
+    block_follows: 99
+    block_follows: 52
+  }
+  blocks {
+    insts {
+      inst_bytes: "\201}\354d\000\000\000"
+      inst_addr: 52
+      true_target: -1
+      false_target: -1
+      inst_len: 7
+      reloc_offset: 0
+    }
+    insts {
+      inst_bytes: "\017\215\r\000\000\000"
+      inst_addr: 59
+      true_target: 78
+      false_target: 65
+      inst_len: 6
+      reloc_offset: 0
+    }
+    base_address: 52
+    block_follows: 78
+    block_follows: 65
+  }
+  blocks {
+    insts {
+      inst_bytes: "iE\360\003\000\000\000"
+      inst_addr: 65
+      true_target: -1
+      false_target: -1
+      inst_len: 7
+      reloc_offset: 0
+    }
+    insts {
+      inst_bytes: "\003E\354"
+      inst_addr: 72
+      true_target: -1
+      false_target: -1
+      inst_len: 3
+      reloc_offset: 0
+    }
+    insts {
+      inst_bytes: "\211E\354"
+      inst_addr: 75
+      true_target: -1
+      false_target: -1
+      inst_len: 3
+      reloc_offset: 0
+    }
+    insts {
+      inst_bytes: "\351\000\000\000\000"
+      inst_addr: 78
+      true_target: 83
+      false_target: -1
+      inst_len: 5
+      reloc_offset: 0
+    }
+    base_address: 65
+    block_follows: 83
+  }
+  blocks {
+    insts {
+      inst_bytes: "\213E\360"
+      inst_addr: 83
+      true_target: -1
+      false_target: -1
+      inst_len: 3
+      reloc_offset: 0
+    }
+    insts {
+      inst_bytes: "\005\001\000\000\000"
+      inst_addr: 86
+      true_target: -1
+      false_target: -1
+      inst_len: 5
+      reloc_offset: 0
+    }
+    insts {
+      inst_bytes: "\211E\360"
+      inst_addr: 91
+      true_target: -1
+      false_target: -1
+      inst_len: 3
+      reloc_offset: 0
+    }
+    insts {
+      inst_bytes: "\351\304\377\377\377"
+      inst_addr: 94
+      true_target: 39
+      false_target: -1
+      inst_len: 5
+      reloc_offset: 0
+    }
+    base_address: 83
+    block_follows: 39
+  }
+  blocks {
+    insts {
+      inst_bytes: "\201}\360\n\000\000\000"
+      inst_addr: 39
+      true_target: -1
+      false_target: -1
+      inst_len: 7
+      reloc_offset: 0
+    }
+    insts {
+      inst_bytes: "\017\215/\000\000\000"
+      inst_addr: 46
+      true_target: 99
+      false_target: 52
+      inst_len: 6
+      reloc_offset: 0
+    }
+    base_address: 39
+    block_follows: 99
+    block_follows: 52
+  }
+  blocks {
+    insts {
+      inst_bytes: "\213E\354"
+      inst_addr: 99
+      true_target: -1
+      false_target: -1
+      inst_len: 3
+      reloc_offset: 0
+    }
+    insts {
+      inst_bytes: "\203\304\024"
+      inst_addr: 102
+      true_target: -1
+      false_target: -1
+      inst_len: 3
+      reloc_offset: 0
+    }
+    insts {
+      inst_bytes: "]"
+      inst_addr: 105
+      true_target: -1
+      false_target: -1
+      inst_len: 1
+      reloc_offset: 0
+    }
+    insts {
+      inst_bytes: "\303"
+      inst_addr: 106
+      true_target: -1
+      false_target: -1
+      inst_len: 1
+      reloc_offset: 0
+    }
+    base_address: 99
+  }
+  blocks {
+    insts {
+      inst_bytes: "\351\000\000\000\000"
+      inst_addr: 78
+      true_target: 83
+      false_target: -1
+      inst_len: 5
+      reloc_offset: 0
+    }
+    base_address: 78
+    block_follows: 83
+  }
+  entry_address: 0
+}
+module_name: "example1"
+entries {
+  entry_name: "main"
+  entry_address: 0
+}

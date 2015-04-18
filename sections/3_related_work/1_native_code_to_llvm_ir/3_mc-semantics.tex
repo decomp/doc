@@ -4,7 +4,13 @@
 
 % TODO: Find the correct and succinct term for the "control flow recover" component.
 
-The system architecture of MC-Semantics defines two distinct components which separate concerns related to the disassembly stage (see section \ref{sec:lit_review_disassembly}) from the ones related to the intermediate code generation stage (see section \ref{sec:lit_review_intermediate_code_generation}). These components interact using well-defined input and output (e.g. Google Protocol Buffers), which has enabled two independent implementations of the control flow recover component, which deals with the disassembly stage. Furthermore, these two implementations are written in different programming languages (i.e. Python and C++), which validates the language-agnostic aspects of the design.
+MC-Semantic conceptually consists of two components which separate concerns related to the disassembly stage (see section \ref{sec:lit_review_disassembly}) from those of the intermediate code generation stage (see section \ref{sec:lit_review_intermediate_code_generation}). The control flow recovery component analyzes binary files and disassembles their machine instructions to produce CFGs
+
+communicate using well-defined input and output. Firstly, the control flow recovery component analyzes binary files, disassembles their native code, and produces a CFG
+
+parses binary files, disassembles native code  and disassembles   which separate concerns related to the disassembly stage (see section \ref{sec:lit_review_disassembly}) from the ones related to the intermediate code generation stage (see section \ref{sec:lit_review_intermediate_code_generation}).
+
+defines two distinct components which separate concerns related to the disassembly stage (see section \ref{sec:lit_review_disassembly}) from the ones related to the intermediate code generation stage (see section \ref{sec:lit_review_intermediate_code_generation}). These components interact using well-defined input and output (e.g. Google Protocol Buffers), which has enabled two independent implementations of the control flow recover component, which deals with the disassembly stage. Furthermore, these two implementations are written in different programming languages (i.e. Python and C++), which validates the language-agnostic aspects of the design.
 
 % TODO: Add illustration of the interaction between the components of the MC-Semantics project.
 
