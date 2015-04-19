@@ -9,13 +9,34 @@ As mentioned in section \ref{sec:ver_performance}, an early throwaway prototype 
 
 The second throwaway prototype was specifically designed to exploit known properties of CFG (e.g. connected graphs with a single entry node) to limit the search space. Focusing on connected graphs drastically simplified the general problem of subgraph isomorphism search, and enabled algorithms which traverse the graph from a given start node to identify subgraph isomorphisms. The second prototype has many issues (e.g. non-deterministic, unable to handle graph cycles), but provided valuable insight into how a subgraph isomorphism search algorithm may be designed when focusing on connected graphs.
 
-In contrast to its predecessor, the third prototype separated subgraph isomorphism candidate discovery from candidate validation logic. A subgraph isomorphism candidate is a potential subgraph isomorphism, which provides a mapping from subgraph node names to graph node names. Should the source and the destination nodes of each directed edge in the subgraph translate through the candidate node mapping to corresponding nodes in the graph, and should furthermore each node in the subgraph have the same number of directed edges as the nodes of the candidate (with a few caveats regarding entry and exit nodes), then the candidate is considered a valid isomorphism of the subgraph in the graph. The third prototype was still incomplete (mainly with regards to candidate discovery), but its separation of candidate discovery and candidate validation logic has been of huge influence to its succeeding prototypes.
+In contrast to its predecessor, the third prototype separated subgraph isomorphism candidate discovery from candidate validation logic. A subgraph isomorphism candidate is a potential isomorphism of a subgraph in a graph, which provides a mapping from subgraph node names to graph node names. Should the source and the destination nodes of each directed edge in the subgraph translate through the candidate node mapping to corresponding nodes (with a directed edge from the source to the destination node) in the graph, and should furthermore each node in the subgraph have the same number of directed edges as the nodes of the candidate (with a few caveats regarding entry and exit nodes), then the candidate is considered a valid isomorphism of the subgraph in the graph.
 
-Similar to the third prototype, the fourth throwaway prototype separated candidate discovery from candidate validation. In addition, it started treating candidate node mappings as equations which may be solved, or at least partially solved. Each node mapping (one-to-one) was extended into a node pair mapping (one-to-many), which recorded every
+As described in section \ref{sec:design_control_flow_analysis} and further evaluated in section \ref{sec:eval_control_flow_analysis_library_essential_requirements}, subgraphs have a single-entry/single-exit invariant to simplify control flow analysis. This allows identified subgraphs to be replaced with single nodes, which inherit the predecessors of the subgraph entry node and successors of the subgraph exit node. For this reason, the candidate validation logic disregards the directed edges from predecessors of subgraph entry nodes and the directed edges to successors of subgraph exit nodes, when validating subgraph isomorphism candidates; which should clarify the aforementioned caveats of the preceding paragraph.
 
- In addition, it extended the concept of candidate node mappings (one-to-one node mappings) into equations of node pair mappings (one-to-many node mappings), which may be either solved or partially solved.
+The third prototype was still incomplete (mainly with regards to candidate discovery) when discarded, but the separation of candidate discovery and candidate validation logic has had a large influence on its succeeding prototypes.
 
-it started treating candidate node mappings as equations which may be solved, or at least partially solved.
+Similar to the third prototype, the fourth throwaway prototype separated candidate discovery from candidate validation. In addition, it introduced the concept of treating candidate node mappings as equations which may be solved, or at least partially solved. The candidate node mappings were extended from one-to-one node mappings (one subgraph node name maps to exactly one graph node name) to node pair mappings, which represent one-to-many node mappings (one subgraph node name maps to zero or more graph node names). The candidate discovery logic was extended to record all potential candidate nodes for a given subgraph node, when traversing the graph in search of candidates. A simple equation solver was implemented which was capable of identifying unique node pair mappings and propagate this information to successively simplify equations until they are either solved or require other methods for solving; an example of which is presented in figure \ref{fig:unique_equation_solver}.
+
+\begin{figure}[htbp]
+	\centering
+	\begin{subfigure}[t]{0.30\textwidth}
+		\lstinputlisting[language=go, style=go, breaklines=false, numbers=none]{inc/7_impl/unique_equation_1.json}
+		\caption{Step 1.}
+	\end{subfigure}
+	\enskip
+	\begin{subfigure}[t]{0.23\textwidth}
+		\lstinputlisting[language=go, style=go, breaklines=false, numbers=none]{inc/7_impl/unique_equation_2.json}
+		\caption{Step 2.}
+	\end{subfigure}
+	\enskip
+	\begin{subfigure}[t]{0.17\textwidth}
+		\lstinputlisting[language=go, style=go, breaklines=false, numbers=none]{inc/7_impl/unique_equation_3.json}
+		\caption{Step 3.}
+	\end{subfigure}
+	\caption{In step 1, the unique node pair mapping between the subgraph node name \textit{C} and the graph node name \textit{Z} is identified, and the remaining node pair mappings are simplified by removing \textit{Z} from their candidate nodes. Similarly, in step 2, the unique node pair mapping between \textit{B} and \textit{Y} is identified; thus simplifying the equation. In step 3, the unique node pair mapping between \textit{A} and \textit{X} is identified, and the equation is thereby solved.}
+	\label{fig:unique_equation_solver}
+\end{figure}
+
 
 %
 %Take 3 (https://github.com/decomp/graphs/commit/95e65fefd0b6ab30dfa08aae1a2fa229249ee3e4) (https://github.com/decomp/graphs/commit/454417df3d83704dbad2b108be99dd8b06aea938):
