@@ -7,77 +7,47 @@ Implementing the subgraph isomorphism search algorithm was without doubt the mos
 
 As mentioned in section \ref{sec:ver_performance}, an early throwaway prototype provided a partial implementation of the subgraph isomorphism algorithm proposed by Ullman. The prototype was intended to provide insight into the subgraph isomorphism problem domain, and was eventually discarded.
 
-The second throwaway prototype was specifically designed to exploit known properties of CFG (e.g. connected graphs with a single entry node) to limit the search space. Focusing on connected graphs drastically simplified the general problem of subgraph isomorphism search, and enabled algorithms which traverse the graph from a given start node to identify subgraph isomorphisms. The second prototype has many issues (e.g. non-deterministic, unable to handle graph cycles), but provided valuable insight into how a subgraph isomorphism search algorithm may be designed when focusing on connected graphs.
+The second throwaway prototype was specifically designed to exploit known properties of CFG (e.g. connected graphs with a single entry node) to limit the search space. Focusing on connected graphs drastically simplified the general problem of subgraph isomorphism search, and enabled algorithms which traverse the graph from a given start node to identify subgraph isomorphisms. The second prototype had many issues (e.g. non-deterministic, unable to handle graph cycles), but provided valuable insight into how a subgraph isomorphism search algorithm may be designed when focusing on connected graphs.
 
-In contrast to its predecessor, the third prototype separated subgraph isomorphism candidate discovery from candidate validation logic. A subgraph isomorphism candidate is a potential isomorphism of a subgraph in a graph, which provides a mapping from subgraph node names to graph node names. Should the source and the destination nodes of each directed edge in the subgraph translate through the candidate node mapping to corresponding nodes (with a directed edge from the source to the destination node) in the graph, and should furthermore each node in the subgraph have the same number of directed edges as the nodes of the candidate (with a few caveats regarding entry and exit nodes), then the candidate is considered a valid isomorphism of the subgraph in the graph.
+In contrast to its predecessor, the third prototype separated subgraph isomorphism candidate discovery from candidate validation logic. A subgraph isomorphism candidate is a potential isomorphism of a subgraph in a graph, which provides a mapping from subgraph node names to graph node names. Should the source and the destination nodes of each directed edge in the subgraph translate through the candidate node mapping to corresponding nodes (with a directed edge from the source to the destination node) in the graph, and should furthermore each node in the subgraph have the same number of directed edges as the nodes of the candidate (with a few caveats regarding entry and exit nodes), then the candidate is considered a valid isomorphism of the subgraph in the graph. The third prototype was still incomplete (mainly with regards to candidate discovery) when discarded, but the separation of candidate discovery and candidate validation logic has had a large influence on its succeeding prototypes.
 
-As described in section \ref{sec:design_control_flow_analysis} and further evaluated in section \ref{sec:eval_control_flow_analysis_library_essential_requirements}, subgraphs have a single-entry/single-exit invariant to simplify control flow analysis. This allows identified subgraphs to be replaced with single nodes, which inherit the predecessors of the subgraph entry node and successors of the subgraph exit node. For this reason, the candidate validation logic disregards the directed edges from predecessors of subgraph entry nodes and the directed edges to successors of subgraph exit nodes, when validating subgraph isomorphism candidates; which should clarify the aforementioned caveats of the preceding paragraph.
+As described in section \ref{sec:design_control_flow_analysis} and further evaluated in section \ref{sec:eval_control_flow_analysis_library_essential_requirements}, the current implementation of the subgraph isomorphism search algorithm enforces a single-entry/single-exit invariant on the subgraphs to simplify control flow analysis. This allows identified subgraphs to be replaced with single nodes, which inherit the predecessors of the subgraph entry node and successors of the subgraph exit node. For this reason, the candidate validation logic disregards the directed edges from predecessors of subgraph entry nodes and the directed edges to successors of subgraph exit nodes, when validating subgraph isomorphism candidates; which should clarify the aforementioned caveats of the preceding paragraph.
 
-The third prototype was still incomplete (mainly with regards to candidate discovery) when discarded, but the separation of candidate discovery and candidate validation logic has had a large influence on its succeeding prototypes.
-
-Similar to the third prototype, the fourth throwaway prototype separated candidate discovery from candidate validation. In addition, it introduced the concept of treating candidate node mappings as equations which may be solved, or at least partially solved. The candidate node mappings were extended from one-to-one node mappings (one subgraph node name maps to exactly one graph node name) to node pair mappings, which represent one-to-many node mappings (one subgraph node name maps to zero or more graph node names). The candidate discovery logic was extended to record all potential candidate nodes for a given subgraph node, when traversing the graph in search of candidates. A simple equation solver was implemented which was capable of identifying unique node pair mappings and propagate this information to successively simplify equations until they are either solved or require other methods for solving; an example of which is presented in figure \ref{fig:unique_equation_solver}.
+Similar to the third prototype, the fourth throwaway prototype separated candidate discovery from candidate validation. In addition, it introduced the concept of treating candidate node mappings as equations which may be solved, or at least partially solved. The candidate node mappings were extended from one-to-one node mappings (one subgraph node name maps to exactly one graph node name) to node pair mappings, which represent one-to-many node mappings (one subgraph node name maps to zero or more graph node names). The candidate discovery logic was extended to record all potential candidate nodes for a given subgraph node, when traversing the graph in search of candidates. A simple equation solver was implemented which was capable of identifying unique node pair mappings and propagate this information to successively simplify equations until they are either solved or require other methods for solving; an example of which is presented in figure \ref{fig:equation_unique}. The equation solver would however fail to find a solution if two node pair mappings had the same candidate nodes, as illustrated in figure \ref{fig:equation_fail}
 
 \begin{figure}[htbp]
 	\centering
 	\begin{subfigure}[t]{0.30\textwidth}
-		\lstinputlisting[language=go, style=go, breaklines=false, numbers=none]{inc/7_impl/unique_equation_1.json}
+		\lstinputlisting[language=go, style=go, breaklines=false, numbers=none]{inc/7_impl/equation_unique_1.json}
 		\caption{Step 1.}
 	\end{subfigure}
 	\enskip
 	\begin{subfigure}[t]{0.23\textwidth}
-		\lstinputlisting[language=go, style=go, breaklines=false, numbers=none]{inc/7_impl/unique_equation_2.json}
+		\lstinputlisting[language=go, style=go, breaklines=false, numbers=none]{inc/7_impl/equation_unique_2.json}
 		\caption{Step 2.}
 	\end{subfigure}
 	\enskip
 	\begin{subfigure}[t]{0.17\textwidth}
-		\lstinputlisting[language=go, style=go, breaklines=false, numbers=none]{inc/7_impl/unique_equation_3.json}
+		\lstinputlisting[language=go, style=go, breaklines=false, numbers=none]{inc/7_impl/equation_unique_3.json}
 		\caption{Step 3.}
 	\end{subfigure}
-	\caption{In step 1, the unique node pair mapping between the subgraph node name \textit{C} and the graph node name \textit{Z} is identified, and the remaining node pair mappings are simplified by removing \textit{Z} from their candidate nodes. Similarly, in step 2, the unique node pair mapping between \textit{B} and \textit{Y} is identified; thus simplifying the equation. In step 3, the unique node pair mapping between \textit{A} and \textit{X} is identified, and the equation is thereby solved.}
-	\label{fig:unique_equation_solver}
+	\caption{In step 1, the unique node pair mapping between the subgraph node name \textit{C} and the graph node name \textit{Z} is identified, and the remaining node pair mappings are simplified by removing \textit{Z} from their candidate nodes. Similarly, in step 2, the unique node pair mapping between \textit{B} and \textit{Y} is identified; thus simplifying the equation further. Lastly, in step 3, the unique node pair mapping between \textit{A} and \textit{X} is identified, and the equation is thereby solved.}
+	\label{fig:equation_unique}
 \end{figure}
 
+\begin{figure}[htbp]
+	\centering
+	\begin{subfigure}[ht]{0.23\textwidth}
+		\lstinputlisting[language=go, style=go, breaklines=false, numbers=none]{inc/7_impl/equation_fail.json}
+	\end{subfigure}
+	\caption{An equation which the simple equation solver of the forth prototype would fail to solve, as it cannot be simplified by identifying unique node pair mappings.}
+	\label{fig:equation_fail}
+\end{figure}
 
-%
-%Take 3 (https://github.com/decomp/graphs/commit/95e65fefd0b6ab30dfa08aae1a2fa229249ee3e4) (https://github.com/decomp/graphs/commit/454417df3d83704dbad2b108be99dd8b06aea938):
-%	Learn from take 2, separating candidate discovery and candidate validation logic is the way to go. Start thinking of the node pair mapping as an equation which may be solved. Only capable of solving simple equations by locating unique node pair mappings and successivly simplifying the equation until it is either solved or unsolved.
-%
-%		"A": {"A", "B", "C"}
-%		"B": {"B", "C"}
-%		"C": {"C"}
-%
-%		First "C": "C" gives the new equation:
-%
-%		"A": {"A", "B"}
-%		"B": {"B"}
-%
-%		"B": "B" gives the new equation:
-%
-%		"A": {"A"}
-%
-%		"A": "A" solves the equation.
-%
-%	The algorithm would however fail to solve the following equation:
-%
-%		"A": {"A", "B"}
-%		"B": {"A", "B"}
-%
-%Take 4 (https://github.com/decomp/graphs/commit/c56cf8e563d2c0882f3c182cd50499eda3f3a61b) (https://github.com/decomp/graphs/commit/e45339b2a48a2416f80ff1a2df74cbe1c4816708) (https://github.com/decomp/graphs/commit/f2e9a232c2b3bd3caf605f5388745f6a1a2e5c35)
-%	Duplicate an equation and try different candidate mappings recursively to find a solution. Try to solve the various equations concurrently and relay the solution ("valid or not valid") through the use of channels.
-%
-%Take 5 (https://github.com/decomp/graphs/commit/b51a48682cdfb4d2816ee2afbe4167325b3fbd64) (https://github.com/decomp/graphs/commit/fad6516071997fa3b208240f1c2de8008a65ad51) (https://github.com/decomp/graphs/commit/b15e97172cb2c941341238122b4048537bb41e30) (https://github.com/decomp/graphs/commit/b67ce12e6f328be6174efc0a7881e056340a22e1) (https://github.com/decomp/graphs/commit/5261b8ae8db0ffc6dab8f81b09980e919307e7c4) (https://github.com/decomp/graphs/commit/8ebffc397dda60653ccdb81e761274c165b337ac)
-%	The approach feels right. Start testing and factoring working implementations into a "known good" file!
-%
-%Take 6 (https://github.com/decomp/graphs/commit/a820a006a70affaf786d0ac598dffa4f3fa05059) (https://github.com/decomp/graphs/commit/c7e58dafc22b29ec6bee8a1c3b7a97cd28b317e3)
-%	Reimplement equation solver. New version no longer concurrent. Greatly simplified. The new version passes the previous test cases!
-%
-%Final solution (https://github.com/decomp/graphs/pull/1)
-%	The final implementation of the subgraph isomorphism search algorithm was a cleaned and heavily tested version of take 6. It was developed in the "isobug" branch and merged once stable into the "master" branch. The pull request tracking this work is located at "Fix implementation of subgraph isomorphism search". (https://github.com/decomp/graphs/pull/1)
+The fifth throwaway prototype extended the capabilities of the simple equation solver by trying different candidate node mappings recursively until a valid subgraph isomorphism was found or known not to exist. These equations were solved concurrently using Go routines (independently executing functions, which are multiplexed onto system threads) which relayed the answers back using channels (typed and synchronized communication channels).
 
-foo
+At this stage, the algorithm design had started to feel mature and the focus shifted from implementing throwaway prototypes to building a solid foundation. Starting with the parts of the system that were best understood, one part or concept at the time were removed from the throwaway prototype and carefully reimplemented in a new library through a series of steps. Firstly, the API of the new library was taken into careful consideration, and a set of stub functions and core data structures were added and thoroughly documented. Secondly, test cases were written for each stub function of the library. Lastly, the stub functions were implemented one at the time and verified against the test cases.
 
-% # Set-backs and how they were dealt with...
-%
-% Isomorphism returns false as soon as it hits the end of any branch in the tree. It incorrectly assumes that all graphs have only one exit node. This is why iso handles list.dot correctly for the upper parts of the graph.
+While the new implementation passed most test cases, there were a few corner cases for which the library produced incorrect results. The concurrent nature of the library made it difficult to debug, and a decision was made to reimplement the equation solver without concurrency. This resulted in a cleaner implementation which was easy to debug and successfully passed all test cases.
 
-% * throw away prototyping -> find a solution that feels right -> try to find corner cases that doesn't work (for-loops) -> write test cases from the bottom up (testing independent behaviour and then testing functionality which depends on the now known to be correct functionality) -> factor code into known good until all code has been tested
+The final implementation of the subgraph isomorphism search algorithm is a cleaned up and thoroughly tested version of the non-concurrent library, which has a 94.8\% code coverage; as further described in section \ref{sec:ver_code_coverage}. The final implementation was developed in the \textit{``isobug''} branch on GitHub, and merged\footnote{Fix subgraph isomorphism search: \url{https://github.com/decomp/graphs/pull/1}} once stable with the \textit{``master''} branch.
