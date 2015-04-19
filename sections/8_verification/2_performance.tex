@@ -8,7 +8,7 @@ Components with straight forward implementations (e.g. the LLVM IR library) have
 
 There exist several subgraph isomorphism algorithms which scale better than the Ullman algorithm for graphs with a large number of nodes; such as the VF2 algorithm for dense graphs and McKay's nauty algorithm for sparse graphs \cite{iso_performance_comparison,subgraph_isomorphism_algorithms}. In the case of the c4 compiler, the CFGs are sparse with $ 1.35 $ edges per node in average, which would favour the nauty algorithm. The specific properties of CFGs (e.g. sparse connected graphs) guided the design of the subgraph isomorphism search algorithm, as further described in section \ref{sec:impl_subgraph_isomorphism_search_library}.
 
-To stress test the implementation of the decompilation components and to get an estimation of their time complexities, a set of C programs were automatically generated\footnote{Generate nested C programs: \url{https://gist.github.com/mewmew/677994ee8da60bee1de9}} with $ 2^{x} $ nested \texttt{if}-statements (where $ 7 \le x \le 12 $). These C programs were converted to LLVM IR and decompiled into Go using the same steps as described in appendix \ref{app:decompilation_of_nested_primitives}. The time complexity of each step may be estimated by monitoring how the execution time changes with regards to $ n $, where $ n $ represents the number of nodes in the CFG of the generated programs; as summarized in table \ref{tbl:run_time_summary}. The CFG of each generated program contains exactly twice as many nodes as nested \texttt{if}-statements, i.e. $ n = 2^{x+1} $.
+To stress test the implementation of the decompilation components and to get an estimate of their time complexities, a set of C programs were automatically generated\footnote{Generate nested C programs: \url{https://gist.github.com/mewmew/677994ee8da60bee1de9}} with $ 2^{x} $ nested \texttt{if}-statements (where $ 7 \le x \le 12 $). These C programs were converted to LLVM IR and decompiled into Go using the same steps as described in appendix \ref{app:clang_example}, \ref{app:control_flow_graph_generation_example}, \ref{app:restructure_example}, \ref{app:code_generation_example} and \ref{app:post-processing_example}. The time complexity of each step may be estimated by monitoring how the execution time changes with regards to $ n $, where $ n $ represents the number of nodes in the CFG of the generated programs; as summarized in table \ref{tbl:run_time_summary}. The CFG of each generated program contains exactly twice as many nodes as nested \texttt{if}-statements; i.e. $ n = 2^{x+1} $.
 
 % TODO: Fill in the remaining run times for each component.
 
@@ -34,8 +34,14 @@ To stress test the implementation of the decompilation components and to get an 
 			% 85m 58.35s (85m58.345s)
 			\rowcolor{light_green_3}
 			\texttt{restructure} & 0.97s & 4.37s & 21.37s & 2m 6.34s & 11m 0.56s & 85m 58.35s \\
+			%      2.85s ( 0m02.849s)
+			%     10.59s ( 0m10.587s)
+			%     40.95s ( 0m40.946s)
+			%  2m 41.42s ( 2m41.417s)
+			% 10m 46.56s (10m46.562s)
+			% foo
 			\rowcolor{light_green_3}
-			\texttt{ll2go} & 7 & 8 & 9 & 10 & 11 & 12 \\
+			\texttt{ll2go} & 2.85s & 10.59s & 40.95s & 2m 41.42s & 10m 46.56s & 12 \\
 			\hline
 			\multicolumn{7}{|l|}{\texttt{go-post}} \\
 			\hline
@@ -55,18 +61,19 @@ To stress test the implementation of the decompilation components and to get an 
 		\end{tabular}
 	\end{center}
 	\caption{The first column specifies the component being tested, and each consecutive column presents the execution time of the component (based on the average of three consecutive runs) in relation to $ n $, which represents the number of nodes in the CFG. Each row below the \texttt{go-post} component represents a specific post-processing rewrite rule (e.g. \textit{mainret}), as further described in appendix \ref{app:post-processing_example}. The steps which execute in polynomial time with regards to $ n $ have been highlighted in green, while the steps which execute in exponential time with regards to $ n $ have been highlighted in red.}
+	\label{tbl:run_time_summary}
 \end{table}
 
-Each step of the decompilation pipeline completed in resonable time (i.e. polynomial time with regards to $ n $) except for one, namely the \textit{``localid''} rewrite rule (see figure \ref{fig:rewrite_3} of appendix \ref{app:post-processing_example}) of the post-processing stage. As discussed in section \ref{sec:evaluation}, most of the post-processing rewrite rules are considered experimental and the \textit{``localid''} rewrite rule suffers from both inaccuracy and performance issues. The \textit{``localid''} rewrite rule optionally provides rudamentary expression propagation support until the middle-end is extended to include a proper data flow analysis component (see section \ref{sec:con_design_validation}).
+Each step of the decompilation pipeline completed in resonable time (i.e. polynomial time with regards to $ n $) except for one, namely the \textit{``localid''} rewrite rule (see figure \ref{fig:rewrite_3} of appendix \ref{app:post-processing_example}) of the post-processing stage. As discussed in section \ref{sec:evaluation}, most of the post-processing rewrite rules are considered experimental and the \textit{``localid''} rewrite rule suffers from both inaccuracy and performance issues. The \textit{``localid''} rewrite rule optionally provides rudamentary expression propagation support, and will be removed when proper data flow analysis has been implemented by the middle-end (see section \ref{sec:con_design_validation}).
 
-As the size of $ n $ doubles, the execution time of \texttt{ll2dot} roughly quadruples. The time complexity of \texttt{ll2dot} is therefore estimated to be $ \Omega(n^{2}) $. Please note that this may not hold true for larger values of $ n $, as a formal time complexity analysis of the algorithm is yet to be conducted. Similarly, as the size of $ n $ double, the execution time of \texttt{restructure} roughly octuples. The time complexity of \texttt{restructure} is therefore estimated to be $ \Omega(n^{3}) $. The same logic and caveats may be applied to the other components to estimate their time complexities; a summary of which is presented below.
+As the size of $ n $ doubles in table \ref{tbl:run_time_summary}, the execution time of \texttt{ll2dot} roughly quadruples. The time complexity of \texttt{ll2dot} is therefore estimated to be $ \Omega(n^{2}) $. Please note that this may not hold true for larger values of $ n $, as a formal time complexity analysis of the algorithm is yet to be conducted. Similarly, as the size of $ n $ double, the execution time of \texttt{restructure} roughly octuples. The time complexity of \texttt{restructure} is therefore estimated to be $ \Omega(n^{3}) $. The same logic and caveats may be applied to the other components to estimate their time complexities; a summary of which is presented below.
 
 % TODO: Add the time complexity estimates for the remaining components.
 
 \begin{itemize}
 	\item \texttt{ll2dot}: $ \Omega(n^{2}) $
 	\item \texttt{restructure}: $ \Omega(n^{3}) $
-	\item \texttt{ll2go}: foo
+	\item \texttt{ll2go}: $ \Omega(n^{2}) $
 	\item \texttt{go-post}
 	\begin{itemize}
 		\item \textit{unresolved}: foo
