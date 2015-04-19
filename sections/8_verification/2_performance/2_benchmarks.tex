@@ -3,12 +3,7 @@
 \subsubsection{Benchmarks}
 \label{sec:ver_benchmarks}
 
-percentage delta.
-
-The original version of the LLVM IR lexer used hash maps instead of arrays to look up the types of keywords. The implementation was intuitive and straight worwa
-
-
-foo \ref{fig:benchmark_delta}
+Benchmark tests were implemented to reliably measure any performance changes before trying to resolve performance issues. An updated version of the LLVM IR library used arrays instead of hash maps to identify keywords when scanning letters, which resolved the performance issue identified in section \ref{sec:ver_profiling}. The updated version of the LLVM IR lexer is roughly 3.6 times faster than the original version, as illustrated in figure \ref{fig:benchmark_delta}.
 
 \begin{figure}[htbp]
 	\begin{center}
@@ -19,7 +14,7 @@ $ benchcmp old.txt new.txt
 benchmark                old ns/op     new ns/op     delta
 BenchmarkParseString     737625        204010        -72.34%
 		\end{verbatim}
-		\caption{Benchmark run time delta between the original and the optimized version of the LLVM IR lexer, as visualized by \texttt{benchcmp}\protect\footnotemark.}
+		\caption{Benchmark run time delta between the original and the optimized version of the LLVM IR lexer, as visualized by \texttt{benchcmp}\protect\footnotemark. The optimized version is roughly 3.6 times faster than the original vesion of the lexer.}
 		\label{fig:benchmark_delta}
 	\end{center}
 \end{figure}
