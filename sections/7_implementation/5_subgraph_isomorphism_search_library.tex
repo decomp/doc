@@ -5,29 +5,18 @@
 
 Implementing the subgraph isomorphism search algorithm was without doubt the most difficult endeavour of the entire project. It took roughly five iterations of implementing, evaluating and rethinking the algorithm to find an approach which felt right and another two iterations to develop a working implementation which passed all the test cases.
 
-* throw away prototyping -> find a solution that feels right -> try to find corner cases that doesn't work (for-loops) -> write test cases from the bottom up (testing independent behaviour and then testing functionality which depends on the now known to be correct functionality) -> factor code into known good until all code has been tested
+As mentioned in section \ref{sec:ver_performance}, an early throwaway prototype provided a partial implementation of the subgraph isomorphism algorithm proposed by Ullman. The prototype was intended to provide insight into the subgraph isomorphism problem domain, and was eventually discarded.
 
-foo
+The second throwaway prototype was specifically designed to exploit known properties of CFG (e.g. connected graphs with a single entry node) to limit the search space. Focusing on connected graphs drastically simplified the general problem of subgraph isomorphism search, and enabled algorithms which traverse the graph from a given start node to identify subgraph isomorphisms. The second prototype has many issues (e.g. non-deterministic, unable to handle graph cycles), but provided valuable insight into how a subgraph isomorphism search algorithm may be designed when focusing on connected graphs.
 
-% # Set-backs and how they were dealt with...
-%
-% Isomorphism returns false as soon as it hits the end of any branch in the tree. It incorrectly assumes that all graphs have only one exit node. This is why iso handles list.dot correctly for the upper parts of the graph.
+In contrast to its predecessor, the third prototype separated subgraph isomorphism candidate discovery from candidate validation logic. A subgraph isomorphism candidate is a potential subgraph isomorphism, which provides a mapping from subgraph node names to graph node names. Should the source and the destination nodes of each directed edge in the subgraph translate through the candidate node mapping to corresponding nodes in the graph, and should furthermore each node in the subgraph have the same number of directed edges as the nodes of the candidate (with a few caveats regarding entry and exit nodes), then the candidate is considered a valid isomorphism of the subgraph in the graph. The third prototype was still incomplete (mainly with regards to candidate discovery), but its separation of candidate discovery and candidate validation logic has been of huge influence to its succeeding prototypes.
 
+Similar to the third prototype, the fourth throwaway prototype separated candidate discovery from candidate validation. In addition, it started treating candidate node mappings as equations which may be solved, or at least partially solved. Each node mapping (one-to-one) was extended into a node pair mapping (one-to-many), which recorded every
 
+ In addition, it extended the concept of candidate node mappings (one-to-one node mappings) into equations of node pair mappings (one-to-many node mappings), which may be either solved or partially solved.
 
-% ### iso algorithm implementation notes ###
+it started treating candidate node mappings as equations which may be solved, or at least partially solved.
 
-%Take 0: (not tracked by git) Very early throwaway prototype using Ullman's Subgraph Isomorphism algorithm.
-%
-%Take 1 (https://github.com/decomp/graphs/commit/73b4bc66f47459461c2fa3ab195468f625f9f164):
-%	Non-deterministic algorithm which sometimes failed to locate a subgraph isomorphism when executed repeatedly. Did not take graph cycles into account.
-%Take 1 [fix] (https://github.com/decomp/graphs/commit/c4a497990cbe42cd0bdb7ad189c02ea06d9a278f)
-%	Hack to fix problems with graph cycles.
-%Take 1 [debug] (https://github.com/decomp/graphs/commit/9f990942a5cb9f0d9c884fcd345b6dab76f557e9) (https://github.com/decomp/graphs/commit/7c08eccb89963e860ff5c2e692912ef1fad02d48)
-%	Make deterministic. Always succeed or always fail.
-%
-%Take 2 (https://github.com/decomp/graphs/commit/878e483bbedd3df2f03a202891d050a700dc3902) (https://github.com/decomp/graphs/commit/3b643012c550429fc266268b2a061d6ea124ad1e)
-%	Rethink implementation: separate candidate discovery and candidate validation logic. Still incomplete algorithm that fails to locate some valid subgraph isomorphisms.
 %
 %Take 3 (https://github.com/decomp/graphs/commit/95e65fefd0b6ab30dfa08aae1a2fa229249ee3e4) (https://github.com/decomp/graphs/commit/454417df3d83704dbad2b108be99dd8b06aea938):
 %	Learn from take 2, separating candidate discovery and candidate validation logic is the way to go. Start thinking of the node pair mapping as an equation which may be solved. Only capable of solving simple equations by locating unique node pair mappings and successivly simplifying the equation until it is either solved or unsolved.
@@ -63,3 +52,11 @@ foo
 %
 %Final solution (https://github.com/decomp/graphs/pull/1)
 %	The final implementation of the subgraph isomorphism search algorithm was a cleaned and heavily tested version of take 6. It was developed in the "isobug" branch and merged once stable into the "master" branch. The pull request tracking this work is located at "Fix implementation of subgraph isomorphism search". (https://github.com/decomp/graphs/pull/1)
+
+foo
+
+% # Set-backs and how they were dealt with...
+%
+% Isomorphism returns false as soon as it hits the end of any branch in the tree. It incorrectly assumes that all graphs have only one exit node. This is why iso handles list.dot correctly for the upper parts of the graph.
+
+% * throw away prototyping -> find a solution that feels right -> try to find corner cases that doesn't work (for-loops) -> write test cases from the bottom up (testing independent behaviour and then testing functionality which depends on the now known to be correct functionality) -> factor code into known good until all code has been tested
