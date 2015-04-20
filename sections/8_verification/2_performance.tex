@@ -28,7 +28,7 @@ To stress test the implementation of the decompilation components and to get an 
 			%
 			% As the size of n doubles, the execution time roughly quadruples (4).
 			\rowcolor{light_green_3}
-			\texttt{ll2dot} & 1.14s & 4.01s & 15.27s & 1m 0.25s & 3m 55.84s & 15m 43.88s \\
+			\texttt{ll2dot} & 1.14s & 4.01s & 15.27s & 1m 0s & 3m 56s & 15m 44s \\
 			% * restructure
 			%
 			%     n= 256:      0.97s ( 0m00.974s)
@@ -40,7 +40,7 @@ To stress test the implementation of the decompilation components and to get an 
 			%
 			% As the size of n doubles, the execution time roughly octuples (8).
 			\rowcolor{light_green_3}
-			\texttt{restructure} & 0.97s & 4.37s & 21.37s & 2m 6.34s & 11m 0.56s & 85m 58.35s \\
+			\texttt{restructure} & 0.97s & 4.37s & 21.37s & 2m 6s & 11m 1s & 85m 58s \\
 			% * ll2go
 			%
 			%     n= 256:      2.85s ( 0m02.849s)
@@ -52,7 +52,7 @@ To stress test the implementation of the decompilation components and to get an 
 			%
 			% As the size of n doubles, the execution time roughly quadruples (4).
 			\rowcolor{light_green_3}
-			\texttt{ll2go} & 2.85s & 10.59s & 40.95s & 2m 41.42s & 10m 46.56s & 45m 13.16s \\
+			\texttt{ll2go} & 2.85s & 10.59s & 40.95s & 2m 41s & 10m 47s & 45m 13s \\
 			\hline
 			\multicolumn{7}{|l|}{\texttt{go-post}} \\
 			\hline
@@ -91,7 +91,7 @@ To stress test the implementation of the decompilation components and to get an 
 			%
 			% The execution time is exponential with regards to n.
 			\rowcolor{light_red_3}
-			\textit{localid} & 3m 45.67s & 57m 34.53s & - & - & - & - \\
+			\textit{localid} & 3m 46s & 57m 35s & - & - & - & - \\
 			% * assignbinop
 			%
 			%     n= 256: 0.02s (0m0.015s, 0m0.013s, 0m0.014s)
