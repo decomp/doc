@@ -8,7 +8,7 @@ Report
     Requirements (2014-12-11 - 2015-01-03)
     Design (2015-03-03 - XXXX-XX-XX)
     Implementation (2015-03-04 - XXXX-XX-XX)
-    Verification (2015-03-05 - XXXX-XX-XX)
+    Verification (2015-03-05 - 2015-04-20)
     Evaluation (2015-04-15 - 2015-04-16)
     Conclusion (2015-03-05 - 2015-04-08)
 Artifact
