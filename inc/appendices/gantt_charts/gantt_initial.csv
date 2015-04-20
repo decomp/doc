@@ -1,0 +1,22 @@
+i,Name/Title,"Start Date","End Date","Estimated Hours","Percent Complete",Resources,Predecessors,Notes,URL,Comments,"Task Color"
+1,"Compositional Decompilation (duplicate)",2014-09-22,2015-04-23,0,,,,,,,
+1.1,Meta,2014-09-22,2014-11-18,0,0,,,,,,
+1.1.1,"Literature review",2014-09-22,2014-11-18,0,0,,,,,,yellow1
+1.1.2,"Project Initiation Document",2014-10-01,2014-10-16,0,0,,,,,,yellow1
+1.2,Report,2014-10-16,2015-04-23,0,0,,,,,,
+1.2.1,Introduction,2014-12-08,2015-03-19,0,0,,,,,,green1
+1.2.2,"Literature Review",2014-10-16,2014-11-27,0,0,,,,,,green1
+1.2.3,"Related Work",2014-10-30,2014-11-17,0,0,,,,,,green1
+1.2.4,Methodology,2015-02-28,2015-03-05,0,0,,,,,,green1
+1.2.5,Requirements,2014-11-27,2014-11-30,0,0,,,,,,green1
+1.2.6,Design,2014-12-01,2014-12-08,0,0,,,,,,green1
+1.2.7,Implementation,2015-01-22,2015-02-19,0,0,,,,,,green1
+1.2.8,Verification,2015-02-23,2015-02-28,0,0,,,,,,green1
+1.2.9,Evaluation,2015-02-23,2015-02-28,0,0,,,,,,green1
+1.2.10,Conclusion,2015-03-05,2015-04-23,0,0,,,,,,green1
+1.3,Artefact,2014-10-01,2015-02-19,0,0,,,,,,
+1.3.1,"LLVM IR library",2014-10-01,2014-12-12,0,0,,,,,,purple1
+1.3.2,"Control flow graph generation tool",2015-01-08,2015-01-22,0,0,,,,,,purple1
+1.3.3,"Control flow analysis tool",2015-01-08,2015-01-22,0,0,,,,,,purple1
+1.3.4,"Code generation tool",2015-02-05,2015-02-19,0,0,,,,,,purple1
+1.3.5,"Post-processing tool",2015-02-05,2015-02-19,0,0,,,,,,purple1

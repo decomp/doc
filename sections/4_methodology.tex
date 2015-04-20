@@ -7,30 +7,18 @@
 \section{Methodology}
 \label{sec:methodology}
 
-% TODO: <note> remove?
-% "An evolutionary approach to development of the software artifact has been applied. New ideas have been tested out and explored further if early results are productive."
+% TODO: include cite about the use of CI and TDD by other open source projects.
+
+No single methodology was used for this project, but rather a combination of software development techniques (such as test-driven development and continuous integration) which have been proven to work well in practice for other open source projects. This project has been developed in the open from day one, using public source code repositories and issue tracking. To encourage open source adaptation, the software artefacts and the project report have been released into the public domain, and are made available on GitHub; as further described in section \ref{sec:intro_deliverables}. Throughout the course of the project a public discussion has been held with other members of the open source community to clarify the requirements and validate the design of the LLVM IR library, and to investigate inconsistent behaviours in the LLVM reference implementation; as described in section \ref{sec:impl_llvm_ir_library}.
+
+% TODO: Verify link to semver.org
+
+The API stability of each component have been governed using semantic versioning (e.g. \textit{vMAJOR.MINOR.PATCH})\footnote{Semantic Versioning: \url{https://semver.org/}}. Prior to version 1.0 the components have been developed using throwaway prototyping (see section \ref{sec:method_throwaway_prototyping}), which facilitated rapid iteration cycles
 
 % TODO: <note> remove?
-% * Throwaway Prototyping.
-% * Test driven design: Design the API first; write test cases; and
-%   implement.
-% * Revision control (GIT); Semantical Versioning.
-% * CI (Continious Integration)
-%    - Coverage
-%    - Test cases
-%    - Benchmarks
-% * Profiling
+% "An evolutionary approach to development of the software artefact has been applied. New ideas have been tested out and explored further if early results are productive."
 
-
-\textbf{QUESTION}: \textit{Should the methodology be written using future, current or past tense?}
-
-% TODO: <ask> Should the methodology be written using future, current or past tense?
-
-% TODO: Rewrite to make this section feel right. It is currently too succinct. Elaborate on some topics, and potentially split into multiple sections.
-
-\textbf{NOTE}: \textit{The following paragraph has been moved here from the PID and will therefore feel out of place. The intention is to reformulate it.}
-
-No single methodology will be used for this project, but rather a combination of techniques which have been proven to work well in practice. Continuous Integration will be used throughout the development process to monitor the build status, test cases, and code coverage of each component. The API stability of each component will be governed using Semantic Versioning (vMAJOR.MINOR.PATCH). Prior to version 1.0 the components will be written using either throw-away prototyping or iterative development and the API may change drastically. The implementation correctness will be verified using test-driven development where feasible, with test cases written prior to the actual implementation of the API.
+% The API stability of each component will be governed using Semantic Versioning (vMAJOR.MINOR.PATCH). Prior to version 1.0 the components will be written using either throw-away prototyping or iterative development and the API may change drastically.
 
 % TODO: Explain why this specific methodology was chosen, and justify the methods. The justification may be required to be quite detailed, with in-text references.
 
@@ -47,14 +35,10 @@ No single methodology will be used for this project, but rather a combination of
 % TODO: Add
 %    - All work was made available on GitHub from day one and the source code was released into the public domain to encourage open source adaptation and interaction.
 
-foo
-
 % ###### Revision Control System
 
 % TODO: Add
 % - Don not be afraid to throw away code and trying new ideas, that is what revision control systems are for!
-
-foo
 
 % TODO: Add:
 % * feature branches
@@ -75,8 +59,6 @@ foo
 % TODO: <note> remove?
 % * Make a rough project plan; before 26 sep.
 %    - Make use of GitHub issues and milestones with deadlines to track development.
-
-foo
 
 % === [ Subsections ] ==========================================================
 
