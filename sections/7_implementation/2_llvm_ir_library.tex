@@ -91,7 +91,7 @@ One of everything approach. Skip named types for now. Allow heavy computation in
 
 
 % ### set backs and solutions ###
-After months of working with implementing LLVM IR support for Go, it started to dawn on me that the task was way more time consuming than anticipated. Break-through idea at 9.45 in the morning on the 8th of Feb having just arrived back in Portsmouth after a few weeks in Brussels and FOSDEM. All the structual analysis algorithms should operate on DOT-graphs. This would make it truly language agnostic! Future work would complete the LLVM IR support and make translate the control flow graph into a DOT-graph, using basic block names as node names and specifying branches as edges and conditional branches as labeled edges.
+After months of working with implementing LLVM IR support for Go, it started to dawn on me that the task was way more time consuming than anticipated. Break-through idea at 9.45 in the morning on the 8th of Feb having just arrived back in Portsmouth after a few weeks in Brussels and FOSDEM. All the structual analysis algorithms should operate on DOT-graphs. This would make it truly language agnostic! Future work would complete the LLVM IR support and make translate the CFG into a DOT-graph, using basic block names as node names and specifying branches as edges and conditional branches as labeled edges.
 
 As is often the case, the constraints forced new ways of thinking, which gave rise to a radically different design. ref TED talk.
 
