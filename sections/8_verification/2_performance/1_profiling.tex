@@ -7,7 +7,7 @@ The initial implementation of the LLVM IR lexer (see section \ref{sec:impl_llvm_
 
 \begin{figure}[htbp]
 	\begin{center}
-		\includegraphics[width=0.8\textwidth]{inc/8_ver/lexer_pprof.png}
+		\includegraphics[width=\textwidth]{inc/8_ver/lexer_pprof.png}
 		\caption{A major performance bottleneck was located when profiling the LLVM IR lexer for the first time. Roughly 70\% of the total execution time was spent doing hash map iterations (i.e. \texttt{runtime.mapiternext}).}
 		\label{fig:lexer_pprof}
 	\end{center}
