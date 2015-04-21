@@ -2,49 +2,11 @@
 
 \subsection{Operational Prototyping}
 
-% TODO: reformulate!
-% Construct quick-and-dirty throwaway prototypes on top of the quality baseline software.
+The software artefacts were implemented using two distinct stages. The aim of the first stage was to get a better understanding of the problem domain, to identify suitable data structures, and to arrive at a solid approach for solving the problem. To achieve these objectives, a set of throwaway prototypes (see section \ref{sec:method_throwaway_prototyping}) were iteratively implemented, discarded and redesigned until the requirements of the artefact were well understood and a mature design had emerged. The aim of the second stage was to develop a production quality software artefact based on the insights gained from the first stage. To achieve this objective, evolutionary prototyping (see section \ref{sec:method_evolutionary_prototyping}) was used to develop a solid foundation for the software artefact and incrementally extend its capabilities by implementing one feature at the time, starting with the features that were best understood.
 
-% After new insight has been gained the developer throws away the prototype and incorporates the new features into the evolutionary prototype using conventional development practices; thus creating a new quality baseline.
+This approach is very similar to the operational prototyping methodology, which was proposed by A. Davis in 1992. One important concept in operational prototyping is the notion of a quality baseline, which is implemented using evolutionary prototyping and represents a solid foundation for the software artefact. Throwaway prototypes are implemented on top of the quality baseline for poorly understood parts of the system, to gain further insight into their requirements. The throwaway prototypes are discarded once their part of the system is well-understood, at which point the well-understood parts are carefully reimplemented and incorporated into the evolutionary prototype to establish a new quality baseline \cite{operational_prototyping}. In summary, throwaway prototyping is used to \textit{identify} good solutions to problems, while evolutionary prototyping is used to \textit{implement} identified solutions.
 
-% Benefits, it is easy to track the reason for a change to the baseline; and see how the throwaway prototypes gave insight into the problem domain and influences the underlying decisions taken when developing the quality baseline.
-
-% Fighting the urge to keep throwaway prototypes!
-
-
-
-% TODO: Use throwaway prototyping when a good solution is not known in advance.
-
-% Prototypes are partial implementations of systems and they are built to learn more about a specific problem domain or a solution to a problem in this domain.
-
-% Prototypes are partial implementations of systems which may be implemented quickly to gain insight into the feasibility of an envisioned design,
-
-% Prototypes are partial implementations of systems which are developed rapidly to gain insight into a problem domain and stress test the feasibility of an envisioned design or solution.
-
-% TODO: Add; Prototyping is valuable as developers quickly gain insight into the feasibility of an envisioned design, get a more realistic sense of the required time to implement full functionality and may then re-allocate time and rethink the design early to achive a functional software artefact before the deadline.
-
-% Proof of concept.
-
-% Refine the design.
-
-% Showcase development (software demonstrations).
-
-% pro: Reduced time and cost.
-% con: Insufficient analysis: Risk of loosing track of the larger picture.
-% con: Developer attachment: The efforts of producing a prototype may endear them developers. Risk of attempting to convert a prototype into a final system, even if it had a poor underlying architecture. Solution: revision control system. Throw it away, start over and if the new solution ends up worse, simply revert to the working prototype.
-
-% It has been suggested that prototyping is ill-fitted for systems with little user interaction and heavy computational tasks; which is the nature of the artefact of this project. The difference between throwaway and evolutionary prototyping are however substantial, and for each component of the system the author has carefully considered which strategy would be most beneficial to employ.
-%ref: John Crinnion: Evolutionary Systems Development, a practical guide to the use of prototyping within a structured systems methodology. Plenum Press, New York, 1991. Page 18.
-
-foo
-
-% Operational Prototyping
-
-% Alan Davis proposed the methodology.
-
-% "It offers the best of both the quick-and-dirty and conventional-development worlds in a sensible manner. Designers develop only well-understood features in building the evolutionary baseline, while using throwaway prototyping to experiment with the poorly understood features." \cite{operational_prototyping}
-
-Develop iteratively when the solution is known, and use throw away prototyping when the solution is unknown.
+A major benefit with this approach is that it makes it easy to track the evolution of the design, by referring back to the throwaway prototypes which gave new insight into the problem domain; as demonstrated when tracking the evolution of the subgraph isomorphism search algorithm in section \ref{sec:impl_subgraph_isomorphism_search_library}. A concrete risk with operational prototyping is that throwaway prototypes may end up in production systems, if not discarded as intended. As mentioned in section \ref{sec:method_throwaway_prototyping}, the throwaway prototypes enable rapid iteration cycles by ignoring several areas of quality software (e.g. maintainability, efficiency and usability) and should therefore never end up in production systems. The use of revision control systems could help mitigate this risk, as they tracks old versions of the source code which may lower the psychological threshold for removing code (e.g. the code is not permanently removed, and may later be recovered if needed).
 
 % --- [ Subsubsections ] -------------------------------------------------------
 

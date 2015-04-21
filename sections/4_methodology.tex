@@ -7,13 +7,9 @@
 \section{Methodology}
 \label{sec:methodology}
 
-% TODO: include cite about the use of CI and TDD by other open source projects.
+No single methodology was used for this project, but rather a combination of software development techniques (such as test-driven development and continuous integration) which have been shown to work well in practice for other open source projects. This project has been developed in the open from day one, using public source code repositories and issue trackers. To encourage open source adaptation, the software artefacts and the project report have been released into the public domain, and are made available on GitHub; as further described in section \ref{sec:intro_deliverables}. Throughout the course of the project a public discussion has been held with other members of the open source community to clarify the requirements and validate the design of the LLVM IR library, and to investigate inconsistent behaviours in the LLVM reference implementation; as described in section \ref{sec:impl_llvm_ir_library}.
 
-No single methodology was used for this project, but rather a combination of software development techniques (such as test-driven development and continuous integration) which have been proven to work well in practice for other open source projects. This project has been developed in the open from day one, using public source code repositories and issue tracking. To encourage open source adaptation, the software artefacts and the project report have been released into the public domain, and are made available on GitHub; as further described in section \ref{sec:intro_deliverables}. Throughout the course of the project a public discussion has been held with other members of the open source community to clarify the requirements and validate the design of the LLVM IR library, and to investigate inconsistent behaviours in the LLVM reference implementation; as described in section \ref{sec:impl_llvm_ir_library}.
-
-% TODO: Verify link to semver.org
-
-The API stability of each component have been governed using semantic versioning (e.g. \textit{vMAJOR.MINOR.PATCH})\footnote{Semantic Versioning: \url{https://semver.org/}}. Prior to version 1.0 the components have been developed using throwaway prototyping (see section \ref{sec:method_throwaway_prototyping}), which facilitated rapid iteration cycles
+The API stability of each component have been governed using semantic versioning (e.g. \texttt{vMAJOR.MINOR.PATCH})\footnote{Semantic Versioning: \url{http://semver.org/}}. Prior to version 1.0 the components have been developed using throwaway prototyping (see section \ref{sec:method_throwaway_prototyping}), which facilitated rapid iteration cycles. %When the major design decisions stabilize
 
 % TODO: <note> remove?
 % "An evolutionary approach to development of the software artefact has been applied. New ideas have been tested out and explored further if early results are productive."
