@@ -3,6 +3,8 @@
 \subsubsection{Disassembly}
 \label{sec:lit_review_disassembly}
 
+% TODO: Add citations?
+
 The disassembly phase (referred to as the \textit{syntactic analysis phase} by C. Cifuentes) is responsible for decoding the raw machine instructions of the executable segments into assembly. The computer architecture dictates how the assembly instructions and their associated operands are encoded. Generally CISC architectures (e.g. x86) use variable length instruction encoding (e.g. instructions occupy between 1 and 15 bytes in x86) and allow memory addressing modes for most instructions (e.g. arithmetic instructions may refer to memory locations in x86) \cite{x86_manual}. In contract, RISC architectures (e.g. ARM) generally use fixed-length instruction encoding (e.g. instructions always occupy 4 bytes in AArch64) and only allow memory access through load-store instructions (e.g. arithmetic instructions may only refer to registers or immediate values in ARM) \cite{arm_manual}.
 
 One of the main problems of the disassembly phase is how to separate code from data. In the Von Neumann architecture the same memory unit may contain both code and data. Furthermore, the data stored in a given memory location may be interpreted as code by one part of the program, and as data by another part. In contrast, the Harvard architecture uses separate memory units for code and data \cite{von_neumann_vs_harvard}. Since the use of the Von Neumann architecture is wide spread, solving this problem is fundamental for successful disassemblers.
@@ -27,11 +29,7 @@ Recursive descent disassemblers track the flow of execution and decode instructi
 \end{figure}
 \footnotetext{The Netwide Disassembler: \url{http://www.nasm.us/doc/nasmdoca.html}}
 
-%One problem faced by both linear descent and recursive descent disassemblers is the need for a starting point. Identifying exported entry point symbols (e.g. \texttt{main}, \texttt{start}, \texttt{DllMain}, …) for this purpose works well in practice.
-
-%Another problem for recursive descent disassemblers is indirect branches (e.g. branch to the address stored in a register). In the case of indirect branches, it is impossible to know the branch target only by looking at the individual instructions. One solution is to use symbolic execution, which emulates the processor and executes instructions to give information about the value stored in registers. With this method the target of indirect jumps may be calculated.
-
-% PROBLEM: security, performance, ...?
+A limitation with recursive descent disassemblers is that they cannot track indirect branches (e.g. branch to the address stored in a register) without additional information, as it is impossible to know the branch target of indirect branching instructions only by inspecting individual instructions (e.g. \texttt{jmp eax} gives no information about the value of \texttt{eax}). One solution to this problem is to utilize symbolic execution engines, which emulate the CPU and execute the instructions along each path to give information about the values stored in registers and memory locations. Using this approach, the target of indirect branching instructions may be derived from the symbolic execution engine by inspecting the values of registers and memory locations at the invocation site. Symbolic execution engines are no silver bullets, and introduce a new range of problems; such as cycle accurate modelling of the CPU, idiosyncrasies related to memory caches and instruction pipelining, and potentially performance and security issues.
 
 %There exists several anti-disassembly techniques which are commonly used by malware. One such technique exploits the fact that recursive descent parsers follow both the true and the false branch of conditional branch instructions, as demonstrated in figure \ref{fig:anti-disassembly}. The recursive descent parser cannot parse both the \textit{true} and the \textit{false}-branch of the conditional branch instruction at line 3, because the \textit{true}-branch targets the middle of a \texttt{jmp} instruction.
 
