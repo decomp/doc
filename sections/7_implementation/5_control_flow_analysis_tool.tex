@@ -11,16 +11,14 @@
 %
 % * Further details of the crash in iso_crash_fix/
 
-The \texttt{restructure} tool provides an implementation of the control flow analysis component described in section \ref{sec:design_control_flow_analysis}. It structures CFGs by utilizing the subgraph isomorphism search library (see section \ref{sec:impl_subgraph_isomorphism_search_library}) to identify high-level control flow primitives in a similar fashion as demonstrated in appendix \ref{app:control_flow_analysis_example}. One problem with the demonstrated approach is that it may fail to reduce CFGs if smaller subgraphs are replaced before larger subgraphs. This is because subgraph isomorphisms of the smaller subgraphs may exist in the larger subgraphs, as is the case with .
+%The \texttt{restructure} tool provides an implementation of the control flow analysis component described in section \ref{sec:design_control_flow_analysis}. It structures CFGs by utilizing the subgraph isomorphism search library (see section \ref{sec:impl_subgraph_isomorphism_search_library}) to identify high-level control flow primitives in a similar fashion as demonstrated in appendix \ref{app:control_flow_analysis_example}. One problem with the demonstrated approach is that it may fail to reduce CFGs if smaller subgraphs are replaced before larger subgraphs. This is because subgraph isomorphisms of the smaller subgraphs may exist in the larger subgraphs, as is the case with .
 
-it may fail to recover complex high-level primitives if simple
+%it may fail to recover complex high-level primitives if simple
 
+% The main difference is that the \texttt{restructure} tool uses an \textit{ordered} sequence of subgraphs, which is iterated in order to identify and reduce one subgraph at the time. If no subgraphs are found, the graph is considered irreducible with regards to the supported high-level control flow primitives, which are described in figure \ref{fig:graph_representations} of section \ref{sec:lit_review_control_flow_analysis}. Otherwise, the first located subgraph is replaced with a single node, and the process is repeated until the entire CFG has been reduced into a single node, or the graph has been considered irreducible. This approach was inspired by Markov algorithms, which uses an ordered sequence of production rules to translate an input into an output string.
 
- The main difference is that the \texttt{restructure} tool uses an \textit{ordered} sequence of subgraphs, which is iterated in order to identify and reduce one subgraph at the time. If no subgraphs are found, the graph is considered irreducible with regards to the supported high-level control flow primitives, which are described in figure \ref{fig:graph_representations} of section \ref{sec:lit_review_control_flow_analysis}. Otherwise, the first located subgraph is replaced with a single node, and the process is repeated until the entire CFG has been reduced into a single node, or the graph has been considered irreducible. This approach was inspired by Markov algorithms, which uses an ordered sequence of production rules to translate an input into an output string.
+%This approach effectively solves the problem
 
-This approach effectively solves the problem
-
-
-control flow analysis tool produces structured CFGs (in JSON format) from unstructured CFGs (in the DOT file format),
+%control flow analysis tool produces structured CFGs (in JSON format) from unstructured CFGs (in the DOT file format),
 
 foo appendix \ref{app:restructure_example}

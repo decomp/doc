@@ -22,7 +22,7 @@ A solution to the problem of separating code from data is to use recursive desce
 	\qquad
 	\begin{subfigure}[t]{0.35\textwidth}
 		\lstinputlisting[language=nasm, style=nasm, tabsize=2]{inc/2_lit_review/hello/hello_recursive.asm}
-		\caption{Disassembly from IDA Pro.}
+		\caption{Disassembly from IDA.}
 	\end{subfigure}
 	\caption{The disassembly produced by a linear descent parser (left) and a recursive descent parser (right) when analyzing a simple \textit{``hello world''} program that stores the \texttt{hello} string in the executable segment.}
 \end{figure}
@@ -70,7 +70,7 @@ The recursive descent parser fails by using a conditional branch instruction (\t
 	\qquad
 	\begin{subfigure}[t]{0.34\textwidth}
 		\lstinputlisting[language=nasm, style=nasm, tabsize=2]{inc/2_lit_review/hello/anti_fail.asm}
-		\caption{Disassembly from IDA Pro.}
+		\caption{Disassembly from IDA.}
 	\end{subfigure}
 	\caption{The original assembly (left) contains an anti-disassembly trick which causes the recursive descent parser to fail (right).}
 	\label{fig:anti-disassembly}
@@ -78,7 +78,7 @@ The recursive descent parser fails by using a conditional branch instruction (\t
 
 The anti-disassembly technique presented in figure \ref{fig:anti-disassembly} may be mitigated using symbolic execution, which could verify that the conditional jump always takes the true branch and therefore allow the instruction to be replaced with an unconditional jump to the target of the true branch. This quickly becomes a game of cat-and-mouse, as the anti-disassembly techniques could be extended to rely on network activity, file contents, or other external sources which would render the symbolic exeuction useless.
 
-To conclude, the disassembly phase deals with non-trivial problems, some of which are difficult to automate. Advanced disassemblers (such as IDA Pro) therefore provide interactive capabilities and rely on human intuition to solve ambiguities and direct the disassembler out of corner cases.
+To conclude, the disassembly phase deals with non-trivial problems, some of which are difficult to automate. Advanced disassemblers (such as IDA) therefore provide interactive capabilities and rely on human intuition to solve ambiguities and direct the disassembler out of corner cases.
 
 % TODO: Introduce the various approaches and highlight their individual
 % strengths and weaknesses.

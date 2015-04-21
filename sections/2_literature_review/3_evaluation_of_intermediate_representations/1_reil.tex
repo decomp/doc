@@ -1,6 +1,7 @@
 % ~~~ [ REIL ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 \subsubsection{REIL}
+\label{sec:lit_review_reil}
 
 The Reverse Engineering Intermediate Language (REIL) is a very simple and platform independent assembly language. The REIL instruction set contains only 17 different instructions, each with exactly three (possibly empty) operands. The first two operands are always used for input and the third for output (except for the conditional jump instruction which uses the third operand as the jump target). Furthermore, each instruction has at most one effect on the global state and never any side-effects (such as setting flags) \cite{reil_paper,reil_spec}. Thanks to the simplicity of REIL a full definition of its instruction set has been provided in appendix \ref{app:reil_instructions}, which includes examples of each instruction and defines their syntax and semantics (in pseudo C-code).
 
