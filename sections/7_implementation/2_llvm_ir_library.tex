@@ -3,35 +3,13 @@
 \subsection{LLVM IR Library}
 \label{sec:impl_llvm_ir_library}
 
-Early on in the project it was believed that the control flow analysis stage would operate on CFGs that were tightly coupled with an in-memory representation of LLVM IR. This motivated the search for a LLVM IR library with a carefully considered API and set of data structures (objective \ref{itm:obj_ir_library}). While there existed a library which provided Go bindings for LLVM, the API of this library felt awkward to use and was too heavily influenced by the underlying C and C++ libraries; as further described in section \ref{sec:impl_go_bindings_for_llvm}. The interaction with the LLVM IR library would influence the design and implementation of the decompilation components in critical ways. For this reason it was decided that a pure Go library would be implemented for interacting with LLVM IR, even if it would require a considerable amount of work.
+Early on in the project it was believed that the control flow analysis stage would operate on CFGs that were tightly coupled with an in-memory representation of LLVM IR. This motivated the search for a LLVM IR library with a carefully considered API and set of data structures (objective \ref{itm:obj_ir_library}). While there existed a library which provided Go bindings for LLVM, the API of this library felt awkward to use and was too heavily influenced by the underlying C and C++ libraries; as further described in section \ref{sec:impl_go_bindings_for_llvm}. The interaction with the LLVM IR library would influence the design and implementation of the decompilation components in critical ways. For this reason it was decided that a set of pure Go libraries would be implemented for interacting with LLVM IR, even if it would require a considerable amount of work.
 
-The LLVM IR library was developed with other use cases in mind, and a public discussions was help with other members of the open source community to discuss the requirements of the library. Specifically, the requirements of the \texttt{llgo} compiler were assessed xxxx carefully considered and
+% TODO: Update footnote link name; e.g. llgo requirements.
 
-The first stage of the development process focused on implementing a lexer for the LLVM IR assembly language.
+The LLVM IR libraries were intentially developed as reusable components for compilers, decompilers and other semantic analysis tools. To assess the requirements of LLVM-based compilers, a public discussion was held with the developers of the \texttt{llgo} compiler, who clarified its specific requirements\footnote{\texttt{llgo} requirements: \url{https://github.com/go-llvm/llvm/issues/40}}. Fredrik Ehnbom, who is one of the \texttt{llgo} developers, has remained involved during the development of the LLVM IR libraries, and has participated in API discussions.
 
-% TODO: Mention Fredrik Ehnbom
-% benchmark delta: -18.27%. \footnote{Use binary search for keyword lexing: \url{https://github.com/llir/llvm/pull/11}}
-
-% TODO: Check https://github.com/llir/llvm/issues/8 for a meta issue of test-cases.
-
-% A formal grammar of the LLVM IR language would have facilitate the implementation of the LLVM IR library. As no such grammar has been officially endorsed, other sources were cross-referenced to learn about the low-level details of the language, such as its token set and details regarding the type system. This work uncovered a number of inconsistencies between the language reference, the implementation, and official blog posts.
-
-% TODO: Add? Formal IR
-% * No Formal Grammar for LLVM IR
-% * Look for other people who has done work in this field
-%    - Reed Koter (MIPS), https://code.google.com/p/llvm-assembly-language-formal-specification/
-% * Collaborate on the Formal Grammar.
-
-% TODO: Mention the following trivias:
-%    - Identify unused tokens (hash and backspace) in the C++ code base and submit a patch which was commited to remove these. (http://reviews.llvm.org/D7248)
-%    - Discuss API design with members of the open source community.
-%    - Ask experienced LLVM developers of insight into possible inconsistencies with LLVM IR. Some highlighted inconsistent behaviour and some were intended behaviour. (LLVM-dev mailing list)
-
-% TODO: Clarify how state functions work.
-
-% TODO: Move "LLVM IR" design related text to a utility library subsection of design? A section could be created for the "DOT library" as well.
-
-%design: discuss the API with members of the open source community (llvm issue requirements, Fredrik and awk).
+The first component to be implemented was the LLVM IR lexer, which tokenize LLVM IR assembly. In addition to the LLVM IR language specification, the implementation of the reference lexer in LLVM was reviewed to establish a full listing of the valid tokens in LLVM IR. This review uncovered two tokens which were defined but never used in the code base of LLVM. In collaboration with members of the LLVM community, a patch was commited to the LLVM code base which removed these tokens\footnote{Remove unused tokens from AsmParser: \url{http://reviews.llvm.org/D7248}}.
 
 %The design of the LLVM IR lexer has been hugely influenced by a talk given by Rob Pike in 2011, titled \textit{``Lexical Scanning in Go''} \cite{lexical_scanning_in_go}. In this talk, Pike introduces the notion of a state function which is a function that returns a state function. The state of the lexer is represented by the active state function, which may transition into another stage by returning the corresponding state function.
 
@@ -45,16 +23,15 @@ The first stage of the development process focused on implementing a lexer for t
 
 %, and a state function which lexes string literals may be returned if the current character is a double quote. Implementing a lexer in this way was straight forward and resulted in a well structured library.
 
-%In addition to the LLVM IR language specification, the implementation of the reference lexer in LLVM was reviewed to establish a full listing of the valid tokens in LLVM IR. This review uncovered two tokens which were defined but never used in the code base of LLVM. In collaboration with members of the LLVM community, a patch was commited to the LLVM code base which removed these tokens\footnote{Remove unused tokens from AsmParser: \url{http://reviews.llvm.org/D7248}}.
+
+
+
+% TODO: Mention Fredrik Ehnbom
+% benchmark delta: -18.27%. \footnote{Use binary search for keyword lexing: \url{https://github.com/llir/llvm/pull/11}}
 
 % TODO: Mention that the LLVM IR library is incomplete. Only the lexer is complete, support for constants and types is partial. Parsing support is being implemented.
 
 % TODO: incorporate notes from llvm_inconsistencies.txt
-
-% TODO: Add design notes
-%    - The LLVM IR libraries are developed as reusable components for compilers, decompilers, and other semantic analysis tools. They aim to support generic semantic analysis applications, while satisfying the explicit requirements [1] of the third party llgo compiler.
-%
-% [1]: https://github.com/go-llvm/llvm/issues/40
 
 % ### lexer problem ###
 %
@@ -110,5 +87,7 @@ The first stage of the development process focused on implementing a lexer for t
 %Several features seems stitched on without taking into consideration the large picture. This becomes apparent by the large number of keywords in the language, the inconsistent choice of prefix for local names and module types. It is amazing what LLVM is capable of, but it is unfortunate that these capabilities have made the core language so cluttered.
 
 %It was very tempting to switch to REIL as this language is minimal, concistent and clean. The adoptation of the language in the open source community is however low and there have been no public news announcements since Google bought the company. Also, and maybe more importantly the REIL language lacks the notion of a basic block so for the control flow analysis a new abstraction would have to be built anyways; the output of which may have been a new language, thus defeating the core objective of a language-agnostic solution building on formally defined IRs.
+
+A formal grammar of the LLVM IR language would have facilitate the implementation of the LLVM IR libraries. As no such grammar had been officially endorsed, other sources were cross-referenced to learn about the low-level details of the language, such as its token set and details regarding the type system. This work uncovered a number of potential inconsistencies between the language reference, the implementation, and official blog posts. After discussing these issues with more experienced LLVM developers on the LLVM-dev mailing list, it could be concluded that some issues highlighted inconsistent behaviours while others were working as intended.
 
 foo
