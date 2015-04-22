@@ -78,21 +78,21 @@ This report details every stage of the project from conceptualisation to success
 * Literature Review
     - The Anatomy of an Executable
     - Decompilation Phases
-        +Binary Analysis
-        +Disassembly
-        +Control Flow Analysis
+        + Binary Analysis
+        + Disassembly
+        + Control Flow Analysis
     - Evaluation of Intermediate Representations
-        +REIL
-        +LLVM IR
+        + REIL
+        + LLVM IR
 * Related Work
     - Native Code to LLVM IR
-        +Dagger
-        +MC-Semantics
+        + Dagger
+        + MC-Semantics
     - Hex-Rays Decompiler
 * Methodology
     - Operational Prototyping
-        +Throwaway Prototyping
-        +Evolutionary Prototyping
+        + Throwaway Prototyping
+        + Evolutionary Prototyping
     - Continuous Integration
 * Requirements
     - LLVM IR Library
@@ -101,13 +101,13 @@ This report details every stage of the project from conceptualisation to success
 * Design
     - System Architecture
     - Front-end Components
-        +Native Code to LLVM IR
-        +Compilers
+        + Native Code to LLVM IR
+        + Compilers
     - Middle-end Components
-        +Control Flow Graph Generation
-        +Control Flow Analysis
+        + Control Flow Graph Generation
+        + Control Flow Analysis
     - Back-end Components
-        +Post-processing
+        + Post-processing
 * Implementation
     - Language Considerations
     - LLVM IR Library
@@ -116,34 +116,34 @@ This report details every stage of the project from conceptualisation to success
     - Documentation
 * Verification
     - Test Cases
-        +Code Coverage
+        + Code Coverage
     - Performance
-        +Profiling
-        +Benchmarks
+        + Profiling
+        + Benchmarks
     - Security Assessment
     - Continuous Integration
-        +Source Code Formatting
-        +Coding Style
-        +Code Correctness
-        +Build Status
-        +Test Cases
-        +Code Coverage
+        + Source Code Formatting
+        + Coding Style
+        + Code Correctness
+        + Build Status
+        + Test Cases
+        + Code Coverage
 * Evaluation
     - LLVM IR Library
-        +Essential Requirements
-        +Desirable Requirements
+        + Essential Requirements
+        + Desirable Requirements
     - Control Flow Analysis Library
-        +Essential Requirements
-        +Important Requirements
-        +Desirable Requirements
+        + Essential Requirements
+        + Important Requirements
+        + Desirable Requirements
     - Control Flow Analysis Tool
-        +Essential Requirements
+        + Essential Requirements
 * Conclusion
     - Project Summary
     - Future Work
-        +Design Validation
-        +Reliability Improvements
-        +Extended Capabilities
+        + Design Validation
+        + Reliability Improvements
+        + Extended Capabilities
     - Personal Development
     - Final Thoughts
 * Appendices
