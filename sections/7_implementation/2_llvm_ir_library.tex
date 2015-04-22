@@ -3,11 +3,12 @@
 \subsection{LLVM IR Library}
 \label{sec:impl_llvm_ir_library}
 
-Early on in the project it was believed that the control flow analysis stage would operate on CFGs that were tightly coupled with an in-memory representation of LLVM IR. This motivated the search for a LLVM IR library with a carefully considered API and set of data structures (objective \ref{itm:obj_ir_library}). While there existed a library which provided Go bindings for LLVM, the API of this library felt awkward to use and was too heavily influenced by the underlying C and C++ libraries; as further described in section \ref{sec:impl_go_bindings_for_llvm}. The interaction with the LLVM IR library would influence the design and implementation of the decompilation components in critical ways. For this reason it was decided that a set of pure Go libraries would be implemented for interacting with LLVM IR, even if it would require a considerable amount of work.
+Early on in the project it was believed that the control flow analysis stage would operate on CFGs that were tightly coupled with an in-memory representation of LLVM IR. This motivated the search for a LLVM IR library with a carefully considered API and set of data structures (objective \ref{itm:obj_ir_library}). While there existed a library which provides Go bindings for LLVM, the API of this library felt awkward to use and was too heavily influenced by the underlying C and C++ libraries; as further described in section \ref{sec:impl_go_bindings_for_llvm}. The interaction with the LLVM IR library would critically influence the design and implementation of the decompilation components. For this reason it was decided that a set of pure Go libraries would be implemented for interacting with LLVM IR, even if it would require a considerable amount of work.
 
 % TODO: Update footnote link name; e.g. llgo requirements.
+% TODO: Add links to the API discussion issue.
 
-The LLVM IR libraries were intentially developed as reusable components for compilers, decompilers and other semantic analysis tools. To assess the requirements of LLVM-based compilers, a public discussion was held with the developers of the \texttt{llgo} compiler, who clarified its specific requirements\footnote{\texttt{llgo} requirements: \url{https://github.com/go-llvm/llvm/issues/40}}. Fredrik Ehnbom, who is one of the \texttt{llgo} developers, has remained involved during the development of the LLVM IR libraries, and has participated in API discussions.
+The LLVM IR libraries were intentially developed as reusable components for compilers, decompilers and other semantic analysis tools. To assess the requirements of LLVM-based compilers, a public discussion was held with the developers of the open source \texttt{llgo} compiler, who clarified its specific requirements\footnote{\texttt{llgo} requirements: \url{https://github.com/go-llvm/llvm/issues/40}}. Fredrik Ehnbom, who is one of the \texttt{llgo} developers, has remained involved during the development of the LLVM IR libraries, by participating in API discussions, conducting code reviews, and submitting patches for performance improvements\footnote{Use binary search for keyword lexing: \url{https://github.com/llir/llvm/pull/11}} (these code changes have not yet been merged, as the project artefacts are required to be developed independently).
 
 The first component to be implemented was the LLVM IR lexer, which tokenize LLVM IR assembly. In addition to the LLVM IR language specification, the implementation of the reference lexer in LLVM was reviewed to establish a full listing of the valid tokens in LLVM IR. This review uncovered two tokens which were defined but never used in the code base of LLVM. In collaboration with members of the LLVM community, a patch was commited to the LLVM code base which removed these tokens\footnote{Remove unused tokens from AsmParser: \url{http://reviews.llvm.org/D7248}}.
 
@@ -25,9 +26,6 @@ The first component to be implemented was the LLVM IR lexer, which tokenize LLVM
 
 
 
-
-% TODO: Mention Fredrik Ehnbom
-% benchmark delta: -18.27%. \footnote{Use binary search for keyword lexing: \url{https://github.com/llir/llvm/pull/11}}
 
 % ### lexer problem ###
 %
