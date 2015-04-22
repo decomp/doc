@@ -8,76 +8,24 @@ Early on in the project it was believed that the control flow analysis stage wou
 % TODO: Update footnote link name; e.g. llgo requirements.
 % TODO: Add links to the API discussion issue.
 
-The LLVM IR libraries were intentially developed as reusable components for compilers, decompilers and other semantic analysis tools. To assess the requirements of LLVM-based compilers, a public discussion was held with the developers of the open source \texttt{llgo} compiler, who clarified its specific requirements\footnote{\texttt{llgo} requirements: \url{https://github.com/go-llvm/llvm/issues/40}}. Fredrik Ehnbom, who is one of the \texttt{llgo} developers, has remained involved during the development of the LLVM IR libraries, by participating in API discussions, conducting code reviews, and submitting patches for performance improvements\footnote{Use binary search for keyword lexing: \url{https://github.com/llir/llvm/pull/11}} (these code changes have not yet been merged, as the project artefacts are required to be developed independently).
+The LLVM IR libraries were intentially developed as reusable components for compilers, decompilers and other semantic analysis tools. To assess the requirements of LLVM-based compilers, a public discussion was held with the developers of the open source \texttt{llgo} compiler, who clarified its specific requirements\footnote{\texttt{llgo} requirements: \url{https://github.com/go-llvm/llvm/issues/40}}. Fredrik Ehnbom, who is one of the \texttt{llgo} developers, has remained involved with the development of the LLVM IR libraries, by participating in API discussions, conducting code reviews, and submitting patches for performance improvements\footnote{Use binary search for keyword lexing: \url{https://github.com/llir/llvm/pull/11}} (these code changes have not yet been merged, as the project artefacts are required to be developed independently).
 
-The first component to be implemented was the LLVM IR lexer, which tokenize LLVM IR assembly. In addition to the LLVM IR language specification, the implementation of the reference lexer in LLVM was reviewed to establish a full listing of the valid tokens in LLVM IR. This review uncovered two tokens which were defined but never used in the code base of LLVM. In collaboration with members of the LLVM community, a patch was commited to the LLVM code base which removed these tokens\footnote{Remove unused tokens from AsmParser: \url{http://reviews.llvm.org/D7248}}.
+The first component to be implemented was the LLVM IR lexer, which tokenizes LLVM IR assembly. In addition to the LLVM IR language specification, the implementation of the reference lexer in LLVM was reviewed to establish a full listing of the valid tokens in LLVM IR. This review uncovered two tokens which were defined but never used in the code base of LLVM. In collaboration with members of the LLVM community, a patch was commited to the LLVM code base which removed these tokens\footnote{Remove unused tokens from AsmParser: \url{http://reviews.llvm.org/D7248}}.
 
-%The design of the LLVM IR lexer has been hugely influenced by a talk given by Rob Pike in 2011, titled \textit{``Lexical Scanning in Go''} \cite{lexical_scanning_in_go}. In this talk, Pike introduces the notion of a state function which is a function that returns a state function. The state of the lexer is represented by the active state function, which may transition into another stage by returning the corresponding state function.
+The design of the LLVM IR lexer has been hugely influenced by a talk given by Rob Pike in 2011, titled \textit{``Lexical Scanning in Go''} \cite{lexical_scanning_in_go}. In this talk, Pike introduces the notion of a state function which is a function that returns a state function. The state of the lexer is represented by the active state function, which may transition into another stage by returning the corresponding state function. For instance, when \texttt{lexLineComment} is active, the context of the lexer is known to be a line comment. Any character is valid within line comments, except new lines which terminate the token; at which point an unknown token on the succeeding line is lexed by returning the \texttt{lexToken} state function.
 
-%For instance, when \texttt{lexLineComment} is active, the context of the lexer is known to be a line comment. Any character is valid within line comments, except new lines which terminate the token and
+% TODO: Add link to Go spec.
 
-%The active state function represents the state of the lexer (e.g. if the \texttt{lexLineComment} function is active )
-
-%State functions are able to record the state of the lexer (e.g. the \texttt{lexLineComment} state function ), and signal the transition from one state to another by returning the appropriate state function based on the current character of the input. For instance, if the active state function is lexing the
-
-%a state function which lexes numeric constants may be returned if the current character is a digit
-
-%, and a state function which lexes string literals may be returned if the current character is a double quote. Implementing a lexer in this way was straight forward and resulted in a well structured library.
-
-
-
-
-% ### lexer problem ###
-%
-% * 2015-01-08
-% * Backtrack to last valid token.
-% 0.1e-foo
-%      ^
-% * No separator required between tokens. No newline required between TopLevelEntities
-
-% ### lexer solution ###
-%
-% Use candidate tokens and parse each possible kind separately. The longest token "wins" and is emitted. Afterwards the current position is treated accordingly before the next token is being lexed. Rethink line, col to facilitate this work. 1am idea in bed.
-
-% ### problem
-% ## inconsistencies
-%
-%     valid: 1 br
-%     valid: 1br
-%
-% kind: 258 (APSInt) []
-% kind: 228 (kw_br) []
-% kind: 258 (APSInt) []
-% kind: 228 (kw_br) []
-% kind:   0 (Eof) []
-%
-%     valid: br 1
-%     invalid: br1
-%
-% kind: 228 (kw_br) []
-% kind: 258 (APSInt) []
-% kind:   1 (Error) []
-% kind:   1 (Error) []
-% kind: 258 (APSInt) []
-% kind:   0 (Eof) []
-%
-% ### solution
-%
-% Solution: define a consistent behaviour, e.g. the next token is the longest sequence of characters that form a valid token.
-
-%* Potential time solver (inspiration from Flare)
-%One of everything approach. Skip named types for now. Allow heavy computation in the error case. Make normal case simple. (IsConst function on values doing recursive checks and to be used in constat expression input validation after switching to Value)
-
-% ### motivation
+The LLVM IR assembly language requires no separators (e.g. whitespace) between tokens. This made it very difficult to determine where one token ends and another starts, as further indicated by inconsistent behaviour for separating tokens in the reference implementation of the LLVM lexer. The solution to this issue was inspired by the Go specification which states that \textit{``the next token is the longest sequence of characters that form a valid token''}, thus defining a consistent behaviour.
 
 A formal grammar of the LLVM IR language would have facilitate the implementation of the LLVM IR libraries. As no such grammar had been officially endorsed, other sources were cross-referenced to learn about the low-level details of the language, such as its token set and details regarding the type system. This work uncovered a number of potential inconsistencies between the language reference, the implementation, and official blog posts. After discussing these issues with more experienced LLVM developers on the LLVM-dev mailing list, it could be concluded that some issues highlighted inconsistent behaviours while others were working as intended.
 
-The cheer size of LLVM IR was at times discouraging and the project time constrains forced the implementation of subsets within every aspect of the language. LLVM IR is a RISC like assembly language which seems to have started out as a simple and platform-independent low-level IR. As time went by and as the project rose in popularity, more and more developers joined the project. In 2014 more than one thousand commits were submitted to the LLVM code base each month. Keeping these changes concistent and the overall system simple is a massive challenge. Furthermore, new contributers may easily gain write access to the repository.
+% TODO: Cite for 1000 commits. From review.llvm.org?
+
+The cheer size of LLVM IR was at times discouraging and the project time constrains forced the implementation of subsets within every aspect of the language. LLVM IR may have started out as a simple, minimalistic and platform-independent low-level IR, but this is no longer the case. As time went by and as the project rose in popularity, more and more developers joined the project. In 2014 more than one thousand commits were submitted to the LLVM code base each month. Keeping these changes concistent and the overall system simple is a massive challenge.
 
 % TODO: Check that adaptation means what I think it does (adoptation?)
 
-%It was at times very tempting to switch to REIL instead of LLVM IR, as REIL is a minimal, consistent and clean language. The adaptation of the language in the open source community was however limited, and there had been no public news announcements since Google acquired the company. Furthermore, and more importantly the REIL language lacks the notion of a basic block so for the control flow analysis a new abstraction would have to be built anyway; the output of which may have been a new language, thus defeating the core objective of a language-agnostic solution building on formally defined IRs.
+It was at times very tempting to switch to REIL instead of LLVM IR, as REIL is a minimal, consistent and clean language. The adaptation of REIL in the open source community was however limited, and there had been no public news announcements since Google acquired the company back in 2011. Furthermore, the REIL language lacks the notion of basic blocks which would complicate the control flow analysis.
 
-% TODO: Mention that the LLVM IR library is incomplete. Only the lexer is complete, support for constants and types is partial. Parsing support is being implemented.
-
-After months of development it had become clear that the task of implementing libraries for LLVM IR was way more time consuming than initially anticipated. The project time constrains forced the re-evaluation of using the Go bindings for LLVM, which gave rise to a seemingly small but hugely influential idea. The control flow analysis stage should operate entirely on graphs data structures, thus making it unaware of LLVM IR. This idea effectively mitigated the risk of being influenced by the API of the Go bindings for LLVM, and gave rise to the data-driven design of the control flow analysis component, as further described in section \ref{sec:design_control_flow_analysis}. From this point on, the focus was on implementing working artefacts which utilized the Go bindings for LLVM IR, as further described in section \ref{sec:impl_go_bindings_for_llvm}.
+After months of development it had become clear that the task of implementing libraries for LLVM IR was way more time consuming than initially anticipated. The project time constrains forced the re-evaluation of using the Go bindings for LLVM, which gave rise to a seemingly small but hugely influential idea. The control flow analysis stage should operate entirely on graphs data structures, thus making it unaware of LLVM IR. This idea effectively mitigated the risk of being influenced by the API of the Go bindings for LLVM, and gave rise to the data-driven design of the control flow analysis component, as further described in section \ref{sec:design_control_flow_analysis}. From this point on, the focus shifted to implementing working artefacts which utilized the Go bindings for LLVM IR, as further described in section \ref{sec:impl_go_bindings_for_llvm}.
