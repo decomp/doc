@@ -17,7 +17,7 @@ For comparison, the original C source code is presented alongside of the decompi
 	\begin{subfigure}[t]{0.45\textwidth}
 		\lstinputlisting[language=go, style=go]{inc/appendices/post_example/example1_1.go}
 	\end{subfigure}
-	\caption{\textbf{Rewrite 1}. The original unpolished Go source code (left) and the simplified Go source code (right) after declaring unresolved identifiers. The assignment statements of line 4 and 5 have been rewritten into declare-and-initialize statements. This transformation was applied by invoking \texttt{go-post -r unresolved}.}
+	\caption{\textbf{Rewrite 1}. The original unpolished Go source code (left) and the simplified Go source code (right) after declaring unresolved identifiers. The assignment statements of line 4 and 5 have been rewritten into declare-and-initialise statements. This transformation was applied by invoking \texttt{go-post -r unresolved}.}
 	\label{fig:rewrite_1}
 \end{figure}
 
@@ -87,7 +87,7 @@ For comparison, the original C source code is presented alongside of the decompi
 	\begin{subfigure}[t]{0.45\textwidth}
 		\lstinputlisting[language=go, style=go]{inc/appendices/post_example/example1_6.go}
 	\end{subfigure}
-	\caption{\textbf{Rewrite 6}. The Go source code from \textbf{rewrite 5} (left) and the simplified Go source code (right) after propagating the initialization statement on line 6 and the post-statement on line 12 to the for-loop header on line 7. This transformation was applied by invoking \texttt{go-post -r forloop}}
+	\caption{\textbf{Rewrite 6}. The Go source code from \textbf{rewrite 5} (left) and the simplified Go source code (right) after propagating the initialisation statement on line 6 and the post-statement on line 12 to the for-loop header on line 7. This transformation was applied by invoking \texttt{go-post -r forloop}}
 	\label{fig:rewrite_6}
 \end{figure}
 
