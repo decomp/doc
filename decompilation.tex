@@ -1,7 +1,6 @@
 % <systematic>
 % * American spelling -> British spelling
 %    ### RUN ack z
-% * Misuse of where instead of were.
 % * Strip "s" suffix from the accompanying verbs of plural nouns.
 %    - "formats differs" -> "formats differ"
 %    - "files consists" -> "files consist"
@@ -13,36 +12,12 @@
 %    - "Lastly the back-end translates" -> "Lastly, the back-end translates"
 %    - "Rather than working with sequential lists the control flow analysis algorithms will" -> "Rather than working with sequential lists, the control flow analysis algorithms will"
 %    - "To facilitate the implementation and debugging of these algorithms a visual representation" -> "To facilitate the implementation and debugging of these algorithms, a visual representation"
-% * Search for broken refs; i.e. search for "??" and invoke texi2pdf and check for warnings.
-% * Search for \ref{foo} and replace with real reference.
-% * Search for \footnote{foo} and replace with real footnote.
-% * Search for "see \ref"
 
 % <howto>
 % * Critically evaluate why you are doing things, throughout the entire report.
 
-% TODO: Use British and not American English:
-%    * File content vs file contents -> prefer file contents.
-%    * Don't use apostrophes I've -> I have. It's -> it is or it has.
-%    * Add apostrophe to idea?
-% TODO: Consistency
-%    * Use control flow instead of control-flow.
-% TODO: Proof read for common mistakes:
-%    * exist vs exists.
-% TODO: Fix LaTeX style and encoding issues:
-%    * Replace "foo" with ``foo''
-
-% TODO: Content check list:
-%    - text answers the central question
-%    - main line of argument is clear
-%    - sufficient weight given to most important points
-
-% TODO: update Git revision in the footnotes of the eval section.
-
-% TODO: Check that the requirements are correctly references; e.g. not using
-% \textbf{R11} when intending to refer to requirement 12.
-% TODO: Try once more to find a clean solution for implementing custom labels,
-% as this would resolve the aforementioned issue of mismatching requirements.
+% * TODO: Check that requirements are reference correctly.
+%    - e.g. not using \textbf{R11} when intending to refer to requirement 12.
 
 \documentclass[12pt, a4paper]{article}
 
