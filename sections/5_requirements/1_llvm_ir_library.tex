@@ -3,7 +3,7 @@
 \subsection{LLVM IR Library}
 \label{sec:req_llvm_ir_library}
 
-The LLVM IR language defines several primitives directly related to code optimization and linking, neither of which convey any useful information for the decompilation pipeline. It is therefore sufficient for this project to support a subset of the LLVM IR language and the relevant requirements should be interpreted as referring to a subset of the language.
+The LLVM IR language defines several primitives directly related to code optimisation and linking, neither of which convey any useful information for the decompilation pipeline. It is therefore sufficient for this project to support a subset of the LLVM IR language and the relevant requirements should be interpreted as referring to a subset of the language.
 
 The control flow analysis tool interacts with other components using LLVM IR. It is therefore required to support reading from and writing to at least one of the representations of LLVM IR. The representations of LLVM IR are isomorphic and the standard \texttt{llvm-as} and \texttt{llvm-dis} tools from the LLVM distribution may be used to convert between the assembly language and bitcode representation of LLVM IR. Access to the bitcode representation (\textbf{R6} and \textbf{R7}) has therefore been deferred in favour of the assembly language representation (\textbf{R1} and \textbf{R2}) which has the benefit of being human-readable.
 

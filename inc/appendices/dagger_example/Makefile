@@ -16,7 +16,7 @@ all: $(OBJ) $(LL_SRC)
 # generates LLVM IR which is not valid in LLVM 3.6. The optimiser of the Dagger
 # release has therefore been used instead of the one installed on the system.
 #
-# TODO: Enable the decompilation and optimization rule when Dagger produces
+# TODO: Enable the decompilation and optimisation rule when Dagger produces
 # valid LLVM IR for LLVM 3.6.
 %.ll: %.o
 #	llvm-dec $< > $@

@@ -3,7 +3,7 @@
 \subsection{Performance}
 \label{sec:ver_performance}
 
-The performance characteristics of the various components have been considered during every stage of the development process, but the initial prototypes have prioritised correctness and simplicity over performance. These prototypes have aimed at identifying suitable data structures and algorithms for the problems, through iterative redesigns and reimplementations. Once the major design decisions stabilized, production quality prototypes were being developed and thoroughly tested. To limit the risk of premature optimizations, micro-level performance work was intentionally postponed to the later stages of development.
+The performance characteristics of the various components have been considered during every stage of the development process, but the initial prototypes have prioritised correctness and simplicity over performance. These prototypes have aimed at identifying suitable data structures and algorithms for the problems, through iterative redesigns and reimplementations. Once the major design decisions stabilized, production quality prototypes were being developed and thoroughly tested. To limit the risk of premature optimisations, micro-level performance work was intentionally postponed to the later stages of development.
 
 Components with straight forward implementations (e.g. the LLVM IR library) have been profiled to identify performance bottle necks, as further described in section \ref{sec:ver_profiling}. When estimating the time complexity of various subgraph isomorphism search algorithms however, algorithm research and the use of intuition proved far more valuable. One of the first throw-away prototypes provided a partial implementation of the subgraph isomorphism algorithm proposed by Ullman. After further research the prototype was eventually discarded as the Ullman algorithm had been proven to scale poorly for randomly connected graphs with more than 700 nodes \cite{iso_performance_comparison}. To put this into perspective, the \texttt{main} function of the c4\footnote{C in four functions: \url{https://github.com/rswier/c4}} compiler consists of 248 basic blocks; in other words, the CFG of the \texttt{main} function is a connected graph (every node is reachable from the entry node) with 248 nodes. This leaves a margin (for the number of basic blocks in functions) of less than an order of magnitude before the Ullman algorithm starts to perform poorly.
 
@@ -156,7 +156,7 @@ As the size of $ n $ doubles in table \ref{tbl:run_time_summary}, the execution 
 	\end{itemize}
 \end{itemize}
 
-In summary, profiling is great for optimizing the implementations of simple problems. Algorithm research, time complexity theory and intuition is essential for implementing performant solutions to complex problems. Furthermore, knowledge about specific properties of the problem may be exploited to design performant algorithms.
+In summary, profiling is great for optimising the implementations of simple problems. Algorithm research, time complexity theory and intuition is essential for implementing performant solutions to complex problems. Furthermore, knowledge about specific properties of the problem may be exploited to design performant algorithms.
 
 % --- [ Subsubsections ] -------------------------------------------------------
 
