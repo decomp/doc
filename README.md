@@ -17,14 +17,14 @@ As part of this project, the following components were developed for the decompi
 
 * [llvm](https://github.com/llir/llvm) - Library for interacting with LLVM IR (*work in progress*)
 * [ll2dot](https://github.com/decomp/ll2dot) - Control flow graph generation tool
-    > Generate control flow graphs from LLVM IR assembly files (e.g. *.ll -> *.dot)
+        > Generate control flow graphs from LLVM IR assembly files (e.g. *.ll -> *.dot)
 * [graphs](https://github.com/decomp/graphs) - Subgraph isomorphism search algorithms and related tools
 * [restructure](https://github.com/decomp/restructure) - Control flow analysis tool
-    > Recover control flow primitives from control flow graphs (e.g. *.dot -> *.json)
+        > Recover control flow primitives from control flow graphs (e.g. *.dot -> *.json)
 * [ll2go](https://github.com/decomp/ll2go) - Go code generation tool (*proof of concept*)
-    > Decompile LLVM IR assembly files to Go source code (e.g. *.ll -> *.go)
+        > Decompile LLVM IR assembly files to Go source code (e.g. *.ll -> *.go)
 * [go-post](https://github.com/decomp/go-post) - Go post-processing tool
-    > Post-process Go source code to make it more idiomatic
+        > Post-process Go source code to make it more idiomatic
 
 ## Report
 
