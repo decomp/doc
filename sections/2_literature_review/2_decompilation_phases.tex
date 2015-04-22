@@ -8,7 +8,7 @@ A core principle utilized in decompilers is the separation of concern through th
 \begin{figure}[htbp]
 	\begin{center}
 		\includegraphics[width=\textwidth]{inc/2_lit_review/modules_overview.png}
-		\caption{Firstly, the front-end module accepts several executable file formats (PE, ELF, …) as input and translates their platform dependent assembly (x86, ARM, …) to a low-level IR. Secondly, the middle-end module then lifts the low-level IR to a high-level IR through a set of decompilation passes. Lastly, the backend-module translates the high-level IR into one of several target programming languages (C, Go, Python, …).}
+		\caption{Firstly, the front-end module accepts several executable file formats (PE, ELF, …) as input and translates their platform dependent assembly (x86, ARM, …) to a low-level IR. Secondly, the middle-end module then lifts the low-level IR to a high-level IR through a set of decompilation passes. Lastly, the back-end module translates the high-level IR into one of several target programming languages (C, Go, Python, …).}
 		\label{fig:modules_overview}
 	\end{center}
 \end{figure}
