@@ -5,6 +5,8 @@
 
 Early on in the project it was believed that the control flow analysis stage would operate on CFGs that were tightly coupled with an in-memory representation of LLVM IR. This motivated the search for a LLVM IR library with a carefully considered API and set of data structures (objective \ref{itm:obj_ir_library}). While there existed a library which provided Go bindings for LLVM, the API of this library felt awkward to use and was too heavily influenced by the underlying C and C++ libraries; as further described in section \ref{sec:impl_go_bindings_for_llvm}. The interaction with the LLVM IR library would influence the design and implementation of the decompilation components in critical ways. For this reason it was decided that a pure Go library would be implemented for interacting with LLVM IR, even if it would require a considerable amount of work.
 
+The LLVM IR library was developed with other use cases in mind, and a public discussions was help with other members of the open source community to discuss the requirements of the library. Specifically, the requirements of the \texttt{llgo} compiler were assessed xxxx carefully considered and
+
 The first stage of the development process focused on implementing a lexer for the LLVM IR assembly language.
 
 % TODO: Mention Fredrik Ehnbom

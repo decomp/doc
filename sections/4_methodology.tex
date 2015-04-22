@@ -7,54 +7,7 @@
 \section{Methodology}
 \label{sec:methodology}
 
-No single methodology was used for this project, but rather a combination of software development techniques (such as test-driven development and continuous integration) which have been shown to work well in practice for other open source projects. This project has been developed in the open from day one, using public source code repositories and issue trackers. To encourage open source adaptation, the software artefacts and the project report have been released into the public domain, and are made available on GitHub; as further described in section \ref{sec:intro_deliverables}. Throughout the course of the project a public discussion has been held with other members of the open source community to clarify the requirements and validate the design of the LLVM IR library, and to investigate inconsistent behaviours in the LLVM reference implementation; as described in section \ref{sec:impl_llvm_ir_library}.
-
-The API stability of each component have been governed using semantic versioning (e.g. \texttt{vMAJOR.MINOR.PATCH})\footnote{Semantic Versioning: \url{http://semver.org/}}. Prior to version 1.0 the components have been developed using throwaway prototyping (see section \ref{sec:method_throwaway_prototyping}), which facilitated rapid iteration cycles. %When the major design decisions stabilize
-
-% TODO: <note> remove?
-% "An evolutionary approach to development of the software artefact has been applied. New ideas have been tested out and explored further if early results are productive."
-
-% The API stability of each component will be governed using Semantic Versioning (vMAJOR.MINOR.PATCH). Prior to version 1.0 the components will be written using either throw-away prototyping or iterative development and the API may change drastically.
-
-% TODO: Explain why this specific methodology was chosen, and justify the methods. The justification may be required to be quite detailed, with in-text references.
-
-% TODO: Add
-%    - Attempt to find flaws in the design by stress testing it through proof of concept implementations.
-%    - Once the design is deemed mature, begin an iterative process of implementation and testing.
-
-% ### Open Source Development
-
-% TODO: Add note about: Eric Raymond observed in his essay The Cathedral and the Bazaar that announcing the intent for a project is usually inferior to releasing a working project to the public.
-
-%    - Engage in discussions with the open source community during the design process of any library intended for third party use; specifically the LLVM IR libraries.
-
-% TODO: Add
-%    - All work was made available on GitHub from day one and the source code was released into the public domain to encourage open source adaptation and interaction.
-
-% ###### Revision Control System
-
-% TODO: Add
-% - Don not be afraid to throw away code and trying new ideas, that is what revision control systems are for!
-
-% TODO: Add:
-% * feature branches
-
-% ###### Public Issue Tracking
-
-% TODO: Add
-%    - The project plan will be organized using the GitHub issue tracker, where each issue corresponds to a task. Milestones, containing a set of issues, will track the progress of the project and enforce deadlines.
-%    - To facilitate time management each task will be tracked using the GitHub issue tracker, and larger tasks will be divided into suitably sized sub-tasks. The smaller sub-tasks help maintain focus and make it easier to establish reasonable deadlines.
-
-% TODO: Add project plan?
-%    - The project plan will be managed using the GitHub issue tracker, and actively maintained throughout the project. Each task (research topic, unresolved problem, software feature, etc) will be allocated a dedicated issue tracking its progress. The issues include relevant discussions of identified risks, potential problems and proposed solutions. The project plan provides an overview of the active issues, using milestones to group issues and assign deadlines.
-
-% TODO: <note> remove?
-% * It is important to decide at the start of the project on the tasks to be carried out (to develop the artefact and to write the report), when they will take place and how long they should take.
-%   - It is also essential that you monitor your progress through the project, and show evidence of monitoring in the report.
-
-% TODO: <note> remove?
-% * Make a rough project plan; before 26 sep.
-%    - Make use of GitHub issues and milestones with deadlines to track development.
+No single methodology was used for this project, but rather a combination of software development techniques (such as test-driven development and continuous integration) which have been shown to work well in practice for other open source projects. This project has been developed in the open from day one, using public source code repositories and issue trackers. To encourage open source adaptation, the software artefacts and the project report have been released into the public domain, and are made available on GitHub; as further described in section \ref{sec:intro_deliverables}. Throughout the course of the project a public discussion has been held with other members of the open source community to clarify the requirements and validate the design of the LLVM IR library, and to investigate inconsistent behaviours in the LLVM reference implementation.
 
 % === [ Subsections ] ==========================================================
 
