@@ -1,5 +1,5 @@
 int main(int argc, char **argv) {
-	int i, j, x, sum;
+	int i, j, sum;
 	sum = 0;
 	for (i = 0; i < 5; i++) {
 		for (j = 0; j < 7; j++) {

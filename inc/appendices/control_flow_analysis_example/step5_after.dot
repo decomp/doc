@@ -1,0 +1,5 @@
+digraph stmt {
+	node [style="filled" fillcolor="white"]
+
+	if_else0 [fillcolor="red"];
+}

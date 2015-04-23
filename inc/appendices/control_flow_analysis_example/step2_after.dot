@@ -1,4 +1,6 @@
 digraph stmt {
+	node [style="filled" fillcolor="white"]
+
 	0->36 [label="false"];
 	0->3 [label="true"];
 	3->7 [label="false"];
@@ -62,11 +64,11 @@ digraph stmt {
 	94;
 	97;
 	98;
-	list0;
-	list1;
-	list2;
-	list3;
-	list4;
-	list5;
-	list6;
+	list0 [fillcolor="red"];
+	list1 [fillcolor="red"];
+	list2 [fillcolor="red"];
+	list3 [fillcolor="red"];
+	list4 [fillcolor="red"];
+	list5 [fillcolor="red"];
+	list6 [fillcolor="red"];
 }

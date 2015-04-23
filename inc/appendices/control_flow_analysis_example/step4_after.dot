@@ -1,4 +1,6 @@
 digraph stmt {
+	node [style="filled" fillcolor="white"]
+
 	0->36 [label="false"];
 	36->68 [label="false"];
 	68->85 [label="false"];
@@ -30,9 +32,9 @@ digraph stmt {
 	85;
 	94;
 	97;
-	if_return0;
-	if_return2;
-	if_return3;
-	if_return4;
+	if_return0 [fillcolor="red"];
+	if_return2 [fillcolor="red"];
+	if_return3 [fillcolor="red"];
+	if_return4 [fillcolor="red"];
 	list6;
 }
