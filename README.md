@@ -1,5 +1,7 @@
 # Compositional Decompilation using LLVM IR
 
+**NOTE**: The source code is made available at [github.com/decomp](https://github.com/decomp)
+
 [This paper](https://raw.githubusercontent.com/mewpaper/decompilation/master/decompilation.pdf) was written for the [Final Year Engineering Project][PJE40] at [Portsmouth University] during the academic session 2014 - 2015.
 
 [PJE40]: https://register.port.ac.uk/apex/f?p=111:3:0::NO::P3_UNIT_ID:397236263
