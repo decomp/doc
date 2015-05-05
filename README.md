@@ -2,7 +2,7 @@
 
 This repository acts as an umbrella for the decomp.org project, which implements a decompilation pipeline through the composition of independent [decompilation components](https://github.com/decomp). High-level design plans, ideas and random brainstorming about future decompilation stages are discussed in the [issue tracker].
 
-[issue tracker]: https://github.com/mewpaper/decompilation/issues
+[issue tracker]: https://github.com/decomp/decompilation/issues
 
 **NOTE**: The source code of this project has been released into the [public domain] and is made available at [github.com/decomp](https://github.com/decomp).
 
@@ -22,7 +22,7 @@ Anyone with an interest in the decomp.org project is encouraged to contribute in
     - Maybe C++ would be a more natural choice for [control flow graph generation](https://github.com/decomp/ll2dot)?
     - Maybe the pattern matching capabilities of Haskell would produce beautiful [control flow analysis](https://github.com/decomp/graphs) and [control flow recovery](https://github.com/decomp/restructure) components?
 * Extend the middle-end of the decompilation pipeline by developing new components in a well suited language for the task.
-    - [Type analysis](https://github.com/mewpaper/decompilation/labels/type%20analysis)
+    - [Type analysis](https://github.com/decomp/decompilation/labels/type%20analysis)
         + Maybe use a constraint programming language (e.g. Prolog)?
     - Data flow analysis
         + Which language may be well suited for this task and why?
@@ -34,7 +34,7 @@ Anyone with an interest in the decomp.org project is encouraged to contribute in
 
 # Compositional Decompilation using LLVM IR
 
-[This paper](https://raw.githubusercontent.com/mewpaper/decompilation/master/decompilation.pdf) was written for the [Final Year Engineering Project][PJE40] at [Portsmouth University] during the academic session 2014 - 2015.
+[This paper](https://raw.githubusercontent.com/decomp/decompilation/master/decompilation.pdf) was written for the [Final Year Engineering Project][PJE40] at [Portsmouth University] during the academic session 2014 - 2015.
 
 [PJE40]: https://register.port.ac.uk/apex/f?p=111:3:0::NO::P3_UNIT_ID:397236263
 [Portsmouth University]: http://www.port.ac.uk/
@@ -43,7 +43,7 @@ Anyone with an interest in the decomp.org project is encouraged to contribute in
 
 The following poster summarises the project outcomes. It was created for a student project conference which was held at Portsmouth University on the 18th of March 2015.
 
-[![Poster: Compositional Decompilation](https://raw.githubusercontent.com/mewpaper/decompilation/master/poster/poster.png)](https://raw.githubusercontent.com/mewpaper/decompilation/master/poster/poster.pdf)
+[![Poster: Compositional Decompilation](https://raw.githubusercontent.com/decomp/decompilation/master/poster/poster.png)](https://raw.githubusercontent.com/decomp/decompilation/master/poster/poster.pdf)
 
 ## Artefacts
 
@@ -69,7 +69,7 @@ As part of this project, the following components were developed for the decompi
 
 ## Report
 
-A PDF version of the report has been made available online ([decompilation.pdf](https://raw.githubusercontent.com/mewpaper/decompilation/master/decompilation.pdf)).
+A PDF version of the report has been made available online ([decompilation.pdf](https://raw.githubusercontent.com/decomp/decompilation/master/decompilation.pdf)).
 
 ### Abstract
 
