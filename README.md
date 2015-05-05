@@ -1,6 +1,6 @@
 # The decomp.org Project
 
-This repository acts as an umbrella project for the [decompilation pipeline components](https://github.com/decomp). High-level design plans, ideas and random brainstorming about future decompilation stages are discussed in the [issue tracker].
+This repository acts as an umbrella for the decomp.org project, which implements a decompilation pipeline through the composition of independent [decompilation components](https://github.com/decomp). High-level design plans, ideas and random brainstorming about future decompilation stages are discussed in the [issue tracker].
 
 [issue tracker]: https://github.com/mewpaper/decompilation/issues
 
@@ -8,7 +8,7 @@ This repository acts as an umbrella project for the [decompilation pipeline comp
 
 ## Contribution
 
-Anyone with an interest in the decomp.org project is encouraged to contribute in any way they desire. This may include:
+Anyone with an interest in the decomp.org project is encouraged to contribute in whichever way they desire. This may include:
 
 * Critically evaluate the design of the decompilation components, both current and future ones. Suggest design ideas for new decompilation stages, and motivate the redesigning current ones. Design discussions are taking place in the [issue tracker].
 * Contribute ideas and participate in collective brainstorming regarding decompilation strategies. Together we may create a *decompilation think tank*! Random decompilation ideas are discussed in the [issue tracker].
