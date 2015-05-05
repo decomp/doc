@@ -1,6 +1,38 @@
-# Compositional Decompilation using LLVM IR
+# The decomp.org Project
+
+This repository acts as an umbrella project for the [decompilation pipeline components](https://github.com/decomp). High-level design plans, ideas and random brainstorming about future decompilation stages are discussed in the [issue tracker].
+
+[issue tracker]: https://github.com/mewpaper/decompilation/issues
 
 **NOTE**: The source code of this project has been released into the [public domain] and is made available at [github.com/decomp](https://github.com/decomp).
+
+## Contribution
+
+Anyone with an interest in the decomp.org project is encouraged to contribute in any way they desire. This may include:
+
+* Critically evaluate the design of the decompilation components, both current and future ones. Suggest design ideas for new decompilation stages, and motivate the redesigning current ones. Design discussions are taking place in the [issue tracker].
+* Contribute ideas and participate in collective brainstorming regarding decompilation strategies. Together we may create a *decompilation think tank*! Random decompilation ideas are discussed in the [issue tracker].
+* Participate in the development of any of the independent [decompilation components](https://github.com/decomp).
+    - [ll2dot](https://github.com/decomp/ll2dot) - control flow graph generation (e.g. *.ll -> *.dot).
+    - [graphs](https://github.com/decomp/graphs) - control flow analysis (i.e. subgraph isomorphism search algorithms)
+    - [restructure](https://github.com/decomp/restructure) - control flow recovery (e.g. *.dot -> *.json)
+    - [ll2go](https://github.com/decomp/ll2go) - code generation (e.g. *.ll -> *.go)
+    - [go-post](https://github.com/decomp/go-post) - post processing (e.g. unpolished Go -> polished Go)
+* Implement any of the existing [decompilation components](https://github.com/decomp) in a new programming language! Just because they are currently written in Go, does not mean that Go is necessarily the best choice for each task.
+    - Maybe C++ would be a more natural choice for [control flow graph generation](https://github.com/decomp/ll2dot)?
+    - Maybe the pattern matching capabilities of Haskell would produce beautiful [control flow analysis](https://github.com/decomp/graphs) and [control flow recovery](https://github.com/decomp/restructure) components?
+* Extend the middle-end of the decompilation pipeline by developing new components in a well suited language for the task.
+    - [Type analysis](https://github.com/mewpaper/decompilation/labels/type%20analysis)
+        + Maybe use a constraint programming language (e.g. Prolog)?
+    - Data flow analysis
+        + Which language may be well suited for this task and why?
+* Implement back-ends to add support for new target programming languages (e.g. Python, C, ...).
+    - Any language with libraries for interacting with LLVM IR and JSON may be a good choice. Often it feels natural to develop a back-end in the same language it targets (i.e. a Python back-end developed in Python), but other languages may work just as well (e.g. [use Haskell to populate a Python AST](https://hackage.haskell.org/package/language-python-0.4.1/docs/Language-Python-Common-AST.html)).
+* Help improve the quality of the [decompilation components](https://github.com/decomp) by submitting bug reports, usability issues or feature requests.
+* ...
+* Any other ideas? Feel free to join the project and contribute however you desire!
+
+# Compositional Decompilation using LLVM IR
 
 [This paper](https://raw.githubusercontent.com/mewpaper/decompilation/master/decompilation.pdf) was written for the [Final Year Engineering Project][PJE40] at [Portsmouth University] during the academic session 2014 - 2015.
 
@@ -37,7 +69,7 @@ As part of this project, the following components were developed for the decompi
 
 ## Report
 
-A PDF version of the report has been hade available online ([decompilation.pdf](https://raw.githubusercontent.com/mewpaper/decompilation/master/decompilation.pdf)).
+A PDF version of the report has been made available online ([decompilation.pdf](https://raw.githubusercontent.com/mewpaper/decompilation/master/decompilation.pdf)).
 
 ### Abstract
 
