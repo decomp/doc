@@ -1,0 +1,36 @@
+[
+	{
+		"prim": "list",
+		"node": "list0",
+		"nodes": {
+			"A": "8",
+			"B": "9"
+		}
+	},
+	{
+		"prim": "if",
+		"node": "if0",
+		"nodes": {
+			"A": "3",
+			"B": "5",
+			"C": "list0"
+		}
+	},
+	{
+		"prim": "pre_loop",
+		"node": "pre_loop0",
+		"nodes": {
+			"A": "1",
+			"B": "if0",
+			"C": "11"
+		}
+	},
+	{
+		"prim": "list",
+		"node": "list0",
+		"nodes": {
+			"A": "0",
+			"B": "pre_loop0"
+		}
+	}
+]
