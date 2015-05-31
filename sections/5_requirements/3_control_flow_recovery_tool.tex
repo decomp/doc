@@ -1,0 +1,20 @@
+% --- [ Control Flow Recovery Tool ] -------------------------------------------
+
+\subsection{Control Flow Recovery Tool}
+\label{sec:req_control_flow_recovery_tool}
+
+The primary intention of this project is to create self-contained components which may be used in the decompilation pipelines of other projects. It is therefore of vital importance that the components are able to interact with tools written in other programming languages (\textbf{R21}). The control flow recovery tool is one such component which aims to recover a set of high-level control flow primitives from LLVM IR (\textbf{R20}).
+
+\begin{table}[htbp]
+	\begin{center}
+		\begin{tabular}{|l|l|l|l|}
+			\hline
+			Obj. & Req. & Priority & Description \\
+			\hline
+			\ref{itm:obj_decomp_pass_tool} & \textbf{R20} & MUST & Identify high-level control flow primitives in LLVM IR \\
+			\ref{itm:obj_decomp_pass_tool} & \textbf{R21} & MUST & Support language-agnostic interaction with other components \\
+			\hline
+		\end{tabular}
+	\end{center}
+	\caption{Requirements of the control flow recovery tool.}
+\end{table}

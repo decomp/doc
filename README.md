@@ -55,7 +55,7 @@ As part of this project, the following components were developed for the decompi
 > Generate control flow graphs from LLVM IR assembly files (e.g. *.ll -> *.dot)
 
 * [graphs](https://github.com/decomp/graphs) - Subgraph isomorphism search algorithms and related tools
-* [restructure](https://github.com/decomp/restructure) - Control flow analysis tool
+* [restructure](https://github.com/decomp/restructure) - Control flow recovery tool
 
 > Recover control flow primitives from control flow graphs (e.g. *.dot -> *.json)
 
@@ -131,7 +131,7 @@ This report details every stage of the project from conceptualisation to success
 5. Requirements
     1. LLVM IR Library
     2. Control Flow Analysis Library
-    3. Control Flow Analysis Tool
+    3. Control Flow Recovery Tool
 6. Design
     1. System Architecture
     2. Front-end Components
@@ -170,7 +170,7 @@ This report details every stage of the project from conceptualisation to success
         1. Essential Requirements
         2. Important Requirements
         3. Desirable Requirements
-    3. Control Flow Analysis Tool
+    3. Control Flow Recovery Tool
         1. Essential Requirements
 10. Conclusion
     1. Project Summary
