@@ -5,9 +5,9 @@
 
 To assess the security of the decompiler pipeline, lets imagine a scenario in which users are given access to the implementation details and source code of the entire system and may provide arbitrary input to any of its components. A potential scenario could involve a web site which provides decompilation as a service and allows its users to interact with the various stages of the decompiler pipeline. The Retargetable Decompiler\footnote{Retargetable Decompiler: \url{https://retdec.com/}} provides such a service, except it only allows users to interact with the binary analysis stage of the pipeline (see section \ref{sec:lit_review_binary_analysis}) and its source code is proprietary. The scope of this security assessment will be limited to the various components of the decompiler pipeline and their interaction. In particular security issues related to the operating system, network stack, web server and web site (e.g. SQL-injection and XSS vulnerabilities) of the decompilation service are intentionally excluded from the scope of the security assessment.
 
-The objective of an attacker may be to escalate their privileges in a system by exploiting it to execute actions not intended by design. Since the security of any system is only as strong as its weakest link, it is critical to identify and isolate likely targets for attacks. Projects which consist of or depend on large C or C++ code bases may exhibit memory safety issues, such as buffer overflows or use-after-free vulnerabilities. These issues are considered low-hanging fruit for attackers and have a long history of successful exploitation \cite{for_fun_and_profit}. Several modern programming languages (including Go) provide memory safety guarantees and may solve these issues by inserting bounds-checking for array accesses and using garbage collection for memory management. Code written in memory safe languages may still contain other security vulnerabilities caused by logic errors or insufficient validation, sanitation and parametrization of input (e.g. command injection and directory traversal vulnerabilities).
+The objective of an attacker may be to escalate their privileges in a system by exploiting it to execute actions not intended by design. Since the security of any system is only as strong as its weakest link, it is critical to identify and isolate likely targets for attacks. Projects which consist of or depend on large C or C\texttt{++} code bases may exhibit memory safety issues, such as buffer overflows or use-after-free vulnerabilities. These issues are considered low-hanging fruit for attackers and have a long history of successful exploitation \cite{for_fun_and_profit}. Several modern programming languages (including Go) provide memory safety guarantees and may solve these issues by inserting bounds-checking for array accesses and using garbage collection for memory management. Code written in memory safe languages may still contain other security vulnerabilities caused by logic errors or insufficient validation, sanitation and parametrization of input (e.g. command injection and directory traversal vulnerabilities).
 
-The number of lines of code in a project may give an indication to the project's complexity and to some extent its potential attack surface. As summarised in table \ref{tbl:loc_summary} every component of the decompiler pipeline except \texttt{restructure} depends on LLVM. The LLVM code base contains approximately 800~000 lines of C++ source code, and even if only a portion of the code will be linked into the executables it is an interesting target for attacks. One thing to keep in mind is that there are several high-end users of the LLVM project (such as Apple, Intel, NVIDIA and Sony \cite{llvm_users}) and it has a well established code reviewing process. Some of the LLVM developers are also very well educated in common security vulnerabilities and have developed the Clang Static Analyzer, which is a static source code analysis tool that locates bugs (such as buffer overflows and use-after-free issues) in C and C++ programs \cite{clang_analyzer}. The LLVM project may contain several security issues due to its size, but they are most likely difficult to discover since the low-hanging fruit have been caught already by the Clang Static Analyzer. Similarly, Google Protocol Buffers are used extensively by several companies and organisations and the likelihood of discovering a simple security vulnerability in its code base is low.
+The number of lines of code in a project may give an indication to the project's complexity and to some extent its potential attack surface. As summarised in table \ref{tbl:loc_summary} every component of the decompiler pipeline except \texttt{restructure} depends on LLVM. The LLVM code base contains approximately 800~000 lines of C\texttt{++} source code, and even if only a portion of the code will be linked into the executables it is an interesting target for attacks. One thing to keep in mind is that there are several high-end users of the LLVM project (such as Apple, Intel, NVIDIA and Sony \cite{llvm_users}) and it has a well established code reviewing process. Some of the LLVM developers are also very well educated in common security vulnerabilities and have developed the Clang Static Analyzer, which is a static source code analysis tool that locates bugs (such as buffer overflows and use-after-free issues) in C and C\texttt{++} programs \cite{clang_analyzer}. The LLVM project may contain several security issues due to its size, but they are most likely difficult to discover since the low-hanging fruit have been caught already by the Clang Static Analyzer. Similarly, Google Protocol Buffers are used extensively by several companies and organisations and the likelihood of discovering a simple security vulnerability in its code base is low.
 
 \begin{table}[htbp]
 	\begin{center}
@@ -17,9 +17,9 @@ The number of lines of code in a project may give an indication to the project's
 			\hline
 			\multicolumn{4}{|l|}{\hspace{4ex} \textit{Front-end}} \\
 			\hline
-			Dagger & C++ & 2~000 & LLVM \\
-			Fracture & C++ & 20~000 & LLVM \\
-			MC-Semantics & C++ & 25~000 & LLVM and Google Protocol Buffers \\
+			Dagger & C\texttt{++} & 2~000 & LLVM \\
+			Fracture & C\texttt{++} & 20~000 & LLVM \\
+			MC-Semantics & C\texttt{++} & 25~000 & LLVM and Google Protocol Buffers \\
 			\hline
 			\multicolumn{4}{|l|}{\hspace{4ex} \textit{Middle-end}} \\
 			\hline
@@ -33,8 +33,8 @@ The number of lines of code in a project may give an indication to the project's
 			\hline
 			\multicolumn{4}{|l|}{\hspace{4ex} \textit{Dependencies}} \\
 			\hline
-			LLVM & C++ & 800~000 & - \\
-			Google Protocol Buffers & C++ & 125~000 & - \\
+			LLVM & C\texttt{++} & 800~000 & - \\
+			Google Protocol Buffers & C\texttt{++} & 125~000 & - \\
 			dot & Go & 7~000 & - \\
 			llvm (Go) & Go & 5~000 & - \\
 			graphs & Go & 2~000 & - \\
