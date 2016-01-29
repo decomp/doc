@@ -10,7 +10,7 @@ This repository acts as an umbrella for the decomp.org project, which implements
 
 Anyone with an interest in the decomp.org project is encouraged to contribute in whichever way they desire. This may include:
 
-* Critically evaluate the design of the decompilation components, both current and future ones. Suggest design ideas for new decompilation stages, and motivate the redesigning current ones. Design discussions are taking place in the [issue tracker].
+* Critically evaluate the design of the decompilation components, both current and future ones. Suggest design ideas for new decompilation stages, and highlight limitations with the design of the current ones. Design discussions are taking place in the [issue tracker].
 * Contribute ideas and participate in collective brainstorming regarding decompilation strategies. Together we may create a *decompilation think tank*! Random decompilation ideas are discussed in the [issue tracker].
 * Participate in the development of any of the independent [decompilation components](https://github.com/decomp).
     - [ll2dot](https://github.com/decomp/ll2dot) - control flow graph generation (e.g. *.ll -> *.dot).
