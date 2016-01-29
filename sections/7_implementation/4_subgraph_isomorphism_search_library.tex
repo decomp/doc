@@ -44,7 +44,7 @@ Similar to the third prototype, the fourth throwaway prototype separated candida
 	\label{fig:equation_fail}
 \end{figure}
 
-The fifth throwaway prototype extended the capabilities of the simple equation solver by trying different candidate node mappings recursively until a valid subgraph isomorphism was found or known not to exist. These equations were solved concurrently using Go routines (independently executing functions, which are multiplexed onto system threads) which relayed the answers back using channels (typed and synchronized communication channels).
+The fifth throwaway prototype extended the capabilities of the simple equation solver by trying different candidate node mappings recursively until a valid subgraph isomorphism was found or known not to exist. These equations were solved concurrently using Go routines (independently executing functions, which are multiplexed onto system threads) which relayed the answers back using channels (typed and synchronised communication channels).
 
 At this stage, the algorithm design had started to feel mature and the focus shifted from implementing throwaway prototypes to building a solid foundation. Starting with the parts of the system that were best understood, one part or concept at the time were removed from the throwaway prototype and carefully reimplemented in a new library through a series of steps. Firstly, the API of the new library was taken into careful consideration, and a set of stub functions and core data structures were added and thoroughly documented. Secondly, test cases were written for each stub function of the library. Lastly, the stub functions were implemented one at the time and verified against the test cases.
 
