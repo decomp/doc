@@ -182,21 +182,18 @@ This report details every stage of the project from conceptualisation to success
     4. Final Thoughts
 11. References
 12. Appendices
-    1. Project Initiation Document
-    2. Certificate of Ethics Review
-    3. Initial and Final Gantt Charts
-    4. The REIL Instruction Set
-    5. Patch for Unnamed Basic Blocks of LLVM
-    6. Dagger Example
-    7. MC-Semantics Example
-    8. Clang Example
-    9. Control Flow Graph Generation Example
-    10. Control Flow Analysis Example
-    11. Restructure Example
-    12. Code Generation Example
-    13. Post-processing Example
-    14. Decompilation of Nested Primitives
-    15. Decompilation of Post-test Loops
+    1. The REIL Instruction Set
+    2. Patch for Unnamed Basic Blocks of LLVM
+    3. Dagger Example
+    4. MC-Semantics Example
+    5. Clang Example
+    6. Control Flow Graph Generation Example
+    7. Control Flow Analysis Example
+    8. Restructure Example
+    9. Code Generation Example
+    10. Post-processing Example
+    11. Decompilation of Nested Primitives
+    12. Decompilation of Post-test Loops
 
 ## Public domain
 
