@@ -3,9 +3,9 @@
 \subsubsection{Code Coverage}
 \label{sec:ver_code_coverage}
 
-Code coverage is a measurement for tracking what parts of the code that gets executed when running test cases. The Go project takes an interesting approach to tracking code coverage, which utilises the production quality source code analysis and transformation libraries available in Go. Instead of generating platform-dependent assembly which tracks the execution of various branches, Go inject unique tracking statements on each line of the original source code. This approach is platform-independent by design, and may easily be extended to support heat maps which track how often each line gets executed \cite{go_cover}.
+Code coverage is a measurement for tracking what parts of the code that gets executed when running test cases. The Go project takes an interesting approach to tracking code coverage, which utilises the production quality source code analysis and transformation libraries available in Go. Instead of generating platform-dependent assembly which tracks the execution of various branches, Go inject unique tracking statements on each line of the original source code. This approach is platform-independent by design, and may easily be extended to support heat maps which track how often each line gets executed~\cite{go_cover}.
 
-As the lexer of any language is a fundamental building block on which other libraries and components depend, the test cases of the LLVM IR lexer aimed for a 100\% code coverage of any code not related to input/output errors (e.g. ``file not found''); as illustrated in figure \ref{fig:lexer_code_coverage}. This rigorous testing uncovered several faulty assumptions in the lexing logic, which were later corrected.
+As the lexer of any language is a fundamental building block on which other libraries and components depend, the test cases of the LLVM IR lexer aimed for a 100\% code coverage of any code not related to input/output errors (e.g. ``file not found''); as illustrated in figure~\ref{fig:lexer_code_coverage}. This rigorous testing uncovered several faulty assumptions in the lexing logic, which were later corrected.
 
 \begin{figure}[htbp]
 	\begin{center}
@@ -28,7 +28,7 @@ total:                         (statements)   97.6%
 	\end{center}
 \end{figure}
 
-A brief summary of the code coverage for the various software artefacts is presented in figure \ref{tbl:code_coverage_summary}.
+A brief summary of the code coverage for the various software artefacts is presented in figure~\ref{tbl:code_coverage_summary}.
 
 \begin{savenotes}
 	\begin{table}[htbp]
@@ -51,7 +51,7 @@ A brief summary of the code coverage for the various software artefacts is prese
 	\end{table}
 \end{savenotes}
 
-Code coverage heat maps may be used to gain clarity in how often a line gets executed by the test cases. The use of heat maps were invaluable when stress testing the various prototypes of the subgraph isomorphism search algorithm, as they were able to identify several tricky corner cases; such as the ones illustrated in figure \ref{fig:iso_heat_map}
+Code coverage heat maps may be used to gain clarity in how often a line gets executed by the test cases. The use of heat maps were invaluable when stress testing the various prototypes of the subgraph isomorphism search algorithm, as they were able to identify several tricky corner cases; such as the ones illustrated in figure~\ref{fig:iso_heat_map}
 
 \begin{figure}[htbp]
 	\begin{center}

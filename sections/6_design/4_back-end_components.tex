@@ -3,7 +3,7 @@
 \subsection{Back-end Components}
 \label{sec:design_back-end_components}
 
-The back-end module translates structured LLVM IR into a target high-level programming language, using two distinct stages. Firstly, the code generation stage translates LLVM IR into unpolished Go code by converting the individual instructions into equivalent Go statements and creating high-level control flow primitives for the various basic blocks, using the information of the structured CFGs (see section \ref{sec:design_control_flow_analysis}). Secondly, the post-processing stage improves the quality of the unpolished Go code, through a series of source code transformations. The interaction between the middle-end, and the \texttt{ll2go} and \texttt{go-post} tools of the back-end is illustrated in figure \ref{fig:back-end}.
+The back-end module translates structured LLVM IR into a target high-level programming language, using two distinct stages. Firstly, the code generation stage translates LLVM IR into unpolished Go code by converting the individual instructions into equivalent Go statements and creating high-level control flow primitives for the various basic blocks, using the information of the structured CFGs (see section~\ref{sec:design_control_flow_analysis}). Secondly, the post-processing stage improves the quality of the unpolished Go code, through a series of source code transformations. The interaction between the middle-end, and the \texttt{ll2go} and \texttt{go-post} tools of the back-end is illustrated in figure~\ref{fig:back-end}.
 
 \begin{figure}[htbp]
 	\begin{center}
