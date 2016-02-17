@@ -1,7 +1,16 @@
-all: pdf
+all: book pdf
 
-pdf: inc cover/cover.pdf
+# TODO: Fix
+#    $ make -C inc/
+# It currently required bin_descend
+#
+
+#pdf: inc cover/cover.pdf
+pdf:
 	texi2pdf -q -c decompilation.tex
+
+book:
+	texi2pdf -q -c book.tex
 
 word: inc
 	latex decompilation
