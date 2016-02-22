@@ -5,6 +5,17 @@
 \usepackage[margin=1in]{geometry}
 \usepackage[parfill]{parskip}
 
+% Centre verbatim text.
+%
+% Example:
+%    \begin{figure}
+%    \centering
+%    \begin{BVerbatim}
+%    foo
+%    \end{BVerbatim}
+%    \end{figure}
+\usepackage{fancyvrb}
+
 % Encode < and > correctly.
 \usepackage[T1]{fontenc}
 
@@ -16,13 +27,6 @@
 
 % Use IEEE-style references.
 \bibliographystyle{ieeetr}
-
-% Use fancy headers, e.g.
-%
-%    2.2 Decompilation Phases                           2 LITERATURE REVIEW
-%    ______________________________________________________________________
-\usepackage{fancyhdr}
-\pagestyle{fancy}
 
 % Add support for links.
 %
@@ -83,14 +87,6 @@
 % Examples:
 %    \multicolumn{4}{|l|}{foo}
 \usepackage{multirow}
-
-% Force the first float on float-only pages to be top-aligned.
-%
-% ref: http://tex.stackexchange.com/a/28565
-\makeatletter
-\setlength{\@fptop}{0pt}
-\setlength{\@fpbot}{0pt plus 1fil}
-\makeatother
 
 % Colors from the fill color selection of Google Docs spreadsheets.
 \definecolor{light_red_2}{HTML}{EA9999}

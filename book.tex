@@ -13,18 +13,26 @@
 
 % --- [ Acknowledgements ] -----------------------------------------------------
 
+\thispagestyle{plain}
 \include{sections/0_acknowledgements}
+
+% --- [ Blank page ] -----------------------------------------------------------
+
+\clearpage
+\thispagestyle{plain}
+\mbox{}
 
 % --- [ Table of contents ] ----------------------------------------------------
 
-\tableofcontents
-
 \clearpage
+\fancyhead[L]{}
+\tableofcontents
 
 % --- [ Blank page ] -----------------------------------------------------------
 
 % No paper is complete without at least one blank page.
 
+\clearpage
 \thispagestyle{empty}
 
 \vspace*{2.5cm}
@@ -33,10 +41,10 @@
 	\textit{This page is unintentionally left blank.}
 \end{center}
 
-\clearpage
-
 % === [ Main matter ] ==========================================================
 
+\clearpage
+\fancyhead[L]{\fontsize{14}{16}\selectfont \slshape \rightmark}
 \pagenumbering{arabic}
 
 \include{sections/1_introduction}
@@ -54,10 +62,14 @@
 
 % --- [ References ] -----------------------------------------------------------
 
+\clearpage
+\fancyhead[L]{}
 \bibliography{references}
 
 % --- [ Appendices ] -----------------------------------------------------------
 
+\clearpage
+\fancyhead[L]{\fontsize{14}{16}\selectfont \slshape \rightmark}
 \include{sections/appendices}
 
 \end{document}

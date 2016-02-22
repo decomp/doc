@@ -7,7 +7,7 @@ all: $(PNG)
 	# 2) Manual edit of graphs to highlight subgraph to node merges in red.
 
 %.png: %.dot
-	dot -Tpng -o $@ $<
+	dot -Gdpi=300 -Tpng -o $@ $<
 
 prepare: stmt_0.png stmt_1.png stmt_2.png stmt_3.png stmt_4.png stmt_5.png
 

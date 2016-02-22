@@ -7,15 +7,15 @@ Benchmark tests were implemented to reliably measure any performance changes bef
 
 \begin{figure}[htbp]
 	\begin{center}
-		\begin{verbatim}
+		\begin{BVerbatim}
 $ git checkout old; go test -bench=ParseString > old.txt
 $ git checkout new; go test -bench=ParseString > new.txt
 $ benchcmp old.txt new.txt
 benchmark                old ns/op     new ns/op     delta
 BenchmarkParseString     737625        204010        -72.34%
-		\end{verbatim}
+		\end{BVerbatim}
 		\caption{Benchmark run time delta between the original and the optimised version of the LLVM IR lexer, as visualised by \texttt{benchcmp}\protect\footnotemark. The optimised version is roughly 3.6 times faster than the original version of the lexer.}
 		\label{fig:benchmark_delta}
 	\end{center}
 \end{figure}
-\footnotetext{Benchcmp displays performance changes between benchmarks: \url{https://golang.org/x/tools/cmd/benchcmp}}
+\footnotetext{Display performance changes between benchmarks: \url{https://golang.org/x/tools/cmd/benchcmp}}

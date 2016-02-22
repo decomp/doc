@@ -1,0 +1,19 @@
+\ProvidesPackage{preamblepaper}
+
+% Use fancy headers, e.g.
+%
+%    2.2 Decompilation Phases                           2 LITERATURE REVIEW
+%    ______________________________________________________________________
+%
+% The fancyhdr package must be included after the geomtry package, to use the
+% correct margin.
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+% Force the first float on float-only pages to be top-aligned.
+%
+% ref: http://tex.stackexchange.com/a/28565
+\makeatletter
+\setlength{\@fptop}{0pt}
+\setlength{\@fpbot}{0pt plus 1fil}
+\makeatother

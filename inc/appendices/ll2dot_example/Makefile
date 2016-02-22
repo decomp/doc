@@ -1,7 +1,7 @@
 all: example1_graphs/main.png
 
 example1_graphs/main.png: example1_graphs/main.dot
-	dot -Tpng -o $@ $<
+	dot -Gdpi=300 -Tpng -o $@ $<
 
 example1_graphs/main.dot: example1.ll
 	ll2dot -f $<

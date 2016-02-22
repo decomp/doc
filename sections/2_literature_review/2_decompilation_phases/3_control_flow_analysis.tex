@@ -72,17 +72,17 @@ The control flow analysis stage is responsible for analysing the control flow (i
 		\label{fig:post_loop_graph_representation}
 	\end{subfigure}
 	\qquad
-	% list
+	% seq
 	\begin{subfigure}[ht]{0.24\textwidth}
 		\centering
 		\begin{subfigure}[ht]{0.20\textwidth}
-			\lstinputlisting[language=C, style=go, breaklines=false, numbers=none]{inc/primitives/list.c}
+			\lstinputlisting[language=C, style=go, breaklines=false, numbers=none]{inc/primitives/seq.c}
 		\end{subfigure}
 		\begin{subfigure}[ht]{0.35\textwidth}
-			\includegraphics[width=\textwidth]{inc/primitives/list.png}
+			\includegraphics[width=\textwidth]{inc/primitives/seq.png}
 		\end{subfigure}
 		\caption{consecutive statements; entry: \texttt{A}, exit: \texttt{B}.}
-		\label{fig:list_graph_representation}
+		\label{fig:seq_graph_representation}
 	\end{subfigure}
 	\caption{The pseudo-code and graph representation of various high-level control flow primitives with denoted entry and exit nodes.}
 	\label{fig:graph_representations}

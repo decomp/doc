@@ -6,27 +6,29 @@ In total four essential (\textbf{R1}, \textbf{R2}, \textbf{R3} and \textbf{R4}),
 
 \begin{table}[htbp]
 	\begin{center}
-		\begin{tabular}{|l|l|l|l|}
-			\hline
-			Sat. & Req. & Priority & Description \\
-			\hline
-			\rowcolor{light_green_3}
-			Yes & \textbf{R1} & MUST & Read the assembly language representation of LLVM IR \\
-			\rowcolor{light_green_3}
-			Yes & \textbf{R2} & MUST & Write the assembly language representation of LLVM IR \\
-			\rowcolor{light_green_3}
-			Yes & \textbf{R3} & MUST & Interact with an in-memory representation of LLVM IR \\
-			\rowcolor{light_green_3}
-			Yes & \textbf{R4} & MUST & Generate CFGs from LLVM IR basic blocks \\
-			\hline
-			\rowcolor{light_green_3}
-			Yes & \textbf{R5} & COULD & Visualise CFGs using the \texttt{DOT} graph description language \\
-			\hline
-			N/A & \textbf{R6} & WON'T & Read the bitcode representation of LLVM IR \\
-			N/A & \textbf{R7} & WON'T & Write the bitcode representation of LLVM IR \\
-			N/A & \textbf{R8} & WON'T & Provide a formal grammar of LLVM IR \\
-			\hline
-		\end{tabular}
+		\resizebox{\textwidth}{!}{
+			\begin{tabular}{|l|l|l|l|}
+				\hline
+				Sat. & Req. & Priority & Description \\
+				\hline
+				\rowcolor{light_green_3}
+				Yes & \textbf{R1} & MUST & Read the assembly language representation of LLVM IR \\
+				\rowcolor{light_green_3}
+				Yes & \textbf{R2} & MUST & Write the assembly language representation of LLVM IR \\
+				\rowcolor{light_green_3}
+				Yes & \textbf{R3} & MUST & Interact with an in-memory representation of LLVM IR \\
+				\rowcolor{light_green_3}
+				Yes & \textbf{R4} & MUST & Generate CFGs from LLVM IR basic blocks \\
+				\hline
+				\rowcolor{light_green_3}
+				Yes & \textbf{R5} & COULD & Visualise CFGs using the \texttt{DOT} graph description language \\
+				\hline
+				N/A & \textbf{R6} & WON'T & Read the bitcode representation of LLVM IR \\
+				N/A & \textbf{R7} & WON'T & Write the bitcode representation of LLVM IR \\
+				N/A & \textbf{R8} & WON'T & Provide a formal grammar of LLVM IR \\
+				\hline
+			\end{tabular}
+		}
 	\end{center}
 	\caption{A summary of the evaluation against requirements of the LLVM IR library, which specifies what requirements (abbreviated as ``Req.'') that have been satisfied (abbreviated as ``Sat.'').}
 	\label{tbl:eval_summary_of_llvm_ir_library}

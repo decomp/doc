@@ -9,7 +9,7 @@ As the lexer of any language is a fundamental building block on which other libr
 
 \begin{figure}[htbp]
 	\begin{center}
-		\begin{verbatim}
+		\begin{BVerbatim}
 $ go test -coverprofile=lexer.out github.com/llir/llvm/asm/lexer
 $ go tool cover -func=lexer.out
 llvm/asm/lexer/lexer.go:36:    ParseFile      80.0%
@@ -22,7 +22,7 @@ llvm/asm/lexer/state.go:131:   lexComment     100.0%
 llvm/asm/lexer/state.go:364:   lexQuote       100.0%
 llvm/asm/lexer/state.go:585:   unescape       100.0%
 total:                         (statements)   97.6%
-		\end{verbatim}
+		\end{BVerbatim}
 		\caption{A summary of the code coverage for a selection of the LLVM IR lexer functions, as visualised by the \texttt{cover} tool.}
 		\label{fig:lexer_code_coverage}
 	\end{center}

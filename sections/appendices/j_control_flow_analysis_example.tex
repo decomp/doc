@@ -7,7 +7,7 @@ This section provides a step-by-step demonstration of how the control flow analy
 
 The first step of the control flow analysis recursively locates subgraph isomorphisms of the graph representation of pre-test loops (see figure~\ref{fig:pre_loop_graph_representation}) in the original CFG of the \texttt{stmt} function, and replaces these subgraphs with single nodes as illustrated in figure~\ref{fig:step_1}.
 
-The second step further simplifies the CFG of \textbf{step 1} by recursively replacing the subgraph isomorphisms of the graph representation of consecutive statements (see figure~\ref{fig:list_graph_representation}) with single nodes, as illustrated in figure~\ref{fig:step_2}.
+The second step further simplifies the CFG of \textbf{step 1} by recursively replacing the subgraph isomorphisms of the graph representation of consecutive statements (see figure~\ref{fig:seq_graph_representation}) with single nodes, as illustrated in figure~\ref{fig:step_2}.
 
 The third step further simplifies the CFG of \textbf{step 2} by recursively replacing the subgraph isomorphisms of the graph representation of 1-way conditionals (see figure~\ref{fig:if_graph_representation}) with single nodes, as illustrated in figure~\ref{fig:step_3}.
 
@@ -31,7 +31,7 @@ When the CFG has been reduced into a single node, a structured CFG may be genera
 	\label{fig:step_1}
 \end{figure}
 
-% list
+% seq
 \begin{figure}[htbp]
 	\centering
 	\begin{subfigure}[ht]{0.45\textwidth}
@@ -41,7 +41,7 @@ When the CFG has been reduced into a single node, a structured CFG may be genera
 	\begin{subfigure}[ht]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{inc/appendices/control_flow_analysis_example/step2_after.png}
 	\end{subfigure}
-	\caption{\textbf{Step 2}. The CFG from \textbf{step 1} (left) and a simplified CFG (right) after identifying consecutive statements (see figure~\ref{fig:list_graph_representation}).}
+	\caption{\textbf{Step 2}. The CFG from \textbf{step 1} (left) and a simplified CFG (right) after identifying consecutive statements (see figure~\ref{fig:seq_graph_representation}).}
 	\label{fig:step_2}
 \end{figure}
 
