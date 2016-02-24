@@ -2,7 +2,7 @@ all: book pdf
 
 # TODO: Fix
 #    $ make -C inc/
-# It currently required bin_descend
+# It currently requires bin_descend
 #
 
 #pdf: inc cover/cover.pdf
@@ -10,7 +10,7 @@ pdf:
 	texi2pdf -q -c decompilation.tex
 
 book:
-	texi2pdf -q -c book.tex
+	texi2pdf -I ../ -q -c -o decomp.pdf book/decomp.tex
 
 word: inc
 	latex decompilation
@@ -20,7 +20,7 @@ word: inc
 	pdflatex decompilation
 	latex2rtf decompilation
 
-.PHONY: clean inc cover
+.PHONY: clean inc cover pdf book
 
 inc:
 	make -s -C $@/
