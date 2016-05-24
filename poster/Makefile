@@ -1,7 +1,10 @@
-all: poster
+all: poster.pdf
 
-poster: inc
-	texi2pdf -I ../ -c -q $@.tex
+poster.tex: inc
+
+%.pdf: %.tex
+	latexmk -pdf $<
+	latexmk -bibtex -c $<
 
 .PHONY: clean inc
 
@@ -9,4 +12,4 @@ inc:
 	make -C $@/
 
 clean:
-	rm -f *.aux *.log *.out *.toc *.bbl *.blg
+	rm -f *.aux *.log *.out *.toc *.bbl *.blg *.fls *.fdb_latexmk
