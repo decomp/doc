@@ -10,7 +10,12 @@ pdf:
 	texi2pdf -q -c decompilation.tex
 
 book:
-	texi2pdf -I ../ -q -c -o decomp.pdf book/decomp.tex
+	pdflatex book/decomp.tex
+	pdflatex book/decomp.tex
+	bibtex decomp
+	pdflatex book/decomp.tex
+	pdflatex book/decomp.tex
+	pdflatex book/decomp.tex
 
 word: inc
 	latex decompilation
