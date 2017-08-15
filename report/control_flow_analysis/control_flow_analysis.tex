@@ -1,0 +1,101 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{preamble}
+
+\title{Project Initiation Document\\ \textit{\large{Evaluation of Methods for Effective Control Flow Recovery}}}
+\author{Robin Eklind, 870915-0216}
+
+\begin{document}
+
+\maketitle
+
+\section{Basic details}
+
+\begin{table}[htbp]
+	\begin{center}
+		\begin{tabular}{r|l|}
+			\cline{2-2}
+			Student name: & Robin Eklind \\
+			\cline{2-2}
+			Draft project title: & Evaluation of Methods for Effective Control Flow Recovery \\
+			\cline{2-2}
+			Course: & \textit{To be determined} \\
+			\cline{2-2}
+			Project supervisor: & Christian Schulte \\
+			\cline{2-2}
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\section{Outline of the project environment and problem to be solved}
+
+Control flow recovery is the process of identifying the structures of high-level control flow primitives, such as 2-way conditionals (i.e. \textit{if-else} statements) and pre-test loops (i.e. \textit{for-loop} statements), in unstructured control flow graphs (CFGs).
+
+Information of high-level control flow primitives in the original source code is lost during compilation, and the recovery of such information presents interesting challenges since compiler optimizations (such as jump threading and code relocation) may produce irreducible graphs \cite{cifuentes_reverse_comp}. Solutions to this problem domain therefore include trade-offs between preservation of the original CFG and introduction of additional nodes (e.g. auxiliary conditional nodes \cite{no_more_gotos} or code duplication through node splitting \cite{node_splitting}) to recovery high-level control flow primitives from otherwise irreducible CFGs.
+
+The applications of control flow recovery are versatile. It may be used to:
+
+\begin{itemize}
+	\item facilitate malware analysis
+	\item provide information for branch prediction
+	\item discover and mitigate bugs and security vulnerabilities
+	\item recover source code with high-level control flow primitives
+	\item facilitate verification of compiler output (e.g. Reflections on Trusting Trust \cite{trusting_trust})
+	\item analyze proprietary algorithms
+\end{itemize}
+
+\section{Project aim and objectives}
+
+The aim of this project is to evaluate a set of control flow recovery methods, and assess their effectiveness at identifying high-level control flow primitives in control flow graphs.
+
+In order to achieve this aim, the author will:
+
+\begin{enumerate}
+	\item Define a metric for measuring the effectiveness of control flow recovery.
+	\item Review a set of control flow recovery methods presented in research.
+	\item Determine if there exist public implementations for the reviewed control flow recovery methods; and if not develop implementations.
+	\item Evaluate the control flow recovery methods against the defined effectiveness metric.
+\end{enumerate}
+
+\section{Project deliverables}
+
+Documents to be produced:
+
+\begin{itemize}
+	\item Project report.
+\end{itemize}
+
+System artefacts to be developed:
+
+\begin{itemize}
+	\item Library for control flow analysis with support for a set of control flow recovery methods; refer to objective 3.
+	\item Tool for performing control flow recovery on a given CFG; refer to objective 4.
+\end{itemize}
+
+\section{Project approach}
+
+Use the Clang compiler to produce test cases, as it is capable of emitting LLVM IR from C source code. The goal will be to reconstruct the high-level control flow primitives (such as \textit{for-loops}, \textit{if-else} statements) of the original C code from the LLVM IR.
+
+A preliminary metric for the effectiveness of control flow recovery is how many of the original high-level control flow primitives that were recovered and how many were omitted. The metric for effectiveness should also includes a notion of false positives for high-level primitives that were recovered but were not part of the original source code. The metric for effective control flow recovery will be refined as more intuition is gained in the problem domain, and the final metric for effective control flow recovery will be clearly defined as part of the project.
+
+All work will be made available on GitHub from day one, and the source code will be released into the public domain to encourage open source adaptation. The project plan will be organized using the GitHub issue tracker, where each issue corresponds to a task. Milestones, containing a set of issues, will track the progress of the project and enforce deadlines.
+
+\section{Starting point for research}
+
+\begin{itemize}
+	% Preservation of original control flow graph structure (use case forensics)
+	\item C. Cifuentes, Reverse Compilation Techniques \cite{cifuentes_reverse_comp}
+	\item K. Yakdan, S. Dechand, E. Gerhards-Padilla and M. Smith, Helping Johnny to Analyze Malware: A Usability-Optimized Decompiler and Malware Analysis User Study \cite{helping_johnny}
+	\item E. Schwartz, J. Lee, M. Woo and D. Brumley, Native x86 Decompilation using Semantics-Preserving Structural Analysis and Iterative Control-Flow Structuring \cite{semantics_preserving_structural_analysis}
+	% Introduction of auxiliary control variables
+	\item K. Yakdan, S. Eschweiler, E. Gerhards-Padilla and M. Smith, No More Gotos: Decompilation Using Pattern-Independent Control-Flow Structuring and Semantics-Preserving Transformations \cite{no_more_gotos}
+	\item T. Conradi, Matching of Control- and Data-Flow Constructs in Disassembled Code \cite{pdg_control_flow_analysis}
+	% Node splitting
+	\item S. Moll, Decompilation of LLVM IR \cite{node_splitting}
+\end{itemize}
+
+\clearpage
+
+\bibliography{references}
+
+\end{document}

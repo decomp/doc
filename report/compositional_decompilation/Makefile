@@ -15,4 +15,4 @@ inc:
 	make -s -C $@/
 
 clean:
-	rm -f *.aux *.log *.out *.toc *.bbl *.blg *.dvi *.rtf *.bcf *-blx.bib *.run.xml sections/*.aux
+	rm -rf latex.out
