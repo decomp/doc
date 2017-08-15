@@ -10,7 +10,7 @@ The following poster summarizes the current capabilities of the decompilation pi
 
 ## Report
 
-A PDF version of the report has been made available online ([decompilation.pdf](https://raw.githubusercontent.com/decomp/doc/master/report/decompilation.pdf)).
+A PDF version of the report has been made available online ([decompilation.pdf](https://raw.githubusercontent.com/decomp/doc/master/report/compositional_decompilation/decompilation.pdf)).
 
 ### Abstract
 

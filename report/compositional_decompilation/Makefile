@@ -7,8 +7,7 @@ all: decompilation.pdf book.pdf
 #decompilation.pdf: inc
 
 %.pdf: %.tex
-	latexmk -pdf $<
-	latexmk -bibtex -c $<
+	latexrun $<
 
 .PHONY: clean inc
 
