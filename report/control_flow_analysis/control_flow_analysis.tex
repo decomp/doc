@@ -9,6 +9,12 @@
 
 \maketitle
 
+\clearpage
+
+\tableofcontents
+
+\clearpage
+
 \section{Introduction}
 
 Control flow recovery is the process of identifying the structures of high-level control flow primitives, such as 2-way conditionals (i.e. \textit{if-else} statements) and pre-test loops (i.e. \textit{for-loop} statements), in unstructured control flow graphs (CFGs).
@@ -26,7 +32,7 @@ The applications of control flow recovery are versatile. It may be used to:
 	\item analyze proprietary algorithms
 \end{itemize}
 
-\subsection{Project aim and objectives}
+\subsection{Project Aim and Objectives}
 
 The aim of this project is to evaluate a set of control flow recovery methods, and assess their effectiveness at identifying high-level control flow primitives in control flow graphs.
 
@@ -39,7 +45,7 @@ In order to achieve this aim, the author will:
 	\item Evaluate the control flow recovery methods against the defined effectiveness metric.
 \end{enumerate}
 
-\subsection{Project deliverables}
+\subsection{Project Deliverables}
 
 Documents to be produced:
 
@@ -54,9 +60,11 @@ System artefacts to be developed:
 	\item Tool for performing control flow recovery on a given CFG; refer to objective 4.
 \end{itemize}
 
+\clearpage
+
 \section{Methodology}
 
-\subsection{Project approach}
+\subsection{Project Approach}
 
 Use the Clang compiler to produce test cases, as it is capable of emitting LLVM IR from C source code. The goal will be to reconstruct the high-level control flow primitives (such as \textit{for-loops}, \textit{if-else} statements) of the original C code from the LLVM IR.
 
@@ -71,6 +79,8 @@ TODO
 \subsection{Criteria for Selection of Test Programs}
 
 TODO
+
+\clearpage
 
 \section{Background}
 
@@ -90,17 +100,21 @@ The following section introduces a set of control flow analysis methods and desc
 	\item S. Moll, Decompilation of LLVM IR \cite{node_splitting}
 \end{itemize}
 
+\clearpage
+
 \section{Requirements}
 
 TODO
 
+\clearpage
+
 \section{Evaluation}
 
-\subsection{Outcome of mandatory objectives}
+\subsection{Outcome of Mandatory Objectives}
 
 TODO
 
-\subsection{Outcome of minor objectives of incremental nature}
+\subsection{Outcome of Minor Objectives of Incremental Difficulty}
 
 TODO
 
@@ -108,11 +122,13 @@ TODO
 
 This section describes how well the control flow recovery methods worked, and highlights their limitations.
 
-\subsection{Intuition behind Indentified Deficiencies in Control Flow Recovery Methods}
+\subsection{Intuition behind Identified Deficiencies in Control Flow Recovery Methods}
 
 \textit{Note, this section is a considered a supplementary goal wish may appear in the final report.}
 
 This section describes identified deficiencies in the various control flow recovery methods, and seeks to provide insight into why they occur.
+
+\clearpage
 
 \section{Conclusion}
 
