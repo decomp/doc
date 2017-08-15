@@ -1,10 +1,10 @@
-all: decompilation.pdf book.pdf
+all: compositional_decompilation.pdf book.pdf
 
 # TODO: Fix
 #    $ make -C inc/
 # It currently requires bin_descend
 
-#decompilation.pdf: inc
+#compositional_decompilation.pdf: inc
 
 %.pdf: %.tex
 	latexrun $<
