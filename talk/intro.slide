@@ -1,0 +1,57 @@
+Using LLVM for Decompilation and Binary Analysis
+31 August 2017
+
+Daniel Lidén
+Robin Eklind
+
+* Talk Outline
+
+- Overview of a decompilation pipeline
+- Control flow analysis
+- Data flow analysis
+- Brief examples of decompilation
+
+* Overview of a Decompilation Pipeline
+
+.image intro/decompilation_pipeline.png _ 900
+.caption The front-end, middle-end and back-end communicate with each other using LLVM IR.
+
+* Front-end (Binary Executable)
+
+.image intro/front-end_binary.png _ 900
+.caption The three open source projects MC-Semantics, Dagger and Fracture translate native code of various architectures (e.g. x86, x86-64 and ARM) and file formats (e.g. ELF, PE, COFF and Mach-o) to LLVM IR.
+
+* Front-end (Source Code)
+
+.image intro/front-end_source.png _ 900
+.caption Several open source compilers translate high-level programming languages into LLVM IR. Three such compilers are Clang, the Glasgow Haskell Compiler and the Rust compiler which translate C, Haskell and Rust respectively into LLVM IR.
+
+* Middle-end
+
+.image intro/middle-end.png _ 900
+.caption The middle-end module performs a control flow analysis on the LLVM IR in two steps. Firstly, the ll2dot tool generates unstructured CFGs (in the DOT file format) from LLVM IR. Secondly, the restructure tool produces a structured CFG (in JSON format) by identifying high-level control flow primitives in the unstructured CFG.
+
+* Back-end
+
+.image intro/back-end.png _ 900
+.caption The back-end module decompiles structured LLVM IR into Go source code, using two components. The ll2go tool translates structured LLVM IR assembly into unpolished Go code, which is post-processed by the go-post tool to improve the quality of the output.
+
+* Control Flow Analysis
+
+.image intro/restructure.png _ 500
+.caption Matched if-statement.
+
+* Data Flow Analysis
+
+.image intro/fake_data_flow.png _ 800
+.caption Fake data flow.
+
+* For-loop
+
+.image intro/for_loop.png _ 800
+.caption For-loop.
+
+* LLVM IR
+
+.image intro/llvm_ir.png 500 _
+.caption LLVM IR.
