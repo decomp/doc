@@ -2,6 +2,10 @@
 
 Design documents related to the [decompilation pipeline](https://github.com/decomp/decomp).
 
+## Talk
+
+Introductory talk [Using LLVM for Decompilation and Binary Analysis](http://talks.godoc.org/github.com/decomp/doc/talk/intro.slide), presented at LLVM Sweden Socials in Aug 2017.
+
 ## Poster
 
 The following poster summarizes the current capabilities of the decompilation pipeline, using a composition of independent components to translate LLVM IR to Go.
