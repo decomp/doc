@@ -9,7 +9,8 @@ Robin Eklind
 - Overview of a decompilation pipeline
 - Control flow analysis
 - Data flow analysis
-- Brief examples of decompilation
+- Post-processing
+- Decompilation demo!
 
 * Overview of a Decompilation Pipeline
 
@@ -41,17 +42,25 @@ Robin Eklind
 .image intro/restructure.png _ 500
 .caption Matched if-statement.
 
+* Control Flow Primitives
+
+.image intro/control_flow_primitives.png _ 900
+.caption Subgraphs of high-level control flow primitives.
+
 * Data Flow Analysis
 
 .image intro/fake_data_flow.png _ 800
-.caption Fake data flow.
+.caption Recovery of expressions (fake data flow analysis for now).
 
-* For-loop
+* Post-processing
 
 .image intro/for_loop.png _ 800
-.caption For-loop.
+.caption Init- and post-statements of for-loops.
 
-* LLVM IR
+* LLVM IR input
 
 .image intro/llvm_ir.png 500 _
-.caption LLVM IR.
+.caption LLVM IR input.
+
+* Demo!
+
