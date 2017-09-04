@@ -19,11 +19,11 @@
 
 \section{Introduction}
 
-Control flow recovery is the process of identifying structures of high-level control flow primitives, such as 2-way conditionals (i.e. \textit{if-else} statements) and pre-test loops (i.e. \textit{while-loops}), in unstructured control flow graphs (CFGs).
+Control flow recovery is the process of identifying structures of high-level control flow primitives, such as 2-way conditionals (i.e. \textit{if-else} statements) and pre-test loops (i.e. \textit{while}-loops), in unstructured control flow graphs (CFGs).
 
-Information of high-level control flow primitives in the original source code is lost during compilation, and the recovery of such information presents interesting challenges since compiler optimizations (such as jump threading and code relocation) may produce irreducible graphs \cite{cifuentes_reverse_comp}. Solutions to this problem domain therefore include trade-offs between preservation of the original CFG and introduction of additional nodes (e.g. auxiliary conditional nodes \cite{no_more_gotos} or code duplication through node splitting \cite{node_splitting}) to recovery high-level control flow primitives from otherwise irreducible CFGs.
+Information of high-level control flow primitives in the original source code is lost during compilation, and the recovery of such information presents interesting challenges since compiler optimisations (such as jump threading and code relocation) may produce irreducible graphs \cite{cifuentes_reverse_comp}. Solutions to this problem domain therefore include trade-offs between preservation of the original CFG and introduction of additional nodes (e.g. auxiliary conditional nodes \cite{no_more_gotos} or code duplication through node splitting \cite{node_splitting}) to recovery high-level control flow primitives from otherwise irreducible CFGs.
 
-The applications of control flow recovery are versatile. As part of binary analysis and decopmilation tasks it may be used to:
+The applications of control flow recovery are versatile. As part of binary analysis and decompilation tasks it may be used to:
 
 \begin{itemize}
 	\item facilitate malware analysis
@@ -31,7 +31,7 @@ The applications of control flow recovery are versatile. As part of binary analy
 	\item discover and mitigate bugs and security vulnerabilities
 	\item recover source code with high-level control flow primitives
 	\item facilitate verification of compiler output (e.g. Reflections on Trusting Trust \cite{trusting_trust})
-	\item analyze proprietary algorithms
+	\item analyse proprietary algorithms
 \end{itemize}
 
 % --- [ Project Aim and Objectives ] -------------------------------------------
@@ -76,19 +76,26 @@ System artefacts to be developed:
 
 \subsection{Project Approach}
 
-Use the Clang compiler to produce test cases, as it is capable of emitting LLVM IR from C source code. The goal will be to reconstruct the high-level control flow primitives (such as \textit{while-loops}, \textit{if-else} statements) of the original C code from the LLVM IR.
+Use the Clang compiler to produce test cases, as it is capable of emitting LLVM IR from C source code. The goal will be to reconstruct the high-level control flow primitives (such as \textit{while}-loops, \textit{if-else} statements) of the original C code from the LLVM IR.
 
 A preliminary metric for the effectiveness of control flow recovery is how many of the original high-level control flow primitives that were recovered and how many were omitted. The metric for effectiveness should also includes a notion of false positives for high-level primitives that were recovered but were not part of the original source code. The metric for effective control flow recovery will be refined as more intuition is gained in the problem domain, and the final metric for effective control flow recovery will be clearly defined as part of the project.
 
-All work will be made available on GitHub from day one, and the source code will be released into the public domain to encourage open source adaptation. The project plan will be organized using the GitHub issue tracker, where each issue corresponds to a task. Milestones, containing a set of issues, will track the progress of the project and enforce deadlines.
+All work will be made available on GitHub from day one, and the source code will be released into the public domain to encourage open source adaptation. The project plan will be organised using the GitHub issue tracker, where each issue corresponds to a task. Milestones, containing a set of issues, will track the progress of the project and enforce deadlines.
 
 % --- [ Evaluation Process ] ---------------------------------------------------
 
 \subsection{Evaluation Process}
 
-% TODO: extend; mention Clang for parsing C to generate LLVM IR, libclang to parse C for generating JSON listings of control flow primitives. The same parser so that C macros are handled identically.
+For each test program, the evaluation process consists of the following steps.
 
-The LLVM IR assembly of each test program has been produced using the WLLVM\footnote{Whole Program LLVM: \url{https://github.com/travitch/whole-program-llvm}} project which provides tools for building whole-program LLVM bitcode files from unmodified C or C++ source code.
+\begin{enumerate}
+	\item Parse the original C source code of the test program to determine the occurrence of each high-level control flow primitive, and store this truth table in JSON format.
+	\item Convert C source code to LLVM IR using Clang. For test programs consisting of several source files, the LLVM IR is produced using the WLLVM\footnote{Whole Program LLVM: \url{https://github.com/travitch/whole-program-llvm}} project which provides tools for building whole-program LLVM bitcode files from unmodified C or C++ source code.
+	\item Generate a control flow graph for each function defined in the LLVM IR, and store the CFGs in Graphviz DOT format.
+	\item Apply each control flow recovery method on the generated CFGs, and compare the recovered high-level primitives against the truth table produced in step 1.
+\end{enumerate}
+
+Special consideration has been taken to ensure that the C source code is parsed identically in step 1 and 2, since pre-processor directives and compiler specific macros may otherwise introduce uncertainty into the results. The Python script which generates truth tables in step 1 parses C source files using the official bindings for the Clang library, and the C source files are converted to LLVM IR in step 2 using Clang (also when invoked through WLLVM).
 
 % --- [ Criteria for Selection of Test Programs ] ------------------------------
 
@@ -110,7 +117,7 @@ The control flow recovery methods will also be evaluated on pathological test pr
 
 \section{Background}
 
-The following section introduces a set of distinct control flow recovery methods and describes their core ideas. The effectiveness of these control flow recovery methods will be evaluated. For ease of reference, the distinct control flow recovery methods will be referenced throughout this paper using the section names listed below.
+The following section introduces the reviewed control flow recovery methods and describes their core ideas. For ease of reference, the distinct control flow recovery methods will be referenced throughout this paper using the section names listed below.
 
 \subsection{Graph Interval Method}
 
@@ -134,7 +141,7 @@ TODO: add review \cite{node_splitting}
 
 \section{Requirements}
 
-The requirements of each deliverable have been outlined in the succeeding subsections, and are categorised using MoSCoW prioritization~\cite{MoSCoW_analysis}; a definition of which is presented in table~\ref{tbl:MoSCoW_priorities}. Each requirement is directly related to an objective as indicated by the requirements tables of the deliverables.
+The requirements of each deliverable have been outlined in the succeeding subsections, and are categorised using MoSCoW prioritisation~\cite{MoSCoW_analysis}; a definition of which is presented in table~\ref{tbl:MoSCoW_priorities}. Each requirement is directly related to an objective as indicated by the requirements tables of the deliverables.
 
 \begin{table}[htbp]
 	\begin{center}
@@ -155,10 +162,10 @@ The requirements of each deliverable have been outlined in the succeeding subsec
 	\label{tbl:MoSCoW_priorities}
 \end{table}
 
-% --- [ Metric for Effective Control Flow Recovery ] ---------------------------
+% --- [ Metric for the Effectiveness of Control Flow Recovery ] ----------------
 
-\subsection{Metric for Effective Control Flow Recovery}
-\label{sec:req_metric_for_effective_control_flow_recovery}
+\subsection{Metric for the Effectiveness of Control Flow Recovery}
+\label{sec:req_metric}
 
 % TODO: Explain why for- and while-loops are not distinguished between.
 
@@ -177,16 +184,16 @@ The requirements of each deliverable have been outlined in the succeeding subsec
 				\ref{itm:obj_define_effectiveness_metric} & \textbf{R4} & MUST & Consider 2-way conditionals (e.g. \textit{if-else} statements) \\
 				\ref{itm:obj_define_effectiveness_metric} & \textbf{R5} & MUST & Consider pre-test loops (e.g. \textit{while}-loops) \\
 				\ref{itm:obj_define_effectiveness_metric} & \textbf{R6} & SHOULD & Consider post-test loops (e.g. \textit{do-while} loops) \\
-				\ref{itm:obj_define_effectiveness_metric} & \textbf{R7} & COULD & Consider \textit{goto} statements \\
-				\ref{itm:obj_define_effectiveness_metric} & \textbf{R8} & COULD & Consider \textit{short-circuit} expressions \\
-				\ref{itm:obj_define_effectiveness_metric} & \textbf{R9} & COULD & Consider n-way conditionals (e.g. \textit{switch} statements) \\
+				\ref{itm:obj_define_effectiveness_metric} & \textbf{R7} & COULD & Consider \textit{short-circuit} expressions \\
+				\ref{itm:obj_define_effectiveness_metric} & \textbf{R8} & COULD & Consider n-way conditionals (e.g. \textit{switch} statements) \\
+				\ref{itm:obj_define_effectiveness_metric} & \textbf{R9} & WON'T & Consider \textit{goto} statements \\
 				\ref{itm:obj_define_effectiveness_metric} & \textbf{R10} & WON'T & Distinguish between \textit{for}- and \textit{while}-loops \\
 				\ref{itm:obj_define_effectiveness_metric} & \textbf{R11} & WON'T & Handle irreducible graphs \\
 				\hline
 			\end{tabular}
 		}
 	\end{center}
-	\caption{Requirements of the metric for effective control flow recovery.}
+	\caption{Requirements of the metric for the effectiveness of control flow recovery.}
 \end{table}
 
 % --- [ Control Flow Recovery Methods ] ----------------------------------------
@@ -273,7 +280,7 @@ This section describes identified deficiencies in the various control flow recov
 
 As a future research topic, it would be very interesting to combine a variety of control flow recovery methods, and evaluate if they may facilitate each other to further improve control flow recovery.
 
-Additional insights could be provided by a deeper evaluation which examines how the control flow recovery methods deal with irreducible graphs, as produces by various compiler optimizations (e.g. jump threading).
+Additional insights could be provided by a deeper evaluation which examines how the control flow recovery methods deal with irreducible graphs, as produces by various compiler optimisations (e.g. jump threading).
 
 \clearpage
 
