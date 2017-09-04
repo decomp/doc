@@ -54,5 +54,19 @@
 \definecolor{light_red_3}{HTML}{F4CCCC}
 \definecolor{light_green_2}{HTML}{B6D7A8}
 \definecolor{light_green_3}{HTML}{D9EAD3}
+\definecolor{light_gray_1}{HTML}{D2D2D2}
 \definecolor{light_gray_2}{HTML}{EFEFEF}
 \definecolor{light_gray_3}{HTML}{F3F3F3}
+
+% Draft notice.
+\usepackage{eso-pic}
+\usepackage{rotating}
+\newcommand\DraftBackground{
+	\parbox[b][\paperheight]{\paperwidth}{
+		\vfill
+		\vspace{1cm}
+		\centering
+		\textcolor{light_gray_1}{{\fontsize{2cm}{2.5cm}\selectfont Draft}}
+		\vfill
+	}
+}
