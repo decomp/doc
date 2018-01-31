@@ -25,6 +25,8 @@ A control flow graph $G = (V, E, r)$ is a directed graph rooted at $r$ with vert
 
 \subsubsection{Closed Path}
 
+\todo{TODO: Remove if not used in definition of interval.}
+
 A closed path is a path with the same start and end vertex, and a cycle is a closed path with one or more edges.
 
 % ~~~ [ Interval ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -41,3 +43,23 @@ An interval $I(h)$ with header node $h$ is a maximal single-entry subgraph in wh
 	\caption{The intervals \textbf{I1}, \textbf{I2} and \textbf{I3} outlined in a control flow graph; adapted from figure 2 of C. Cifuentes' \textit{Structuring Decompiled Graphs} \cite{structuring_decompiled_graphs}.}
 	\label{fig:interval}
 \end{figure}
+
+% ~~~ [ Derived Sequence of Graphs G^1...G^n ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{Derived Sequence of Graphs}
+
+Given a control flow graph $G$ a derived sequence of graphs, $G^1 \dots G^n$, may be constructed by collapsing intervals. The first order graph $G^1 = G$. The second order graph $G_2$ is obtained by collapsing each interval in $G^1$ into a node. The node of a collapsed interval $I(h)$ has incoming edges from the immediate predecessors of the header node $h$ not part of the interval, and outgoing edges to the immediate successors of the exit nodes of $I(h)$ not part of the interval. The intervals of $G_2$ are collapsed and the process is repeated until $G^n$ is a single node or an irreducible graph.
+
+% TODO: Add illustrations.
+
+% ~~~ [ Back Edge ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsection{Back Edge}
+
+\todo{TODO: define Back Edge}
+
+% ~~~ [ Reverse Post-order ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsection{Reverse Post-order}
+
+\todo{TODO: define Reverse Post-order}
