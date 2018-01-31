@@ -1,0 +1,80 @@
+// Sample taken from Fig. 2 in C. Cifuentes' Structuring decompiled graphs [1].
+//
+// [1]: https://pdfs.semanticscholar.org/48bf/d31773af7b67f9d1b003b8b8ac889f08271f.pdf
+
+digraph G {
+	// Nodes.
+	B1
+	B2
+	B3
+	B4
+	B5
+	B6
+	B7
+	B8
+	B9
+	B10
+	B11
+	B12
+	B13
+	B14
+	B15
+
+	// Intervals.
+	subgraph cluster_I1 {
+		B1
+		B2
+		B3
+		B4
+		B5
+		label="I1"
+		labeljust="l"
+		graph[style=dotted]
+	}
+
+	subgraph cluster_I2 {
+		B6
+		B7
+		B8
+		B9
+		B10
+		B11
+		B12
+		label="I2"
+		labeljust="l"
+		graph[style=dotted]
+	}
+
+	subgraph cluster_I3 {
+		B13
+		B14
+		B15
+		label="I3"
+		labeljust="l"
+		graph[style=dotted]
+	}
+
+	// Edges.
+	B1 -> B2
+	B1 -> B5
+	B2 -> B3
+	B2 -> B4
+	B3 -> B5
+	B4 -> B5
+	B5 -> B6 // [constraint=false]
+
+	B6 -> B7
+	B6 -> B12
+	B7 -> B8
+	B7 -> B9
+	B8 -> B9
+	B8 -> B10
+	B9 -> B10
+	B10 -> B11
+
+	B12 -> B13
+	B13 -> B14
+	B14 -> B13
+	B14 -> B15
+	B15 -> B6 [constraint=false]
+}

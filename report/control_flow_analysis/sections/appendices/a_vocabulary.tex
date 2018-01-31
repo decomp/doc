@@ -33,4 +33,11 @@ A closed path is a path with the same start and end vertex, and a cycle is a clo
 
 \todo{TODO: Is it valid to replace the term closed path with cycle in the definition of interval?}
 
-An interval $I(h)$ with header node $h$ is a maximal single-entry subgraph in which $h$ is the only entry node and all closed paths contain $h$ \cite{structuring_algorithm_for_decompilation}.
+An interval $I(h)$ with header node $h$ is a maximal single-entry subgraph in which $h$ is the only entry node and all closed paths contain $h$ \cite{structuring_algorithm_for_decompilation}. The example illustrated in figure \ref{fig:interval} highlights the intervals \textbf{I(B1)}, \textbf{I(B6)}, and \textbf{I(B13)} in a control flow graph.
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.3\textwidth]{inc/appendices/vocabulary/interval.png}
+	\caption{The intervals \textbf{I1}, \textbf{I2} and \textbf{I3} outlined in a control flow graph; adapted from figure 2 of C. Cifuentes' \textit{Structuring Decompiled Graphs} \cite{structuring_decompiled_graphs}.}
+	\label{fig:interval}
+\end{figure}

@@ -5,4 +5,4 @@ PNG = $(DOT:.dot=.png)
 all: $(PNG)
 
 %.png: %.dot
-	dot -Tpng -o $@ $<
+	dot -Gdpi=300 -Tpng -o $@ $<
