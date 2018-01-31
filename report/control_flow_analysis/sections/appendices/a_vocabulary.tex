@@ -25,10 +25,12 @@ A control flow graph $G = (V, E, r)$ is a directed graph rooted at $r$ with vert
 
 \subsubsection{Closed Path}
 
-A closed path is a path with the same start and end vertex, otherwise referred to as a cycle.
+A closed path is a path with the same start and end vertex, and a cycle is a closed path with one or more edges.
 
 % ~~~ [ Interval ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 \subsubsection{Interval}
+
+\todo{TODO: Is it valid to replace the term closed path with cycle in the definition of interval?}
 
 An interval $I(h)$ with header node $h$ is a maximal single-entry subgraph in which $h$ is the only entry node and all closed paths contain $h$ \cite{structuring_algorithm_for_decompilation}.
