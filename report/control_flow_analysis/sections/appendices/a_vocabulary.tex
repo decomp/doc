@@ -42,16 +42,16 @@ An interval $I(h)$ with header node $h$ is a maximal single-entry subgraph in wh
 
 Given a control flow graph $G$ a derived sequence of graphs, $G^1 \dots G^n$, may be constructed by collapsing intervals. The first order graph $G^1 = G$. The second order graph $G_2$ is obtained by collapsing each interval in $G^1$ into a node. The node of a collapsed interval $I(h)$ has incoming edges from the immediate predecessors of the header node $h$ not part of the interval, and outgoing edges to the immediate successors of the exit nodes of $I(h)$ not part of the interval. The intervals of $G_2$ are collapsed and the process is repeated until $G^n$ is a single node or an irreducible graph.
 
-% TODO: Add illustrations.
+\todo{TODO: Add illustrations.}
 
 % ~~~ [ Back Edge ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-\subsection{Back Edge}
+\subsubsection{Back Edge}
 
 \todo{TODO: define Back Edge}
 
 % ~~~ [ Reverse Post-order ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-\subsection{Reverse Post-order}
+\subsubsection{Reverse Post-order}
 
 \todo{TODO: define Reverse Post-order}
