@@ -6,3 +6,10 @@ This section describes how well the control flow recovery methods worked, and hi
 
 \todo{TODO: include an evaluation of the results, considering false-positives} \\
 \todo{and false-negatives of the various control flow recovery methods.}
+
+\todo{TODO: Describe in what situations it may make} \\
+\todo{sense to use one control flow method over another.} \\
+\todo{give perspective over their respective trade-offs.} \\
+\todo{Rephrase and clean up the following.}
+
+For instance, the Hammock method makes sense to use when no difference in control flow may be introduces; e.g. forensics; the Interval method makes sense when no difference in semantics may be introduced (as based on the sequence of executed instructions and modified variables); e.g. malware analysis, and the pattern-independent method makes sense to use when no difference in function may be introduced; e.g. remove goto's from the source code of Coreutils as described in \cite{no_more_gotos}.
