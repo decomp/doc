@@ -1,0 +1,12 @@
+% --- [ Project Thesis ] -------------------------------------------------------
+
+\subsection{Project Thesis}
+
+The thesis of this project is that upon evaluating the three distinct methods of control flow recovery (see section \ref{sec:hammock_method}, \ref{sec:interval_method} and \ref{sec:pattern-independent_method}), they will fall on a progression from some true positives and no false positives for the Hammock method; most true positives and some false positives for the Interval method; to all true positive and many false positives for the Pattern-independent method.
+
+Put more concretely,
+\begin{itemize}
+	\item the \textbf{Hammock method} will only recover \textit{some} control flow primitives present in the original source code, but will \textit{never} introduce control flow primitives not present in the original source code;
+	\item the \textbf{Interval method} will recover \textit{most} control flow primitives present in the original source code, but will introduce \textit{some} control flow primitives not present in the original source code; and
+	\item the \textbf{Pattern-independent method} will recover \textit{all} control flow primitives present in the original source code, but will introduce \textit{many} control flow primitives not present in the original source code.
+\end{itemize}

@@ -14,3 +14,13 @@ This section describes identified deficiencies in the various control flow recov
 
 \todo{TODO: continue here. Summarize the findings breifly discussed} \\
 \todo{last autumn about identified deficiencies.}
+\todo{Include minimal example illustrating the deficiency.}
+
+\subsubsection{Interval Method: }
+
+\todo{TODO: Rephrase and clean up.}
+
+Based on the notion of how intervals are defined, some false positives will be introduces; e.g. endless loop rather than while loop. As a future research question, it would be interesting to further refine the notion of what nodes from an interval are collapsed during control flow structuring. Currently all nodes of an interval are collapsed, which may therefore include follow nodes from a loop; and this may lead to an incorrect classification of loop types for nested while loops, for instance. A refinement of the nodes selected to be collapsed, may be those in the cycle (i.e. those part of the loop), but not the follow nodes, as that should make it possible to recover nested loops without introducing false positives.
+
+\todo{Include minimal example illustrating the deficiency;}
+\todo{that of nested while loops.}
