@@ -1,0 +1,8 @@
+digraph if {
+	A
+	B
+	C
+	A->B [label="true"]
+	A->C [label="false"]
+	B->C
+}

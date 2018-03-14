@@ -9,40 +9,38 @@
 
 \begin{table}[htbp]
 	\begin{center}
-		\resizebox{\textwidth}{!}{
-			\begin{tabular}{|l|l|l|l|}
-				\hline
-				Sat. & Req. & Priority & Description \\
-				\hline
-				\rowcolor{light_red_3}
-				No & \textbf{R1} & MUST & Consider false-positives \\
-				\rowcolor{light_red_3}
-				No & \textbf{R2} & MUST & Consider false-negatives \\
-				\rowcolor{light_red_3}
-				No & \textbf{R3} & MUST & Consider 1-way conditionals (e.g. \textit{if}-statements) \\
-				\rowcolor{light_red_3}
-				No & \textbf{R4} & MUST & Consider 2-way conditionals (e.g. \textit{if-else} statements) \\
-				\rowcolor{light_red_3}
-				No & \textbf{R5} & MUST & Consider pre-test loops (e.g. \textit{while}-loops) \\
-				\hline
-				\rowcolor{light_red_3}
-				No & \textbf{R6} & SHOULD & Consider post-test loops (e.g. \textit{do-while} loops) \\
-				\hline
-				\rowcolor{light_red_3}
-				No & \textbf{R7} & COULD & Consider \textit{short-circuit} expressions \\
-				\rowcolor{light_red_3}
-				No & \textbf{R8} & COULD & Consider n-way conditionals (e.g. \textit{switch} statements) \\
-				\rowcolor{light_red_3}
-				No & \textbf{R9} & COULD & Consider multi-level break and continue statements \\
-				\rowcolor{light_red_3}
-				No & \textbf{R10} & COULD & Consider infinite loops \\
-				\hline
-				N/A & \textbf{R11} & WON'T & Consider \textit{goto} statements \\
-				N/A & \textbf{R12} & WON'T & Distinguish between \textit{for}- and \textit{while}-loops \\
-				N/A & \textbf{R13} & WON'T & Handle irreducible graphs \\
-				\hline
-			\end{tabular}
-		}
+		\begin{tabular}{|l|l|l|l|}
+			\hline
+			Sat. & Req. & Priority & Description \\
+			\hline
+			\rowcolor{light_red_3}
+			No & \textbf{R1} & MUST & Consider false-positives \\
+			\rowcolor{light_red_3}
+			No & \textbf{R2} & MUST & Consider false-negatives \\
+			\rowcolor{light_red_3}
+			No & \textbf{R3} & MUST & Consider 1-way conditionals (e.g. \textit{if}-statements) \\
+			\rowcolor{light_red_3}
+			No & \textbf{R4} & MUST & Consider 2-way conditionals (e.g. \textit{if-else} statements) \\
+			\rowcolor{light_red_3}
+			No & \textbf{R5} & MUST & Consider pre-test loops (e.g. \textit{while}-loops) \\
+			\hline
+			\rowcolor{light_red_3}
+			No & \textbf{R6} & SHOULD & Consider post-test loops (e.g. \textit{do-while} loops) \\
+			\hline
+			\rowcolor{light_red_3}
+			No & \textbf{R7} & COULD & Consider \textit{short-circuit} expressions \\
+			\rowcolor{light_red_3}
+			No & \textbf{R8} & COULD & Consider n-way conditionals (e.g. \textit{switch} statements) \\
+			\rowcolor{light_red_3}
+			No & \textbf{R9} & COULD & Consider multi-level break and continue statements \\
+			\rowcolor{light_red_3}
+			No & \textbf{R10} & COULD & Consider infinite loops \\
+			\hline
+			N/A & \textbf{R11} & WON'T & Consider \textit{goto} statements \\
+			N/A & \textbf{R12} & WON'T & Distinguish between \textit{for}- and \textit{while}-loops \\
+			N/A & \textbf{R13} & WON'T & Handle irreducible graphs \\
+			\hline
+		\end{tabular}
 	\end{center}
 	\caption{A summary of the evaluation against requirements of the metric for the effectiveness of control flow recovery, which specifies what requirements (abbreviated as ``Req.'') that have been satisfied (abbreviated as ``Sat.'').}
 	\label{tbl:eval_summary_of_metric}

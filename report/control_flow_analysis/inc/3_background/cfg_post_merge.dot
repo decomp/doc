@@ -1,0 +1,13 @@
+digraph main {
+	node [style="filled" fillcolor="white"]
+	ranksep=0.3
+
+	0->1
+	1->11
+	1->if0
+	if0->1
+	0 [label="entry"]
+	1
+	11
+	if0 [fillcolor="red"]
+}

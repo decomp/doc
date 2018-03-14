@@ -70,6 +70,44 @@
 	}
 }
 
+% Sub figures.
+%
+% Examples:
+%    \begin{figure}[htbp]
+%       \centering
+%       \begin{subfigure}[ht]{0.50\textwidth}
+%          foo
+%       \end{subfigure}
+%       \begin{subfigure}[ht]{0.50\textwidth}
+%          foo
+%       \end{subfigure}
+%       \caption{foo}
+%    \end{figure}
+\usepackage{subcaption}
+
+% Use footnotes in floating environments.
+%
+% NOTE: There is a conflict between the xcolor and the footnote packages. The
+% solution is to load the xcolor package first.
+%
+% ref: http://texblog.org/2012/02/03/using-footnote-in-a-table/
+%
+% Example:
+%    \begin{savenotes}
+%       \begin{table}[htbp]
+%          \centering
+%          \begin{tabular}{|l|l|}
+%             \hline
+%             A & B \footnote{foo} \\
+%             \hline
+%             C & D \footnote{bar} \\
+%             \hline
+%          \end{tabular}
+%          \caption{baz}
+%       \end{table}
+%    \end{savenotes}
+\usepackage{footnote}
+
 % Source code listings, language definitions and styles.
 %
 % Examples:

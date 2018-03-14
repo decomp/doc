@@ -3,40 +3,38 @@
 \subsection{Metric for the Effectiveness of Control Flow Recovery}
 \label{sec:req_metric}
 
-\todo{TODO: take ideas from and include reference to \cite{no_more_gotos} as a notion of effective control flow recovery is clearly defined there, in section VII.A. Metrics; including the notion of \textbf{Correctness}, \textbf{Structuredness} and \textbf{Compactness}}.
+\todo{TODO: take ideas from and include reference to \cite{no_more_gotos} as a notion of effective control} \\
+\todo{flow recovery is clearly defined there, in section VII.A. Metrics;} \\
+\todo{including the notion of \textbf{Correctness}, \textbf{Structuredness} and \textbf{Compactness}}.
 
-\todo{TOOD: as Christian about the difference between semantic equivalence and functional equivalence, if there is one.}
-
-Note, the metric for correct control flow recovery does not distinguish between between \textit{for-} and \textit{while-loops} as they are both pre-test loops semantically, and later stages of analysis (e.g. post processing) can differentiate the too if needed \cite{no_more_gotos}.
+Note, the metric for correct control flow recovery does not distinguish between between \textit{for-} and \textit{while-loops} as they are both pre-test loops semantically, and later stages of analysis (e.g. post processing) can differentiate the two if needed \cite{no_more_gotos}.
 
 % TODO: add meta text
 
 \begin{table}[htbp]
 	\begin{center}
-		\resizebox{\textwidth}{!}{
-			\begin{tabular}{|l|l|l|l|}
-				\hline
-				Obj. & Req. & Priority & Description \\
-				\hline
-				\ref{itm:obj_define_effectiveness_metric} & \textbf{R1} & MUST & Consider false-negatives \\
-				\ref{itm:obj_define_effectiveness_metric} & \textbf{R2} & MUST & Consider 1-way conditionals (e.g. \textit{if}-statements) \\
-				\ref{itm:obj_define_effectiveness_metric} & \textbf{R3} & MUST & Consider 2-way conditionals (e.g. \textit{if-else} statements) \\
-				\ref{itm:obj_define_effectiveness_metric} & \textbf{R4} & MUST & Consider pre-test loops (e.g. \textit{while}-loops and \textit{for}-loops) \\
-				\hline
-				\ref{itm:obj_define_effectiveness_metric} & \textbf{R5} & SHOULD & Consider post-test loops (e.g. \textit{do-while} loops) \\
-				\hline
-				\ref{itm:obj_define_effectiveness_metric} & \textbf{R6} & COULD & Consider false-positives \\
-				\ref{itm:obj_define_effectiveness_metric} & \textbf{R7} & COULD & Consider \textit{short-circuit} expressions \\
-				\ref{itm:obj_define_effectiveness_metric} & \textbf{R8} & COULD & Consider n-way conditionals (e.g. \textit{switch} statements) \\
-				\ref{itm:obj_define_effectiveness_metric} & \textbf{R9} & COULD & Consider multi-level break and continue statements \\
-				\ref{itm:obj_define_effectiveness_metric} & \textbf{R10} & COULD & Consider infinite loops \\
-				\hline
-				\ref{itm:obj_define_effectiveness_metric} & \textbf{R11} & WON'T & Consider \textit{goto} statements \\
-				\ref{itm:obj_define_effectiveness_metric} & \textbf{R12} & WON'T & Distinguish between \textit{for}- and \textit{while}-loops \\
-				\ref{itm:obj_define_effectiveness_metric} & \textbf{R13} & WON'T & Handle irreducible graphs \\
-				\hline
-			\end{tabular}
-		}
+		\begin{tabular}{|l|l|l|l|}
+			\hline
+			Obj. & Req. & Priority & Description \\
+			\hline
+			\ref{itm:obj_define_effectiveness_metric} & \textbf{R1} & MUST & Consider false-negatives \\
+			\ref{itm:obj_define_effectiveness_metric} & \textbf{R2} & MUST & Consider 1-way conditionals (e.g. \textit{if}-statements) \\
+			\ref{itm:obj_define_effectiveness_metric} & \textbf{R3} & MUST & Consider 2-way conditionals (e.g. \textit{if-else} statements) \\
+			\ref{itm:obj_define_effectiveness_metric} & \textbf{R4} & MUST & Consider pre-test loops (e.g. \textit{while}-loops and \textit{for}-loops) \\
+			\hline
+			\ref{itm:obj_define_effectiveness_metric} & \textbf{R5} & SHOULD & Consider post-test loops (e.g. \textit{do-while} loops) \\
+			\hline
+			\ref{itm:obj_define_effectiveness_metric} & \textbf{R6} & COULD & Consider false-positives \\
+			\ref{itm:obj_define_effectiveness_metric} & \textbf{R7} & COULD & Consider \textit{short-circuit} expressions \\
+			\ref{itm:obj_define_effectiveness_metric} & \textbf{R8} & COULD & Consider n-way conditionals (e.g. \textit{switch} statements) \\
+			\ref{itm:obj_define_effectiveness_metric} & \textbf{R9} & COULD & Consider multi-level break and continue statements \\
+			\ref{itm:obj_define_effectiveness_metric} & \textbf{R10} & COULD & Consider infinite loops \\
+			\hline
+			\ref{itm:obj_define_effectiveness_metric} & \textbf{R11} & WON'T & Consider \textit{goto} statements \\
+			\ref{itm:obj_define_effectiveness_metric} & \textbf{R12} & WON'T & Distinguish between \textit{for}- and \textit{while}-loops \\
+			\ref{itm:obj_define_effectiveness_metric} & \textbf{R13} & WON'T & Handle irreducible graphs \\
+			\hline
+		\end{tabular}
 	\end{center}
 	\caption{Requirements of the metric for the effectiveness of control flow recovery.}
 \end{table}

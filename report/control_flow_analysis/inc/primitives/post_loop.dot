@@ -1,0 +1,6 @@
+digraph post_loop {
+	A
+	B
+	A->A [label="true"]
+	A->B [label="false"]
+}

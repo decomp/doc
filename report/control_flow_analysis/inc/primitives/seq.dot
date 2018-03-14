@@ -1,0 +1,5 @@
+digraph list {
+	A
+	B
+	A->B
+}
