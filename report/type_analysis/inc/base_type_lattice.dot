@@ -1,0 +1,36 @@
+digraph {
+	//bgcolor=transparent
+	node [shape=none]
+
+	a [label="⊤"] // top element
+	b [label="reg32"]
+	c [label="reg16"]
+	d [label="reg8"]
+	e [label="reg1"]
+	f [label="num32"]
+	g [label="ptr(α)"]
+	h [label="code"]
+	i [label="num16"]
+	j [label="num8"]
+	k [label="int32"]
+	l [label="uint32"]
+	m [label="int16"]
+	n [label="uint16"]
+	o [label="int8"]
+	p [label="uint8"]
+	q [label="⊥"] // bottom element
+
+	a -> {b c d e}
+	b -> {f g h}
+	c -> i
+	d -> j
+	e -> q
+	f -> {k l}
+	g -> q
+	h -> q
+	i -> {m n}
+	j -> {o p}
+	{k l} -> q
+	{m n} -> q
+	{o p} -> q
+}

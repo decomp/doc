@@ -49,17 +49,18 @@
 foo
 \end{abstract}
 
+% --- [ Teaser image ] ---------------------------------------------------------
+
+\begin{teaserfigure}
+	\centering
+	\includegraphics[width=0.5\textwidth]{inc/base_type_lattice.png}
+	\caption{Primitive type lattice of TIE}
+	\label{fig:base_type_lattice}
+\end{teaserfigure}
+
 % --- [ Title ] ----------------------------------------------------------------
 
 \maketitle
-
-% --- [ Teaser image ] ---------------------------------------------------------
-
-%\begin{teaserfigure}
-%\includegraphics[width=\textwidth]{sampleteaser}
-%\caption{This is a teaser}
-%\label{fig:teaser}
-%\end{teaserfigure}
 
 % === [ Main matter ] ==========================================================
 
@@ -67,7 +68,118 @@ foo
 
 \section{Introduction}
 
+% What is the problem to solve, and why is it important?
+% - applications?
+
 foo
+
+% binary analysis,
+
+% floating-point stack
+%    - track stack top (indirect calls/external calls)
+% pointer analysis
+%    - global memory region
+%    - stack memory region
+%    - heap memory region
+% registers
+%    - live ranges; SSA
+% structures/arrays
+
+\paragraph{Scope}
+
+% TODO: rephrase with cite's.
+
+In scope foo and out of scope bar.
+
+\section{Background}
+
+foo
+
+\paragraph{Static Single Assignment}
+
+foo
+
+% describe PHI instructions.
+
+\section{Variable Recovery}
+
+\paragraph{Value Set Analysis}
+
+foo
+
+upper bound, lower bound and stride for memory locations.
+
+\paragraph{Function signature recovery}
+
+The following set of steps are used for function signature recovery (function parameters and returns arguments) in SecondWrite \cite{scalable_type_detection}.
+
+\begin{enumerate}
+	\item assume all registers are arguments and no register are return arguments.
+	\item registers written to are potential return arguments.
+	\item callee saved registers (through push in function prologue and pop in function epilogue) (\textit{DeadStores}) are pruned from potential return set.
+	\item prune arguments not actually used (e.g. not part of \textit{DeadStore} or PHI instructions).
+	\item prune return registers not actually used by callers.
+\end{enumerate}
+
+\section{Type Recovery}
+
+\paragraph{Type inference}
+
+foo
+
+\paragraph{Algorithm W}
+
+foo
+
+\paragraph{Unification}
+
+foo
+
+TODO: Describe the unification step, as many algorithms rely on this to discover struct types, etc.
+
+\paragraph{Type lattice}
+
+foo
+
+Top type ($\top$): any type.
+
+Bottom type ($\bot$): inconsistent type.
+
+\paragraph{Pointer analysis}
+
+foo
+
+\paragraph{Type sink}
+
+% TODO: rephrase.
+
+Type can be resolved directly and is known to be correct. For instance, derived from function signatures of standard libraries.
+
+\paragraph{Type revealing instruction}
+
+foo
+
+% TODO: rephrase.
+
+Infer that the operand is of integer type, memory, floating-point, etc.
+
+
+\paragraph{Type propagation}
+
+foo
+
+% Type constraints
+
+\section{Evaluation}
+
+foo
+
+% using debug information
+
+% evaluation metric
+
+\paragraph{SPEC2006}
+
 
 Type inference: type assignment algorithm W: \cite{milner_algorithmw}.
 
