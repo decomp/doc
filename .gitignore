@@ -2,3 +2,4 @@
 *.o
 *.bc
 latex.out
+_resources_

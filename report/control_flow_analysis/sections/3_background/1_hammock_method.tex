@@ -85,10 +85,12 @@ The Hammock method is a control flow analysis method which identifies control fl
 			\caption{consecutive statements; entry: \texttt{A}, exit: \texttt{B}.}
 			\label{fig:seq_graph_representation}
 		\end{subfigure}
-		\caption{The pseudo-code and graph representation of various high-level control flow primitives with denoted entry and exit nodes.\protect\footnote{Note, this section is in part adapted from section 2.2.3 (Control Flow Analysis) of \cite{compositional_decompilation}, as written by the same author as this project.}}
+		\caption{The pseudo-code and graph representation of various high-level control flow primitives with denoted entry and exit nodes.\protect\footnote{Note, the Hammock method section is in part adapted from section 2.2.3 (Control Flow Analysis) of \cite{compositional_decompilation}, as written by the same author as this project.}}
 		\label{fig:graph_representations}
 	\end{figure}
 \end{savenotes}
+
+% TODO: rephrase the following paragraph.
 
 To recover nested control flow primitives, the Hammock method iteratively performs subgraph isomorphism search to locate canonical subgraphs of high-level control flow primitives; and once a subgraph has been located, merges the nodes of the subgraph into a single node, which has the incoming edges of the entry node and the outgoing edges of the exit node; as illustrated in figure \ref{fig:subgraph_merge}. This process is repeated until the CFG either contains a single node or no more subgraph isomorphisms can be located, in which case high-level control flow primitives corresponding to of the CFG were fully or partially recovered, respectively.
 
