@@ -1,4 +1,4 @@
-\documentclass[10pt, a4paper, sigplan]{acmart}
+\documentclass[10pt, a4paper, sigplan, authordraft]{acmart}
 % authordraft
 
 \title{A Meta-study on Type Analysis of Low-level Code}
@@ -11,7 +11,7 @@
 }
 \orcid{0000-0003-0275-5514}
 
-\keywords{type analysis, type recovery, type inference, type lattice, type constraints, decompilation, reverse engineering, low-level code, assembly, LLVM IR, SSA}
+\keywords{type analysis, type recovery, type inference, type lattice, type constraints, decompilation, reverse engineering, low-level code, assembly, LLVM IR, SSA, formal verification, binary analysis, static analysis}
 
 % skip headers
 \pagestyle{plain}
@@ -45,6 +45,8 @@
 
 % --- [ Abstract ] -------------------------------------------------------------
 
+% TODO: Remove abstract?
+
 \begin{abstract}
 foo
 \end{abstract}
@@ -71,7 +73,25 @@ foo
 % What is the problem to solve, and why is it important?
 % - applications?
 
-foo
+Take for a moment the opportunity to reflect on the magnitude at which we rely on the \textit{correct implementation} of software to provide the most vital infrastructure of society. With increasingly interconnected and interdependent systems -- often in polyglot environments -- faults may have far reaching real-world consequences. Implementation correctness may be validated through formal verification and static analysis of source code to help prevent entire categories of security vulnerabilities and limit the occurrence of bugs. However, frameworks for validation of source code are often tied to a specific source language or small set of languages (e.g. ADA and SPARK) and therefore have limited effectiveness in polyglot projects. Furthermore, inconsistent interpretation of source code between static analysis tools and compilers may lead to run-time errors even when statically proven never to occur \cite{ada_static_analysis_and_compiler_inconsistencies}.
+
+Research question: is type analysis of low-level code a solved problem?
+
+, faults in these systems may have far reaching consequences.
+
+To facilitate formal verification efforts and enable rich static analysis of binary executables, type analysis of low-level code (e.g. assembly) is essential as type information is lost during the process of compilation.
+
+Our reliance on the correct implementation of software become increasingly important as systems become more interdependent, interconnected and used in vital aspects of infrastructure in society.
+
+Static analysis and formal verification
+
+In modern software development polyglot environments are common place
+
+With ever increasing versatility of high-level programming languages
+
+With ever increasing versatility of high-level programming languages, static analysis and formal verification efforts on source code level fall short
+
+The aim of this meta study is to assess the state of research
 
 % binary analysis,
 
@@ -90,6 +110,28 @@ foo
 % TODO: rephrase with cite's.
 
 In scope foo and out of scope bar.
+
+% --- [ Method ] ---------------------------------------------------------------
+
+\section{Method}
+
+A meta-study has been conducted to assess the body of research related to type recovery of low-level code.
+
+% --- [ Results ] --------------------------------------------------------------
+
+\section{Results}
+
+foo
+
+% --- [ Discussion ] -----------------------------------------------------------
+
+\section{Discussion}
+
+foo
+
+% TODO: Move into appropriate sections.
+
+% --- [ other] -----------------------------------------------------------
 
 \section{Background}
 
