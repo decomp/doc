@@ -1,5 +1,5 @@
 digraph {
-	//bgcolor=transparent
+	bgcolor=transparent
 	node [shape=none]
 
 	a [label="⊤"] // top element
