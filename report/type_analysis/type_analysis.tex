@@ -47,9 +47,9 @@
 
 % TODO: Remove abstract?
 
-\begin{abstract}
-foo
-\end{abstract}
+%\begin{abstract}
+%foo
+%\end{abstract}
 
 % --- [ Teaser image ] ---------------------------------------------------------
 
@@ -73,7 +73,15 @@ foo
 % What is the problem to solve, and why is it important?
 % - applications?
 
-Take for a moment the opportunity to reflect on the magnitude at which we rely on the \textit{correct implementation} of software to provide the most vital infrastructure of society. With increasingly interconnected and interdependent systems -- often in polyglot environments -- faults may have far reaching real-world consequences. Implementation correctness may be validated through formal verification and static analysis of source code to help prevent entire categories of security vulnerabilities and limit the occurrence of bugs. However, frameworks for validation of source code are often tied to a specific source language or small set of languages (e.g. ADA and SPARK) and therefore have limited effectiveness in polyglot projects. Furthermore, inconsistent interpretation of source code between static analysis tools and compilers may lead to run-time errors even when statically proven never to occur \cite{ada_static_analysis_and_compiler_inconsistencies}.
+Take for a moment the opportunity to reflect on the magnitude at which we rely on the \textit{correct implementation} of software to provide the most vital infrastructure of society. With increasingly interconnected and interdependent systems -- often in polyglot environments -- faults may have far reaching real-world consequences. Implementation correctness may be validated through formal verification and static analysis of source code to proactively prevent entire categories of security vulnerabilities and limit the occurrence of bugs. However, frameworks for validation of source code are often tied to a specific source language or small set of languages (e.g. ADA and SPARK) and therefore have limited effectiveness in polyglot projects. Furthermore, inconsistent interpretation of source code between static analysis tools and compilers may lead to run-time errors even when statically proven never to occur \cite{ada_static_analysis_and_compiler_inconsistencies}. Finally, as demonstrated in Ken Thompson's 1984 Turing aware lecture \textit{Reflections on Trusting Trust}, the output of a compiler may not be trusted even if its input is formally verified, as the compiler environment may have been tampered\footnote{Not only theoretically, tempered environments is a real-world issue that large corporations such as Ericsson and Saab of Sweden have to deal with on a daily basis.} with:
+
+\begin{quote}
+	\textit{``No amount of source-level verification or scrutiny will protect you from using untrusted code.''} \cite{trusting_trust}
+\end{quote}
+
+For these reasons, conducting formal verification and semantic analysis on the output rather than the input of a compiler is important.
+
+ the output of a compiler has to be verified to ensure that  even formally verified input source code to a compiler may produce faulty output binaries if the compiler has been tampered with \cite{}.
 
 Research question: is type analysis of low-level code a solved problem?
 
