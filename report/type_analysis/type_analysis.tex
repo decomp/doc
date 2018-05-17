@@ -1,7 +1,7 @@
 \documentclass[10pt, a4paper, sigplan, authordraft]{acmart}
 % authordraft
 
-\title{A Meta-study on Type Analysis of Low-level Code}
+\title{On the Relevance of Type Analysis of Low-level Code}
 
 \author{Robin Eklind}
 \affiliation{
@@ -79,25 +79,9 @@ Take for a moment the opportunity to reflect on the magnitude at which we rely o
 	\textit{``No amount of source-level verification or scrutiny will protect you from using untrusted code.''} \cite{trusting_trust}
 \end{quote}
 
-For these reasons, conducting formal verification and semantic analysis on the output rather than the input of a compiler is important.
+For these reasons, conducting formal verification and semantic analysis on the output rather than the input of a compiler is relevant. To facilitate formal verification efforts and enable rich static analysis of binary executables, type analysis of low-level code (e.g. assembly) is essential as type information is lost during the process of compilation.
 
- the output of a compiler has to be verified to ensure that  even formally verified input source code to a compiler may produce faulty output binaries if the compiler has been tampered with \cite{}.
-
-Research question: is type analysis of low-level code a solved problem?
-
-, faults in these systems may have far reaching consequences.
-
-To facilitate formal verification efforts and enable rich static analysis of binary executables, type analysis of low-level code (e.g. assembly) is essential as type information is lost during the process of compilation.
-
-Our reliance on the correct implementation of software become increasingly important as systems become more interdependent, interconnected and used in vital aspects of infrastructure in society.
-
-Static analysis and formal verification
-
-In modern software development polyglot environments are common place
-
-With ever increasing versatility of high-level programming languages
-
-With ever increasing versatility of high-level programming languages, static analysis and formal verification efforts on source code level fall short
+% Research question: is type analysis of low-level code a solved problem?
 
 The aim of this meta study is to assess the state of research
 
