@@ -3,7 +3,7 @@
 
 % TODO: Update title.
 
-\title{On the Relevance of Type Analysis of Low-level Code}
+\title{Type Analysis of Low-level Code}
 
 \author{Robin Eklind}
 \affiliation{
@@ -87,7 +87,11 @@ For these reasons, conducting formal verification and semantic analysis on the o
 
 \paragraph{Aim} The aim of this meta study is to critically assess research related to type analysis of low-level code, provide an overview of fundamental techniques used for type recovery in binary executables, and try to envision the role of type analysis in future applications of binary analysis.
 
-\paragraph{Scope} The scope of this study is limited to type analysis and variable recovery, as they are intimately related. While type analysis is heavily dependent on other research topics related to binary analysis -- such as binary lifting\footnote{Framework for lifting x86, amd64, and aarch64 program binaries to LLVM bitcode: \url{https://github.com/trailofbits/mcsema}} (i.e. translating machine code to platform independent intermediate representations), control flow analysis (e.g. required to track floating-point stack access \cite{tie_reverse_engineering_of_types}), data flow analysis and pointer analysis -- these have intentionally been excluded from the scope.
+\paragraph{Scope} The scope of this study is limited to type analysis and variable recovery, as they are intimately related. While type analysis is heavily dependent on other research topics related to binary analysis -- such as binary lifting\footnote{Framework for lifting x86, amd64, and aarch64 program binaries to LLVM bitcode: \url{https://github.com/trailofbits/mcsema}} (i.e. translating machine code to platform independent intermediate representations), control flow analysis (e.g. required to track floating-point stack access \cite{tie_reverse_engineering_of_types}), data flow analysis and pointer alias analysis -- these have intentionally been excluded from the scope.
+
+% --- [ Results ] --------------------------------------------------------------
+
+\section{Results}
 
 % binary analysis,
 
@@ -101,17 +105,31 @@ For these reasons, conducting formal verification and semantic analysis on the o
 %    - live ranges; SSA
 % structures/arrays
 
-% TODO: rephrase with cite's.
-
-% --- [ Results ] --------------------------------------------------------------
-
-\section{Results}
-
 foo
+
+\section{Evaluation Metrics}
+
+To enable objective comparison of different type recovery methods, a shared set of evaluation metrics are required. For this purpose, TIE proposed two evaluation metrics: \textit{distance} and \textit{conservativeness} \cite{tie_reverse_engineering_of_types}.
+
+\paragraph{Distance} The distance in height between the recovered and the source type in the primitive type lattice (see figure \ref{fig:base_type_lattice}) for subtypes (e.g. \texttt{int32} is a subtype of \texttt{num32} at distance 1), and the maximum lattice height otherwise.
+
+\paragraph{Conservativeness} Reports whether the source type exists within the type range (lower and upper bound) of the recovered type.
+
+The distance measurement as defined by TIE did not distinguish between multi-level pointers (e.g. \texttt{int*} and \texttt{int**} are equivalent, i.e. on the same level in the type lattice). Thus SecondWrite proposed a refinement to measure the ratio of between the recovered pointer level and the source pointer level \cite{second_write_scalable_type_detection}.
+
+Other metrics have been proposed to compare class hierarchies.
 
 % --- [ Discussion ] -----------------------------------------------------------
 
 \section{Discussion}
+
+foo
+
+\subsection{Applications}
+
+foo
+
+\subsection{Future Research}
 
 foo
 
@@ -139,7 +157,7 @@ upper bound, lower bound and stride for memory locations.
 
 \paragraph{Function signature recovery}
 
-The following set of steps are used for function signature recovery (function parameters and returns arguments) in SecondWrite \cite{scalable_type_detection}.
+The following set of steps are used for function signature recovery (function parameters and returns arguments) in SecondWrite \cite{second_write_scalable_type_detection}.
 
 \begin{enumerate}
 	\item assume all registers are arguments and no register are return arguments.
@@ -217,7 +235,7 @@ Type-based decompilation: \cite{mycroft_type_based_decompilation}.
 
 foo \cite{tie_reverse_engineering_of_types}
 
-foo \cite{scalable_type_detection}
+foo \cite{second_write_scalable_type_detection}
 
 foo \cite{bintype}
 
