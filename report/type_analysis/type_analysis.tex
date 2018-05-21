@@ -3,6 +3,8 @@
 
 % TODO: Update title.
 
+% TODO: check use of of.
+
 \title{Type Analysis of Low-level Code}
 
 \author{Robin Eklind}
@@ -85,9 +87,13 @@ Take for a moment the opportunity to reflect on the magnitude at which we rely o
 
 For these reasons, conducting formal verification and semantic analysis on the output rather than the input of a compiler is relevant. To facilitate formal verification efforts and enable rich static analysis of binary executables, type analysis of low-level code (e.g. assembly) is essential as type information is lost during the process of compilation and has to be recovered.
 
-\paragraph{Aim} The aim of this meta study is to critically assess research related to type analysis of low-level code, provide an overview of fundamental techniques used for type recovery in binary executables, and try to envision the role of type analysis in future applications of binary analysis.
+% TODO: check use of on.
 
-\paragraph{Scope} The scope of this study is limited to type analysis and variable recovery, as they are intimately related. While type analysis is heavily dependent on other research topics related to binary analysis -- such as binary lifting\footnote{Framework for lifting x86, amd64, and aarch64 program binaries to LLVM bitcode: \url{https://github.com/trailofbits/mcsema}} (i.e. translating machine code to platform independent intermediate representations), control flow analysis (e.g. required to track floating-point stack access \cite{tie_reverse_engineering_of_types}), data flow analysis and pointer alias analysis -- these have intentionally been excluded from the scope.
+\paragraph{Problem definition} Type inference on low-level code is the problem of inferring the typing information of source programs from corresponding binary executables. Source programs contain ground truth typing information and binary executables are used as input to type analysis frameworks.
+
+\paragraph{Aim} The aim of this meta study is to critically assess research related to type analysis of low-level code, provide an overview of fundamental techniques used for type recovery in binary executables, and try to envision the role of and enhancements to type analysis in future applications of binary analysis.
+
+\paragraph{Scope} The scope of this study is limited to type analysis and variable recovery, as they are intimately related. While type analysis is heavily dependent on other research topics related to binary analysis -- such as binary lifting\footnote{Framework for lifting x86, amd64, and aarch64 program binaries to LLVM bitcode: \url{https://github.com/trailofbits/mcsema}} (i.e. translating machine code to platform independent intermediate representations), control flow analysis (e.g. required to track floating-point stack access \cite{tie_reverse_engineering_of_types}), data flow analysis and pointer analysis -- these have intentionally been excluded from the scope.
 
 % --- [ Results ] --------------------------------------------------------------
 
@@ -107,7 +113,11 @@ For these reasons, conducting formal verification and semantic analysis on the o
 
 foo
 
+% --- [ Evaluation Metrics ] ---------------------------------------------------
+
 \section{Evaluation Metrics}
+
+% TODO: add note on using debug information
 
 To enable objective comparison of different type recovery methods, a shared set of evaluation metrics are required. For this purpose, TIE proposed two evaluation metrics: \textit{distance} and \textit{conservativeness} \cite{tie_reverse_engineering_of_types}.
 
@@ -132,6 +142,8 @@ foo
 \subsection{Future Research}
 
 foo
+
+Fuzzy logic
 
 % TODO: Move into appropriate sections.
 
@@ -215,14 +227,6 @@ Infer that the operand is of integer type, memory, floating-point, etc.
 foo
 
 % Type constraints
-
-\section{Evaluation}
-
-foo
-
-% using debug information
-
-% evaluation metric
 
 \paragraph{SPEC2006}
 
