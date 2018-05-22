@@ -31,3 +31,29 @@ Type information derived for arguments in calls to functions with known function
 \paragraph{Type sink}
 
 A type sink is a type which can be resolved directly and is known to be correct. For instance, types for arguments inferred from function type sources.
+
+% ~~~ [ Format-string based type inference ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\paragraph{Format-string based type inference}
+
+\todo{TODO: describe format-string based type inference.}
+
+\begin{figure}[htbp]
+	\centering
+	\begin{subfigure}[ht]{0.50\textwidth}
+		\centering
+		\lstinputlisting[linewidth=0.5\textwidth, language=c, style=go, breaklines=false]{inc/printf.c}
+		\caption{Type of arguments to \texttt{printf} call may be inferred by format-string verbs (e.g. \texttt{\%d}).}
+		\label{fig:format_string_c}
+	\end{subfigure}
+	\begin{subfigure}[ht]{0.50\textwidth}
+		\centering
+		\lstinputlisting[language=nasm, style=nasm]{inc/printf.asm}
+		\caption{Call to \texttt{printf} in NASM.}
+		\label{fig:format_string_asm}
+	\end{subfigure}
+	% TODO: update caption.
+	\caption{foo.}
+\end{figure}
+
+\todo{TODO: use example of eax register in NASM example above to illustrate the need to track life ranges}.
