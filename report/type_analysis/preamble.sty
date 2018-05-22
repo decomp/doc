@@ -46,3 +46,30 @@
 	\sethlcolor{columbiablue}
 	\hl{#1}
 }
+
+% Sub figures.
+%
+% Examples:
+%    \begin{figure}[htbp]
+%       \centering
+%       \begin{subfigure}[ht]{0.50\textwidth}
+%          foo
+%       \end{subfigure}
+%       \begin{subfigure}[ht]{0.50\textwidth}
+%          foo
+%       \end{subfigure}
+%       \caption{foo}
+%    \end{figure}
+\usepackage{subcaption}
+
+% Source code listings, language definitions and styles.
+%
+% Examples:
+%    \lstinputlisting[language=llvm, style=nasm]{foo.ll}
+\usepackage{listings}
+\usepackage{../../latex/go/lang}
+\usepackage{../../latex/go/style}
+\usepackage{../../latex/c/style}
+\usepackage{../../latex/llvm/lang}
+\usepackage{../../latex/nasm/lang}
+\usepackage{../../latex/nasm/style}

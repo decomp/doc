@@ -2,6 +2,22 @@
 
 \subsection{Static Single Assignment}
 
+\begin{figure}[htbp]
+	\centering
+	\begin{subfigure}[ht]{0.50\textwidth}
+		\lstinputlisting[language=llvm, style=nasm, breaklines=false]{inc/ssa.ll}
+		\caption{LLVM IR in SSA-form: each value is assigned exactly once.}
+		\label{fig:ssa_form}
+	\end{subfigure}
+	\begin{subfigure}[ht]{0.50\textwidth}
+		\centering
+		\includegraphics[width=0.50\textwidth]{inc/phi.png}
+		\caption{$\Phi$-node semantics: value of \texttt{\%x.0} in \texttt{\%ret} depend on branch taken.}
+		\label{fig:phi_node_semantics}
+	\end{subfigure}
+	\caption{LLVM IR in SSA-form and associated CFG.}
+\end{figure}
+
 \todo{TODO: write about static single assignment}
 
 % registers
