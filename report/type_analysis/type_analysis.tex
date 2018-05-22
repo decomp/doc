@@ -25,7 +25,7 @@
 }
 \orcid{0000-0003-0275-5514}
 
-% TODO: remove some keywords?
+% TODO: remove some keywords
 
 \keywords{type analysis, type recovery, type inference, type constraints, type lattice, variable recovery, decompilation, reverse engineering, low-level code, assembly, LLVM IR, SSA, formal verification, binary analysis, static analysis, dynamic analysis}
 
@@ -35,11 +35,20 @@
 
 % --- [ Abstract ] -------------------------------------------------------------
 
-% TODO: Remove abstract?
-
 %\begin{abstract}
 %foo
 %\end{abstract}
+
+\begin{quote}
+\todo{Note, this is an early draft}. As such most sections are incomplete. I would very much appreciate early feedback on the \textit{overall structure} of the paper, what sections to include, how many levels of subsections to use, if some sections should be merged, etc. As this is the first time I'm writing a conference paper, any feedback specifically related to this format of writing would be invaluable. The specific conference is the ACM SIGPLAN programming language conference. Throughout this paper, I've used \todo{yellow labels} for TODO notes to myself (often used in sections that are far from complete). \question{Blue labels} are used for specific questions, for which I'd love to get some feedback. Look forward to seeing you on Wednesday Jamie. \\
+Kindly, Robin \\
+
+Including a Table of Contents below, to get a sense of the report structure. The table of contents will not be included in the final paper.
+\end{quote}
+
+\tableofcontents
+
+\clearpage
 
 % --- [ Teaser image ] ---------------------------------------------------------
 
@@ -56,126 +65,24 @@
 
 % === [ Main matter ] ==========================================================
 
-\begin{quote}
-\todo{Note, this is an early draft}. As such some sections are incomplete. I would very much appreciate early feedback on the overall structure of the paper, what sections to include, how many levels of subsections to use, if some sections should be merged, etc. As this is the first time I'm writing a conference paper, any feedback specifically related to this format of writing would be invaluable. The specific conference is the ACM SIGPLAN programming language conference. Throughout this paper, I've used \todo{yellow labels} for TODO notes to myself, as these sections are far from complete. \question{Blue labels} are used for specific questions, for which I'd love to get some feedback. Look forward to seeing you on Wednesday. \\
-Kindly, Robin
-\end{quote}
+\question{QUESTION: Include abstract? The final paper will be around 6 pages.}
 
 \input{sections/1_introduction}
 \input{sections/2_background}
-\input{sections/3_type_analysis}
-\input{sections/4_evaluation_metrics}
-\input{sections/5_discussion}
 
-% binary analysis,
+\question{QUESTION: change order of Variable Recovery section and Type Analysis section? Alternatively, merge the two sections.}
 
-% floating-point stack
-%    - track stack top (indirect calls/external calls)
-% pointer analysis
-%    - global memory region
-%    - stack memory region
-%    - heap memory region
-% structures/arrays
+\input{sections/3_variable_recovery}
+\input{sections/4_type_recovery}
+\input{sections/5_evaluation_metrics}
+\input{sections/6_discussion}
 
-% TODO: Move into appropriate sections.
-
-% --- [ other] -----------------------------------------------------------
-
-\section{Variable Recovery}
-
-\paragraph{Value Set Analysis}
-
-foo
-
-upper bound, lower bound and stride for memory locations.
-
-\paragraph{Function signature recovery}
-
-The following set of steps are used for function signature recovery (function parameters and returns arguments) in SecondWrite \cite{second_write_scalable_type_detection}.
-
-\begin{enumerate}
-	\item assume all registers are arguments and no register are return arguments.
-	\item registers written to are potential return arguments.
-	\item callee saved registers (through push in function prologue and pop in function epilogue) (\textit{DeadStores}) are pruned from potential return set.
-	\item prune arguments not actually used (e.g. not part of \textit{DeadStore} or PHI instructions).
-	\item prune return registers not actually used by callers.
-\end{enumerate}
-
-\section{Type Recovery}
-
-\paragraph{Type inference}
-
-foo
-
-\paragraph{Algorithm W}
-
-foo
-
-\paragraph{Unification}
-
-foo
-
-TODO: Describe the unification step, as many algorithms rely on this to discover struct types, etc.
-
-\paragraph{Type lattice}
-
-foo
-
-Top type ($\top$): any type.
-
-Bottom type ($\bot$): inconsistent type.
-
-\paragraph{Pointer analysis}
-
-foo
-
-\paragraph{Type sink}
-
-% TODO: rephrase.
-
-Type can be resolved directly and is known to be correct. For instance, derived from function signatures of standard libraries.
-
-\paragraph{Type revealing instruction}
-
-foo
-
-% TODO: rephrase.
-
-Infer that the operand is of integer type, memory, floating-point, etc.
-
-
-\paragraph{Type propagation}
-
-foo
-
-% Type constraints
-
-\paragraph{SPEC2006}
-
-
-Type inference: type assignment algorithm W: \cite{milner_algorithmw}.
-
-Type-based decompilation: \cite{mycroft_type_based_decompilation}.
-
-%Comparison of type-based and proof-directed decompilation: \cite{mycroft_comparing_type_based_and_proof_directed_decompilation}
-
-foo \cite{bintype}
-
-foo \cite{type_inference_on_executables}
-
-foo \cite{dynstruct}
-
-foo \cite{polymorphic_type_inference_for_machine_code}
+% TODO: skip? \cite{bintype}
+% TODO: skip? \cite{polymorphic_type_inference_for_machine_code}
 
 % === [ Back matter ] ==========================================================
 
 % --- [ References ] -----------------------------------------------------------
-
-\clearpage
-
-foo
-
-\clearpage
 
 \bibliography{references}
 
