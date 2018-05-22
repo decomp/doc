@@ -1,0 +1,43 @@
+\ProvidesPackage{preamble}
+
+% skip headers
+\pagestyle{plain}
+
+% skip copyright notice
+\setcopyright{none}
+% printacmref (skip ACM reference format)
+% printfolios (print page numbers)
+\settopmatter{printacmref=false,printfolios=true}
+
+% remove conference information in footnote.
+\renewcommand\footnotetextcopyrightpermission[1]{}
+
+% skip DOI
+\acmDOI{}
+
+% skip ISBN
+%\acmISBN{012-3-456-78933-3 (fake)}
+\acmISBN{}
+
+% Conference - fake
+\acmConference[POPL'19]{ACM Conference}{January 2019}{Lisbon, Portugal (fake)}
+\acmPrice{0.00}
+
+% use ACM bibliography style
+\bibliographystyle{ACM-Reference-Format}
+
+% Add \todo command to underline text in yellow.
+%
+% Examples:
+%    \todo{foo}
+\usepackage{adjustbox}
+\newcommand{\todo}[1]{\adjustbox{bgcolor=yellow}{#1}}
+
+\definecolor{columbiablue}{rgb}{0.61, 0.87, 1.0}
+
+% Add \question command to underline text in green.
+%
+% Examples:
+%    \question{foo}
+\usepackage{adjustbox}
+\newcommand{\question}[1]{\adjustbox{bgcolor=columbiablue}{#1}}

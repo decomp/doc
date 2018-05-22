@@ -1,9 +1,19 @@
 \documentclass[10pt, a4paper, sigplan, authordraft]{acmart}
 % authordraft
 
-% TODO: Update title.
+%                     Reflektera
+%                     +---------+
+%           Recensera |         |
+%           +---------+         |
+%  Referera |                   |
+% +---------+                   |
+% |                             |
+% +-----------------------------+
 
+% TODO: Update title.
 % TODO: check use of of.
+
+\usepackage{preamble}
 
 \title{Type Analysis of Low-level Code}
 
@@ -18,32 +28,6 @@
 % TODO: remove some keywords?
 
 \keywords{type analysis, type recovery, type inference, type constraints, type lattice, variable recovery, decompilation, reverse engineering, low-level code, assembly, LLVM IR, SSA, formal verification, binary analysis, static analysis, dynamic analysis}
-
-% skip headers
-\pagestyle{plain}
-
-% skip copyright notice
-\setcopyright{none}
-% printacmref (skip ACM reference format)
-% printfolios (print page numbers)
-\settopmatter{printacmref=false,printfolios=true}
-
-% remove conference information in footnote.
-\renewcommand\footnotetextcopyrightpermission[1]{}
-
-% skip DOI
-\acmDOI{}
-
-% skip ISBN
-%\acmISBN{012-3-456-78933-3 (fake)}
-\acmISBN{}
-
-% Conference - fake
-\acmConference[POPL'19]{ACM Conference}{January 2019}{Lisbon, Portugal (fake)}
-\acmPrice{0.00}
-
-% use ACM bibliography style
-\bibliographystyle{ACM-Reference-Format}
 
 \begin{document}
 
@@ -61,7 +45,7 @@
 
 \begin{teaserfigure}
 	\centering
-	\includegraphics[width=0.45\textwidth]{inc/base_type_lattice.png}
+	\includegraphics[width=0.45\textwidth]{inc/tie_primitive_type_lattice.png}
 	\caption{Primitive type lattice of TIE}
 	\label{fig:base_type_lattice}
 \end{teaserfigure}
@@ -72,32 +56,16 @@
 
 % === [ Main matter ] ==========================================================
 
-% --- [ Introduction ] ---------------------------------------------------------
-
-\section{Introduction}
-
-% What is the problem to solve, and why is it important?
-% - applications?
-
-Take for a moment the opportunity to reflect on the magnitude at which we rely on the \textit{correct implementation} of software to provide the most vital infrastructure of society. With increasingly interconnected and interdependent systems -- often in polyglot environments -- faults may have far reaching real-world consequences. Implementation correctness may be validated through formal verification and static analysis of source code to proactively prevent entire categories of security vulnerabilities and limit the occurrence of bugs. However, frameworks for validation of source code are often tied to a specific source language or small set of languages (e.g. ADA and SPARK) and therefore have limited effectiveness in polyglot projects. Furthermore, inconsistent interpretation of source code between static analysis tools and compilers may lead to run-time errors even when statically proven never to occur \cite{ada_static_analysis_and_compiler_inconsistencies}. Finally, as demonstrated in Ken Thompson's 1984 Turing award lecture \textit{Reflections on Trusting Trust}, the output of a compiler may not be trusted even if its input is formally verified, as the compiler environment may have been tampered\footnote{Not only theoretically, tempered environments is a real-world issue that large corporations such as Ericsson and Saab of Sweden have to deal with on a daily basis.} with:
-
 \begin{quote}
-	\textit{``No amount of source-level verification or scrutiny will protect you from using untrusted code.''} \cite{trusting_trust}
+\todo{Note, this is an early draft}. As such some sections are incomplete. I would very much appreciate early feedback on the overall structure of the paper, what sections to include, how many levels of subsections to use, if some sections should be merged, etc. As this is the first time I'm writing a conference paper, any feedback specifically related to this format of writing would be invaluable. The specific conference is the ACM SIGPLAN programming language conference. Throughout this paper, I've used \todo{yellow labels} for TODO notes to myself, as these sections are far from complete. \question{Blue labels} are used for specific questions, for which I'd love to get some feedback. Look forward to seeing you on Wednesday. \\
+Kindly, Robin
 \end{quote}
 
-For these reasons, conducting formal verification and semantic analysis on the output rather than the input of a compiler is relevant. To facilitate formal verification efforts and enable rich static analysis of binary executables, type analysis of low-level code (e.g. assembly) is essential as type information is lost during the process of compilation and has to be recovered.
-
-% TODO: check use of on.
-
-\paragraph{Problem definition} Type inference on low-level code is the problem of inferring the typing information of source programs from corresponding binary executables. Source programs contain ground truth typing information and binary executables are used as input to type analysis frameworks.
-
-\paragraph{Aim} The aim of this meta study is to critically assess research related to type analysis of low-level code, provide an overview of fundamental techniques used for type recovery in binary executables, and try to envision the role of and enhancements to type analysis in future applications of binary analysis.
-
-\paragraph{Scope} The scope of this study is limited to type analysis and variable recovery, as they are intimately related. While type analysis is heavily dependent on other research topics related to binary analysis -- such as binary lifting\footnote{Framework for lifting x86, amd64, and aarch64 program binaries to LLVM bitcode: \url{https://github.com/trailofbits/mcsema}} (i.e. translating machine code to platform independent intermediate representations), control flow analysis (e.g. required to track floating-point stack access \cite{tie_reverse_engineering_of_types}), data flow analysis and pointer analysis -- these have intentionally been excluded from the scope.
-
-% --- [ Results ] --------------------------------------------------------------
-
-\section{Results}
+\input{sections/1_introduction}
+\input{sections/2_background}
+\input{sections/3_type_analysis}
+\input{sections/4_evaluation_metrics}
+\input{sections/5_discussion}
 
 % binary analysis,
 
@@ -107,57 +75,11 @@ For these reasons, conducting formal verification and semantic analysis on the o
 %    - global memory region
 %    - stack memory region
 %    - heap memory region
-% registers
-%    - live ranges; SSA
 % structures/arrays
-
-foo
-
-% --- [ Evaluation Metrics ] ---------------------------------------------------
-
-\section{Evaluation Metrics}
-
-% TODO: add note on using debug information
-
-To enable objective comparison of different type recovery methods, a shared set of evaluation metrics are required. For this purpose, TIE proposed two evaluation metrics: \textit{distance} and \textit{conservativeness} \cite{tie_reverse_engineering_of_types}.
-
-\paragraph{Distance} The distance in height between the recovered and the source type in the primitive type lattice (see figure \ref{fig:base_type_lattice}) for subtypes (e.g. \texttt{int32} is a subtype of \texttt{num32} at distance 1), and the maximum lattice height otherwise.
-
-\paragraph{Conservativeness} Reports whether the source type exists within the type range (lower and upper bound) of the recovered type.
-
-The distance measurement as defined by TIE did not distinguish between multi-level pointers (e.g. \texttt{int*} and \texttt{int**} are equivalent, i.e. on the same level in the type lattice). Thus SecondWrite proposed a refinement to measure the ratio of between the recovered pointer level and the source pointer level \cite{second_write_scalable_type_detection}.
-
-Other metrics have been proposed to compare class hierarchies.
-
-% --- [ Discussion ] -----------------------------------------------------------
-
-\section{Discussion}
-
-foo
-
-\subsection{Applications}
-
-foo
-
-\subsection{Future Research}
-
-foo
-
-Fuzzy logic
 
 % TODO: Move into appropriate sections.
 
 % --- [ other] -----------------------------------------------------------
-
-\section{Background}
-
-foo
-
-\paragraph{Static Single Assignment}
-
-foo
-
-% describe PHI instructions.
 
 \section{Variable Recovery}
 
@@ -236,10 +158,6 @@ Type inference: type assignment algorithm W: \cite{milner_algorithmw}.
 Type-based decompilation: \cite{mycroft_type_based_decompilation}.
 
 %Comparison of type-based and proof-directed decompilation: \cite{mycroft_comparing_type_based_and_proof_directed_decompilation}
-
-foo \cite{tie_reverse_engineering_of_types}
-
-foo \cite{second_write_scalable_type_detection}
 
 foo \cite{bintype}
 
