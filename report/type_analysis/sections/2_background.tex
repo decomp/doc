@@ -6,7 +6,9 @@ This section provides a brief background on important terminology and concepts r
 
 \question{QUESTION: Should the Background section be merged with the Type Analysis section?}
 
-\paragraph{Static Single Assignment}
+% --- [ Static Single Assignment ] ---------------------------------------------
+
+\subsection{Static Single Assignment}
 
 \todo{TODO: write about static single assignment}
 
@@ -16,7 +18,9 @@ Track live ranges of variables stored in registers; SSA.
 
 \todo{TODO: describe PHI instructions. merges data flow at joining point of control flow graph.}
 
-\paragraph{Type Lattice}
+% --- [ Type Lattice ] ---------------------------------------------------------
+
+\subsection{Type Lattice}
 
 \todo{TODO: describe type lattice} (see figure \ref{fig:base_type_lattice})
 
@@ -24,10 +28,14 @@ Top type ($\top$): any type.
 
 Bottom type ($\bot$): inconsistent type.
 
-\paragraph{Static Analysis}
+% --- [ Static Analysis ] ------------------------------------------------------
+
+\subsection{Static Analysis}
 
 \todo{TODO: describe relevant aspects of static analysis. Covers all code paths but does not known concrete values of pointers, and some techniques of memory graph analysis are thus limited. (Verify if this is actually true, claimed in Type Inference on Executables. However Symbolic execution may mitigate this limitation even in static analysis.)} \cite{type_inference_on_executables}
 
-\paragraph{Dynamic Analysis}
+% --- [ Dynamic Analysis ] -----------------------------------------------------
+
+\subsection{Dynamic Analysis}
 
 \todo{TODO: describe relevant aspects of dynamic analysis. Does not cover all code paths (as static analysis does), but still relevant and widely used in Malware forensics. Particularly useful for memory access analysis, to recover structure types as their members are accessed during execution.} \cite{dynstruct}

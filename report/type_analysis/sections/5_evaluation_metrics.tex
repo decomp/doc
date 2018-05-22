@@ -8,9 +8,17 @@
 
 To enable objective comparison of different type recovery methods, a shared set of evaluation metrics are required. For this purpose, TIE proposed two evaluation metrics: \textit{distance} and \textit{conservativeness} \cite{tie_reverse_engineering_of_types}.
 
-\paragraph{Distance} The distance in height between the recovered and the source type in the primitive type lattice (see figure \ref{fig:base_type_lattice}) for subtypes (e.g. \texttt{int32} is a subtype of \texttt{num32} at distance 1), and the maximum lattice height otherwise.
+% --- [ Distance ] -------------------------------------------------------------
 
-\paragraph{Conservativeness} Reports whether the source type exists within the type range (lower and upper bound) of the recovered type.
+\subsection{Distance}
+
+The distance in height between the recovered and the source type in the primitive type lattice (see figure \ref{fig:base_type_lattice}) for subtypes (e.g. \texttt{int32} is a subtype of \texttt{num32} at distance 1), and the maximum lattice height otherwise.
+
+% --- [ Conservativeness ] -----------------------------------------------------
+
+\subsection{Conservativeness}
+
+Reports whether the source type exists within the type range (lower and upper bound) of the recovered type.
 
 The distance measurement as defined by TIE did not distinguish between multi-level pointers (e.g. \texttt{int*} and \texttt{int**} are equivalent, i.e. on the same level in the type lattice). Thus SecondWrite proposed a refinement to measure the ratio of between the recovered pointer level and the source pointer level \cite{second_write_scalable_type_detection}.
 
