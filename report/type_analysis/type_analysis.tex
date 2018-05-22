@@ -62,15 +62,14 @@
 
 \question{QUESTION: Include abstract? The final paper will be around 6 pages.}
 
-\input{sections/1_introduction}
-\input{sections/2_background}
+% TODO: change \include to \input
 
-\question{QUESTION: change order of Variable Recovery section and Type Analysis section? Alternatively, merge the two sections.}
-
-\input{sections/3_variable_recovery}
-\input{sections/4_type_recovery}
-\input{sections/5_evaluation_metrics}
-\input{sections/6_discussion}
+\include{sections/1_introduction}
+\include{sections/2_background}
+\include{sections/3_variable_recovery}
+\include{sections/4_type_recovery}
+\include{sections/5_evaluation_metrics}
+\include{sections/6_discussion}
 
 % TODO: skip? \cite{bintype}
 % TODO: skip? \cite{polymorphic_type_inference_for_machine_code}

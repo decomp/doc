@@ -16,54 +16,9 @@
 
 \todo{TODO: give introduction to type recovery as part of type analysis of low-level code.} \cite{mycroft_type_based_decompilation}
 
-% --- [ Type Inference ] -------------------------------------------------------
+% === [ Subsections ] ==========================================================
 
-\subsection{Type Inference}
-
-% ~~~ [ Value-based type inference ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-\paragraph{Value-based type inference} \todo{TODO: describe value-based type inference. E.g. if value is \texttt{42}, infer that it is an integer, if value is \texttt{0x401005} infer that it is a pointer. Bring up problems with this approach, misclassification.} \cite{type_inference_on_executables}
-
-% ~~~ [ Flow-based type inference ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-\paragraph{Flow-based type inference}
-
-\todo{TODO: describe type inference, Algorithm W} \cite{milner_algorithmw}
-
-% ~~~ [ Instruction type sources ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-\paragraph{Instruction type sources}
-
-Also known as type revealing instruction.
-
-\todo{TODO: describe type revealing instructions. Infer from the instruction that the operand is of integer type, memory, floating-point, etc.}
-
-% ~~~ [ Function type sources ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-\paragraph{Function type sources}
-
-Type information derived for arguments in calls to functions with known functions signatures (e.g. those of the standard library). \cite{type_inference_on_executables}
-
-% ~~~ [ Type sink ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-\paragraph{Type sink}
-
-A type sink is a type which can be resolved directly and is known to be correct. For instance, types for arguments inferred from function type sources.
-
-% --- [ Type Propagation ] -----------------------------------------------------
-
-\subsection{Type Propagation}
-
-\todo{TODO: describe type propagation, type constraints, forward and backward propagation, constraint solving}
-
-% --- [ Unification ] ----------------------------------------------------------
-
-\subsection{Unification}
-
-\todo{TODO: describe the unification step, as many algorithms rely on this to discover structure types, etc.}
-
-% --- [ Pointer analysis ] -----------------------------------------------------
-
-\subsection{Pointer analysis}
-
-\todo{TODO: give brief introduction to pointer analysis, points-to sets, pointer aliasing, and the technique to merge call sites such that memory allocated at different allocation call sites (e.g. calls to \texttt{malloc}) may have the same type if proven that through type propagation, that the returned pointers are used at other parts of the program for the same variables.}
+\input{sections/4_type_recovery/1_type_inference}
+\input{sections/4_type_recovery/2_type_propagation}
+\input{sections/4_type_recovery/3_unification}
+\input{sections/4_type_recovery/4_pointer_analysis}

@@ -1,0 +1,33 @@
+% --- [ Type Inference ] -------------------------------------------------------
+
+\subsection{Type Inference}
+
+% ~~~ [ Value-based type inference ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\paragraph{Value-based type inference} \todo{TODO: describe value-based type inference. E.g. if value is \texttt{42}, infer that it is an integer, if value is \texttt{0x401005} infer that it is a pointer. Bring up problems with this approach, misclassification.} \cite{type_inference_on_executables}
+
+% ~~~ [ Flow-based type inference ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\paragraph{Flow-based type inference}
+
+\todo{TODO: describe type inference, Algorithm W} \cite{milner_algorithmw}
+
+% ~~~ [ Instruction type sources ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\paragraph{Instruction type sources}
+
+Also known as type revealing instruction.
+
+\todo{TODO: describe type revealing instructions. Infer from the instruction that the operand is of integer type, memory, floating-point, etc.}
+
+% ~~~ [ Function type sources ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\paragraph{Function type sources}
+
+Type information derived for arguments in calls to functions with known functions signatures (e.g. those of the standard library). \cite{type_inference_on_executables}
+
+% ~~~ [ Type sink ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\paragraph{Type sink}
+
+A type sink is a type which can be resolved directly and is known to be correct. For instance, types for arguments inferred from function type sources.
