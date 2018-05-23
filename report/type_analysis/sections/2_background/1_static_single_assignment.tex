@@ -2,7 +2,7 @@
 
 \subsection{Static Single Assignment}
 
-\todo{TODO: write about static single assignment}
+Static Single Assignment (SSA) form is a property of an intermediate representation (IR) in which each variable is assigned exactly once. SSA-form is commonly used in the IR of compilers as it facilitates data flow analysis and simplifies some optimization passes (e.g. dead code elimination).
 
 % registers
 
@@ -14,7 +14,7 @@ Track live ranges of variables stored in registers; SSA.
 	\centering
 	\begin{subfigure}[ht]{0.50\textwidth}
 		\lstinputlisting[language=llvm, style=nasm, breaklines=false]{inc/ssa.ll}
-		\caption{LLVM IR in SSA-form: each value is assigned exactly once.}
+		\caption{LLVM IR in SSA-form: each variable is assigned exactly once.}
 		\label{fig:ssa_form}
 	\end{subfigure}
 	\begin{subfigure}[ht]{0.50\textwidth}
@@ -25,3 +25,7 @@ Track live ranges of variables stored in registers; SSA.
 	\end{subfigure}
 	\caption{LLVM IR in SSA-form and associated CFG.}
 \end{figure}
+
+% TODO: Reformulate and perhaps move?
+
+Within type analysis, SSA-form help track the live ranges of variables stored in the same register (e.g. \texttt{eax} may be used in the same function for more than one variable, perhaps of distinct types).
