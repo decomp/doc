@@ -5,9 +5,7 @@
 % What is the problem to solve, and why is it important?
 % - applications?
 
-% moment of reflection reveal the magnitude
-
-Even a brief reflection on the magnitude at which we rely on the \textit{correct implementation} of software to provide the most vital infrastructure of society is likely to leave one astounded. With increasingly interconnected and interdependent systems -- often in polyglot environments -- faults may have far reaching real-world consequences. Implementation correctness may be validated through proactive formal verification and static analysis of source code to prevent entire categories of security vulnerabilities and limit the occurrence of bugs. However, frameworks for validation of source code are often tied to a specific source language or small set of languages (e.g. ADA and SPARK) and therefore have limited effectiveness in polyglot projects. Furthermore, inconsistent interpretation of source code between static analysis tools and compilers may lead to run-time errors even when statically proven never to occur \cite{ada_static_analysis_and_compiler_inconsistencies,wysinwyx}. Finally, as demonstrated in Ken Thompson's 1984 Turing award lecture \textit{Reflections on Trusting Trust}, the output of a compiler may not be trusted even if its input is formally verified, as the compiler environment may have been tampered\footnote{Tempered environments is a real-world issue -- not only theoretically -- that large corporations such as Ericsson and Saab of Sweden have to deal with on a daily basis.} with:
+Even a brief reflection on the magnitude at which we rely on the \textit{correct implementation} of software to provide the most vital infrastructure of society is likely to leave one astounded. With increasingly interconnected and interdependent systems -- often in polyglot environments -- faults may have far reaching real-world consequences. Implementation correctness may be validated through proactive formal verification and static analysis of source code to prevent entire categories of security vulnerabilities and limit the occurrence of bugs. However, frameworks for validation of source code are often tied to a specific source language or small set of languages (e.g. ADA and SPARK) and therefore have limited effectiveness in polyglot projects. Furthermore, inconsistent interpretation of source code between static analysis tools and compilers may lead to run-time errors even when statically proven never to occur \cite{ada_static_analysis_and_compiler_inconsistencies,wysinwyx}. Finally, as demonstrated in Ken Thompson's 1984 Turing award lecture \textit{Reflections on Trusting Trust}, the output of a compiler may not be trusted even if its input is formally verified, as the compiler environment may have been tampered\footnote{Tempered environments is a real-world issue -- not only theoretically -- which affect large corporations such as Ericsson and Saab of Sweden on a daily basis.} with:
 
 \begin{quote}
 	\textit{``No amount of source-level verification or scrutiny will protect you from using untrusted code.''} \cite{trusting_trust}
@@ -16,8 +14,6 @@ Even a brief reflection on the magnitude at which we rely on the \textit{correct
 For these reasons, conducting formal verification and semantic analysis on the output rather than the input of a compiler has importance. To facilitate formal verification efforts and enable rich static analysis of binary executables, type analysis of low-level code (e.g. assembly) is essential as type information is lost during the process of compilation and has to be recovered.
 
 % ~~~ [ Problem definition ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-% TODO: check use of on.
 
 \paragraph{Problem definition}
 

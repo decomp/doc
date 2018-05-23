@@ -2,30 +2,33 @@
 
 \subsection{Static Single Assignment}
 
-Static Single Assignment (SSA) form is a property of an intermediate representation (IR) in which each variable is assigned exactly once. SSA-form is commonly used in the IR of compilers as it facilitates data flow analysis and simplifies some optimization passes (e.g. dead code elimination).
+Static Single Assignment (SSA) form is a property of an intermediate representation (IR) in which each variable is defined before use and assigned exactly once. SSA-form is commonly used in the IR of compilers as it facilitates data flow analysis and simplifies some optimization passes (e.g. dead code elimination).
 
-% registers
+% TODO: Reformulate and perhaps move?
 
-Track live ranges of variables stored in registers; SSA.
+Within type analysis, SSA-form help distinguish distinct varibles stored in the same register by tracking their live ranges. For instance, in the running example (see listing \ref{fig:running_example_asm} of appendix \ref{app:running_example}) the \texttt{eax} register is defined at lines 13, 17, 21 and 23, and refers to different variables of different types. When converted to SSA-form each of these assignments would be to a unique \textit{version} of the \texttt{eax} variable; e.g. \texttt{\%eax.0}, \texttt{\%eax.1}, \texttt{\%eax.2}, etc.
 
 \todo{TODO: describe PHI instructions. merges data flow at joining point of control flow graph.}
 
 \begin{figure}[htbp]
 	\centering
+	\begin{subfigure}[ht]{0.18\textwidth}
+		\centering
+		\lstinputlisting[language=c, style=go, breaklines=false]{inc/ssa.c}
+		\caption{C source code.}
+		\label{fig:c_source_phi}
+	\end{subfigure}
+	\qquad
+	\begin{subfigure}[ht]{0.25\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{inc/phi.png}
+		\caption{$\Phi$-node semantics: value of \texttt{\%x.0} in \texttt{\%exit} basic block depend on branch taken.}
+		\label{fig:phi_node_semantics}
+	\end{subfigure}
 	\begin{subfigure}[ht]{0.50\textwidth}
 		\lstinputlisting[language=llvm, style=nasm, breaklines=false]{inc/ssa.ll}
 		\caption{LLVM IR in SSA-form: each variable is assigned exactly once.}
 		\label{fig:ssa_form}
 	\end{subfigure}
-	\begin{subfigure}[ht]{0.50\textwidth}
-		\centering
-		\includegraphics[width=0.50\textwidth]{inc/phi.png}
-		\caption{$\Phi$-node semantics: value of \texttt{\%x.0} in \texttt{\%ret} depend on branch taken.}
-		\label{fig:phi_node_semantics}
-	\end{subfigure}
-	\caption{LLVM IR in SSA-form and associated CFG.}
+	\caption{C source code converted to LLVM IR in SSA-form and associated CFG illustrating $\Phi$-node semantics..}
 \end{figure}
-
-% TODO: Reformulate and perhaps move?
-
-Within type analysis, SSA-form help track the live ranges of variables stored in the same register (e.g. \texttt{eax} may be used in the same function for more than one variable, perhaps of distinct types).
