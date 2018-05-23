@@ -5,13 +5,15 @@
 % What is the problem to solve, and why is it important?
 % - applications?
 
-Take for a moment the opportunity to reflect on the magnitude at which we rely on the \textit{correct implementation} of software to provide the most vital infrastructure of society. With increasingly interconnected and interdependent systems -- often in polyglot environments -- faults may have far reaching real-world consequences. Implementation correctness may be validated through formal verification and static analysis of source code to proactively prevent entire categories of security vulnerabilities and limit the occurrence of bugs. However, frameworks for validation of source code are often tied to a specific source language or small set of languages (e.g. ADA and SPARK) and therefore have limited effectiveness in polyglot projects. Furthermore, inconsistent interpretation of source code between static analysis tools and compilers may lead to run-time errors even when statically proven never to occur \cite{ada_static_analysis_and_compiler_inconsistencies,wysinwyx}. Finally, as demonstrated in Ken Thompson's 1984 Turing award lecture \textit{Reflections on Trusting Trust}, the output of a compiler may not be trusted even if its input is formally verified, as the compiler environment may have been tampered\footnote{Not only theoretically, tempered environments is a real-world issue that large corporations such as Ericsson and Saab of Sweden have to deal with on a daily basis.} with:
+% moment of reflection reveal the magnitude
+
+Even a brief reflection on the magnitude at which we rely on the \textit{correct implementation} of software to provide the most vital infrastructure of society is likely to leave one astounded. With increasingly interconnected and interdependent systems -- often in polyglot environments -- faults may have far reaching real-world consequences. Implementation correctness may be validated through proactive formal verification and static analysis of source code to prevent entire categories of security vulnerabilities and limit the occurrence of bugs. However, frameworks for validation of source code are often tied to a specific source language or small set of languages (e.g. ADA and SPARK) and therefore have limited effectiveness in polyglot projects. Furthermore, inconsistent interpretation of source code between static analysis tools and compilers may lead to run-time errors even when statically proven never to occur \cite{ada_static_analysis_and_compiler_inconsistencies,wysinwyx}. Finally, as demonstrated in Ken Thompson's 1984 Turing award lecture \textit{Reflections on Trusting Trust}, the output of a compiler may not be trusted even if its input is formally verified, as the compiler environment may have been tampered\footnote{Tempered environments is a real-world issue -- not only theoretically -- that large corporations such as Ericsson and Saab of Sweden have to deal with on a daily basis.} with:
 
 \begin{quote}
 	\textit{``No amount of source-level verification or scrutiny will protect you from using untrusted code.''} \cite{trusting_trust}
 \end{quote}
 
-For these reasons, conducting formal verification and semantic analysis on the output rather than the input of a compiler is relevant. To facilitate formal verification efforts and enable rich static analysis of binary executables, type analysis of low-level code (e.g. assembly) is essential as type information is lost during the process of compilation and has to be recovered.
+For these reasons, conducting formal verification and semantic analysis on the output rather than the input of a compiler has importance. To facilitate formal verification efforts and enable rich static analysis of binary executables, type analysis of low-level code (e.g. assembly) is essential as type information is lost during the process of compilation and has to be recovered.
 
 % ~~~ [ Problem definition ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -25,10 +27,13 @@ Type inference on low-level code is the problem of inferring the typing informat
 
 \paragraph{Aim}
 
-The aim of this meta study is to critically assess research related to type analysis of low-level code, provide an overview of fundamental techniques used for type recovery in binary executables, and try to envision the role of and enhancements to type analysis in future applications of binary analysis.
+The aim of this meta-study is to critically assess research related to type analysis of low-level code, provide an overview of fundamental techniques used for type recovery in binary executables, and try to envision the role of and enhancements to type analysis in future applications of binary analysis.
 
 % ~~~ [ Scope ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 \paragraph{Scope}
 
-The scope of this study is limited to type analysis and variable recovery, as they are intimately related. While type analysis is heavily dependent on other research topics related to binary analysis -- such as binary lifting\footnote{Framework for lifting x86, amd64, and aarch64 program binaries to LLVM bitcode: \url{https://github.com/trailofbits/mcsema}} (i.e. translating machine code to platform independent intermediate representations), control flow analysis (e.g. required to track floating-point stack access \cite{tie_reverse_engineering_of_types}), data flow analysis and pointer analysis -- these have intentionally been excluded from the scope.
+The scope of this study is limited to type analysis and variable recovery, as they are intimately related. While type analysis is heavily dependent on other research topics related to binary analysis -- such as binary lifting\footnote{Framework for lifting x86, amd64, and aarch64 program binaries to LLVM bitcode: \url{https://github.com/trailofbits/mcsema}} (i.e. translating machine code to platform-independent intermediate representations), control flow analysis (e.g. required to track floating-point stack access \cite{tie_reverse_engineering_of_types}), data flow analysis and pointer analysis -- these have intentionally been excluded from the scope.
+
+% TODO: state research question.
+% TODO: mind the gap.

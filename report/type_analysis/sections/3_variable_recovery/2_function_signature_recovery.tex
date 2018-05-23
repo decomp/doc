@@ -9,9 +9,9 @@
 The following set of steps are used for function signature recovery (function parameters and returns arguments) in SecondWrite \cite{second_write_scalable_type_detection}.
 
 \begin{enumerate}
-	\item assume all registers are arguments and no register are return arguments.
+	\item assume all registers are arguments and no registers are return arguments.
 	\item registers written to are potential return arguments.
-	\item callee saved registers (through push in function prologue and pop in function epilogue) (\textit{DeadStores}) are pruned from potential return set.
-	\item prune arguments not actually used (e.g. not part of \textit{DeadStore} or PHI instructions).
-	\item prune return registers not actually used by callers.
+	\item callee saved registers (e.g. through push and pop instructions in the function prologue and epilogue, respectively) (\textit{DeadStores}) are pruned from potential return set.
+	\item prune unused arguments (e.g. not part of \textit{DeadStore} or PHI instructions).
+	\item prune return registers unused by callers.
 \end{enumerate}
