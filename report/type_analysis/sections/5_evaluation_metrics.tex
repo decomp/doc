@@ -2,11 +2,9 @@
 
 \section{Evaluation Metrics}
 
-\todo{TODO: add note on the use of debug information.}
-
-\todo{TODO: mention that SPEC2006 and Coreutils are often used in benchmarks.}
-
 To enable objective comparison of different type recovery methods, a set of shared evaluation metrics is required. For this purpose, TIE proposed two evaluation metrics: \textit{distance} and \textit{conservativeness} \cite{tie_reverse_engineering_of_types}.
+
+The open source tools of Coreutils are often used in benchmark comparisons of different type recovery methods. The source code may be compiled to include debug information of source variables and types in the executables. This information is only used for validation, and no type recovery method assessed in this paper depend on the information to be available.
 
 % === [ Subsections ] ==========================================================
 
