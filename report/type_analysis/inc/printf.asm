@@ -26,3 +26,8 @@ f:
 	mov     esp, ebp           ; deallocate local variables
 	pop     ebp                ; restore old stack frame
 	ret     4                  ; callee cleanup
+
+[section .data]
+
+unk_8000040: db 'foo', 0
+unk_8000044: db '%s, %d', 0
