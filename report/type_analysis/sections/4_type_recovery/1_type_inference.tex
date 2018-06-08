@@ -4,7 +4,11 @@
 
 % ~~~ [ Value-based type inference ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-\paragraph{Value-based type inference} \todo{TODO: describe value-based type inference. E.g. if value is \texttt{42}, infer that it is an integer, if value is \texttt{0x401005} infer that it is a pointer. Bring up problems with this approach, misclassification.} \cite{type_inference_on_executables}
+\paragraph{Value-based type inference} The type of a variable may be inferred from the values used in its operations (e.g. assignment, comparison, arithmetic). For instance, a variable assigned the value \texttt{321} may be classified as a signed or unsigned integer of bit size at least 16 (since the value \texttt{321} does not fit in 8 bits). More concretely, the \texttt{mov} instruction in \texttt{f} at line \texttt{14} (see figure \ref{fig:running_example_asm} in appendix \ref{app:running_example}).
+
+This corresponds to \textit{num16} and \textit{num32} in the primitive type lattice of a 32-bit system (see figure \ref{fig:base_type_lattice}).
+
+%the values assigned to it. \todo{TODO: describe value-based type inference. E.g. if value is \texttt{42}, infer that it is an integer, if value is \texttt{0x401005} infer that it is a pointer. Bring up problems with this approach, misclassification.} \cite{type_inference_on_executables}
 
 % ~~~ [ Flow-based type inference ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

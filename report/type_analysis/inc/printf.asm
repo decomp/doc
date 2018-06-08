@@ -11,7 +11,7 @@ f:
 	push    ebp                ; store old stack frame
 	mov     ebp, esp           ; create new stack frame
 	sub     esp, 8             ; allocate local variables
-	mov     DWORD [ebp-4], 42  ; int x = 42
+	mov     DWORD [ebp-4], 321 ; int x = 321
 	lea     eax, [unk_8000040] ;    "foo"
 	mov     DWORD [ebp-8], eax ; char *s = "foo"
 	push    DWORD [ebp-4]      ;    arg3: x
