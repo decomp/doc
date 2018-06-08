@@ -14,7 +14,13 @@
 %    - heap memory region
 % structures/arrays
 
-\todo{TODO: give introduction to type recovery as part of type analysis of low-level code.} \cite{mycroft_type_based_decompilation}
+The key concepts used in type recovery are \textit{type inference}, \textit{type propagation} and \textit{unification} \cite{mycroft_type_based_decompilation}; and their shared representation is \textit{type constraints} (e.g. upper and lower bounds in a primitive type lattice) associated with the variables determined through variable recovery (see section \ref{sec:variable_recovery}).
+
+\begin{itemize}
+	\item Type inference infers type constraints of variables (based on the values they may contain, their use in instructions and as function arguments).
+	\item Type propagation propagates the type constraints between variables which interact (based on data flow).
+	\item Unification unifies the type constraints of the entire program, and may be seen as calculating the set of solutions (which may be empty) to the type constraint equations.
+\end{itemize}
 
 % === [ Subsections ] ==========================================================
 

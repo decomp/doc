@@ -1,6 +1,7 @@
 % === [ Variable Recovery ] ====================================================
 
 \section{Variable Recovery}
+\label{sec:variable_recovery}
 
 Variable and typing information is lost during the process of compilation, as local and global variables, function arguments and function parameters are lowered from source code to machine code and mapped onto type-less registers and memory locations. Debug information of binary executables may record this mapping. When debug information is limited or absent however, the source variables have to be recovered from low-level code using variable recovery methods. Since type analysis is based on inference between type typing relations of variables, variable recovery is required for type recovery.
 

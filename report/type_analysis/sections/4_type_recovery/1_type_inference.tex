@@ -10,24 +10,23 @@ The type of a variable may be inferred from the values stored in its register (e
 
 One issue with value-based type inference is that it is difficult to distinguish pointer values from integer values or arbitrary sequences of bytes (e.g. \texttt{0x414243} could either refer to an address, the integer value \texttt{4276803} or the byte sequence \texttt{ABC}). Therefore, value-based type inference may lead to misclassification of types \cite{type_inference_on_executables}.
 
-One benefit of value-based type inference is that it only requires examining the contents of registers and memory. Given that no extensive analysis of code is required, this approach fits dynamic analysis well.
+One benefit of value-based type inference is that it only requires examining the contents of registers and memory. Given that no extensive code analysis is required, this approach fits dynamic analysis well.
 
 % ~~~ [ Flow-based type inference ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 \paragraph{Flow-based type inference}
 
+Given the relationship between variables -- as determined by data flow analysis -- type information and typing constraints may be propagated from available type sources (e.g. instruction and function type sources, as described below).
 
-
-
-Given the relationship between variables -- as determined by data flow analysis -- type information may be propagated from corresponding type sources (e.g. instruction and function type sources, as described below) to variables.
-
-\todo{TODO: describe type inference, Algorithm W} \cite{milner_algorithmw}
+For instance, at \texttt{f:25} (see figure \ref{fig:local_variable_example_asm}) \todo{TODO: continue here}
 
 % ~~~ [ Instruction type sources ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 \paragraph{Instruction type sources}
 
-Also known as type revealing instruction.
+Also known as \textit{type revealing instruction}.
+
+The type of a variable may be inferred from the operational semantics (e.g. assignment, comparison, arithmetic) of instructions.
 
 For instance, a variable assigned the value \texttt{321} may be classified as a signed or unsigned integer of bit size at least 16 (since the value \texttt{321} does not fit in 8 bits). More concretely, the \texttt{mov} instruction at \texttt{f:14} (see figure \ref{fig:local_variable_example_asm}) constrains the local variable at \texttt{ebp-4} to either \textit{num16} or \textit{num32} in the primitive type lattice on a 32-bit system (see figure \ref{fig:base_type_lattice}).
 
@@ -39,13 +38,13 @@ For instance, a variable assigned the value \texttt{321} may be classified as a 
 
 \paragraph{Function type sources}
 
-Type information derived for arguments in calls to functions with known functions signatures (e.g. those of the standard library). \cite{type_inference_on_executables}
+Type information derived for arguments in calls to functions with known functions signatures (e.g. those of the standard library) \cite{type_inference_on_executables}.
 
 % ~~~ [ Type sink ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 \paragraph{Type sink}
 
-A type sink is a type which can be resolved directly and is known to be correct. For instance, types for arguments inferred from function type sources.
+A type sink is a type which can be resolved directly and is known to be correct. For instance, the types of arguments inferred from function type sources.
 
 % ~~~ [ Format-string based type inference ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
