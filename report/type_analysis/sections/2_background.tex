@@ -4,6 +4,8 @@
 
 This section provides a brief background on important terminology and concepts related to type analysis and binary analysis.
 
+To help explain different aspects of variable recovery and type analysis, two running examples are used throughout this paper. The first example (see figure \ref{fig:local_variable_example} of appendix \ref{app:local_variable_example}) details a function \texttt{f} which allocates local variables on the function stack frame. The second example (see figure \ref{fig:struct_example} of appendix \ref{app:struct_example}) details a function \texttt{g} which operates on an array of structures, and a function \texttt{h} which operates on a structure pointer. Subsequent in-text references to \texttt{f}, \texttt{g} and \texttt{h} correspond to these three functions, and the \texttt{f:12} notation represents a reference to the function \texttt{f} at line number 12 in the source listing.
+
 % === [ Subsections ] ==========================================================
 
 \input{sections/2_background/1_static_single_assignment}
