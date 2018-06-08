@@ -17,17 +17,41 @@
 	\centering
 	\begin{subfigure}[ht]{0.3\textwidth}
 		\centering
-		\lstinputlisting[language=c, style=go, breaklines=false]{inc/example.c}
+		\lstinputlisting[language=c, style=go, breaklines=false]{inc/printf.c}
 		\caption{Example C source code.}
 		\label{fig:running_example_c}
 	\end{subfigure}
 	\qquad
-	\begin{subfigure}[ht]{0.6\textwidth}
+	\begin{subfigure}[ht]{0.65\textwidth}
 		\centering
-		\lstinputlisting[language=nasm, style=nasm, breaklines=false]{inc/example.asm}
+		\lstinputlisting[language=nasm, style=nasm, breaklines=false]{inc/printf.asm}
 		\caption{Corresponding assembly code in NASM syntax.}
 		\label{fig:running_example_asm}
 	\end{subfigure}
 	\caption{Running example used to illustrate different aspects of variable recovery and type analysis.}
 	\label{fig:running_example}
+\end{figure}
+
+\clearpage
+
+\subsection{Struct example}
+\label{app:struct_example}
+
+\begin{figure}[htbp]
+	\centering
+	\begin{subfigure}[ht]{0.3\textwidth}
+		\centering
+		\lstinputlisting[language=c, style=go, breaklines=false]{inc/struct.c}
+		\caption{Struct example C source code.}
+		\label{fig:struct_example_c}
+	\end{subfigure}
+	\qquad
+	\begin{subfigure}[ht]{0.65\textwidth}
+		\centering
+		\lstinputlisting[language=nasm, style=nasm, breaklines=false]{inc/struct.asm}
+		\caption{Corresponding assembly code in NASM syntax.}
+		\label{fig:struct_example_asm}
+	\end{subfigure}
+	\caption{Struct example used to illustrate type recover of structure types.}
+	\label{fig:struct_example}
 \end{figure}
