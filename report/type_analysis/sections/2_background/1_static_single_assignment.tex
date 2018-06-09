@@ -8,7 +8,7 @@ Static Single Assignment (SSA) form is a property of an intermediate representat
 
 Within type analysis, SSA-form help distinguish distinct varibles stored in the same register by tracking their live ranges. For instance, in the running example (see listing \ref{fig:local_variable_example_asm} of appendix \ref{app:local_variable_example}) the \texttt{eax} register is defined at lines 15, 19, 23 and 25, and refers to different variables of different types. When converted to SSA-form each of these assignments would be to a unique \textit{version} of the \texttt{eax} variable; e.g. \texttt{\%eax.0}, \texttt{\%eax.1}, \texttt{\%eax.2}, etc.
 
-\todo{TODO: describe PHI instructions. merges data flow at joining point of control flow graph.}
+Multiple assignments to the same source variable are represented in SSA-form using $\Phi$ (\textit{Phi}) instructions (also known as $\Phi$ functions). A $\Phi$ instruction essentially merges (joins) data flow, such that the resulting value of the $\Phi$ instruction depend on the branch taken in the control flow graph (as further illustrated in figure \ref{fig:ssa_form}).
 
 \begin{figure}[htbp]
 	\centering
