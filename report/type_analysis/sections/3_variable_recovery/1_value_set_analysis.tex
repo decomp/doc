@@ -4,6 +4,4 @@
 
 \subsection{Value Set Analysis}
 
-\todo{TODO: describe value set analysis}
-
-upper bound, lower bound and stride for memory locations. \cite{wysinwyx}
+To recovery variables stored in memory regions (e.g. global, heap, stack), the Value Set Analysis (VSA) algorithm is key; as it determines the possible ranges of values that registers may hold at every point of execution (i.e. registers holding addresses to memory locations). The value ranges (upper and lower bounds, and stride) give a conservative estimate of possible memory locations for variables \cite{wysinwyx}. While few of the reviewed papers have mentioned it, symbolic execution should be able to improve on this conservative estimate.
