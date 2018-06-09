@@ -2,9 +2,9 @@
 
 \section{Evaluation Metrics}
 
-To enable objective comparison of different type recovery methods, a set of shared evaluation metrics is required. For this purpose, TIE proposed two evaluation metrics: \textit{distance} and \textit{conservativeness} \cite{tie_reverse_engineering_of_types}.
+To enable objective comparison of different type recovery methods, a set of shared evaluation metrics is required. For this purpose, TIE proposed two evaluation metrics: \textit{distance} and \textit{conservativeness} \cite{tie_reverse_engineering_of_types}. Other research projects have proposed metrics to compare class hierarchies.
 
-The open source tools of Coreutils are often used in benchmark comparisons of different type recovery methods. The source code may be compiled to include debug information of source variables and types in the executables. This information is only used for validation, and no type recovery method assessed in this paper depend on the information to be available.
+For benchmark comparison of different type recovery methods, the open source tools of Coreutils\footnote{Coreutils - GNU core utilities: \url{http://www.gnu.org/software/coreutils/coreutils.html}} are often used. Executables may be compiled to include debug information as a ground truth for source variables and types. The debug information is only used for validation, and no type recovery method assessed in this essay depend on the information to be available.
 
 % === [ Subsections ] ==========================================================
 
