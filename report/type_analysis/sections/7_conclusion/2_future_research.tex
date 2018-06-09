@@ -2,6 +2,12 @@
 
 \subsection{Future Research}
 
-\todo{TODO: write about fuzzy logic}
+% TODO: add cite ref for "do not infer size". I cannot seem to find which paper mentioned this. Should be either TIE, SecondWrite, dynStruct or type inference on executables.
 
-Fuzzy logic (rather than boolean certainty (0 or 1), include fuzzy certainty (0 through 1) of variable type, and refine propagation to take certainty into account).
+To handle issues with inconsistent type constraints inferred from instruction type sources (e.g. memory access instructions with different size specifiers), some type recovery methods do not infer size type constraints from \texttt{load} and \texttt{store} instructions. This limits the information inferred from executables but resolves unification problems.
+
+As future research, it would be interesting to evaluate whether the type inference, type propagation and unification methods of type recovery may be adapted to support \textit{fuzzy} type constraints; and what impact this would have to resolve the aforementioned issues with unification of inconsistent type constraints.
+
+\paragraph{Fuzzy type constraints} With terminology adapted from fuzzy logic, a fuzzy type constraint is a type constraint with a certainty of accuracy (0 through 1), as compared to the presence or absence of a type constraint (0 or 1) used in current type recovery methods.
+
+For instance, type constraints inferred from function type sources may be assigned a high certainty of accuracy, while type constraints inferred from instruction type sources (e.g. memory access with size specifiers) may be assigned a low certainty of accuracy. The full detains of how unification of fuzzy type constraints would work is left for future research.
