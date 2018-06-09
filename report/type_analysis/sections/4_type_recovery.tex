@@ -14,7 +14,7 @@
 %    - heap memory region
 % structures/arrays
 
-The key concepts used in type recovery are \textit{type inference}, \textit{type propagation} and \textit{unification} \cite{mycroft_type_based_decompilation}; and their shared representation is \textit{type constraints} (e.g. upper and lower bounds in a primitive type lattice) associated with the variables determined through variable recovery (see section \ref{sec:variable_recovery}).
+The key concepts used in type recovery are \textit{type inference}, \textit{type propagation} and \textit{unification} \cite{mycroft_type_based_decompilation}; and their shared representation is \textit{type constraints} (e.g. upper and lower bounds in a primitive type lattice) associated with the variables determined through variable recovery (see section \ref{sec:variable_recovery}). The underlying theory is based on algorithm W \cite{milner_algorithmw}.
 
 \begin{itemize}
 	\item Type inference infers type constraints of variables (based on the values they may contain, their use in instructions and as function arguments).
@@ -25,8 +25,10 @@ The key concepts used in type recovery are \textit{type inference}, \textit{type
 % === [ Subsections ] ==========================================================
 
 \input{sections/4_type_recovery/1_type_inference}
-\input{sections/4_type_recovery/2_type_propagation}
-\input{sections/4_type_recovery/3_unification}
+
+% TODO: add type propagation and unification sections.
+%\input{sections/4_type_recovery/2_type_propagation}
+%\input{sections/4_type_recovery/3_unification}
 
 % TODO: skip pointer analysis?
 %\input{sections/4_type_recovery/4_pointer_analysis}
