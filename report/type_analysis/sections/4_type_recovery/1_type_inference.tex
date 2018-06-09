@@ -20,7 +20,7 @@ Also known as \textit{type revealing instruction}.
 
 The type of a variable may be inferred from the operational semantics (e.g. assignment, comparison, arithmetic) of instructions.
 
-For instance, a variable assigned the value \texttt{321} may be classified as a signed or unsigned integer of bit size at least 16 (since the value \texttt{321} does not fit in 8 bits). More concretely, the \texttt{mov} instruction at \texttt{f:14} (see figure \ref{fig:local_variable_example_asm}) constrains the local variable at \texttt{ebp-4} to either \textit{num16} or \textit{num32} in the primitive type lattice on a 32-bit system (see figure \ref{fig:base_type_lattice}).
+For instance, a variable assigned the value \texttt{321} may be classified as a signed or unsigned integer of bit size at least 16 (since the value \texttt{321} does not fit in 8 bits). More concretely, the \texttt{mov} instruction at \texttt{f:14} (see figure \ref{fig:local_variable_example_asm}) constrains the local variable at \texttt{ebp-4} to either \textit{num16} or \textit{num32} in the primitive type lattice on a 32-bit system (see figure \ref{fig:primitive_type_lattice}).
 
 % (e.g. assignment, comparison, arithmetic)
 
