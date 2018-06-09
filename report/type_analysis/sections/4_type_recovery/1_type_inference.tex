@@ -16,15 +16,11 @@ One benefit of value-based type inference is that it only requires examining the
 
 \paragraph{Instruction type sources}
 
-Also known as \textit{type revealing instruction}.
+The type of a variable may be inferred from the operational semantics (e.g. assignment, comparison, arithmetic) of instructions (also known as \textit{type revealing instruction}). An assignment instruction may reveal the size of a memory location, a comparison instruction the signedness of an integer variable, and an arithmetic instruction the relationship between variables. Further more, the use of FPU registers may reveal the source type of a floating-point variable.
 
-The type of a variable may be inferred from the operational semantics (e.g. assignment, comparison, arithmetic) of instructions.
+Compared to value-based type inference, instruction type source may extract more information. For instance, given value-based inference a variable assigned the value \texttt{321} may be classified as a signed or unsigned integer of bit size at least 16 (since the value \texttt{321} does not fit in 8 bits). More concretely, the \texttt{mov} instruction at \texttt{f:14} (see figure \ref{fig:local_variable_example_asm}) constrains the local variable at \texttt{ebp-4} to either \textit{num16} or \textit{num32} in the primitive type lattice on a 32-bit system (see figure \ref{fig:primitive_type_lattice}). However, there is more information contained within the type revealing \texttt{mov} instruction at \texttt{f:14}, namely the size of the memory location (\texttt{DWORD}) used in the assignment operation. With this added knowledge, the only valid type constraint is \texttt{num32}.
 
-For instance, a variable assigned the value \texttt{321} may be classified as a signed or unsigned integer of bit size at least 16 (since the value \texttt{321} does not fit in 8 bits). More concretely, the \texttt{mov} instruction at \texttt{f:14} (see figure \ref{fig:local_variable_example_asm}) constrains the local variable at \texttt{ebp-4} to either \textit{num16} or \textit{num32} in the primitive type lattice on a 32-bit system (see figure \ref{fig:primitive_type_lattice}).
-
-% (e.g. assignment, comparison, arithmetic)
-
-\todo{TODO: describe type revealing instructions. Infer from the instruction that the operand is of integer type, memory, floating-point, etc.}
+One issue with \todo{TODO: continue here}
 
 % ~~~ [ Function type sources ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
