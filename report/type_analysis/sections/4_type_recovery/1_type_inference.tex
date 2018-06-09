@@ -20,13 +20,7 @@ The type of a variable may be inferred from the operational semantics (e.g. assi
 
 Compared to value-based type inference, instruction type source may extract more information. For instance, given value-based inference a variable assigned the value \texttt{321} may be classified as a signed or unsigned integer of bit size at least 16 (since the value \texttt{321} does not fit in 8 bits). More concretely, the \texttt{mov} instruction at \texttt{f:14} (see figure \ref{fig:local_variable_example_asm}) constrains the local variable at \texttt{ebp-4} to either \textit{num16} or \textit{num32} in the primitive type lattice on a 32-bit system (see figure \ref{fig:primitive_type_lattice}). However, there is more information contained within the type revealing \texttt{mov} instruction at \texttt{f:14}, namely the size of the memory location (\texttt{DWORD}) used in the assignment operation. With this added knowledge, the only valid type constraint is \texttt{num32}.
 
-One issue with relying on instruction type sources to determine the size of variables in memory, is that optimizing compilers may produce executables containing distinct instructions accessing the same memory location using different data size specifiers.
-
-\todo{TODO: reference g and h example.}
-
-%This is common when using \texttt{memcpy} and \texttt{memmove} on structure types.
-
-% (e.g. the size of fields for a structure type)
+One issue with relying on instruction type sources to determine the size of variables in memory, is that optimizing compilers may produce executables containing distinct instructions accessing the same memory location using different data size specifiers. This is common when using \texttt{memcpy} and \texttt{memmove} on structure types in binaries produced by optimizing compilers; as further illustrated in figure \ref{fig:struct_example_asm} where \texttt{g} and \texttt{h} refer to the structure type \texttt{T} using different size specifiers (i.e. \texttt{DWORD} for offset 4 at \texttt{h:49} and \texttt{BYTE} for offset 4 at \texttt{g:21}).
 
 % ~~~ [ Function type sources ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -44,8 +38,8 @@ A type sink is a type which can be resolved directly and is known to be correct.
 
 \paragraph{Format-string based type inference}
 
-\todo{TODO: describe format-string based type inference.}
+The types of arguments in function calls to the \texttt{printf} family of functions in the standard library may be inferred from the corresponding format string verbs (e.g. \texttt{\%d} for integer and \texttt{\%f} for floating-point numbers).
 
-Type of arguments to \texttt{printf} call may be inferred by format-string verbs (e.g. \texttt{\%d}).
+For instance, based on the format string \texttt{``\%s, \%d''} used in the call to \texttt{printf} at \texttt{f:20} (see figure \ref{fig:local_variable_example_asm}) the types of the corresponding variables \texttt{ebp-8} and \texttt{ebp-4} may be inferred from the string verbs \texttt{\%s} for NULL-terminated string and \texttt{\%d} for integer number, respectively.
 
-\todo{TODO: use example of eax register in NASM example above to illustrate the need to track life ranges}.
+Here, it is important to note that the \texttt{eax} register containing the address to the format string at \texttt{f:19} is used at two other locations in \texttt{f}, each referring to distinct variables. At \texttt{f:15}, \texttt{eax} refers to the string literal \texttt{``foo''} stored in the global memory region, and at \texttt{f:25}, \texttt{eax} refers to the integer return value. To separate these variables from one another, SSA-form is used to track live ranges and create distinct \textit{versions} of the \texttt{eax} register.
