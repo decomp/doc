@@ -20,7 +20,13 @@ The type of a variable may be inferred from the operational semantics (e.g. assi
 
 Compared to value-based type inference, instruction type source may extract more information. For instance, given value-based inference a variable assigned the value \texttt{321} may be classified as a signed or unsigned integer of bit size at least 16 (since the value \texttt{321} does not fit in 8 bits). More concretely, the \texttt{mov} instruction at \texttt{f:14} (see figure \ref{fig:local_variable_example_asm}) constrains the local variable at \texttt{ebp-4} to either \textit{num16} or \textit{num32} in the primitive type lattice on a 32-bit system (see figure \ref{fig:primitive_type_lattice}). However, there is more information contained within the type revealing \texttt{mov} instruction at \texttt{f:14}, namely the size of the memory location (\texttt{DWORD}) used in the assignment operation. With this added knowledge, the only valid type constraint is \texttt{num32}.
 
-One issue with \todo{TODO: continue here}
+One issue with relying on instruction type sources to determine the size of variables in memory, is that optimizing compilers may produce executables containing distinct instructions accessing the same memory location using different data size specifiers.
+
+\todo{TODO: reference g and h example.}
+
+%This is common when using \texttt{memcpy} and \texttt{memmove} on structure types.
+
+% (e.g. the size of fields for a structure type)
 
 % ~~~ [ Function type sources ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -32,7 +38,7 @@ Type information derived for arguments in calls to functions with known function
 
 \paragraph{Type sink}
 
-A type sink is a type which can be resolved directly and is known to be correct. For instance, the types of arguments inferred from function type sources.
+A type sink is a type which can be resolved directly and is known to be correct. For instance, the type of an argument in a function call to a standard library function.
 
 % ~~~ [ Format-string based type inference ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

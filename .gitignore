@@ -1,5 +1,6 @@
 *.pdf
 *.o
 *.bc
+*.idb
 latex.out
 _resources_
