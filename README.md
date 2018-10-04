@@ -2,7 +2,7 @@
 
 A meta-study of type recovery methods used during binary lifting.
 
-A PDF version of the report has been made available online ([type_analysis.pdf](https://raw.githubusercontent.com/decomp/doc/master/report/type_analysis/type_analysis.pdf)).
+A PDF version of the report has been made available online ([type_analysis.pdf](https://github.com/decomp/doc/raw/master/report/type_analysis/type_analysis.pdf)).
 
 # Compositional Decompilation using LLVM IR
 
