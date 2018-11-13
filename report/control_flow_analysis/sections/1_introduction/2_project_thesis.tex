@@ -4,7 +4,14 @@
 
 % TODO: progression/spectrum?
 
-The thesis of this project is that upon evaluation of the three distinct methods of control flow recovery (see section \ref{sec:hammock_method}, \ref{sec:interval_method} and \ref{sec:pattern-independent_method}), they will fall on a progression from \textit{many} false negatives and \textit{no} false positives for the Hammock method; to \textit{some} false negatives and \textit{some} false positives for the Interval method; to \textit{no} false negatives and \textit{many} false positives for the Pattern-independent method.
+To evaluate the set of control flow recovery methods, a notion of \textit{false positive} and \textit{false negative} recovery is used; as defined below, and further described in section \ref{sec:cfa_metric}.
+
+\begin{description}
+	\item[false positive recovery] denotes a control flow primitive \textit{recovered} but \textit{not present} in the original source code.
+	\item[false negative recovery] denotes a control flow primitive \textit{present} in the original source code but \textit{not recovered}.
+\end{description}
+
+The thesis of this project is that upon evaluation of three distinct methods for control flow recovery (see section \ref{sec:hammock_method}, \ref{sec:interval_method} and \ref{sec:pattern-independent_method}), the methods will fall on a progression from \textit{many} false negatives and \textit{no} false positives for the Hammock method; to \textit{some} false negatives and \textit{some} false positives for the Interval method; to \textit{no} false negatives and \textit{many} false positives for the Pattern-independent method.
 
 Put more concretely,
 \begin{itemize}

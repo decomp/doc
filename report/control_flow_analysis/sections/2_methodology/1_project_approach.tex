@@ -2,8 +2,14 @@
 
 \subsection{Project Approach}
 
+% TODO: merge this section with Evaluation Process?
+
 Use the Clang compiler to produce test cases, as it is capable of emitting LLVM IR from C source code. The goal will be to reconstruct the high-level control flow primitives (such as \textit{while}-loops, \textit{if-else} statements) of the original C code from the LLVM IR.
 
+% TODO: skip paragraph below?
+
 A preliminary metric for the effectiveness of control flow recovery is how many of the original high-level control flow primitives that were recovered and how many were omitted. The metric for effectiveness should also includes a notion of false positives for high-level primitives that were recovered but were not part of the original source code. The metric for effective control flow recovery will be refined as more intuition is gained in the problem domain, and the final metric for effective control flow recovery will be clearly defined as part of the project.
+
+% TODO: skip paragraph below?
 
 All work will be made available on GitHub from day one, and the source code will be released into the public domain to encourage open source adaptation. The project plan will be organised using the GitHub issue tracker, where each issue corresponds to a task. Milestones, containing a set of issues, will track the progress of the project and enforce deadlines.

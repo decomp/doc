@@ -92,7 +92,7 @@ The Hammock method is a control flow analysis method which identifies control fl
 
 % TODO: rephrase the following paragraph.
 
-To recover nested control flow primitives, the Hammock method iteratively performs subgraph isomorphism search to locate canonical subgraphs of high-level control flow primitives; and once a subgraph has been located, merges the nodes of the subgraph into a single node, which has the incoming edges of the entry node and the outgoing edges of the exit node; as illustrated in figure \ref{fig:subgraph_merge}. This process is repeated until the CFG either contains a single node or no more subgraph isomorphisms can be located, in which case high-level control flow primitives corresponding to of the CFG were fully or partially recovered, respectively.
+To recover nested control flow primitives, the Hammock method iteratively performs subgraph isomorphism search to locate canonical subgraphs of high-level control flow primitives. Once a subgraph has been located, the algorithm merges the nodes of the subgraph into a single node, which has the incoming edges of the entry node and the outgoing edges of the exit node; as illustrated in figure \ref{fig:subgraph_merge}. This process is repeated until either the CFG contains a single node, in which case the CFG was translated to an AST containing only high-level control flow primitives -- or no more subgraph isomorphisms can be located -- in which case \texttt{goto} statements have to be used to describe the CFG.
 
 \begin{figure}[htbp]
 	\centering
@@ -103,6 +103,6 @@ To recover nested control flow primitives, the Hammock method iteratively perfor
 	\begin{subfigure}[ht]{0.17\textwidth}
 		\includegraphics[width=\textwidth]{inc/3_background/cfg_post_merge.png}
 	\end{subfigure}
-	\caption{The left side illustrates the CFG of a function in which the graph representation of a 1-way conditional (see figure~\ref{fig:if_graph_representation}) has been identified, and the right side illustrates the same CFG after the subgraph has been replaced with a single node (i.e. \texttt{if0}) that inherits the predecessors of the subgraph entry node (i.e. \texttt{3}) and the successors of the subgraph exit node (i.e. \texttt{seq0}).}
+	\caption{The CFG of a function in which the canonical subgraph of a 1-way conditional (see figure~\ref{fig:if_graph_representation}) has been identified (left side), and the same CFG after the subgraph has been replaced with a single node \texttt{if0} that inherits the predecessors of the subgraph entry node \texttt{3} and the successors of the subgraph exit node \texttt{seq0} (right side).}
 	\label{fig:subgraph_merge}
 \end{figure}
