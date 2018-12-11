@@ -1,0 +1,49 @@
+\documentclass[aspectratio=1610]{beamer}
+
+\usetheme{KTH}
+
+% remove this if using XeLaTeX or LuaLaTeX
+\usepackage[utf8]{inputenc}
+
+\begin{document}
+
+\startpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+
+  \vspace{0.02\textheight}
+  
+  \begin{Large}
+    Beamer Template for KTH Presentations
+  \end{Large}
+
+  \vspace{0.1\textheight}
+
+  \begin{small}
+    \textit{Örjan Ekeberg}
+  \end{small}
+\end{frame}
+
+
+\normalpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Making a KTH Presentation}
+
+  \begin{block}{Steps needed}
+    \begin{itemize}
+    \item Copy the following files:
+    \begin{itemize}
+    \item \texttt{examplepresentation.tex} (this file)
+    \item \texttt{beamerthemeKTH.sty}
+    \item \texttt{kthgraphics} (with all its contents)
+    \end{itemize}
+    \item Replace the contents in \texttt{examplepresentation.tex} with your own
+    \item Run \texttt{pdflatex} (or \texttt{xelatex} or \texttt{lualatex}) a couple of times
+    \item Present your slides using a PDF-viewer
+    \end{itemize}
+  \end{block}
+
+\end{frame}
+
+\end{document}

@@ -1,0 +1,68 @@
+\ProvidesPackage{beamerthemeKTH}[2016/06/21]
+\mode<presentation>
+
+\RequirePackage{tikz}
+\definecolor{kthcolor}{RGB}{25,84,166}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamersize{text margin left=4mm,text margin right=4mm}
+
+\pgfdeclareimage[height=12mm]{kthlogo}{kthgraphics/KTH-logo}
+
+\newcommand{\kthlines}{%
+\begin{tikzpicture}[line width=0.5pt,rounded corners=2pt,color=kthcolor,x=2mm,y=2mm]
+  \clip (4,-1) rectangle (81, 12);
+  \draw (0,9.5) -- (15,9.5) -- (15,1.7) -- (30,1.7) -- (30,8) -- (44.5,8) -- (44.5,0) -- (55,0) -- (55,9.5)
+  -- (63,9.5) -- (63,1) -- (77,1) -- (77,8) -- (82,8) -- (82,6) -- (95,6);
+  \draw (0,8) -- (5,8) -- (5,4) -- (20,4) -- (20,9.5) -- (30.5,9.5) -- (30.5,4) -- (48,4) -- (48,7) -- (66,7)
+  -- (66,5) -- (73,5) -- (73,10) -- (84.5,10) -- (84.5,3) -- (95,3);
+  \draw (0,7) -- (7,7) -- (7,11.5) -- (11,11.5) -- (11,5) -- (18,5) -- (18,8) -- (28.5,8) -- (28.5,5)
+  -- (32,5) -- (32,7) -- (36,7) -- (36,5.5) -- (60,5.5) -- (60,11.5) -- (68,11.5) -- (68,7) -- (80,7) -- (80,11) -- (95,11);
+  \draw (0,1.7) -- (9,1.7) -- (9,0) -- (33,0) -- (33,1.7) -- (76,1.7) -- (76,0) -- (95,0);
+  \draw (0,1) -- (13,1) -- (13,7) -- (25,7) -- (25,1) -- (42,1) -- (42,10) -- (57,10) -- (57,4) -- (61.7,4)
+  -- (61.7,8) -- (71,8) -- (71,-0.5) -- (82,-0.5) -- (82,4) -- (95,4);
+\end{tikzpicture}}
+
+
+\newcommand{\kthsingleline}{%
+\begin{tikzpicture}[line width=0.5pt,color=kthcolor,x=2mm,y=2mm]
+  \draw (0,0) -- (77,0);
+\end{tikzpicture}}
+
+
+\newcommand{\startpage}{%
+\usebackgroundtemplate{\vbox{\null\vspace{4mm}
+  \hspace{4mm}\pgfuseimage{kthlogo}\par
+  \vspace{50mm}\hbox{\hspace{3mm}\kthlines}%
+  \vspace{5mm}\hbox{\hspace{3mm}\kthsingleline}}}}
+
+\newcommand{\normalpage}{%
+\usebackgroundtemplate{\vbox{\null
+  \vspace{\paperheight}\vspace{-3mm}\hbox{\hspace{3mm}\kthsingleline}}}}
+
+
+% move title to center
+% \makeatletter
+% \setbeamertemplate{frametitle}{
+%     \ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
+%     \@tempdima=\textwidth%
+%     \advance\@tempdima by\beamer@leftmargin%
+%     \advance\@tempdima by\beamer@rightmargin%
+%     \advance\@tempdima by -23mm%
+%     \vskip -1mm%
+%     \begin{beamercolorbox}[sep=0.3cm,left,wd=\the\@tempdima]{frametitle}
+%         \usebeamerfont{frametitle}%
+%         \vbox{}\vskip+1ex%
+%         \if@tempswa\else\csname beamer@ftecenter\endcsname\fi%
+%         \strut\insertframetitle\strut\par%
+%         {%
+%             \ifx\insertframesubtitle\@empty%
+%             \else%
+%             {\usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}\insertframesubtitle\strut\par}%
+%             \fi
+%         }%
+%         \vskip-1ex%
+%         \if@tempswa\else\vskip-.3cm\fi% set inside beamercolorbox... evil here...
+%     \end{beamercolorbox}%
+% }
+% \makeatother
