@@ -1,6 +1,7 @@
 \documentclass[aspectratio=1610]{beamer}
 
 \usetheme{KTH}
+\usepackage{preamble}
 
 % ====>>>>> general
 
@@ -22,7 +23,7 @@
 	\vspace{0.02\textheight}
 
 	\begin{Large}
-		Evaluation of Control Flow Recover Methods
+		Evaluation of Methods for Effective Control Flow Recovery
 	\end{Large}
 
 	\vspace{0.1\textheight}
@@ -48,15 +49,29 @@
 \begin{frame}
 	\frametitle{What?}
 
-	\begin{block}{bar}
-		\begin{itemize}
-			\item baz
-			\begin{itemize}
-				\item qux
-				\item fob
-			\end{itemize}
-		\end{itemize}
+	\begin{block}{Control Flow Recovery}
+		Analysis of control flow graphs (CFGs) to recover high-level control flow primitives (e.g. \texttt{if}-statement and \texttt{for}-loops) from assembly language or low-level intermediate representations.
 	\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Control Flow Recovery}
+
+	\begin{figure}[htbp]
+		\centering
+		\begin{subfigure}[t]{0.27\textwidth}
+			\centering
+			\lstinputlisting[caption={C source file.}, language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false, numbers=none]{inc/overview/overview.c}
+			\vfill
+		\end{subfigure}
+		\quad
+		\begin{subfigure}[t]{0.52\textwidth}
+			\centering
+			\lstinputlisting[caption={LLVM IR assembly.}, language=llvm, style=nasm, basicstyle=\tiny\ttfamily, breaklines=false, numbers=none]{inc/overview/overview_mini.ll}
+		\end{subfigure}
+		\caption{\textit{Reverse compilation}, going from low-level (right) to high-level (left).}
+	\end{figure}
+
 \end{frame}
 
 % ====>>>>> Why?
@@ -69,15 +84,22 @@
 \begin{frame}
 	\frametitle{Why?}
 
-	\begin{block}{bar}
+	\begin{block}{Applications of Control Flow Recovery}
 		\begin{itemize}
-			\item baz
+			\item Malware analysis
+			\item Security assessments
 			\begin{itemize}
-				\item qux
-				\item fob
+				\item Automated vulnerability scanners
 			\end{itemize}
+			\item Control-flow aware compiler passes
 		\end{itemize}
 	\end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Control-flow Aware Compiler Passes}
+
+	\includegraphics[width=0.8\textwidth]{inc/applications/loop_finder.png}
 \end{frame}
 
 % ====>>>>> How?
@@ -89,7 +111,7 @@
 \begin{frame}
 	\frametitle{How?}
 
-	\begin{block}{bar}
+	\begin{block}{Control Flow Recovery Methods}
 		\begin{itemize}
 			\item baz
 			\begin{itemize}

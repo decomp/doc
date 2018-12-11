@@ -1,0 +1,35 @@
+\ProvidesPackage{preamble}
+
+% Sub figures.
+%
+% Examples:
+%    \begin{figure}[htbp]
+%       \centering
+%       \begin{subfigure}[ht]{0.45\textwidth}
+%          \centering
+%          foo
+%       \end{subfigure}
+%       \begin{subfigure}[ht]{0.45\textwidth}
+%          \centering
+%          foo
+%       \end{subfigure}
+%       \caption{foo}
+%    \end{figure}
+\usepackage{subcaption}
+
+% Source code listings, language definitions and styles.
+%
+% Examples:
+%    \lstinputlisting[language=llvm, style=nasm]{foo.ll}
+\usepackage{listings}
+\usepackage{../../latex/go/lang}
+\usepackage{../../latex/go/style}
+\usepackage{../../latex/c/style}
+\usepackage{../../latex/llvm/lang}
+\usepackage{../../latex/nasm/lang}
+\usepackage{../../latex/nasm/style}
+\usepackage{../../latex/reil/lang}
+\usepackage{../../latex/diff/lang}
+\usepackage{../../latex/diff/style}
+\usepackage{../../latex/dot/lang}
+\usepackage{../../latex/dot/style}
