@@ -7,4 +7,5 @@
 *.out
 *.snm
 *~
-examplepresentation.pdf
+*.pdf
+latex.out
