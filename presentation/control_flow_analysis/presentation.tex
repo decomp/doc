@@ -50,7 +50,7 @@
 	\frametitle{What?}
 
 	\begin{block}{Control Flow Recovery}
-		Analysis of control flow graphs (CFGs) to recover high-level control flow primitives (e.g. \texttt{if}-statement and \texttt{for}-loops) from assembly language or low-level intermediate representations.
+		Analysis of control flow graphs (CFGs) to recover high-level control flow primitives (e.g. \texttt{if}-statement and \texttt{for}-loops) from assembly or low-level intermediate representations.
 	\end{block}
 \end{frame}
 
@@ -62,7 +62,6 @@
 		\begin{subfigure}[t]{0.27\textwidth}
 			\centering
 			\lstinputlisting[caption={C source file.}, language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false, numbers=none]{inc/overview/overview.c}
-			\vfill
 		\end{subfigure}
 		\quad
 		\begin{subfigure}[t]{0.52\textwidth}
@@ -89,9 +88,15 @@
 			\item Malware analysis
 			\item Security assessments
 			\begin{itemize}
-				\item Automated vulnerability scanners
+				\item Automated vulnerability scanning
 			\end{itemize}
 			\item Control-flow aware compiler passes
+			\item Verification of compiler output (\textit{Reflections on Trusting Trust})
+			\item Reverse compilation
+			\begin{itemize}
+				\item Transpilation between programming languages ($n + m$)
+				\item Migrate proprietary software from legacy architectures
+			\end{itemize}
 		\end{itemize}
 	\end{block}
 \end{frame}
@@ -100,6 +105,23 @@
 	\frametitle{Control-flow Aware Compiler Passes}
 
 	\includegraphics[width=0.8\textwidth]{inc/applications/loop_finder.png}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Issues with State-of-the-Art Reverse Compilation Tools}
+
+	\begin{figure}[htbp]
+		\centering
+		\begin{subfigure}[ht]{0.30\textwidth}
+			\centering
+			\includegraphics[height=0.80\textheight]{inc/applications/ida/ida_40B0A5.png}
+		\end{subfigure}
+		\begin{subfigure}[ht]{0.40\textwidth}
+			\centering
+			\lstinputlisting[caption={Corresponding Go source code.}, language=go, style=go, basicstyle=\tiny\ttfamily, breaklines=false, numbers=none]{inc/applications/ida/go_40B0A5.go}
+		\end{subfigure}
+		\caption{IDA output (left) and corresponding Go source code (right).}
+	\end{figure}
 \end{frame}
 
 % ====>>>>> How?
@@ -113,13 +135,53 @@
 
 	\begin{block}{Control Flow Recovery Methods}
 		\begin{itemize}
-			\item baz
-			\begin{itemize}
-				\item qux
-				\item fob
-			\end{itemize}
+			\item Hammock method
+			\item Interval method
+			\item Pattern-independent method
 		\end{itemize}
 	\end{block}
+
+	There are benefits and drawbacks with each method.
 \end{frame}
+
+% solved by interval method:
+% - multi-level break and continue of loops.
+
+% solved by pattern-independent method:
+
+
+
+
+
+
+
+
+
+
+
+
+
+%    if (a & !b) {
+%       // code1
+%    }
+%    if (b) {
+%       // code 2
+%    }
+%    if (!b) {
+%       // code 3
+%    }
+
+%    if (a & !b) {
+%       // code1
+%       goto LABEL_1
+%    }
+%    if (b) {
+%       // code 2
+%    }
+%    if (!b) {
+%    LABEL_1:
+%       // code 3
+%    }
+
 
 \end{document}
