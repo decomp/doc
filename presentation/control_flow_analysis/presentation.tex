@@ -120,6 +120,7 @@
 			\centering
 			\lstinputlisting[caption={Corresponding Go source code.}, language=go, style=go, basicstyle=\tiny\ttfamily, breaklines=false, numbers=none]{inc/applications/ida/go_40B0A5.go}
 		\end{subfigure}
+		% IDA Version 7.1.180227
 		\caption{IDA output (left) and corresponding Go source code (right).}
 	\end{figure}
 \end{frame}
@@ -144,22 +145,75 @@
 	There are benefits and drawbacks with each method.
 \end{frame}
 
+\begin{frame}
+	\frametitle{Hammock method}
+
+	Model high-level control flow primitives as subgraphs and use \textit{subgraph isomorphism search} to locate the corresponding subgraphs in CFGs.
+
+	\vspace*{2em}
+
+	\begin{block}{Pros}
+		\begin{itemize}
+			\item \textit{no} false positives
+		\end{itemize}
+	\end{block}
+
+	\begin{block}{Cons}
+		\begin{itemize}
+			\item \textit{many} false negatives
+			\item requires single-entry/single-exit invariant for subgraphs
+		\end{itemize}
+	\end{block}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Interval method}
+
+	Identify intervals in CFGs to determine follow sets of high-level control flow primitives.
+
+	\vspace*{2em}
+
+	\begin{block}{Pros}
+		\begin{itemize}
+			\item handles multi-level \texttt{continue}- and \texttt{break}-statements in loops
+		\end{itemize}
+	\end{block}
+
+	\begin{block}{Pros/Cons}
+		\begin{itemize}
+			\item \textit{some} false positives
+			\item \textit{some} false negatives
+		\end{itemize}
+	\end{block}
+
 % solved by interval method:
 % - multi-level break and continue of loops.
 
+\end{frame}
+
+\begin{frame}
+	\frametitle{Pattern-independent method}
+
+	Considers the conditions required to reach a node in the CFG rather than modelling explicit patterns. Relies on semantic-preserving transformations to pre-process CFGs.
+
+	\vspace*{2em}
+
+	\begin{block}{Pros}
+		\begin{itemize}
+			\item \textit{no} false negatives
+			\item \texttt{goto}-free output
+		\end{itemize}
+	\end{block}
+
+	\begin{block}{Cons}
+		\begin{itemize}
+			\item \textit{many} false positives
+			\item introduces auxiliary condition variables (not present in original source)
+		\end{itemize}
+	\end{block}
+
 % solved by pattern-independent method:
-
-
-
-
-
-
-
-
-
-
-
-
 
 %    if (a & !b) {
 %       // code1
@@ -183,5 +237,6 @@
 %       // code 3
 %    }
 
+\end{frame}
 
 \end{document}
