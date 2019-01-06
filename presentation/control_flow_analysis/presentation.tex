@@ -3,6 +3,10 @@
 \usetheme{KTH}
 \usepackage{preamble}
 
+% Advice from Schule, that was given to him as advice when he was becoming a researcher.
+%
+% Three thirds, 1 third for everybody, 1 third for experts, and 1 third for yourself to show off.
+
 % ====>>>>> general
 
 %% The slides should be for the audience, to give them a visual experience.
@@ -19,7 +23,6 @@
 \startpage
 
 \begin{frame}
-
 	\vspace{0.02\textheight}
 
 	\begin{Large}
@@ -33,6 +36,24 @@
 	\end{small}
 \end{frame}
 
+% === [ Disposition ] ==========================================================
+
+\normalpage
+
+\begin{frame}
+	\frametitle{Disposition}
+
+	\begin{enumerate}
+		\item What? \textit{Control Flow Recovery}
+		\item Why? \textit{Applications of Control Flow Recovery}
+		\item How? \textit{Control Flow Recovery Methods}
+		\item Technical Contributions
+		\item Future Work
+		\item Demo!
+	\end{enumerate}
+\end{frame}
+
+
 % === [ Introduction ] =========================================================
 
 % ====>>>>> What?
@@ -43,8 +64,6 @@
 % 1-3 minutes.
 
 % Key message you wish to communicate. From the perspective of the audience, what will they gain? What can they do with the information?
-
-\normalpage
 
 \begin{frame}
 	\frametitle{What?}
@@ -96,7 +115,11 @@
 			\begin{itemize}
 				\item Transpilation between programming languages ($n + m$)
 				\item Migrate proprietary software from legacy architectures
+				\item Re-optimization of software where source code or tool chain is missing
 			\end{itemize}
+% Note to speaker: For Cobol.
+%   - semantic equivalence, with a lot of goto-s to begin.
+%   - clean up over time.
 		\end{itemize}
 	\end{block}
 \end{frame}
@@ -145,6 +168,8 @@
 	There are benefits and drawbacks with each method.
 \end{frame}
 
+% --- [ Hammock method ] -------------------------------------------------------
+
 \begin{frame}
 	\frametitle{Hammock method}
 
@@ -166,6 +191,230 @@
 	\end{block}
 
 \end{frame}
+
+\begin{frame}
+	\frametitle{Hammock method}
+
+% One example for each method, how it works.
+
+	\begin{figure}[htbp]
+		\centering
+		\begin{subfigure}[b]{0.20\textwidth}
+			\centering
+			\lstinputlisting[language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false, numbers=none]{inc/methods/hammock/example/if.c}
+			\includegraphics[width=0.4\textwidth]{inc/methods/hammock/example/if.png}
+			\caption{Cannonical 1-way conditional.}
+		\end{subfigure}
+		\quad
+		\begin{subfigure}[b]{0.65\textwidth}
+			\centering
+			\begin{subfigure}[ht]{0.40\textwidth}
+				\centering
+				\includegraphics[width=0.5\textwidth]{inc/methods/hammock/example/main_0002a.png}
+			\end{subfigure}
+			\quad
+			\begin{subfigure}[ht]{0.40\textwidth}
+				\centering
+				\includegraphics[width=0.5\textwidth]{inc/methods/hammock/example/main_0002b.png}
+			\end{subfigure}
+			\caption{Subgraph isomorphism of cannonical 1-way conditional located in control flow graph (left) and its nodes merged (right).}
+		\end{subfigure}
+	\end{figure}
+\end{frame}
+
+% ___ [ Hammock - Example ] ____________________________________________________
+
+\begin{frame}
+	\frametitle{Hammock method - example}
+	\begin{figure}[htbp]
+		\centering
+		\begin{subfigure}[b]{0.30\textwidth}
+			\centering
+			\lstinputlisting[language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false]{inc/methods/hammock/example/without-break.c}
+			\caption{Original C source code.}
+		\end{subfigure}
+		\begin{subfigure}[b]{0.50\textwidth}
+			\centering
+			\includegraphics[height=0.6\paperheight]{inc/methods/hammock/example/without-break/main.png}
+			\caption{Control flow graph.}
+		\end{subfigure}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Hammock method - example}
+	\begin{figure}[htbp]
+		\centering
+		\begin{subfigure}[b]{0.30\textwidth}
+			\centering
+			\lstinputlisting[linebackgroundcolor={\btLstHL{9-10}}, language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false]{inc/methods/hammock/example/without-break.c}
+			\caption{Original C source code.}
+		\end{subfigure}
+		\begin{subfigure}[b]{0.50\textwidth}
+			\centering
+			\includegraphics[height=0.6\paperheight]{inc/methods/hammock/example/without-break/main_0001a.png}
+			\caption{Control flow graph.}
+		\end{subfigure}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Hammock method - example}
+	\begin{figure}[htbp]
+		\centering
+		\begin{subfigure}[b]{0.30\textwidth}
+			\centering
+			\lstinputlisting[linebackgroundcolor={\btLstHL{9-10}}, language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false]{inc/methods/hammock/example/without-break.c}
+			\caption{Original C source code.}
+		\end{subfigure}
+		\begin{subfigure}[b]{0.50\textwidth}
+			\centering
+			\includegraphics[height=0.6\paperheight]{inc/methods/hammock/example/without-break/main_0001b.png}
+			\caption{Control flow graph.}
+		\end{subfigure}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Hammock method - example}
+	\begin{figure}[htbp]
+		\centering
+		\begin{subfigure}[b]{0.30\textwidth}
+			\centering
+			\lstinputlisting[linebackgroundcolor={\btLstHL{6-8}}, language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false]{inc/methods/hammock/example/without-break.c}
+			\caption{Original C source code.}
+		\end{subfigure}
+		\begin{subfigure}[b]{0.50\textwidth}
+			\centering
+			\includegraphics[height=0.6\paperheight]{inc/methods/hammock/example/without-break/main_0002a.png}
+			\caption{Control flow graph.}
+		\end{subfigure}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Hammock method - example}
+	\begin{figure}[htbp]
+		\centering
+		\begin{subfigure}[b]{0.30\textwidth}
+			\centering
+			\lstinputlisting[linebackgroundcolor={\btLstHL{6-8}}, language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false]{inc/methods/hammock/example/without-break.c}
+			\caption{Original C source code.}
+		\end{subfigure}
+		\begin{subfigure}[b]{0.50\textwidth}
+			\centering
+			\includegraphics[height=0.6\paperheight]{inc/methods/hammock/example/without-break/main_0002b.png}
+			\caption{Control flow graph.}
+		\end{subfigure}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Hammock method - example}
+	\begin{figure}[htbp]
+		\centering
+		\begin{subfigure}[b]{0.30\textwidth}
+			\centering
+			\lstinputlisting[linebackgroundcolor={\btLstHL{5, 10}}, language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false]{inc/methods/hammock/example/without-break.c}
+			\caption{Original C source code.}
+		\end{subfigure}
+		\begin{subfigure}[b]{0.50\textwidth}
+			\centering
+			\includegraphics[height=0.6\paperheight]{inc/methods/hammock/example/without-break/main_0003a.png}
+			\caption{Control flow graph.}
+		\end{subfigure}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Hammock method - example}
+	\begin{figure}[htbp]
+		\centering
+		\begin{subfigure}[b]{0.30\textwidth}
+			\centering
+			\lstinputlisting[linebackgroundcolor={\btLstHL{5, 10}}, language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false]{inc/methods/hammock/example/without-break.c}
+			\caption{Original C source code.}
+		\end{subfigure}
+		\begin{subfigure}[b]{0.50\textwidth}
+			\centering
+			\includegraphics[height=0.6\paperheight]{inc/methods/hammock/example/without-break/main_0003b.png}
+			\caption{Control flow graph.}
+		\end{subfigure}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Hammock method - example}
+	\begin{figure}[htbp]
+		\centering
+		\begin{subfigure}[b]{0.30\textwidth}
+			\centering
+			\lstinputlisting[linebackgroundcolor={\btLstHL{2-4}}, language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false]{inc/methods/hammock/example/without-break.c}
+			\caption{Original C source code.}
+		\end{subfigure}
+		\begin{subfigure}[b]{0.50\textwidth}
+			\centering
+			\includegraphics[height=0.6\paperheight]{inc/methods/hammock/example/without-break/main_0004a.png}
+			\caption{Control flow graph.}
+		\end{subfigure}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Hammock method - example}
+	\begin{figure}[htbp]
+		\centering
+		\begin{subfigure}[b]{0.30\textwidth}
+			\centering
+			\lstinputlisting[linebackgroundcolor={\btLstHL{2-4}}, language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false]{inc/methods/hammock/example/without-break.c}
+			\caption{Original C source code.}
+		\end{subfigure}
+		\begin{subfigure}[b]{0.50\textwidth}
+			\centering
+			\includegraphics[height=0.6\paperheight]{inc/methods/hammock/example/without-break/main_0004b.png}
+			\caption{Control flow graph.}
+		\end{subfigure}
+	\end{figure}
+\end{frame}
+
+% ___ [ Hammock - Counter-example ] ____________________________________________
+
+% One example for each method, counter-example when it doesn't work.
+
+\begin{frame}
+	\frametitle{Hammock method - counter-example}
+	\begin{figure}[htbp]
+		\centering
+		\begin{subfigure}[b]{0.50\textwidth}
+			\centering
+			\includegraphics[height=0.6\paperheight]{inc/methods/hammock/counter-example/with-break/main.png}
+		\end{subfigure}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Hammock method - counter-example}
+	\begin{figure}[htbp]
+		\centering
+		\begin{subfigure}[b]{0.50\textwidth}
+			\centering
+			\includegraphics[height=0.6\paperheight]{inc/methods/hammock/counter-example/with-break/main_0001a.png}
+		\end{subfigure}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Hammock method - counter-example}
+	\begin{figure}[htbp]
+		\centering
+		\begin{subfigure}[b]{0.50\textwidth}
+			\centering
+			\includegraphics[height=0.6\paperheight]{inc/methods/hammock/counter-example/with-break/main_0001b.png}
+		\end{subfigure}
+	\end{figure}
+\end{frame}
+
+% --- [ Interval method ] ------------------------------------------------------
 
 \begin{frame}
 	\frametitle{Interval method}
@@ -191,6 +440,22 @@
 % - multi-level break and continue of loops.
 
 \end{frame}
+
+\begin{frame}
+	\frametitle{Interval method - example}
+
+% TODO: One example for each method, how it works.
+	TODO
+\end{frame}
+
+\begin{frame}
+	\frametitle{Interval method - counter-example}
+
+% TODO: One example for each method, counter-example when it doesn't work.
+	TODO
+\end{frame}
+
+% --- [ Pattern-independent method ] -------------------------------------------
 
 \begin{frame}
 	\frametitle{Pattern-independent method}
@@ -236,6 +501,61 @@
 %    LABEL_1:
 %       // code 3
 %    }
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Pattern-independent method - example}
+
+% TODO: One example for each method, how it works.
+	TODO
+\end{frame}
+
+\begin{frame}
+	\frametitle{Pattern-independent method - counter-example}
+
+% TODO: One example for each method, counter-example when it doesn't work.
+	TODO
+\end{frame}
+
+% === [ Technical Contributions ] ==============================================
+
+\begin{frame}
+	\frametitle{Technical Contributions}
+
+% TODO: Description of what I did, and what I achieved.
+	TODO
+
+\end{frame}
+
+% === [ Future Work ] ==========================================================
+
+\begin{frame}
+	\frametitle{Future Work}
+
+% TODO: speculations.
+
+	TODO
+
+% 2019-
+%
+% TODO: Summary of what happens in the academic community, main reserach happening.
+
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Demo!}
+
+% Note to speaker: What you envision, would be the workflow to use a tool like that.
+
+% Note to speaker: Would you automate it?
+%    automate what you can prove to be correct.
+%    manual intervention to disambiguate.
+%    - what if you
+
+	TODO
+
 
 \end{frame}
 

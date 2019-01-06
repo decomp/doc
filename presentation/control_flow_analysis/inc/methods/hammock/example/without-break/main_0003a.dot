@@ -1,0 +1,27 @@
+strict digraph "main" {
+	// Node definitions.
+	2 [entry=true];
+	8 [
+		fillcolor=red
+		style=filled
+		xlabel="pre_loop"
+	];
+	25 [
+		fillcolor=red
+		style=filled
+	];
+	11 [
+		fillcolor=red
+		style=filled
+	];
+
+	// Edge definitions.
+	2 -> 8;
+	8 -> 25 [
+		color=red
+	];
+	8 -> 11 [
+		color=darkgreen
+	];
+	11 -> 8;
+}
