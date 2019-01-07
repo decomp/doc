@@ -3,11 +3,11 @@ int main(int argc, char **argv) {
 
 	x = 0;
 	for (i = 0; i < 10; i++) {
-		if (x >= 3) {
+		if (x >= 100) {
 			x += 3*i;
 			break;
 		}
-		x++;
+		x += 30;
 	}
 	return x;
 }

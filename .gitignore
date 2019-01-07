@@ -2,5 +2,6 @@
 *.o
 *.bc
 *.idb
+*.txt
 latex.out
 _resources_

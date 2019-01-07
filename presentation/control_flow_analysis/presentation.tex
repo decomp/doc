@@ -110,6 +110,7 @@
 				\item Automated vulnerability scanning
 			\end{itemize}
 			\item Control-flow aware compiler passes
+			\item Enable high-level data-flow analysis on IR (Rosen's method)
 			\item Verification of compiler output (\textit{Reflections on Trusting Trust})
 			\item Reverse compilation
 			\begin{itemize}
@@ -186,7 +187,8 @@
 	\begin{block}{Cons}
 		\begin{itemize}
 			\item \textit{many} false negatives
-			\item requires single-entry/single-exit invariant for subgraphs
+			\item requires single-entry/single-exit invariant for subgraphs.
+			%\footnote{This requirement may be relaxed to single-entry/single-successor, as detailed in 2011, Enhanced Structural Analysis for C Code Reconstruction from IR Code. F. Engel, et al.}
 		\end{itemize}
 	\end{block}
 
@@ -201,8 +203,8 @@
 		\centering
 		\begin{subfigure}[b]{0.20\textwidth}
 			\centering
-			\lstinputlisting[language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false, numbers=none]{inc/methods/hammock/example/if.c}
-			\includegraphics[width=0.4\textwidth]{inc/methods/hammock/example/if.png}
+			\lstinputlisting[language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false, numbers=none]{inc/methods/hammock/if.c}
+			\includegraphics[width=0.4\textwidth]{inc/methods/hammock/if.png}
 			\caption{Cannonical 1-way conditional.}
 		\end{subfigure}
 		\quad
@@ -210,12 +212,12 @@
 			\centering
 			\begin{subfigure}[ht]{0.40\textwidth}
 				\centering
-				\includegraphics[width=0.5\textwidth]{inc/methods/hammock/example/main_0002a.png}
+				\includegraphics[width=0.5\textwidth]{inc/methods/hammock/main_0002a.png}
 			\end{subfigure}
 			\quad
 			\begin{subfigure}[ht]{0.40\textwidth}
 				\centering
-				\includegraphics[width=0.5\textwidth]{inc/methods/hammock/example/main_0002b.png}
+				\includegraphics[width=0.5\textwidth]{inc/methods/hammock/main_0002b.png}
 			\end{subfigure}
 			\caption{Subgraph isomorphism of cannonical 1-way conditional located in control flow graph (left) and its nodes merged (right).}
 		\end{subfigure}
@@ -226,6 +228,7 @@
 
 \begin{frame}
 	\frametitle{Hammock method - example}
+	Control flow recovery using the Hammock method.
 	\begin{figure}[htbp]
 		\centering
 		\begin{subfigure}[b]{0.30\textwidth}
@@ -243,6 +246,7 @@
 
 \begin{frame}
 	\frametitle{Hammock method - example}
+	Control flow recovery using the Hammock method.
 	\begin{figure}[htbp]
 		\centering
 		\begin{subfigure}[b]{0.30\textwidth}
@@ -260,6 +264,7 @@
 
 \begin{frame}
 	\frametitle{Hammock method - example}
+	Control flow recovery using the Hammock method.
 	\begin{figure}[htbp]
 		\centering
 		\begin{subfigure}[b]{0.30\textwidth}
@@ -277,6 +282,7 @@
 
 \begin{frame}
 	\frametitle{Hammock method - example}
+	Control flow recovery using the Hammock method.
 	\begin{figure}[htbp]
 		\centering
 		\begin{subfigure}[b]{0.30\textwidth}
@@ -294,6 +300,7 @@
 
 \begin{frame}
 	\frametitle{Hammock method - example}
+	Control flow recovery using the Hammock method.
 	\begin{figure}[htbp]
 		\centering
 		\begin{subfigure}[b]{0.30\textwidth}
@@ -311,6 +318,7 @@
 
 \begin{frame}
 	\frametitle{Hammock method - example}
+	Control flow recovery using the Hammock method.
 	\begin{figure}[htbp]
 		\centering
 		\begin{subfigure}[b]{0.30\textwidth}
@@ -328,6 +336,7 @@
 
 \begin{frame}
 	\frametitle{Hammock method - example}
+	Control flow recovery using the Hammock method.
 	\begin{figure}[htbp]
 		\centering
 		\begin{subfigure}[b]{0.30\textwidth}
@@ -345,6 +354,7 @@
 
 \begin{frame}
 	\frametitle{Hammock method - example}
+	Control flow recovery using the Hammock method.
 	\begin{figure}[htbp]
 		\centering
 		\begin{subfigure}[b]{0.30\textwidth}
@@ -362,6 +372,7 @@
 
 \begin{frame}
 	\frametitle{Hammock method - example}
+	Control flow recovery using the Hammock method, \textbf{complete}.
 	\begin{figure}[htbp]
 		\centering
 		\begin{subfigure}[b]{0.30\textwidth}
@@ -383,33 +394,54 @@
 
 \begin{frame}
 	\frametitle{Hammock method - counter-example}
+	Control flow recovery using the Hammock method.
 	\begin{figure}[htbp]
 		\centering
+		\begin{subfigure}[b]{0.30\textwidth}
+			\centering
+			\lstinputlisting[language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false]{inc/methods/hammock/counter-example/with-break.c}
+			\caption{Original C source code.}
+		\end{subfigure}
 		\begin{subfigure}[b]{0.50\textwidth}
 			\centering
 			\includegraphics[height=0.6\paperheight]{inc/methods/hammock/counter-example/with-break/main.png}
+			\caption{Control flow graph.}
 		\end{subfigure}
 	\end{figure}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Hammock method - counter-example}
+	Control flow recovery using the Hammock method.
 	\begin{figure}[htbp]
 		\centering
+		\begin{subfigure}[b]{0.30\textwidth}
+			\centering
+			\lstinputlisting[linebackgroundcolor={\btLstHL{10-11}}, language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false]{inc/methods/hammock/counter-example/with-break.c}
+			\caption{Original C source code.}
+		\end{subfigure}
 		\begin{subfigure}[b]{0.50\textwidth}
 			\centering
 			\includegraphics[height=0.6\paperheight]{inc/methods/hammock/counter-example/with-break/main_0001a.png}
+			\caption{Control flow graph.}
 		\end{subfigure}
 	\end{figure}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Hammock method - counter-example}
+	Control flow recovery using the Hammock method, \textbf{incomplete}.
 	\begin{figure}[htbp]
 		\centering
+		\begin{subfigure}[b]{0.30\textwidth}
+			\centering
+			\lstinputlisting[linebackgroundcolor={\btLstHL{10-11}}, language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false]{inc/methods/hammock/counter-example/with-break.c}
+			\caption{Original C source code.}
+		\end{subfigure}
 		\begin{subfigure}[b]{0.50\textwidth}
 			\centering
 			\includegraphics[height=0.6\paperheight]{inc/methods/hammock/counter-example/with-break/main_0001b.png}
+			\caption{Control flow graph.}
 		\end{subfigure}
 	\end{figure}
 \end{frame}
@@ -453,6 +485,8 @@
 
 % TODO: One example for each method, counter-example when it doesn't work.
 	TODO
+
+% Doesn't work when we have jump threading.
 \end{frame}
 
 % --- [ Pattern-independent method ] -------------------------------------------
@@ -526,6 +560,12 @@
 % TODO: Description of what I did, and what I achieved.
 	TODO
 
+	Provide an intuition for the inner workings of different control flow recovery methods.
+
+	Build tools to help facilitate gaining an understanding of the inner workings of different control flow recovery methods.
+	%and help facilitate a better understanding of the benefits and drawbacks of different control flow recovery methods.
+
+
 \end{frame}
 
 % === [ Future Work ] ==========================================================
@@ -545,7 +585,7 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Demo!}
+	\frametitle{Demo}
 
 % Note to speaker: What you envision, would be the workflow to use a tool like that.
 
@@ -554,7 +594,7 @@
 %    manual intervention to disambiguate.
 %    - what if you
 
-	TODO
+Time for a demo!
 
 
 \end{frame}
