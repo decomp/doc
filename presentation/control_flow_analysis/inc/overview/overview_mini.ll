@@ -8,11 +8,11 @@ loop_cond:
   br i1 %cond1, label %loop_body, label %exit
 loop_body:
   %cond2 = icmp slt i32 %sum, 100
-  br i1 %cond2, label %if_body, label %if_exit
+  br i1 %cond2, label %if_body, label %if_follow
 if_body:
   %sum.1 = add i32 %sum, %i
-  br label %if_exit
-if_exit:
+  br label %if_follow
+if_follow:
   %sum.2 = phi i32 [ %sum.1, %if_body ], [ %sum, %loop_body ]
   br label %loop_post
 loop_post:

@@ -6,3 +6,15 @@
 \todo{TODO: add review \cite{no_more_gotos}. Do if time permits, otherwise mark as future ambition.}
 
 % Called \textit{reaching condition} in the paper. Seems very closely related to \textit{control dependence}, as defined in 1993, Finding Regions Fast: Single Entry Single Exit and Control Regions in Linear Time.
+
+% --- [ Notes about introduction of Boolean variables ] ---
+
+% From Cifuentes'. Not about this paper, but relevant: Cooper[Coo67] pointed out that if new variables may be introduced to the original program, any program can be represented in one node with at most one φ; therefore, from a practical point of view, the theorem is meaningless[Knu74].
+
+% From Cifuentes'; Not about this paper, but relevant: Williams and Ossher[WO78] presented an iterative algorithm to convert a multiexit loop into a single exit loop, with the introduction of one Boolean variable and a counter integer variable for each loop.
+
+% From Cifuentes'; Not about this paper, but relevant: Erosa and Hendren[EH93] present an algorithm to remove all goto statements from C programs. The method makes use of goto-elimination and goto-movement transformations, and introduces one new Boolean variable per goto. On average, three new instructions are introduced to test for each new Boolean, and different loop and if conditionals are modified to include the new Boolean. This method was implemented as part of the McCAT parallelizing decompiler.
+
+% ---> Important note. From Cifuentes'; Not about this paper, but relevant. The introduction of new (Boolean) variables modifies the semantics of the underlying program, as these variables do not form part of the original program. The resultant program is functionally equivalent to the original program, thus it produces the same results.
+
+% ---> Cifuentes' notes about node splitting. Perhaps not relevant to this paper? Code replication modifies the original program/graph by replicating code/node one or more times, therefore, the final program/graph is functionally equivalent to the original program/graph, but its semantics and structure have been modified.

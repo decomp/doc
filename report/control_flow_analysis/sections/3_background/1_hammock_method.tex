@@ -106,3 +106,9 @@ To recover nested control flow primitives, the Hammock method iteratively perfor
 	\caption{The CFG of a function in which the canonical subgraph of a 1-way conditional (see figure~\ref{fig:if_graph_representation}) has been identified (left side), and the same CFG after the subgraph has been replaced with a single node \texttt{if0} that inherits the predecessors of the subgraph entry node \texttt{3} and the successors of the subgraph exit node \texttt{seq0} (right side).}
 	\label{fig:subgraph_merge}
 \end{figure}
+
+% From Cifuentes'. Not about this paper, but relevant. Lichtblau[Lic85] presented a series of transformation rules to transform a control flow graph into a trivial graph by identifying subgraphs that represent high-level control structures; such as 2-way conditionals, sequence, loops, and multiexit loops. Whenever no rules were applicable to the graph, an edge was removed from the graph and a goto was generated in its place. This transformation system was proved to be finite Church-Rosser, thus the transformations could be applied in any order and the same final answer is reached.
+
+% ---> Important. Notes from Cifuentes'. Not about this paper, but relevant. The detection of control structures by means of graph transformations does not modify the semantics or functionality of the underlying program, thus a transformation system provides a method to generate a semantically equivalent graph.
+
+% TODO: add note that Hammock does not handle compound boolean conditions? I.e. short-circuit.
