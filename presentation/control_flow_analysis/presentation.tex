@@ -72,7 +72,7 @@
 	\frametitle{What?}
 
 	\begin{block}{Control Flow Recovery}
-		Analysis of control flow graphs (CFGs) to recover high-level control flow primitives (e.g. \texttt{if}-statement and \texttt{for}-loops) from assembly or low-level intermediate representations.
+		Analysis of control flow graphs (CFGs) to recover high-level control flow primitives (e.g. \texttt{if}-statements and \texttt{for}-loops) from assembly or low-level intermediate representations.
 	\end{block}
 \end{frame}
 
@@ -81,16 +81,16 @@
 
 	\begin{figure}[htbp]
 		\centering
-		\begin{subfigure}[t]{0.27\textwidth}
-			\centering
-			\lstinputlisting[caption={C source file.}, language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false, numbers=none]{inc/overview/overview.c}
-		\end{subfigure}
-		\quad
 		\begin{subfigure}[t]{0.52\textwidth}
 			\centering
 			\lstinputlisting[caption={LLVM IR assembly.}, language=llvm, style=nasm, basicstyle=\tiny\ttfamily, breaklines=false, numbers=none]{inc/overview/overview_mini.ll}
 		\end{subfigure}
-		\caption{\textit{Reverse compilation}, going from low-level (right) to high-level (left).}
+		\quad
+		\begin{subfigure}[t]{0.27\textwidth}
+			\centering
+			\lstinputlisting[caption={C source file.}, language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false, numbers=none]{inc/overview/overview.c}
+		\end{subfigure}
+		\caption{\textit{Reverse compilation}, going from low-level (left) to high-level (right).}
 	\end{figure}
 
 \end{frame}
@@ -170,6 +170,17 @@
 	\end{block}
 
 	There are benefits and drawbacks with each method.
+\end{frame}
+
+% --- [ Evaluation metric ] ----------------------------------------------------
+
+\begin{frame}
+	\frametitle{Evaluation metric}
+
+	\begin{itemize}
+		\item \textbf{False positive}: control flow primitive recovered but \textit{not} present in the original source code.
+		\item \textbf{False negative}: control flow primitive \textit{not} recovered but present in the original source code.
+	\end{itemize}
 \end{frame}
 
 % --- [ Hammock method ] -------------------------------------------------------
@@ -770,6 +781,8 @@
 % TODO: speculations.
 
 % The research community has developed three primary methods of control flow recovery (give or take), however, each method has deficiencies and distinguished strengths.
+
+% TODO: Future work: the bullet points are too long to read
 
 	\begin{itemize}
 		\item Explore combining key principles from different control flow recovery methods to leverage their strengths and work around their deficiencies.
