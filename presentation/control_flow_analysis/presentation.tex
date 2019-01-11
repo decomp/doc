@@ -205,7 +205,7 @@
 			\centering
 			\lstinputlisting[language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false, numbers=none]{inc/methods/hammock/if.c}
 			\includegraphics[width=0.4\textwidth]{inc/methods/hammock/if.png}
-			\caption{Cannonical 1-way conditional.}
+			\caption{Canonical 1-way conditional.}
 		\end{subfigure}
 		\quad
 		\begin{subfigure}[b]{0.65\textwidth}
@@ -219,7 +219,7 @@
 				\centering
 				\includegraphics[width=0.5\textwidth]{inc/methods/hammock/main_0002b.png}
 			\end{subfigure}
-			\caption{Subgraph isomorphism of cannonical 1-way conditional located in control flow graph (left) and its nodes merged (right).}
+			\caption{Subgraph isomorphism of canonical 1-way conditional located in control flow graph (left) and its nodes merged (right).}
 		\end{subfigure}
 	\end{figure}
 \end{frame}
@@ -228,7 +228,7 @@
 
 \begin{frame}
 	\frametitle{Hammock method - example}
-	Control flow recovery using the Hammock method.
+	Example with nested control flow primitives.
 	\begin{figure}[htbp]
 		\centering
 		\begin{subfigure}[b]{0.30\textwidth}
@@ -246,7 +246,7 @@
 
 \begin{frame}
 	\frametitle{Hammock method - example}
-	Control flow recovery using the Hammock method.
+	Example with nested control flow primitives.
 	\begin{figure}[htbp]
 		\centering
 		\begin{subfigure}[b]{0.30\textwidth}
@@ -264,7 +264,7 @@
 
 \begin{frame}
 	\frametitle{Hammock method - example}
-	Control flow recovery using the Hammock method.
+	Example with nested control flow primitives.
 	\begin{figure}[htbp]
 		\centering
 		\begin{subfigure}[b]{0.30\textwidth}
@@ -282,7 +282,7 @@
 
 \begin{frame}
 	\frametitle{Hammock method - example}
-	Control flow recovery using the Hammock method.
+	Example with nested control flow primitives.
 	\begin{figure}[htbp]
 		\centering
 		\begin{subfigure}[b]{0.30\textwidth}
@@ -300,7 +300,7 @@
 
 \begin{frame}
 	\frametitle{Hammock method - example}
-	Control flow recovery using the Hammock method.
+	Example with nested control flow primitives.
 	\begin{figure}[htbp]
 		\centering
 		\begin{subfigure}[b]{0.30\textwidth}
@@ -318,7 +318,7 @@
 
 \begin{frame}
 	\frametitle{Hammock method - example}
-	Control flow recovery using the Hammock method.
+	Example with nested control flow primitives.
 	\begin{figure}[htbp]
 		\centering
 		\begin{subfigure}[b]{0.30\textwidth}
@@ -336,7 +336,7 @@
 
 \begin{frame}
 	\frametitle{Hammock method - example}
-	Control flow recovery using the Hammock method.
+	Example with nested control flow primitives.
 	\begin{figure}[htbp]
 		\centering
 		\begin{subfigure}[b]{0.30\textwidth}
@@ -354,7 +354,7 @@
 
 \begin{frame}
 	\frametitle{Hammock method - example}
-	Control flow recovery using the Hammock method.
+	Example with nested control flow primitives.
 	\begin{figure}[htbp]
 		\centering
 		\begin{subfigure}[b]{0.30\textwidth}
@@ -372,7 +372,7 @@
 
 \begin{frame}
 	\frametitle{Hammock method - example}
-	Control flow recovery using the Hammock method, \textbf{complete}.
+	Example with nested control flow primitives.
 	\begin{figure}[htbp]
 		\centering
 		\begin{subfigure}[b]{0.30\textwidth}
@@ -383,18 +383,20 @@
 		\begin{subfigure}[b]{0.50\textwidth}
 			\centering
 			\includegraphics[height=0.6\paperheight]{inc/methods/hammock/example/without-break/main_0004b.png}
-			\caption{Control flow graph.}
+			\caption{Control flow graph; analysis \textbf{complete}.}
 		\end{subfigure}
 	\end{figure}
 \end{frame}
 
-% ___ [ Hammock - Counter-example ] ____________________________________________
+% ___ [ Hammock - Counter-example 1 ] __________________________________________
 
 % One example for each method, counter-example when it doesn't work.
 
+% Multi-exit loops.
+
 \begin{frame}
-	\frametitle{Hammock method - counter-example}
-	Control flow recovery using the Hammock method.
+	\frametitle{Hammock method - counter-example 1}
+	Counter-example with \textit{multi-exit loop}.
 	\begin{figure}[htbp]
 		\centering
 		\begin{subfigure}[b]{0.30\textwidth}
@@ -411,8 +413,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Hammock method - counter-example}
-	Control flow recovery using the Hammock method.
+	\frametitle{Hammock method - counter-example 1}
+	Counter-example with \textit{multi-exit loop}.
 	\begin{figure}[htbp]
 		\centering
 		\begin{subfigure}[b]{0.30\textwidth}
@@ -429,8 +431,8 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Hammock method - counter-example}
-	Control flow recovery using the Hammock method, \textbf{incomplete}.
+	\frametitle{Hammock method - counter-example 1}
+	Counter-example with \textit{multi-exit loop}.
 	\begin{figure}[htbp]
 		\centering
 		\begin{subfigure}[b]{0.30\textwidth}
@@ -441,7 +443,175 @@
 		\begin{subfigure}[b]{0.50\textwidth}
 			\centering
 			\includegraphics[height=0.6\paperheight]{inc/methods/hammock/counter-example/with-break/main_0001b.png}
+			\caption{Control flow graph; analysis \textbf{incomplete}.}
+		\end{subfigure}
+	\end{figure}
+\end{frame}
+
+% ___ [ Hammock - Counter-example 2 ] __________________________________________
+
+% One example for each method, counter-example when it doesn't work.
+
+% Jump threading optimization and short-circuit evaluation.
+
+\begin{frame}
+	\frametitle{Hammock method - counter-example 2}
+	Counter-example with \textit{jump threading} optimization and \textit{short-circuit} evaluation.
+	\begin{figure}[htbp]
+		\centering
+		\begin{subfigure}[b]{0.30\textwidth}
+			\centering
+			\lstinputlisting[linerange={17-43}, language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false]{inc/methods/hammock/counter-example/jump-threading-and-short-circuit/jump-threading-and-short-circuit.c}
+			\caption{Original C source code.}
+		\end{subfigure}
+		\begin{subfigure}[b]{0.50\textwidth}
+			\centering
+			\includegraphics[height=0.7\paperheight]{inc/methods/hammock/counter-example/jump-threading-and-short-circuit/jump-threading-and-short-circuit_jump/f.png}
 			\caption{Control flow graph.}
+		\end{subfigure}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Hammock method - counter-example 2}
+	Counter-example with \textit{jump threading} optimization and \textit{short-circuit} evaluation.
+	\begin{figure}[htbp]
+		\centering
+		\begin{subfigure}[b]{0.30\textwidth}
+			\centering
+			\lstinputlisting[linebackgroundcolor={\btLstHL{15-18}}, linerange={17-43}, language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false]{inc/methods/hammock/counter-example/jump-threading-and-short-circuit/jump-threading-and-short-circuit.c}
+			\caption{Original C source code.}
+		\end{subfigure}
+		\begin{subfigure}[b]{0.50\textwidth}
+			\centering
+			\includegraphics[height=0.7\paperheight]{inc/methods/hammock/counter-example/jump-threading-and-short-circuit/jump-threading-and-short-circuit_jump/f_0001a.png}
+			\caption{Control flow graph.}
+		\end{subfigure}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Hammock method - counter-example 2}
+	Counter-example with \textit{jump threading} optimization and \textit{short-circuit} evaluation.
+	\begin{figure}[htbp]
+		\centering
+		\begin{subfigure}[b]{0.30\textwidth}
+			\centering
+			\lstinputlisting[linebackgroundcolor={\btLstHL{15-18}}, linerange={17-43}, language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false]{inc/methods/hammock/counter-example/jump-threading-and-short-circuit/jump-threading-and-short-circuit.c}
+			\caption{Original C source code.}
+		\end{subfigure}
+		\begin{subfigure}[b]{0.50\textwidth}
+			\centering
+			\includegraphics[height=0.7\paperheight]{inc/methods/hammock/counter-example/jump-threading-and-short-circuit/jump-threading-and-short-circuit_jump/f_0001b.png}
+			\caption{Control flow graph.}
+		\end{subfigure}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Hammock method - counter-example 2}
+	Counter-example with \textit{jump threading} optimization and \textit{short-circuit} evaluation.
+	\begin{figure}[htbp]
+		\centering
+		\begin{subfigure}[b]{0.30\textwidth}
+			\centering
+			\lstinputlisting[linebackgroundcolor={\btLstHL{13-14}}, linerange={17-43}, language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false]{inc/methods/hammock/counter-example/jump-threading-and-short-circuit/jump-threading-and-short-circuit.c}
+			\caption{Original C source code.}
+		\end{subfigure}
+		\begin{subfigure}[b]{0.50\textwidth}
+			\centering
+			\includegraphics[height=0.7\paperheight]{inc/methods/hammock/counter-example/jump-threading-and-short-circuit/jump-threading-and-short-circuit_jump/f_0002a.png}
+			\caption{Control flow graph.}
+		\end{subfigure}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Hammock method - counter-example 2}
+	Counter-example with \textit{jump threading} optimization and \textit{short-circuit} evaluation.
+	\begin{figure}[htbp]
+		\centering
+		\begin{subfigure}[b]{0.30\textwidth}
+			\centering
+			\lstinputlisting[linebackgroundcolor={\btLstHL{13-14}}, linerange={17-43}, language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false]{inc/methods/hammock/counter-example/jump-threading-and-short-circuit/jump-threading-and-short-circuit.c}
+			\caption{Original C source code.}
+		\end{subfigure}
+		\begin{subfigure}[b]{0.50\textwidth}
+			\centering
+			\includegraphics[height=0.7\paperheight]{inc/methods/hammock/counter-example/jump-threading-and-short-circuit/jump-threading-and-short-circuit_jump/f_0002b.png}
+			\caption{Control flow graph.}
+		\end{subfigure}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Hammock method - counter-example 2}
+	Counter-example with \textit{jump threading} optimization and \textit{short-circuit} evaluation.
+	\begin{figure}[htbp]
+		\centering
+		\begin{subfigure}[b]{0.30\textwidth}
+			\centering
+			\lstinputlisting[linebackgroundcolor={\btLstHL{12-13}}, linerange={17-43}, language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false]{inc/methods/hammock/counter-example/jump-threading-and-short-circuit/jump-threading-and-short-circuit.c}
+			\caption{Original C source code.}
+		\end{subfigure}
+		\begin{subfigure}[b]{0.50\textwidth}
+			\centering
+			\includegraphics[height=0.7\paperheight]{inc/methods/hammock/counter-example/jump-threading-and-short-circuit/jump-threading-and-short-circuit_jump/f_0003a.png}
+			\caption{Control flow graph.}
+		\end{subfigure}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Hammock method - counter-example 2}
+	Counter-example with \textit{jump threading} optimization and \textit{short-circuit} evaluation.
+	\begin{figure}[htbp]
+		\centering
+		\begin{subfigure}[b]{0.30\textwidth}
+			\centering
+			\lstinputlisting[linebackgroundcolor={\btLstHL{12-13}}, linerange={17-43}, language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false]{inc/methods/hammock/counter-example/jump-threading-and-short-circuit/jump-threading-and-short-circuit.c}
+			\caption{Original C source code.}
+		\end{subfigure}
+		\begin{subfigure}[b]{0.50\textwidth}
+			\centering
+			\includegraphics[height=0.7\paperheight]{inc/methods/hammock/counter-example/jump-threading-and-short-circuit/jump-threading-and-short-circuit_jump/f_0003b.png}
+			\caption{Control flow graph.}
+		\end{subfigure}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Hammock method - counter-example 2}
+	Counter-example with \textit{jump threading} optimization and \textit{short-circuit} evaluation.
+	\begin{figure}[htbp]
+		\centering
+		\begin{subfigure}[b]{0.30\textwidth}
+			\centering
+			\lstinputlisting[linebackgroundcolor={\btLstHL{11-12}}, linerange={17-43}, language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false]{inc/methods/hammock/counter-example/jump-threading-and-short-circuit/jump-threading-and-short-circuit.c}
+			\caption{Original C source code.}
+		\end{subfigure}
+		\begin{subfigure}[b]{0.50\textwidth}
+			\centering
+			\includegraphics[height=0.7\paperheight]{inc/methods/hammock/counter-example/jump-threading-and-short-circuit/jump-threading-and-short-circuit_jump/f_0004a.png}
+			\caption{Control flow graph.}
+		\end{subfigure}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Hammock method - counter-example 2}
+	Counter-example with \textit{jump threading} optimization and \textit{short-circuit} evaluation.
+	\begin{figure}[htbp]
+		\centering
+		\begin{subfigure}[b]{0.30\textwidth}
+			\centering
+			\lstinputlisting[linebackgroundcolor={\btLstHL{11-12}}, linerange={17-43}, language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false]{inc/methods/hammock/counter-example/jump-threading-and-short-circuit/jump-threading-and-short-circuit.c}
+			\caption{Original C source code.}
+		\end{subfigure}
+		\begin{subfigure}[b]{0.50\textwidth}
+			\centering
+			\includegraphics[height=0.7\paperheight]{inc/methods/hammock/counter-example/jump-threading-and-short-circuit/jump-threading-and-short-circuit_jump/f_0004b.png}
+			\caption{Control flow graph; analysis \textbf{incomplete}.}
 		\end{subfigure}
 	\end{figure}
 \end{frame}
@@ -458,6 +628,8 @@
 	\begin{block}{Pros}
 		\begin{itemize}
 			\item handles multi-level \texttt{continue}- and \texttt{break}-statements in loops
+			\item handles jump threading optimized control flow graphs
+			\item handles short-circuit conditionals
 		\end{itemize}
 	\end{block}
 
@@ -471,6 +643,13 @@
 % solved by interval method:
 % - multi-level break and continue of loops.
 
+\end{frame}
+
+% ___ [ Interval - Example ] ___________________________________________________
+
+\begin{frame}
+	\frametitle{Interval method}
+	TODO: add intervals visualization.
 \end{frame}
 
 \begin{frame}
