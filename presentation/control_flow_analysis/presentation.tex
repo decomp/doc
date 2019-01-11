@@ -645,25 +645,25 @@
 
 \end{frame}
 
-% ___ [ Interval - Example ] ___________________________________________________
-
 \begin{frame}
 	\frametitle{Interval method}
 	TODO: add intervals visualization.
 \end{frame}
 
+% ___ [ Interval - Example ] ___________________________________________________
+
 \begin{frame}
 	\frametitle{Interval method - example}
 
 % TODO: One example for each method, how it works.
-	TODO
+	TODO: add example for interval method.
 \end{frame}
 
 \begin{frame}
 	\frametitle{Interval method - counter-example}
 
 % TODO: One example for each method, counter-example when it doesn't work.
-	TODO
+	TODO: add counter-example for interval method.
 
 % Doesn't work when we have jump threading.
 \end{frame}
@@ -718,17 +718,26 @@
 \end{frame}
 
 \begin{frame}
+	\frametitle{Pattern-independent method}
+	TODO: add reaching condition visualization.
+
+	% TODO: add note about wrapping prog in endless-loop and adding condition can structure any program. Doesn't mean it's "right".
+\end{frame}
+
+% ___ [ Pattern-independent method - Example ] _________________________________
+
+\begin{frame}
 	\frametitle{Pattern-independent method - example}
 
 % TODO: One example for each method, how it works.
-	TODO
+	TODO: add example for patter-independent method.
 \end{frame}
 
 \begin{frame}
 	\frametitle{Pattern-independent method - counter-example}
 
 % TODO: One example for each method, counter-example when it doesn't work.
-	TODO
+	TODO: add counter-example for patter-independent method.
 \end{frame}
 
 % === [ Technical Contributions ] ==============================================
@@ -737,13 +746,16 @@
 	\frametitle{Technical Contributions}
 
 % TODO: Description of what I did, and what I achieved.
-	TODO
+	\begin{itemize}
+		\item Give insight into how different control flow recovery method operate.
+		\item Highlight the benefits and drawbacks of different control flow recovery methods -- so users may select the method best suited for their needs.
+		\item Develop tools to facilitate an understanding of the inner workings of different control flow recovery methods.
+		\item Provide intuition for deficiencies in control flow recovery methods, detailing their failure modes and giving insight to help guide future research.
+		%\item Ultimately determine that there does not \textit{yet} exist a single control flow recovery method that outperforms all others with regards to false positive/false negative recovery and semantic equivalence.
+	\end{itemize}
 
-	Provide an intuition for the inner workings of different control flow recovery methods.
-
-	Build tools to help facilitate gaining an understanding of the inner workings of different control flow recovery methods.
+	%Build tools to help facilitate gaining an understanding of the inner workings of different control flow recovery methods.
 	%and help facilitate a better understanding of the benefits and drawbacks of different control flow recovery methods.
-
 
 \end{frame}
 
@@ -754,7 +766,18 @@
 
 % TODO: speculations.
 
-	TODO
+% The research community has developed three primary methods of control flow recovery (give or take), however, each method has deficiencies and distinguished strengths.
+
+	\begin{itemize}
+		\item Explore combining key principles from different control flow recovery methods to leverage their strengths and work around their deficiencies.
+		\begin{itemize}
+			\item Specifically, integrate knowledge from analysis using the Hammock method (which importantly has \textit{no false positives}) into the other methods, and provide a \textit{confidence score} to the recovered control flow primitives.
+		\end{itemize}
+		\item Explore leveraging control flow analysis results -- which enable high-level data flow analysis -- to improve upon binary analysis capabilities.
+		\begin{itemize}
+			\item Specifically, propagate data flow information into concolic execution engines to enable lifting of machine code with indirect branching instructions to LLVM IR. How to do this in a performant way is an open and active research topic.
+		\end{itemize}
+	\end{itemize}
 
 % 2019-
 %
