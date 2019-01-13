@@ -1,0 +1,27 @@
+strict digraph {
+	// Node definitions.
+	I1 [entry=true];
+	I2;
+	I3;
+
+	// Intervals.
+	subgraph cluster_I4 {
+		I1
+		label="I4"
+		labeljust="l"
+		graph[style=dotted]
+	}
+
+	subgraph cluster_I5 {
+		I2
+		I3
+		label="I5"
+		labeljust="l"
+		graph[style=dotted]
+	}
+
+	// Edge definitions.
+	I1 -> I2;
+	I2 -> I3;
+	I3 -> I2;
+}

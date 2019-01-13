@@ -178,8 +178,8 @@
 	\frametitle{Evaluation metric}
 
 	\begin{itemize}
-		\item \textbf{False positive}: control flow primitive recovered but \textit{not} present in the original source code.
-		\item \textbf{False negative}: control flow primitive \textit{not} recovered but present in the original source code.
+		\item \textbf{False positive}: control flow primitive recovered but \textit{not} present in original source code.
+		\item \textbf{False negative}: control flow primitive \textit{not} recovered but present in original source code.
 	\end{itemize}
 \end{frame}
 
@@ -211,8 +211,6 @@
 \begin{frame}
 	\frametitle{Hammock method}
 
-% One example for each method, how it works.
-
 	\begin{figure}[htbp]
 		\centering
 		\begin{subfigure}[b]{0.20\textwidth}
@@ -239,6 +237,8 @@
 \end{frame}
 
 % ___ [ Hammock - Example ] ____________________________________________________
+
+% One example for each method, how it works.
 
 \begin{frame}
 	\frametitle{Hammock method - example}
@@ -635,7 +635,7 @@
 \begin{frame}
 	\frametitle{Interval method}
 
-	Identify intervals in CFGs to determine follow sets of high-level control flow primitives.
+	Identify intervals in CFGs to determine the nesting-levels of loops and the follow nodes of high-level control flow primitives.
 
 	\vspace*{2em}
 
@@ -643,7 +643,7 @@
 		\begin{itemize}
 			\item handles multi-level \texttt{continue}- and \texttt{break}-statements in loops
 			\item handles jump threading optimized control flow graphs
-			\item handles short-circuit conditionals
+			\item handles short-circuit evaluation
 		\end{itemize}
 	\end{block}
 
@@ -654,14 +654,59 @@
 		\end{itemize}
 	\end{block}
 
-% solved by interval method:
-% - multi-level break and continue of loops.
-
 \end{frame}
 
 \begin{frame}
 	\frametitle{Interval method}
-	TODO: add intervals visualization.
+	\begin{figure}[htbp]
+		\begin{subfigure}[ht]{0.50\textwidth}
+			\begin{subfigure}{\textwidth}
+				Intervals have interesting properties.
+			\end{subfigure}
+			\vspace*{3em} \\
+			\begin{subfigure}{\textwidth}
+				\begin{quote}
+					An \textbf{interval} $I(h)$ with header node $h$ is the maximal single-entry subgraph of a CFG in which $h$ is the only entry node and in which all cycles contain $h$.
+				\end{quote}
+			\end{subfigure}
+		\end{subfigure}
+		\begin{subfigure}[ht]{0.40\textwidth}
+			\centering
+			\includegraphics[height=0.75\textheight]{inc/methods/interval/G_1.png}
+			\caption{Intervals outlined in control flow graph.}
+		\end{subfigure}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Interval method}
+	\begin{figure}[htbp]
+		\centering
+		\begin{subfigure}[b]{0.18\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{inc/methods/interval/G_1.png}
+			\caption{$G^1$}
+		\end{subfigure}
+		\qquad
+		\begin{subfigure}[b]{0.10\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{inc/methods/interval/G_2.png}
+			\caption{$G^2$}
+		\end{subfigure}
+		\qquad
+		\begin{subfigure}[b]{0.10\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{inc/methods/interval/G_3.png}
+			\caption{$G^3$}
+		\end{subfigure}
+		\qquad
+		\begin{subfigure}[b]{0.06\textwidth}
+			\includegraphics[width=\textwidth]{inc/methods/interval/G_4.png}
+			\vspace{2em}
+			\caption{$G^4$}
+		\end{subfigure}
+		\caption{Derived sequence of graphs, $G^1, ..., G^n$.}
+	\end{figure}
 \end{frame}
 
 % ___ [ Interval - Example ] ___________________________________________________
