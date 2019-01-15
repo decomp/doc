@@ -3,6 +3,12 @@
 \usetheme{KTH}
 \usepackage{preamble}
 
+\usepackage[backend=bibtex]{biblatex}
+
+\addbibresource{references.bib}
+
+\renewcommand{\footnotesize}{\tiny}
+
 % Advice from Schule, that was given to him as advice when he was becoming a researcher.
 %
 % Three thirds, 1 third for everybody, 1 third for experts, and 1 third for yourself to show off.
@@ -675,9 +681,12 @@
 		\begin{subfigure}[ht]{0.40\textwidth}
 			\centering
 			\includegraphics[height=0.75\textheight]{inc/methods/interval/G_1.png}
-			\caption{Intervals outlined in control flow graph.}
+			\caption{Intervals outlined in control flow graph\footnotemark.}
 		\end{subfigure}
 	\end{figure}
+
+	\footnotetext{Figure adapted from \fullcite{cifuentes_reverse_comp} \\}
+
 \end{frame}
 
 \begin{frame}
@@ -1061,26 +1070,44 @@
 
 \begin{frame}
 	\frametitle{Pattern-independent method}
-	TODO: add reaching condition visualization.
+	% TODO: add reaching condition visualization.
+
+	\begin{figure}[htbp]
+		\centering
+		\begin{subfigure}[b]{0.40\textwidth}
+			\centering
+			\includegraphics[height=0.7\paperheight]{inc/methods/pattern-independent/sess-regions.png}
+			\label{fig:pattern_independent}
+			\caption{Single-entry single-successor regions\footnotemark.}
+		\end{subfigure}
+		\qquad
+		\begin{subfigure}[b]{0.50\textwidth}
+			\centering
+			\lstinputlisting[linerange={5-30}, caption={\label{lst:pattern_independent} Recovered control flow primitives.}, language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false]{inc/methods/pattern-independent/sample.c}
+			%\caption{Single-entry single-successor regions}
+		\end{subfigure}
+	\end{figure}
+
+	\footnotetext{Figure and listing adapted from \fullcite{no_more_gotos} \\}
 
 	% TODO: add note about wrapping prog in endless-loop and adding condition can structure any program. Doesn't mean it's "right".
 \end{frame}
 
 % ___ [ Pattern-independent method - Example ] _________________________________
 
-\begin{frame}
-	\frametitle{Pattern-independent method - example}
+%\begin{frame}
+%	\frametitle{Pattern-independent method - example}
+%
+%% TODO: One example for each method, how it works.
+%	TODO: add example for patter-independent method.
+%\end{frame}
 
-% TODO: One example for each method, how it works.
-	TODO: add example for patter-independent method.
-\end{frame}
-
-\begin{frame}
-	\frametitle{Pattern-independent method - counter-example}
-
-% TODO: One example for each method, counter-example when it doesn't work.
-	TODO: add counter-example for patter-independent method.
-\end{frame}
+%\begin{frame}
+%	\frametitle{Pattern-independent method - counter-example}
+%
+%% TODO: One example for each method, counter-example when it doesn't work.
+%	TODO: add counter-example for patter-independent method.
+%\end{frame}
 
 % === [ Technical Contributions ] ==============================================
 
@@ -1109,8 +1136,6 @@
 % TODO: speculations.
 
 % The research community has developed three primary methods of control flow recovery (give or take), however, each method has deficiencies and distinguished strengths.
-
-% TODO: Future work: the bullet points are too long to read
 
 	\begin{itemize}
 		\item Explore combining key principles from different control flow recovery methods to leverage their strengths and work around their deficiencies.

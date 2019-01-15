@@ -1,0 +1,76 @@
+// Sample taken from Fig. 3 in Yakdan et al. No More Gotos: Decompilation Using
+// Pattern-Independent Control-Flow Structuring and Semantics-Preserving
+// Transformations [1].
+//
+// [1]: https://net.cs.uni-bonn.de/fileadmin/ag/martini/Staff/yakdan/dream_ndss2015.pdf
+
+digraph {
+	newrank=true
+
+	// Nodes.
+	A [entry=true]
+	subgraph cluster_1 {
+		label="R₁"
+		color=blue
+		c₁ [fillcolor=lightblue style=filled]
+		c₂ [fillcolor=lightblue style=filled]
+		c₃ [fillcolor=lightblue style=filled]
+		n₁
+		n₂
+		n₃
+	}
+	subgraph cluster_2 {
+		label="R₂"
+		color=blue
+		b₁ [fillcolor=lightblue style=filled]
+		b₂ [fillcolor=lightblue style=filled]
+		n_4
+		n_5
+		n_6
+		n_7
+	}
+	subgraph cluster_3 {
+		label="R₃"
+		color=blue
+		d₁ [fillcolor=lightblue style=filled]
+		d₂ [fillcolor=lightblue style=filled]
+		d₃ [fillcolor=lightblue style=filled]
+		n_8
+	}
+	n_9
+
+	// Edges.
+	// A
+	A -> b₁ [label="¬A"]
+	A -> c₁ [label="A"]
+
+	// R₁
+	c₁ -> c₂ [label="¬c₁"]
+	c₁ -> n₁ [label="c₁"]
+	n₁ -> c₁
+	c₂ -> n₂ [label="c₂"]
+	c₂ -> n₃ [label="¬c₂"]
+	n₂ -> n_9
+	n₃ -> c₃
+	c₃ -> c₁ [label="c₃"]
+	c₃ -> n_9 [label="¬c₃"]
+
+	// R₂
+	b₁ -> b₂ [label="b₁"]
+	b₁ -> n_4 [label="¬b₁"]
+	b₂ -> n_5 [label="¬b₂"]
+	b₂ -> n_6 [label="b₂"]
+	n_4 -> n_5
+	n_5 -> n_7
+	n_6 -> n_7
+	n_7 -> d₁
+
+	// R₃
+	d₁ -> d₂ [label="¬d₁"]
+	d₁ -> d₃ [label="d₁"]
+	d₂ -> n_9 [label="¬d₂"]
+	d₂ -> n_8 [label="d₂"]
+	d₃ -> n_9 [label="¬d₃"]
+	d₃ -> n_8 [label="d₃"]
+	n_8 -> d₁
+}
