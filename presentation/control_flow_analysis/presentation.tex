@@ -195,6 +195,7 @@
 	\begin{block}{Pros}
 		\begin{itemize}
 			\item \textit{no} false positives
+			\item reconstructed control flow semantically equivalent
 		\end{itemize}
 	\end{block}
 
@@ -644,6 +645,7 @@
 			\item handles multi-level \texttt{continue}- and \texttt{break}-statements in loops
 			\item handles jump threading optimized control flow graphs
 			\item handles short-circuit evaluation
+			\item reconstructed control flow semantically equivalent
 		\end{itemize}
 	\end{block}
 
@@ -1027,6 +1029,7 @@
 		\begin{itemize}
 			\item \textit{many} false positives
 			\item introduces auxiliary condition variables (not present in original source)
+			\item reconstructed control flow functionally but \textit{not} semantically equivalent
 		\end{itemize}
 	\end{block}
 
@@ -1111,13 +1114,16 @@
 
 	\begin{itemize}
 		\item Explore combining key principles from different control flow recovery methods to leverage their strengths and work around their deficiencies.
-		\begin{itemize}
-			\item Specifically, integrate knowledge from analysis using the Hammock method (which importantly has \textit{no false positives}) into the other methods, and provide a \textit{confidence score} to the recovered control flow primitives.
-		\end{itemize}
-		\item Explore leveraging control flow analysis results -- which enable high-level data flow analysis -- to improve upon binary analysis capabilities.
-		\begin{itemize}
-			\item Specifically, propagate data flow information into concolic execution engines to enable lifting of machine code with indirect branching instructions to LLVM IR. How to do this in a performant way is an open and active research topic.
-		\end{itemize}
+		\item Investigate cross-validation of results produced by different methods to define a notion of \textit{confidence score}.
+		\item Facilitate binary analysis capabilities using control flow analysis results -- which enable high-level data flow analysis.
+		\item Integrate control flow recovery information when lifting binary executables to intermediate representations and high-level languages.
+		%\begin{itemize}
+		%	\item Specifically, integrate knowledge from analysis using the Hammock method (which importantly has \textit{no false positives}) into the other methods, and provide a \textit{confidence score} to the recovered control flow primitives.
+		%\end{itemize}
+		%\item Explore leveraging control flow analysis results -- which enable high-level data flow analysis -- to improve upon binary analysis capabilities.
+		%\begin{itemize}
+		%	\item Specifically, propagate data flow information into concolic execution engines to enable lifting of machine code with indirect branching instructions to LLVM IR. How to do this in a performant way is an open and active research topic.
+		%\end{itemize}
 	\end{itemize}
 
 % 2019-
