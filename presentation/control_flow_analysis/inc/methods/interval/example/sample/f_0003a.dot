@@ -1,0 +1,76 @@
+strict digraph f {
+	// Node definitions.
+	B1 [entry=true];
+	B2;
+	B3;
+	B4;
+	B5;
+	B6 [
+		fillcolor=red
+		style=filled
+		xlabel="pre_loop"
+	];
+	B12 [
+		fillcolor=red
+		style=filled
+	];
+	B13;
+	B15 [
+		fillcolor=red
+		style=filled
+	];
+	B7 [
+		fillcolor=red
+		style=filled
+	];
+	B9;
+	B10;
+
+	// Edge definitions.
+	B1 -> B2 [
+		color=darkgreen
+		cond=true
+	];
+	B1 -> B5 [
+		color=red
+		cond=false
+	];
+	B2 -> B3 [
+		color=darkgreen
+		cond=true
+	];
+	B2 -> B4 [
+		color=red
+		cond=false
+	];
+	B3 -> B5;
+	B4 -> B5;
+	B5 -> B6;
+	B6 -> B12 [
+		color=darkgreen
+		cond=true
+	];
+	B6 -> B7 [
+		color=red
+		cond=false
+	];
+	B12 -> B13;
+	B13 -> B13 [
+		color=darkgreen
+		cond=true
+	];
+	B13 -> B15 [
+		color=red
+		cond=false
+	];
+	B15 -> B6;
+	B7 -> B9 [
+		color=darkgreen
+		cond=true
+	];
+	B7 -> B10 [
+		color=red
+		cond=false
+	];
+	B9 -> B10;
+}

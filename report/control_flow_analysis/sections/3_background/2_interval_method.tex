@@ -81,3 +81,12 @@ Condition    yes      yes      pre-test loop with if-then break at the end of th
 % Loops are structured before 2-way conditionals to ensure the Boolean condition that form part of pre-tested or post-tested loops is part of the loop, rather than the header of a 2-way conditional subgraph.
 
 % Cifuentes' How the canonicl irreducible graph is structured: Since the graph is irreducible, there is no loop that is contained entirely in an interval, therefore, the loop structuring algorithm determines that there are no natural loops as such. When structuring 2-way conditionals, the conditional at node 1 is determined to have the follow node 3, since this node is reached from both paths from the header node and has a greater numbering than node 2.
+
+% Cifuentes' As pointed out by Hecht in [Hec77], the representation of a loop by means of cycles is too fine a representation since loops are not necessarily properly nested or disjoint. The use of strongly connected components as loops is too coarse a representation as there is no nesting order. The use of strongly connected regions does not provide a unique cover of the graph, and does not cover the entire graph. Finally, the use of intervals does provide a representation that satisfies the abovementioned conditions: one loop per interval, and a nesting order provided by the derived sequence of graphs
+
+% Cifuentes' each header of an interval in G^i is checked for having a back- edge from a latching node that belong to the same interval.
+
+% Cifuentes' Whenever there is a potential loop (i.e. a header of an interval that has a predecessor with a back-edge) that has its header or latching node marked as belonging to another loop, the loop is disregarded as it belongs to an unstructured loop. These loops always generate goto jumps during code generation.
+
+% Cifuentes'  This algorithm finds the loops in the appropriate nesting level, from innermost to outermost
+loop.

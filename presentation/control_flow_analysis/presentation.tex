@@ -122,7 +122,7 @@
 				\item Re-optimization of software where source code or tool chain is missing
 			\end{itemize}
 % Note to speaker: For Cobol.
-%   - semantic equivalence, with a lot of goto-s to begin.
+%   - functional equivalence, with a lot of goto-s to begin.
 %   - clean up over time.
 		\end{itemize}
 	\end{block}
@@ -709,13 +709,208 @@
 	\end{figure}
 \end{frame}
 
+% TODO: add slide with short-circuit compound conditions?
+
 % ___ [ Interval - Example ] ___________________________________________________
+
+% TODO: One example for each method, how it works.
 
 \begin{frame}
 	\frametitle{Interval method - example}
+	Example with \textit{jump threading} optimization and \textit{short-circuit} evaluation.
+	\begin{figure}[htbp]
+		\centering
+		\begin{subfigure}[b]{0.30\textwidth}
+			\centering
+			\lstinputlisting[linerange={17-43}, language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false]{inc/methods/interval/example/sample.c}
+			\caption{Original C source code.}
+		\end{subfigure}
+		\begin{subfigure}[b]{0.50\textwidth}
+			\centering
+			\includegraphics[height=0.6\paperheight]{inc/methods/interval/example/sample/f.png}
+			\caption{Control flow graph.}
+		\end{subfigure}
+	\end{figure}
+\end{frame}
 
-% TODO: One example for each method, how it works.
-	TODO: add example for interval method.
+\begin{frame}[noframenumbering]
+	\frametitle{Interval method - example}
+	Example with \textit{jump threading} optimization and \textit{short-circuit} evaluation.
+	\begin{figure}[htbp]
+		\centering
+		\begin{subfigure}[b]{0.30\textwidth}
+			\centering
+			\lstinputlisting[linerange={17-43}, linebackgroundcolor={\btLstHL{22}}, language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false]{inc/methods/interval/example/sample.c}
+			\caption{Original C source code.}
+		\end{subfigure}
+		\begin{subfigure}[b]{0.50\textwidth}
+			\centering
+			\includegraphics[height=0.6\paperheight]{inc/methods/interval/example/sample/f_0001a.png}
+			\caption{Control flow graph.}
+		\end{subfigure}
+	\end{figure}
+\end{frame}
+
+\begin{frame}[noframenumbering]
+	\frametitle{Interval method - example}
+	Example with \textit{jump threading} optimization and \textit{short-circuit} evaluation.
+	\begin{figure}[htbp]
+		\centering
+		\begin{subfigure}[b]{0.30\textwidth}
+			\centering
+			\lstinputlisting[linerange={17-43}, linebackgroundcolor={\btLstHL{22}}, language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false]{inc/methods/interval/example/sample.c}
+			\caption{Original C source code.}
+		\end{subfigure}
+		\begin{subfigure}[b]{0.50\textwidth}
+			\centering
+			\includegraphics[height=0.6\paperheight]{inc/methods/interval/example/sample/f_0001b.png}
+			\caption{Control flow graph.}
+		\end{subfigure}
+	\end{figure}
+\end{frame}
+
+\begin{frame}[noframenumbering]
+	\frametitle{Interval method - example}
+	Example with \textit{jump threading} optimization and \textit{short-circuit} evaluation.
+	\begin{figure}[htbp]
+		\centering
+		\begin{subfigure}[b]{0.30\textwidth}
+			\centering
+			\lstinputlisting[linerange={17-43}, linebackgroundcolor={\btLstHL{15-18}}, language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false]{inc/methods/interval/example/sample.c}
+			\caption{Original C source code.}
+		\end{subfigure}
+		\begin{subfigure}[b]{0.50\textwidth}
+			\centering
+			\includegraphics[height=0.6\paperheight]{inc/methods/interval/example/sample/f_0002a.png}
+			\caption{Control flow graph.}
+		\end{subfigure}
+	\end{figure}
+\end{frame}
+
+\begin{frame}[noframenumbering]
+	\frametitle{Interval method - example}
+	Example with \textit{jump threading} optimization and \textit{short-circuit} evaluation.
+	\begin{figure}[htbp]
+		\centering
+		\begin{subfigure}[b]{0.30\textwidth}
+			\centering
+			\lstinputlisting[linerange={17-43}, linebackgroundcolor={\btLstHL{15-18}}, language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false]{inc/methods/interval/example/sample.c}
+			\caption{Original C source code.}
+		\end{subfigure}
+		\begin{subfigure}[b]{0.50\textwidth}
+			\centering
+			\includegraphics[height=0.6\paperheight]{inc/methods/interval/example/sample/f_0002b.png}
+			\caption{Control flow graph.}
+		\end{subfigure}
+	\end{figure}
+\end{frame}
+
+\begin{frame}[noframenumbering]
+	\frametitle{Interval method - example}
+	Example with \textit{jump threading} optimization and \textit{short-circuit} evaluation.
+	\begin{figure}[htbp]
+		\centering
+		\begin{subfigure}[b]{0.30\textwidth}
+			\centering
+			\lstinputlisting[linerange={17-43}, linebackgroundcolor={\btLstHL{12-13,19-20}}, language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false]{inc/methods/interval/example/sample.c}
+			\caption{Original C source code.}
+		\end{subfigure}
+		\begin{subfigure}[b]{0.50\textwidth}
+			\centering
+			\includegraphics[height=0.6\paperheight]{inc/methods/interval/example/sample/f_0003a.png}
+			\caption{Control flow graph.}
+		\end{subfigure}
+	\end{figure}
+\end{frame}
+
+\begin{frame}[noframenumbering]
+	\frametitle{Interval method - example}
+	Example with \textit{jump threading} optimization and \textit{short-circuit} evaluation.
+	\begin{figure}[htbp]
+		\centering
+		\begin{subfigure}[b]{0.30\textwidth}
+			\centering
+			\lstinputlisting[linerange={17-43}, linebackgroundcolor={\btLstHL{12-13,19-20}}, language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false]{inc/methods/interval/example/sample.c}
+			\caption{Original C source code.}
+		\end{subfigure}
+		\begin{subfigure}[b]{0.50\textwidth}
+			\centering
+			\includegraphics[height=0.6\paperheight]{inc/methods/interval/example/sample/f_0003b.png}
+			\caption{Control flow graph.}
+		\end{subfigure}
+	\end{figure}
+\end{frame}
+
+\begin{frame}[noframenumbering]
+	\frametitle{Interval method - example}
+	Example with \textit{jump threading} optimization and \textit{short-circuit} evaluation.
+	\begin{figure}[htbp]
+		\centering
+		\begin{subfigure}[b]{0.30\textwidth}
+			\centering
+			\lstinputlisting[linerange={17-43}, linebackgroundcolor={\btLstHL{22-24}}, language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false]{inc/methods/interval/example/sample.c}
+			\caption{Original C source code.}
+		\end{subfigure}
+		\begin{subfigure}[b]{0.50\textwidth}
+			\centering
+			\includegraphics[height=0.6\paperheight]{inc/methods/interval/example/sample/f_0004a.png}
+			\caption{Control flow graph.}
+		\end{subfigure}
+	\end{figure}
+\end{frame}
+
+\begin{frame}[noframenumbering]
+	\frametitle{Interval method - example}
+	Example with \textit{jump threading} optimization and \textit{short-circuit} evaluation.
+	\begin{figure}[htbp]
+		\centering
+		\begin{subfigure}[b]{0.30\textwidth}
+			\centering
+			\lstinputlisting[linerange={17-43}, linebackgroundcolor={\btLstHL{22-24}}, language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false]{inc/methods/interval/example/sample.c}
+			\caption{Original C source code.}
+		\end{subfigure}
+		\begin{subfigure}[b]{0.50\textwidth}
+			\centering
+			\includegraphics[height=0.6\paperheight]{inc/methods/interval/example/sample/f_0004b.png}
+			\caption{Control flow graph.}
+		\end{subfigure}
+	\end{figure}
+\end{frame}
+
+\begin{frame}[noframenumbering]
+	\frametitle{Interval method - example}
+	Example with \textit{jump threading} optimization and \textit{short-circuit} evaluation.
+	\begin{figure}[htbp]
+		\centering
+		\begin{subfigure}[b]{0.30\textwidth}
+			\centering
+			\lstinputlisting[linerange={17-43}, linebackgroundcolor={\btLstHL{3,10}}, language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false]{inc/methods/interval/example/sample.c}
+			\caption{Original C source code.}
+		\end{subfigure}
+		\begin{subfigure}[b]{0.50\textwidth}
+			\centering
+			\includegraphics[height=0.6\paperheight]{inc/methods/interval/example/sample/f_0005a.png}
+			\caption{Control flow graph.}
+		\end{subfigure}
+	\end{figure}
+\end{frame}
+
+\begin{frame}[noframenumbering]
+	\frametitle{Interval method - example}
+	Example with \textit{jump threading} optimization and \textit{short-circuit} evaluation.
+	\begin{figure}[htbp]
+		\centering
+		\begin{subfigure}[b]{0.30\textwidth}
+			\centering
+			\lstinputlisting[linerange={17-43}, linebackgroundcolor={\btLstHL{3,10}}, language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false]{inc/methods/interval/example/sample.c}
+			\caption{Original C source code.}
+		\end{subfigure}
+		\begin{subfigure}[b]{0.50\textwidth}
+			\centering
+			\includegraphics[height=0.6\paperheight]{inc/methods/interval/example/sample/f_0005b.png}
+			\caption{Control flow graph.}
+		\end{subfigure}
+	\end{figure}
 \end{frame}
 
 \begin{frame}
