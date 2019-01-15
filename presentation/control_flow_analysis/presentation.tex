@@ -908,18 +908,103 @@
 		\begin{subfigure}[b]{0.50\textwidth}
 			\centering
 			\includegraphics[height=0.6\paperheight]{inc/methods/interval/example/sample/f_0005b.png}
+			\caption{Control flow graph; analysis \textit{almost} \textbf{complete}.}
+		\end{subfigure}
+	\end{figure}
+\end{frame}
+
+% TODO: One example for each method, counter-example when it doesn't work.
+
+% Jump threading optimization and boolean constraint propagation.
+
+\begin{frame}
+	\frametitle{Interval method - counter-example}
+	Counter-example with \textit{jump threading} optimization and boolean constraint propagation.
+	\begin{figure}[htbp]
+		\centering
+		\begin{subfigure}[b]{0.30\textwidth}
+			\centering
+			\lstinputlisting[linerange={8-21}, language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false]{inc/methods/interval/counter-example/bool_propagation.c}
+			\caption{Original C source code.}
+		\end{subfigure}
+		\begin{subfigure}[b]{0.50\textwidth}
+			\centering
+			\includegraphics[height=0.5\paperheight]{inc/methods/interval/counter-example/bool_propagation_jump/f.png}
 			\caption{Control flow graph.}
 		\end{subfigure}
 	\end{figure}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[noframenumbering]
 	\frametitle{Interval method - counter-example}
+	Counter-example with \textit{jump threading} optimization and boolean constraint propagation.
+	\begin{figure}[htbp]
+		\centering
+		\begin{subfigure}[b]{0.30\textwidth}
+			\centering
+			\lstinputlisting[linebackgroundcolor={\btLstHL{4-6}}, linerange={8-21}, language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false]{inc/methods/interval/counter-example/bool_propagation.c}
+			\caption{Original C source code.}
+		\end{subfigure}
+		\begin{subfigure}[b]{0.50\textwidth}
+			\centering
+			\includegraphics[height=0.5\paperheight]{inc/methods/interval/counter-example/bool_propagation_jump/f_0001a.png}
+			\caption{Control flow graph.}
+		\end{subfigure}
+	\end{figure}
+\end{frame}
 
-% TODO: One example for each method, counter-example when it doesn't work.
-	TODO: add counter-example for interval method.
+\begin{frame}[noframenumbering]
+	\frametitle{Interval method - counter-example}
+	Counter-example with \textit{jump threading} optimization and boolean constraint propagation.
+	\begin{figure}[htbp]
+		\centering
+		\begin{subfigure}[b]{0.30\textwidth}
+			\centering
+			\lstinputlisting[linebackgroundcolor={\btLstHL{4-6}}, linerange={8-21}, language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false]{inc/methods/interval/counter-example/bool_propagation.c}
+			\caption{Original C source code.}
+		\end{subfigure}
+		\begin{subfigure}[b]{0.50\textwidth}
+			\centering
+			\includegraphics[height=0.5\paperheight]{inc/methods/interval/counter-example/bool_propagation_jump/f_0001b.png}
+			\caption{Control flow graph.}
+		\end{subfigure}
+	\end{figure}
+\end{frame}
 
-% Doesn't work when we have jump threading.
+\begin{frame}[noframenumbering]
+	\frametitle{Interval method - counter-example}
+	Counter-example with \textit{jump threading} optimization and boolean constraint propagation.
+	\begin{figure}[htbp]
+		\centering
+		\begin{subfigure}[b]{0.30\textwidth}
+			\centering
+			\lstinputlisting[linebackgroundcolor={\btLstHL{4,12}}, linerange={8-21}, language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false]{inc/methods/interval/counter-example/bool_propagation.c}
+			\caption{Original C source code.}
+		\end{subfigure}
+		\begin{subfigure}[b]{0.50\textwidth}
+			\centering
+			\includegraphics[height=0.5\paperheight]{inc/methods/interval/counter-example/bool_propagation_jump/f_0002a.png}
+			\caption{Control flow graph.}
+		\end{subfigure}
+	\end{figure}
+\end{frame}
+
+\begin{frame}[noframenumbering]
+	\frametitle{Interval method - counter-example}
+	Counter-example with \textit{jump threading} optimization and boolean constraint propagation.
+	\begin{figure}[htbp]
+		\centering
+		\begin{subfigure}[b]{0.30\textwidth}
+			\centering
+			\lstinputlisting[linebackgroundcolor={\btLstHL{4,12}}, linerange={8-21}, language=C, style=c, basicstyle=\tiny\ttfamily, breaklines=false]{inc/methods/interval/counter-example/bool_propagation.c}
+			\caption{Original C source code.}
+		\end{subfigure}
+		\begin{subfigure}[b]{0.50\textwidth}
+			\centering
+			\includegraphics[height=0.5\paperheight]{inc/methods/interval/counter-example/bool_propagation_jump/f_0002b.png}
+			\caption{Control flow graph; analysis \textbf{incomplete}.}
+		\end{subfigure}
+	\end{figure}
 \end{frame}
 
 % --- [ Pattern-independent method ] -------------------------------------------

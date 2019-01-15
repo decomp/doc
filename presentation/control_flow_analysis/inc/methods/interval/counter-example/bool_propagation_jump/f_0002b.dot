@@ -1,0 +1,41 @@
+strict digraph f {
+	// Node definitions.
+	B1 [
+		entry=true
+		fillcolor=red
+		style=filled
+	];
+	if_cond;
+	B3;
+	B4;
+	B5;
+	B6;
+
+	// Edge definitions.
+	B1 -> if_cond [
+		color=darkgreen
+		cond=true
+	];
+	B1 -> B4 [
+		color=red
+		cond=false
+	];
+	if_cond -> B3 [
+		color=darkgreen
+		cond=true
+	];
+	if_cond -> B5 [
+		color=red
+		cond=false
+	];
+	B3 -> B4 [
+		color=red
+		cond=false
+	];
+	B3 -> B5 [
+		color=darkgreen
+		cond=true
+	];
+	B4 -> B6;
+	B5 -> B6;
+}
