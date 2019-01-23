@@ -1,4 +1,4 @@
-all: presentation.pdf
+all: cfa_presentation.pdf
 
 %.pdf: %.tex
 	latexrun --latex-cmd=xelatex -o $@ $<
