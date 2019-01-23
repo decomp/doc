@@ -4,9 +4,10 @@
 
 % TODO: progression/spectrum?
 
-To evaluate the set of control flow recovery methods, a notion of \textit{false positive} and \textit{false negative} recovery is used; as defined below, and further described in section \ref{sec:cfa_metric}.
+To evaluate the set of control flow recovery methods, a notion of \textit{true positive}, \textit{false positive} and \textit{false negative} recovery is used; as defined below.
 
 \begin{description}
+	\item[true positive recovery] denotes a control flow primitive \textit{recovered} and \textit{present} in the original source code.
 	\item[false positive recovery] denotes a control flow primitive \textit{recovered} but \textit{not present} in the original source code.
 	\item[false negative recovery] denotes a control flow primitive \textit{present} in the original source code but \textit{not recovered}.
 \end{description}

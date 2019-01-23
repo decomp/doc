@@ -6,21 +6,28 @@ Control flow recovery is the process of identifying structures of high-level con
 
 Information of high-level control flow primitives in the original source code is lost during compilation, and the recovery of such information presents interesting challenges since compiler optimisations (such as jump threading and code relocation) may produce irreducible graphs \cite{cifuentes_reverse_comp}. Solutions to this problem domain therefore include trade-offs between preservation of the original CFG and introduction of additional nodes (e.g. auxiliary conditional nodes \cite{no_more_gotos} or code duplication through node splitting \cite{node_splitting}) to recovery high-level control flow primitives from otherwise irreducible CFGs.
 
-The applications of control flow recovery are versatile. As part of binary analysis and decompilation tasks it may be used to:
+The applications of control flow recovery are versatile, and as part of binary analysis and decompilation tasks include:
 
 \begin{itemize}
-	\item facilitate malware analysis
-	\item provide information for branch prediction
-	\item locate loops in the intermediate representation (IR) produced by a compiler
-	\item discover and mitigate bugs and security vulnerabilities
-	\item recover source code with high-level control flow primitives
-	\item facilitate verification of compiler output (e.g. Reflections on Trusting Trust \cite{trusting_trust})
-	\item analyse proprietary algorithms
+	\item malware analysis
+	\item security assessments
+	\begin{itemize}
+		\item automated vulnerability scanning
+		\item discovery and mitigation of bugs and security vulnerabilities
+	\end{itemize}
+	\item control-flow aware compiler passes
+	\item enabling high-level data-flow analysis on IR (Rosen's method \cite{rosen_method,advanced_compiler_design_implementation_book})
+	\item verification of compiler output (\textit{Reflections on Trusting Trust} \cite{trusting_trust})
+	\item decompilation (reverse compilation)
+	\begin{itemize}
+		\item transpilation between programming languages\footnote{Transpilation between $n$ source and $m$ target langauges requires $n + m$ combinations when utilizing an IR, instead of $n \cdot m$ combinations.}
+		\item migrate proprietary software from legacy architectures
+		\item re-optimization of software where source code or tool chain is missing
+	\end{itemize}
 \end{itemize}
 
 % === [ Subsections ] ==========================================================
 
 \input{sections/1_introduction/1_project_aim_and_objectives}
-\clearpage % TODO: layout
 \input{sections/1_introduction/2_project_thesis}
 \input{sections/1_introduction/3_project_deliverables}
