@@ -126,3 +126,95 @@
 \usepackage{../../latex/diff/style}
 \usepackage{../../latex/dot/lang}
 \usepackage{../../latex/dot/style}
+
+\usepackage{pgffor}
+
+% Highlight lines in souce listings.
+%
+% Example:
+%
+%    \lstinputlisting[language=C, style=c, linebackgroundcolor={%
+%       \btLstHL<1>{1-3}% on slide 1, highlight lines 1-3
+%       \btLstHL<2>{6,9}% on slide 2, highlight lines 6 and 9
+%       \btLstHL<3>{7}%
+%       \btLstHL<4>{8}%
+%    }]{foo.c}
+
+% NOTE: lstlinebgrd is currently broken. Below is a work-around from https://gist.githubusercontent.com/moewew/f6f9e42275b18ba7c0c1680ced001603/raw/8f3bf098490251aa7fad6c492b100dc413597dc4/kha.tex
+
+\makeatletter
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %
+  % \btIfInRange{number}{range list}{TRUE}{FALSE}
+  %
+  % Test if int number <number> is element of a (comma separated) list of ranges
+  % (such as: {1,3-5,7,10-12,14}) and processes <TRUE> or <FALSE> respectively
+
+  \newcount\bt@rangea
+  \newcount\bt@rangeb
+
+  \newcommand\btIfInRange[2]{%
+      \global\let\bt@inrange\@secondoftwo%
+      \edef\bt@rangelist{#2}%
+      \foreach \range in \bt@rangelist {%
+          \afterassignment\bt@getrangeb%
+          \bt@rangea=0\range\relax%
+          \pgfmathtruncatemacro\result{ ( #1 >= \bt@rangea) && (#1 <= \bt@rangeb) }%
+          \ifnum\result=1\relax%
+              \breakforeach%
+              \global\let\bt@inrange\@firstoftwo%
+          \fi%
+      }%
+      \bt@inrange%
+  }
+  \newcommand\bt@getrangeb{%
+      \@ifnextchar\relax%
+          {\bt@rangeb=\bt@rangea}%
+          {\@getrangeb}%
+  }
+  \def\@getrangeb-#1\relax{%
+      \ifx\relax#1\relax%
+          \bt@rangeb=100000%   \maxdimen is too large for pgfmath
+      \else%
+          \bt@rangeb=#1\relax%
+      \fi%
+  }
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %
+  % \btLstHL<overlay spec>{range list}
+  %
+  \newcommand{\btLstHL}[1]{%
+    \btIfInRange{\value{lstnumber}}{#1}{\color{lightgray!30}}{}%
+  }%
+
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %
+  % \btInputEmph<overlay spec>[listing options]{range list}{file name}
+  %
+  \newcommand{\btLstInputEmph}[3][\empty]{%
+    \lstset{linebackgroundcolor=\btLstHL{#2}}%
+    \lstinputlisting{#3}%
+  }
+
+   \makeatletter
+   \let\old@lstKV@SwitchCases\lstKV@SwitchCases
+   \def\lstKV@SwitchCases#1#2#3{}
+   \makeatother
+   \usepackage{lstlinebgrd}
+   \makeatletter
+   \let\lstKV@SwitchCases\old@lstKV@SwitchCases
+
+   \lst@Key{numbers}{none}{%
+       \def\lst@PlaceNumber{\lst@linebgrd}%
+       \lstKV@SwitchCases{#1}%
+       {none:\\%
+        left:\def\lst@PlaceNumber{\llap{\normalfont
+                   \lst@numberstyle{\thelstnumber}\kern\lst@numbersep}\lst@linebgrd}\\%
+        right:\def\lst@PlaceNumber{\rlap{\normalfont
+                   \kern\linewidth \kern\lst@numbersep
+                   \lst@numberstyle{\thelstnumber}}\lst@linebgrd}%
+       }{\PackageError{Listings}{Numbers #1 unknown}\@ehc}}
+   \makeatother

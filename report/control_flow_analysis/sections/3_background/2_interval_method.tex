@@ -88,5 +88,64 @@ Condition    yes      yes      pre-test loop with if-then break at the end of th
 
 % Cifuentes' Whenever there is a potential loop (i.e. a header of an interval that has a predecessor with a back-edge) that has its header or latching node marked as belonging to another loop, the loop is disregarded as it belongs to an unstructured loop. These loops always generate goto jumps during code generation.
 
-% Cifuentes'  This algorithm finds the loops in the appropriate nesting level, from innermost to outermost
-loop.
+% Cifuentes'  This algorithm finds the loops in the appropriate nesting level, from innermost to outermost loop.
+
+% ~~~ [ Interval ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{Interval}
+
+An interval $I(h)$ with header node $h$ is a maximal single-entry subgraph in which $h$ is the only entry node and all cycles contain $h$ \cite{structuring_algorithm_for_decompilation}. The example illustrated in figure \ref{fig:interval} highlights the unique set of intervals \textbf{I(B1)}, \textbf{I(B6)}, and \textbf{I(B13)} in a control flow graph.
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.3\textwidth]{inc/appendices/vocabulary/interval.png}
+	\caption{The intervals \textbf{I1}, \textbf{I2} and \textbf{I3} outlined in a control flow graph; adapted from figure 2 of C. Cifuentes' \textit{Structuring Decompiled Graphs} \cite{structuring_decompiled_graphs}.}
+	\label{fig:interval}
+\end{figure}
+
+% ~~~ [ Derived Sequence of Graphs G^1...G^n ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{Derived Sequence of Graphs}
+
+Given a control flow graph $G$ a derived sequence of graphs, $G^1 \dots G^n$, may be constructed by collapsing intervals. The first order graph $G^1 = G$. The second order graph $G^2$ is obtained by collapsing each interval in $G^1$ into a node. The node of a collapsed interval $I(h)$ has incoming edges from the immediate predecessors of the header node $h$ not part of the interval, and outgoing edges to the immediate successors of the exit nodes of $I(h)$ not part of the interval. The intervals of $G^2$ are collapsed and the process is repeated until $G^n$ is a single node or an irreducible graph; as illustrated in figure \ref{fig:derived_sequence_of_graphs}.
+
+\begin{figure}[htbp]
+	\centering
+	\begin{subfigure}[b]{0.30\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{inc/3_background/interval_method/derived_sequence_of_graphs/G_1.png}
+		\caption{$G^1$}
+	\end{subfigure}
+	\qquad
+	\begin{subfigure}[b]{0.12\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{inc/3_background/interval_method/derived_sequence_of_graphs/G_2.png}
+		\caption{$G^2$}
+	\end{subfigure}
+	\qquad
+	\begin{subfigure}[b]{0.12\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{inc/3_background/interval_method/derived_sequence_of_graphs/G_3.png}
+		\caption{$G^3$}
+	\end{subfigure}
+	\qquad
+	\begin{subfigure}[b]{0.08\textwidth}
+		\includegraphics[width=\textwidth]{inc/3_background/interval_method/derived_sequence_of_graphs/G_4.png}
+		\vspace{2em}
+		\caption{$G^4$}
+	\end{subfigure}
+	\caption{Derived sequence of graphs, $G^1, ..., G^n$; adapted from figure 3 of C. Cifuentes' \textit{Structuring Decompiled Graphs} \cite{structuring_decompiled_graphs}.}
+	\label{fig:derived_sequence_of_graphs}
+\end{figure}
+
+% ~~~ [ Back Edge ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+%\subsubsection{Back Edge}
+
+%\todo{TODO: define Back Edge}
+
+% ~~~ [ Reverse Post-order ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+%\subsubsection{Reverse Post-order}
+
+%\todo{TODO: define Reverse Post-order}

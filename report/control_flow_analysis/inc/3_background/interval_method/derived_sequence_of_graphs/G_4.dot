@@ -1,0 +1,4 @@
+strict digraph {
+	// Node definitions.
+	I6 [entry=true];
+}

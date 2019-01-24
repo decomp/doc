@@ -1,0 +1,4 @@
+strict digraph {
+	// Node definitions.
+	I_1 [entry=true];
+}

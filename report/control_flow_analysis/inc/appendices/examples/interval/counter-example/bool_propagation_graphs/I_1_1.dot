@@ -1,0 +1,48 @@
+strict digraph {
+	// Node definitions.
+	0 [entry=true];
+	7;
+	12;
+	10;
+	17;
+	15;
+	20;
+	22;
+
+	// Edge definitions.
+	0 -> 7 [
+		color=darkgreen
+		cond=true
+	];
+	0 -> 12 [
+		color=red
+		cond=false
+	];
+	7 -> 12 [
+		color=red
+		cond=false
+	];
+	7 -> 10 [
+		color=darkgreen
+		cond=true
+	];
+	12 -> 17 [
+		color=darkgreen
+		cond=true
+	];
+	12 -> 15 [
+		color=red
+		cond=false
+	];
+	10 -> 12;
+	17 -> 20 [
+		color=darkgreen
+		cond=true
+	];
+	17 -> 22 [
+		color=red
+		cond=false
+	];
+	15 -> 17;
+	20 -> 22;
+}

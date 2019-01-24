@@ -1,0 +1,8 @@
+strict digraph "main" {
+	// Node definitions.
+	2 [
+		entry=true
+		fillcolor=red
+		style=filled
+	];
+}

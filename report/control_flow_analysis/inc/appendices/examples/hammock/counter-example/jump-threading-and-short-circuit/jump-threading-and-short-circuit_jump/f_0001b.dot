@@ -1,0 +1,36 @@
+strict digraph "f" {
+	// Node definitions.
+	B1 [entry=true];
+	B2;
+	B5;
+	B3;
+	B4;
+	B6;
+	B12;
+	B7;
+	B9;
+	B8;
+	B10;
+	B13 [
+		fillcolor=red
+		style=filled
+	];
+
+	// Edge definitions.
+	B1 -> B2 [color=darkgreen];
+	B1 -> B5 [color=red];
+	B2 -> B3 [color=darkgreen];
+	B2 -> B4 [color=red];
+	B5 -> B6;
+	B3 -> B5;
+	B4 -> B5;
+	B6 -> B12 [color=darkgreen];
+	B6 -> B7 [color=red];
+	B12 -> B13;
+	B7 -> B9 [color=darkgreen];
+	B7 -> B8 [color=red];
+	B9 -> B10;
+	B8 -> B9 [color=darkgreen];
+	B8 -> B10 [color=red];
+	B13 -> B6;
+}

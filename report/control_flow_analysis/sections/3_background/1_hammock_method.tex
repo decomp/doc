@@ -97,11 +97,11 @@ To recover nested control flow primitives, the Hammock method iteratively perfor
 \begin{figure}[htbp]
 	\centering
 	\begin{subfigure}[ht]{0.17\textwidth}
-		\includegraphics[width=\textwidth]{inc/3_background/cfg_pre_merge.png}
+		\includegraphics[width=\textwidth]{inc/3_background/hammock_method/cfg_pre_merge.png}
 	\end{subfigure}
 	\qquad
 	\begin{subfigure}[ht]{0.17\textwidth}
-		\includegraphics[width=\textwidth]{inc/3_background/cfg_post_merge.png}
+		\includegraphics[width=\textwidth]{inc/3_background/hammock_method/cfg_post_merge.png}
 	\end{subfigure}
 	\caption{The CFG of a function in which the canonical subgraph of a 1-way conditional (see figure~\ref{fig:if_graph_representation}) has been identified (left side), and the same CFG after the subgraph has been replaced with a single node \texttt{if0} that inherits the predecessors of the subgraph entry node \texttt{3} and the successors of the subgraph exit node \texttt{seq0} (right side).}
 	\label{fig:subgraph_merge}
