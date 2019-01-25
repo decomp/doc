@@ -3,7 +3,7 @@
 \subsection{Hammock Method}
 \label{sec:hammock_method}
 
-The Hammock method is a control flow analysis method which identifies control flow primitives in CFGs based on subgraph isomorphisms. More specifically, a set of high-level control flow primitives may be represented as canonical single-entry single-exit subgraphs\footnote{\textit{One potential reference for the naming of the Hammock method, is that the subgraphs are single-entry single-exist and are thus connected in two end-points, analogous to hammocks.}} (see figure \ref{fig:graph_representations}), and these subgraphs may be identified in CFGs using subgraph isomorphism search algorithms \cite{node_splitting}.
+The Hammock method is a control flow analysis method which identifies control flow primitives in CFGs based on subgraph isomorphisms. More specifically, a set of high-level control flow primitives may be represented as canonical single-entry single-exit subgraphs\footnote{\textit{One potential reference for the naming of the Hammock method, is that the subgraphs are single-entry single-exist and are thus connected in two end-points, analogous to hammocks.}} (as illustrated in figure \ref{fig:graph_representations}), and these subgraphs may be identified in CFGs using subgraph isomorphism search algorithms \cite{node_splitting}.
 
 \begin{savenotes}
 	\begin{figure}[htbp]
@@ -90,22 +90,28 @@ The Hammock method is a control flow analysis method which identifies control fl
 	\end{figure}
 \end{savenotes}
 
-% TODO: rephrase the following paragraph.
-
-To recover nested control flow primitives, the Hammock method iteratively performs subgraph isomorphism search to locate canonical subgraphs of high-level control flow primitives. Once a subgraph has been located, the algorithm merges the nodes of the subgraph into a single node, which has the incoming edges of the entry node and the outgoing edges of the exit node; as illustrated in figure \ref{fig:subgraph_merge}. This process is repeated until either the CFG contains a single node, in which case the CFG was translated to an AST containing only high-level control flow primitives -- or no more subgraph isomorphisms can be located -- in which case \texttt{goto} statements have to be used to describe the CFG.
+A \textbf{subgraph isomorphism} denotes the structure of a subgraph (i.e. the edges between its nodes) without considering node names. Another way to think about it is that a subgraph isomorphism is a mapping from node names of an isomorphic subgraph to node names a graph. To give a concrete example, consider the canonical subgraph of a 1-way conditional (as illustrated in figure \ref{fig:if_graph_representation}), and the isomorphism of this subgraph outlined in figure \ref{fig:subgraph_located}. The structure of the subgraph is identical, that is, for each edge between nodes in the isomorphic subgraph there exists an edge in the control flow graph representing this edge (e.g. the edge from node $A$ to $B$ in the canonical subgraph of figure \ref{fig:if_graph_representation} is represented by the edge from node $3$ to $5$ in the control flow graph of figure \ref{fig:subgraph_located}). The subgraph isomorphism can therefore be represented as a mapping of node names; in the example given above, the mapping is as follows: $\{A: 3, B: 5, C: seq0\}$.
 
 \begin{figure}[htbp]
 	\centering
-	\begin{subfigure}[ht]{0.17\textwidth}
-		\includegraphics[width=\textwidth]{inc/3_background/hammock_method/cfg_pre_merge.png}
+	\begin{subfigure}[b]{0.40\textwidth}
+		\centering
+		\includegraphics[width=0.4\textwidth]{inc/3_background/hammock_method/cfg_pre_merge.png}
+		\caption{Subgraph isomorphism outlined.}
+		\label{fig:subgraph_located}
 	\end{subfigure}
-	\qquad
-	\begin{subfigure}[ht]{0.17\textwidth}
-		\includegraphics[width=\textwidth]{inc/3_background/hammock_method/cfg_post_merge.png}
+	\begin{subfigure}[b]{0.40\textwidth}
+		\centering
+		\includegraphics[width=0.4\textwidth]{inc/3_background/hammock_method/cfg_post_merge.png}
+		\caption{Nodes of subgraph merged.}
 	\end{subfigure}
 	\caption{The CFG of a function in which the canonical subgraph of a 1-way conditional (see figure~\ref{fig:if_graph_representation}) has been identified (left side), and the same CFG after the subgraph has been replaced with a single node \texttt{if0} that inherits the predecessors of the subgraph entry node \texttt{3} and the successors of the subgraph exit node \texttt{seq0} (right side).}
 	\label{fig:subgraph_merge}
 \end{figure}
+
+To recover nested control flow primitives, the Hammock method iteratively performs subgraph isomorphism search to locate canonical subgraphs of high-level control flow primitives. Once a subgraph has been located, the algorithm merges the nodes of the subgraph into a single node, which has the incoming edges of the entry node and the outgoing edges of the exit node; as illustrated in figure \ref{fig:subgraph_merge}. This process is repeated until either the CFG contains a single node, in which case the CFG was translated to an AST containing only high-level control flow primitives -- or no more subgraph isomorphisms can be located -- in which case \texttt{goto} statements have to be used to describe the CFG.
+
+For a complete example using the Hammock method to recover the high-level primitives of a C source program by analyzing the control flow graph produced from the LLVM IR representation of the source program, refer to appendix \ref{app:hammock_example1}.
 
 % From Cifuentes'. Not about this paper, but relevant. Lichtblau[Lic85] presented a series of transformation rules to transform a control flow graph into a trivial graph by identifying subgraphs that represent high-level control structures; such as 2-way conditionals, sequence, loops, and multiexit loops. Whenever no rules were applicable to the graph, an edge was removed from the graph and a goto was generated in its place. This transformation system was proved to be finite Church-Rosser, thus the transformations could be applied in any order and the same final answer is reached.
 
