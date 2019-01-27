@@ -2,7 +2,7 @@
 
 \section{Introduction}
 
-Control flow recovery is the process of identifying structures of high-level control flow primitives, such as 2-way conditionals (i.e. \textit{if-else} statements) and pre-test loops (i.e. \textit{while}-loops), in unstructured control flow graphs (CFGs).
+Control flow recovery is the process of identifying structures of high-level control flow primitives, such as 2-way conditionals (e.g. \textit{if-else} statements) and pre-test loops (e.g. \textit{while}-loops), in unstructured control flow graphs (CFGs).
 
 Information of high-level control flow primitives in the original source code is lost during compilation, and the recovery of such information presents interesting challenges since compiler optimisations (such as jump threading and code relocation) may produce irreducible graphs \cite{cifuentes_reverse_comp}. Solutions to this problem domain therefore include trade-offs between preservation of the original CFG and introduction of additional nodes (e.g. auxiliary conditional nodes \cite{no_more_gotos} or code duplication through node splitting \cite{node_splitting}) to recovery high-level control flow primitives from otherwise irreducible CFGs.
 
