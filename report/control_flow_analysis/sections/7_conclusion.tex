@@ -9,3 +9,10 @@
 As a future research topic, it would be very interesting to combine a variety of control flow recovery methods, and evaluate if they may facilitate each other to further improve control flow recovery.
 
 Additional insights could be provided by a deeper evaluation which examines how the control flow recovery methods deal with irreducible graphs, as produces by various compiler optimisations (e.g. jump threading).
+
+\subsubsection{Extensions to Evaluation Metric}
+\label{sec:extensions_to_evaluation_metric}
+
+% TODO: clean up text.
+
+Future extensions to evaluation metric. As switch statements may be replaced with a sequence of 2-way conditionals and pre-test loops transformed into post-test loops, it would stand to reason that some recovered control flow primitives are correct even if their specific type is not present in the original source code. For instance, the recovery of a post-test loop in place of a pre-test loop should be considered \textit{almost} \textit{true positive} instead of \textit{false positive}. More concretely, future research could categorize the behaviour of control flow primitives, and thus classify functionally equivalent primitives as \textit{similar in effect}. This would help better assess the results of the control flow recovery, and more importantly focus on the actual failure modes of the control flow recovery methods, instead of being overwhelmed by the noise of functionally equivalent \textit{false positives}.

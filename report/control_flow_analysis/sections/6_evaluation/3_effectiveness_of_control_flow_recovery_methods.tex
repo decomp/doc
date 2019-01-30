@@ -13,3 +13,8 @@ This section describes how well the control flow recovery methods worked, and hi
 \todo{Rephrase and clean up the following.}
 
 For instance, the Hammock method makes sense to use when no difference in control flow may be introduces; e.g. forensics; the Interval method makes sense when no difference in semantics may be introduced (as based on the sequence of executed instructions and modified variables); e.g. malware analysis, and the pattern-independent method makes sense to use when no difference in function may be introduced; e.g. remove goto's from the source code of Coreutils as described in \cite{no_more_gotos}.
+
+% TODO: meta test and clean up below.
+% TODO: what we want to do is to describe rationale and reasoning for the results. E.g. post-test loops instead of pre-test loops.
+
+The high number of false positives in the recovery of post-test loops is easy to explain, as this is the cause of a common compiler optimization pass, which translates pre-tested loops into post-tested which are enclosed in an 1-way conditional with the condition of the loop. The reason for this compiler optimization is that for each iteration of the loop, one less jump instruction is required in post-tested loops, instead of pre-tested loops.
