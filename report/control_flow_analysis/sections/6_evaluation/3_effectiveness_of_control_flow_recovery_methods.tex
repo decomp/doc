@@ -17,4 +17,6 @@ For instance, the Hammock method makes sense to use when no difference in contro
 % TODO: meta test and clean up below.
 % TODO: what we want to do is to describe rationale and reasoning for the results. E.g. post-test loops instead of pre-test loops.
 
-The high number of false positives in the recovery of post-test loops is easy to explain, as this is the cause of a common compiler optimization pass, which translates pre-tested loops into post-tested which are enclosed in an 1-way conditional with the condition of the loop. The reason for this compiler optimization is that for each iteration of the loop, one less jump instruction is required in post-tested loops, instead of pre-tested loops.
+The high number of false positives in the recovery of post-test loops is easy to explain, as this is the cause of a common compiler optimization pass, which translates pre-tested loops into post-tested which are enclosed in an 1-way conditional with the condition of the loop (in other words, compilers often translate while-loops into an if statement with a do-while). The reason for this compiler optimization is that for each iteration of the loop, one less jump instruction is required in post-tested loops, instead of pre-tested loops.
+
+% TODO: add listing to examplifiy the above. while (cond) { body } -> if (cond) {do { body } while (cond); }
