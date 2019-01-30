@@ -2,7 +2,7 @@
 
 This repository contains design documents related to the decompilation pipeline of [decomp/decomp](https://github.com/decomp/decomp).
 
-## Architecture of Decompiler Pipeline
+## Architecture of the Decompilation Pipeline
 
 1. *paper* Compositional Decompilation using LLVM IR ([compositional_decompilation.pdf](https://github.com/decomp/doc/raw/master/report/compositional_decompilation/compositional_decompilation.pdf))
     - An overview of the compositional architecture used in the `decomp/decomp` decompilation pipeline.
