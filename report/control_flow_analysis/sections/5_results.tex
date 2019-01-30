@@ -26,8 +26,13 @@ To provide further perspective, the results of each control flow recovery method
 \clearpage
 
 \subsection{Combined Results}
+\label{sec:combined_results}
 
 The \textit{combined} control flow recovery results of the Hammock method, the Interval method, and for comparison the theoretical optimum when recovering \textit{2-way conditionals}, \textit{n-way conditionals}, \textit{pre-test loops} and \textit{post-test loops} from the combined test programs of Coreutils and SQLite are presented in figure \ref{fig:total_results_combined}.
+
+The \textbf{Hammock method} correctly recovered $42.16\%$ of the control flow primitives of the test programs (\textit{true positives}). On average, for every 10 control flow primitives of the original source code, the Hammock method recovered $3.5$ control flow primitives that were \textit{not} present of the original source code (\textit{false positives}).
+
+The \textbf{Interval method} correctly recovered $74.28\%$ of the control flow primitives of the test programs (\textit{true positives}). On average, for every 10 control flow primitives of the original source code, the Interval method recovered $5.9$ control flow primitives that were \textit{not} present of the original source code (\textit{false positives}).
 
 \begin{figure}[htbp]
 	\centering
@@ -42,7 +47,7 @@ The \textit{combined} control flow recovery results of the Hammock method, the I
 
 The control flow recovery results of the Hammock method, the Interval method, and for comparison the theoretical optimum when recovering \textit{2-way conditionals} (e.g. \texttt{if-else} statements) from the combined test programs of Coreutils and SQLite are presented in figure \ref{fig:total_results_2way}.
 
-Note, at this level of comparison, \textit{if-statements} and \textit{if-else} statements are both regarded as 2-way conditionals. While the Hammock method distinguish 1-way conditionals from 2-way conditionals at the control flow recover stage, the Interval method distinguish 1-way conditionals from 2-way conditionals at the code generation state. For this reason, no distinction is made of 1-way and 2-way conditionals during the evaluation.
+Note, at this level of comparison, \textit{if-statements} and \textit{if-else} statements are both regarded as 2-way conditionals. While the Hammock method distinguish 1-way conditionals from 2-way conditionals at the control flow recover stage, the Interval method distinguish 1-way conditionals from 2-way conditionals at the code generation state. For this reason, no distinction is made between 1-way and 2-way conditionals during the evaluation.
 
 \begin{figure}[htbp]
 	\centering
@@ -67,6 +72,7 @@ The control flow recovery results of the Hammock method, the Interval method, an
 \clearpage
 
 \subsection{Recovery of Pre-test Loops}
+\label{sec:recovery_of_pre-test_loops}
 
 The control flow recovery results of the Hammock method, the Interval method, and for comparison the theoretical optimum when recovering \textit{pre-test loops} (e.g. \texttt{for}-loops) from the combined test programs of Coreutils and SQLite are presented in figure \ref{fig:total_results_pre_loop}.
 
@@ -76,6 +82,8 @@ The control flow recovery results of the Hammock method, the Interval method, an
 	\caption{Comparison of control flow recovery results for each method when recovering \textit{pre-test loops}. The data is based on the combined test programs of Coreutils and SQLite.}
 	\label{fig:total_results_pre_loop}
 \end{figure}
+
+Note, at this level of comparison, \textit{pre-test loops} and \textit{infinite loops} are both regarded as pre-test loops. Both the Hammock method and the Interval method distinguish pre-test loops from infinite loops. However, the C parsing script described in step \ref{itm:step_c_to_json} of section \ref{sec:evaluation_process} does not evaluate loop conditions, and can therefore not conclusively determine which conditions are always true (e.g. \texttt{while (TRUE)}). For this reason, no distinction is made between pre-test loops and infinite loops during the evaluation.
 
 \clearpage
 
