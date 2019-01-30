@@ -3,13 +3,25 @@
 \subsection{Metric for the Effectiveness of Control Flow Recovery}
 \label{sec:req_metric}
 
-\todo{TODO: take ideas from and include reference to \cite{no_more_gotos} as a notion of effective control} \\
-\todo{flow recovery is clearly defined there, in section VII.A. Metrics;} \\
-\todo{including the notion of \textbf{Correctness}, \textbf{Structuredness} and \textbf{Compactness}}.
+As part of this project, a metric for measuring the effectiveness of control flow recovery methods will be detailed. The preliminary metric presented in section \ref{sec:evaluation_process} provides a high-level intuition, and the notions of \textbf{true positive}, \textbf{false positive} and \textbf{false negative} recovery defined in section \ref{sec:project_thesis} are the basis of a more concrete metric.
 
-Note, the metric for correct control flow recovery does not distinguish between between \textit{for-} and \textit{while-loops} as they are both pre-test loops semantically, and later stages of analysis (e.g. post processing) can differentiate the two if needed \cite{no_more_gotos}.
+Furthermore, the metric should distinguish between different types of high-level control flow primitives (such as \textit{2-way conditionals} and \textit{n-way conditionals}), since different control flow recovery methods may illustrate strengths and weaknesses when recovering specific types of control flow primitives.
 
-% TODO: add meta text
+Prior work to define a metric for effective control flow recovery use the notion of \textbf{correctness}, \textbf{structuredness} and \textbf{compactness} \cite{no_more_gotos}. The correctness measurement ensures that the recovered control flow primitives exhibit the same control flow behaviour as the analyzed control flow graph of the source program\footnote{In the \textit{No More Gotos} paper, the authors update the control flow primitives of Coreutils source code based on control flow recovery and then run the test suite of Coreutils to measure correctness.}. The structuredness measurement details the number of \texttt{goto} statements required to present the recovered control flow as a high-level Abstract Syntax Tree (AST), where a low number of \texttt{goto} statements indicates a high level of structuredness. The compactness measurement indicates how many lines of code the recovered control flow primitives would take in relation to the original source code\footnote{Printed in a canonical representation to make comparison uniform.}.
+
+While the \textit{correctness}, \textit{structuredness} and \textit{compactness} measurement categories are good indicators of the effectiveness of control flow recovery, they have \textit{not} been included in the metric used to assess the effectiveness of control flow recovery in this project. The primary reason is that these metrics all rely on a complete decompilation pipeline (including a back-end which outputs recovered source code) and can therefore \textit{not} be used to test the control flow recovery component \textit{independent} of the other components of the decompilation pipeline.
+
+Take for instance the \textit{correctness} measurement; there may be many reasons why the recovered source code of a decompilation pipeline is incorrect (e.g. incorrect variable recovery, type analysis, recovered code generation, etc), and to isolate issues of the control flow recovery component from other parts of the decompilation pipeline is deemed non-trivial (if even possible).
+
+Therefore, the metric used in this paper must be capable of assessing the effectiveness of the control flow recovery component, \textit{independent} of any other component part of a larger binary analysis, compiler or decompilation pipeline (wherever the output of the control flow recovery component is used).
+
+The set of requirements below denote the measurement of \textit{false negatives} (\textbf{R1}), \textit{false positives} (\textbf{R6}) and \textit{true positives} (\textbf{R2}, \textbf{R3}, \textbf{R4}, \textbf{R5}, \textbf{R7}, \textbf{R8}, \textbf{R9} and \textbf{R10}); and as noted by the distinct requirements \textbf{R2-5} and \textbf{R7-10}, control flow primitives are distinguished by type.
+
+Note, the metric for correct control flow recovery does not distinguish between between \texttt{for}- and \texttt{while}-loops as they are both pre-test loops semantically, and later stages of analysis (e.g. post processing) can differentiate the two if needed \cite{no_more_gotos}. As such requirement \textbf{R12} is outside of the scope of this project.
+
+To simplify the evaluation of test programs, \texttt{goto}-statements present in the original source code are not considered as they may be used to produce both structured and unstructured control flow, and it is not easy to distinguish which on the AST level. As such requirement \textbf{R11} is outside of the scope of this project.
+
+An early decision in the project was to focus on control flow recovery of reducible graphs. As such requirement \textbf{R13} is outside of the scope of this project.
 
 \begin{table}[htbp]
 	\begin{center}
