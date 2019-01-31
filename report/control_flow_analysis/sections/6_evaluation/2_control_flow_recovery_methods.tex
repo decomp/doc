@@ -2,7 +2,19 @@
 
 \subsection{Control Flow Recovery Methods}
 
-% TODO: add meta text
+In total three essential (\textbf{R14-16}), three important (\textbf{R17-19}), three desirable (\textbf{R20-22}) and three future (\textbf{R23-25}) requirements were identified for control flow recovery methods (see section \ref{sec:requirements_control_flow_recovery_methods}); as summarised in table \ref{tbl:eval_summary_of_control_flow_recovery_methods}.
+
+The review of the Hammock method, the Interval method and the Pattern-independent method are presented in section \ref{sec:hammock_method}, \ref{sec:interval_method} and \ref{sec:pattern-independent_method}, respectively; thus satisfying requirement \textbf{R17}, \textbf{R14} and \textbf{R20}.
+
+Implementations of the Hammock method and the Interval method are both provided by the \texttt{decomp/decomp} GitHub repository\footnote{\url{https://github.com/decomp/decomp}}; thus satisfying requirement \textbf{R18} and \textbf{R15}.
+
+Due to time constraints, no implementation of the Pattern-independent method is provided by this project; and requirement \textbf{R21} is thus \textit{not} satisfied.
+
+The evaluation results of the Hammock method and the Interval method are presented in section \ref{sec:results}, and further evaluation is presented in section \ref{sec:effectiveness_of_control_flow_recovery_methods}; thus satisfying requirement \textbf{R19} and \textbf{16}.
+
+Without an implementation of the Pattern-independent method, evaluation is made impossible; and requirement \textbf{R22} is thus \textit{not} satisfied.
+
+The future requirements \textbf{R23-25} are intentionally excluded from the scope of this project.
 
 \begin{table}[htbp]
 	\begin{center}

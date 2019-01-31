@@ -1,14 +1,29 @@
 % --- [ Metric for the Effectiveness of Control Flow Recovery ] ----------------
 
 \subsection{Metric for the Effectiveness of Control Flow Recovery}
-\label{sec:cfa_metric}
+\label{sec:evaluation_metric}
 
-% TODO: add meta text
+In total five essential (\textbf{R1-5}), one important (\textbf{R6}), four desirable (\textbf{R7-10}) and three future (\textbf{R11-13}) requirements were identified for the metric used to assess the effectiveness of control flow recovery (see section \ref{sec:requirements_metric}); as summarised in table \ref{tbl:eval_summary_of_metric}.
 
-% MUST: Outcome of Mandatory Objectives
-% SHOULD, COULD: Outcome of Minor Objectives of Incremental Difficulty
+The evaluation process outlined in section \ref{sec:evaluation_process} was used to generate test programs for Coreutils and SQLite (steps \ref{itm:step_c_to_json}, \ref{itm:step_c_to_ll} and \ref{itm:step_ll_to_dot}). These test programs were then used to assess the effectiveness of the Hammock method and the Interval method against the theoretical optimum (step \ref{itm:step_dot_to_json}), the results of which are presented in section \ref{sec:results}.
 
-Requirement \textbf{R10} is not satisfied, since no distinction is made between pre-test loops and infinite loops; as further described in section \ref{sec:recovery_of_pre_test_loops}.
+As detailed in section \ref{sec:combined_results}, both \textit{false negatives} and \textit{false positives} are taken into consideration when evaluating the effectiveness of the control flow recovery methods; thus satisfying requirement \textbf{R1} and \textbf{R2}.
+
+The recovery of 1-way and 2-way conditionals is included in the metric, with the caveat that 1-way and 2-way conditionals are both represented as 2-way conditionals in the unified results (as detailed in section \ref{sec:recovery_of_2way_conditionals}); thus at least partially satisfying requirement \textbf{R3} and \textbf{R4}.
+
+The recovery of pre-test loops is included in the metric, with the caveat that pre-test loops and infinite loops are both represented as pre-test loops in the unified results (as detailed in section \ref{sec:recovery_of_pre_test_loops}); thus at least partially satisfying requirement \textbf{R5}.
+
+The recovery of post-test loops is included in the metric (as detailed in section \ref{sec:recovery_of_post_test_loops}); thus satisfying requirement \textbf{R6}.
+
+While the Interval method (but not the Hammock method) is capable of recovering the compound boolean expressions resulting from short-circuit evaluation, the C parser script used during step \ref{itm:step_c_to_json} of the evaluation process does not output information regarding compound boolean expressions to the truth table. Therefore, the recovery of compound boolean expressions is not included in the evaluation; and requirement \textbf{R7} is thus \textit{not} satisfied.
+
+The recovery of n-way conditionals is included in the metric (as detailed in section \ref{sec:recovery_of_nway_conditionals}); thus satisfying requirement \textbf{R8}.
+
+While the Interval method (but not the Hammock method) is capable of recovering multi-level \texttt{break} and statements\footnote{The Interval method does not recover multi-level \texttt{continue} statements, however such additions should be possible given the information related to loops provided by the graph intervals and the derived sequence of graphs.}, the C parsing script used during step \ref{itm:step_c_to_json} of the evaluation process does not include such information in the truth table; the primary reason for which is that C does not contain a first class notion of multi-level \texttt{break} statements, and such control flow primitives are implemented using \texttt{goto} in C. Therefore, recovery of multi-level \texttt{break} and \texttt{continue} statements are not included in the evaluation; and requirement \textbf{R9} is thus \textit{not} satisfied.
+
+Both the Hammock method and the Interval method are capable of recovering infinite loops. However, as mentioned in \ref{sec:recovery_of_pre_test_loops} the C parsing script used during step \ref{itm:step_c_to_json} of the evaluation process does not evaluate loop conditions, and can therefore not conclusively determine which conditions are always true. Therefore infinite loops present in the original source code are regarded as pre-test loops in the truth table. As such, no distinction is made between pre-test loops and infinite loops; and requirement \textbf{R10} is thus \textit{not} satisfied.
+
+The future requirements \textbf{R11-13} are intentionally excluded from the scope of this project.
 
 \begin{table}[htbp]
 	\begin{center}
@@ -17,30 +32,30 @@ Requirement \textbf{R10} is not satisfied, since no distinction is made between 
 			Sat. & Req. & Priority & Description \\
 			\hline
 			\rowcolor{light_green_3}
-			Yes & \textbf{R1} & MUST & Consider false-positives \\
+			Yes & \textbf{R1} & MUST & Consider \textit{false negatives} \\
 			\rowcolor{light_green_3}
-			Yes & \textbf{R2} & MUST & Consider false-negatives \\
+			Yes & \textbf{R2} & MUST & Consider \textit{false positives} \\
 			\rowcolor{light_green_3}
-			Yes & \textbf{R3} & MUST & Consider 1-way conditionals (e.g. \textit{if}-statements) \\
+			Yes & \textbf{R3} & MUST & Consider 1-way conditionals (e.g. \texttt{if}-statements) \\
 			\rowcolor{light_green_3}
-			Yes & \textbf{R4} & MUST & Consider 2-way conditionals (e.g. \textit{if-else} statements) \\
+			Yes & \textbf{R4} & MUST & Consider 2-way conditionals (e.g. \texttt{if-else} statements) \\
 			\rowcolor{light_green_3}
-			Yes & \textbf{R5} & MUST & Consider pre-test loops (e.g. \textit{while}-loops) \\
+			Yes & \textbf{R5} & MUST & Consider pre-test loops (e.g. \texttt{while}-loops and \texttt{for}-loops) \\
 			\hline
 			\rowcolor{light_green_3}
-			Yes & \textbf{R6} & SHOULD & Consider post-test loops (e.g. \textit{do-while} loops) \\
+			Yes & \textbf{R6} & SHOULD & Consider post-test loops (e.g. \texttt{do-while} loops) \\
 			\hline
 			\rowcolor{light_red_3}
 			No & \textbf{R7} & COULD & Consider \textit{short-circuit} expressions \\
 			\rowcolor{light_green_3}
-			Yes & \textbf{R8} & COULD & Consider n-way conditionals (e.g. \textit{switch} statements) \\
+			Yes & \textbf{R8} & COULD & Consider n-way conditionals (e.g. \texttt{switch} statements) \\
 			\rowcolor{light_red_3}
-			No & \textbf{R9} & COULD & Consider multi-level break and continue statements \\
+			No & \textbf{R9} & COULD & Consider multi-level \texttt{break} and \texttt{continue} statements \\
 			\rowcolor{light_red_3}
 			No & \textbf{R10} & COULD & Consider infinite loops \\
 			\hline
-			N/A & \textbf{R11} & WON'T & Consider \textit{goto} statements \\
-			N/A & \textbf{R12} & WON'T & Distinguish between \textit{for}- and \textit{while}-loops \\
+			N/A & \textbf{R11} & WON'T & Consider \texttt{goto} statements \\
+			N/A & \textbf{R12} & WON'T & Distinguish between \texttt{for}- and \texttt{while}-loops \\
 			N/A & \textbf{R13} & WON'T & Handle irreducible graphs \\
 			\hline
 		\end{tabular}
