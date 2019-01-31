@@ -21,79 +21,10 @@ In the context of evaluation of effective control flow recovery, \textit{true po
 
 To provide further perspective, the results of each control flow recovery method are presented along-side the theoretical optimum. The \textit{theoretical optimum} control flow recovery is that all control flow primitives present in the original source code are recovered with correct types (i.e. \textit{true positives}) and that no control flow primitives not present in the original source code are recovered (i.e. \textit{false positives}). Note, by definition, this means that for each control flow primitive type the theoretical optimum has 0 \textit{false negatives}, 0 \textit{false positives} and exactly as many \textit{true positives} as there are control flow primitives of the specific type in the original source code.
 
-% It would be interesting to see if the results actually aligns with the thesis.
+% === [ Subsections ] ==========================================================
 
-\clearpage
-
-\subsection{Combined Results}
-\label{sec:combined_results}
-
-The \textit{combined} control flow recovery results of the Hammock method, the Interval method, and for comparison the theoretical optimum when recovering \textit{2-way conditionals}, \textit{n-way conditionals}, \textit{pre-test loops} and \textit{post-test loops} from the combined test programs of Coreutils and SQLite are presented in figure \ref{fig:total_results_combined}.
-
-The \textbf{Hammock method} correctly recovered $42.16\%$ of the control flow primitives of the test programs (\textit{true positives}). On average, for every 10 control flow primitives of the original source code, the Hammock method recovered $3.5$ control flow primitives that were \textit{not} present of the original source code (\textit{false positives}).
-
-The \textbf{Interval method} correctly recovered $74.28\%$ of the control flow primitives of the test programs (\textit{true positives}). On average, for every 10 control flow primitives of the original source code, the Interval method recovered $5.9$ control flow primitives that were \textit{not} present of the original source code (\textit{false positives}).
-
-\begin{figure}[htbp]
-	\centering
-	\includegraphics[width=\textwidth]{inc/5_results/results_combined.png}
-	\caption{Comparison of control flow recovery results for each method, with the combined results of recovering \textit{2-way conditionals}, \textit{n-way conditionals}, \textit{pre-test loops} and \textit{post-test loops}. The data is based on the combined test programs of Coreutils and SQLite.}
-	\label{fig:total_results_combined}
-\end{figure}
-
-\clearpage
-
-\subsection{Recovery of 2-way Conditionals}
-
-The control flow recovery results of the Hammock method, the Interval method, and for comparison the theoretical optimum when recovering \textit{2-way conditionals} (e.g. \texttt{if-else} statements) from the combined test programs of Coreutils and SQLite are presented in figure \ref{fig:total_results_2way}.
-
-Note, at this level of comparison, \textit{if-statements} and \textit{if-else} statements are both regarded as 2-way conditionals. While the Hammock method distinguish 1-way conditionals from 2-way conditionals at the control flow recover stage, the Interval method distinguish 1-way conditionals from 2-way conditionals at the code generation state. For this reason, no distinction is made between 1-way and 2-way conditionals during the evaluation.
-
-\begin{figure}[htbp]
-	\centering
-	\includegraphics[width=\textwidth]{inc/5_results/results_2-way.png}
-	\caption{Comparison of control flow recovery results for each method when recovering \textit{2-way conditionals}. The data is based on the combined test programs of Coreutils and SQLite.}
-	\label{fig:total_results_2way}
-\end{figure}
-
-\clearpage
-
-\subsection{Recovery of N-way Conditionals}
-
-The control flow recovery results of the Hammock method, the Interval method, and for comparison the theoretical optimum when recovering \textit{n-way conditionals} (e.g. \texttt{switch}-statements) from the combined test programs of Coreutils and SQLite are presented in figure \ref{fig:total_results_nway}.
-
-\begin{figure}[htbp]
-	\centering
-	\includegraphics[width=\textwidth]{inc/5_results/results_n-way.png}
-	\caption{Comparison of control flow recovery results for each method when recovering \textit{n-way conditionals}. The data is based on the combined test programs of Coreutils and SQLite.}
-	\label{fig:total_results_nway}
-\end{figure}
-
-\clearpage
-
-\subsection{Recovery of Pre-test Loops}
-\label{sec:recovery_of_pre-test_loops}
-
-The control flow recovery results of the Hammock method, the Interval method, and for comparison the theoretical optimum when recovering \textit{pre-test loops} (e.g. \texttt{for}-loops) from the combined test programs of Coreutils and SQLite are presented in figure \ref{fig:total_results_pre_loop}.
-
-\begin{figure}[htbp]
-	\centering
-	\includegraphics[width=\textwidth]{inc/5_results/results_pre_loop.png}
-	\caption{Comparison of control flow recovery results for each method when recovering \textit{pre-test loops}. The data is based on the combined test programs of Coreutils and SQLite.}
-	\label{fig:total_results_pre_loop}
-\end{figure}
-
-Note, at this level of comparison, \textit{pre-test loops} and \textit{infinite loops} are both regarded as pre-test loops. Both the Hammock method and the Interval method distinguish pre-test loops from infinite loops. However, the C parsing script described in step \ref{itm:step_c_to_json} of section \ref{sec:evaluation_process} does not evaluate loop conditions, and can therefore not conclusively determine which conditions are always true (e.g. \texttt{while (TRUE)}). For this reason, no distinction is made between pre-test loops and infinite loops during the evaluation.
-
-\clearpage
-
-\subsection{Recovery of Post-test Loops}
-
-The control flow recovery results of the Hammock method, the Interval method, and for comparison the theoretical optimum when recovering \textit{post-test loops} (e.g. \texttt{do-while}-loops) from the combined test programs of Coreutils and SQLite are presented in figure \ref{fig:total_results_post_loop}.
-
-\begin{figure}[htbp]
-	\centering
-	\includegraphics[width=\textwidth]{inc/5_results/results_post_loop.png}
-	\caption{Comparison of control flow recovery results for each method when recovering \textit{post-test loops}. The data is based on the combined test programs of Coreutils and SQLite.}
-	\label{fig:total_results_post_loop}
-\end{figure}
+\input{sections/5_results/1_combined_results}
+\input{sections/5_results/2_recovery_of_2way_conditionals}
+\input{sections/5_results/3_recovery_of_nway_conditionals}
+\input{sections/5_results/4_recovery_of_pre_test_loops}
+\input{sections/5_results/5_recovery_of_post_test_loops}
