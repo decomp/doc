@@ -1,0 +1,16 @@
+% --- [ Interpretation of Results ] --------------------------------------------
+
+\subsection{Interpretation of Results}
+\label{sec:interpretation_of_results}
+
+The results are to be interpreted as follows (previously described in section \ref{sec:project_thesis}).
+
+\begin{itemize}
+	\item \textbf{true positive}: control flow primitive \textit{recovered} and \textit{present} in the original source code.
+	\item \textbf{false positive}: control flow primitive \textit{recovered} but \textit{not present} in the original source code.
+	\item \textbf{false negative}: control flow primitive \textit{present} in the original source code but \textit{not recovered}.
+\end{itemize}
+
+In the context of evaluation of effective control flow recovery, \textit{true positive} results are good while both \textit{false positive} and \textit{false negative} results are bad. Extensions to these evaluation metrics are discussed in section \ref{sec:extensions_to_evaluation_metric}.
+
+To provide further perspective, the results of each control flow recovery method are presented along-side the theoretical optimum. The \textit{theoretical optimum} control flow recovery is that all control flow primitives present in the original source code are recovered with correct types (i.e. \textit{true positives}) and that no control flow primitives not present in the original source code are recovered (i.e. \textit{false positives}). Note, by definition this means that for each control flow primitive type the theoretical optimum has 0 \textit{false negatives}, 0 \textit{false positives} and exactly as many \textit{true positives} as there are control flow primitives of the specific type in the original source code.

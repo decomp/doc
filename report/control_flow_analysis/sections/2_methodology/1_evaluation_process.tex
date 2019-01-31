@@ -10,7 +10,7 @@ A preliminary metric for the effectiveness of control flow recovery is how many 
 For each test program, the evaluation process consists of the following steps.
 
 \begin{enumerate}
-	\item \label{itm:step_c_to_json} Parse the original C source code of the test program to determine the occurrence of each high-level control flow primitive, and store this truth table in JSON format.
+	\item \label{itm:step_c_to_json} Parse the original C source code of the test program to determine the occurrence of each high-level control flow primitive, and store this truth table in JSON format (which serves as a \textit{ground truth} during evaluation).
 	\item \label{itm:step_c_to_ll} Convert C source code to LLVM IR using Clang. For test programs consisting of several source files, the LLVM IR is produced using the WLLVM\footnote{Whole Program LLVM: \url{https://github.com/travitch/whole-program-llvm}} project which provides tools for building whole-program LLVM bitcode files from unmodified C or C++ source code.
 	\item \label{itm:step_ll_to_dot} Generate a control flow graph for each function defined in the LLVM IR, and store the CFGs in Graphviz DOT format.
 	\item \label{itm:step_dot_to_json} Apply each control flow recovery method on the generated CFGs, and compare the recovered high-level primitives against the truth table produced in step 1.
