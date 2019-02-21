@@ -19,11 +19,31 @@ The interval method is a control flow recovery method which identifies the loops
 
 % TODO: make into a table.
 
-             Header   Latch    Type
-Condition    no       no       endless
-Condition    yes      no       pre-test
-Condition    no       yes      post-test
-Condition    yes      yes      pre-test loop with if-then break at the end of the loop body.
+\begin{table}[htbp]
+	\begin{center}
+		\begin{tabular}{|l|l|l|l|}
+			\hline
+			\textbf{Header node} & \textbf{Latch node} & \textbf{Loop type} \\
+			\hline
+			unconditional & unconditional & endless loop                         \\
+			\hline
+			conditional   & unconditional & pre-test loop                        \\
+			\hline
+			unconditional & conditional   & post-test loop                       \\
+			\hline
+			conditional   & conditional   & pre-test loop with conditional break \\
+			\hline
+		\end{tabular}
+	\end{center}
+	\label{tbl:loop_classification}
+	\caption{Classification of loop type based on the header and latch node of the loop.}
+\end{table}
+
+%             Header   Latch    Type
+%Condition    no       no       endless
+%Condition    yes      no       pre-test
+%Condition    no       yes      post-test
+%Condition    yes      yes      pre-test loop with if-then break at the end of the loop body.
 
 % ---> important. Cifuentes' also distinguish "control nodes". I.e. nodes that only transfer control flow. From Cifuentes', to handle Compound conditional branches: But since both B7 and B8 only have a conditional branch instruction, these two conditions could be merged into a compound conditional.
 

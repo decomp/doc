@@ -7,6 +7,9 @@
 
 This section describes identified deficiencies in the various control flow recovery methods, and seeks to provide insight into why they occur.
 
+% TODO: 	90% of the false positives have this property. <<< valuable
+
+
 \todo{TODO: include further discussion about identified deficiencies.}
 
 % TODO: gotos in source? Could this be a reason for
@@ -24,6 +27,21 @@ This section describes identified deficiencies in the various control flow recov
 \todo{TODO: Rephrase and clean up.}
 
 Based on the notion of how intervals are defined, some false positives will be introduces; e.g. endless loop rather than while loop. As a future research question, it would be interesting to further refine the notion of what nodes from an interval are collapsed during control flow structuring. Currently all nodes of an interval are collapsed, which may therefore include follow nodes from a loop; and this may lead to an incorrect classification of loop types for nested while loops, for instance. A refinement of the nodes selected to be collapsed, may be those in the cycle (i.e. those part of the loop), but not the follow nodes, as that should make it possible to recover nested loops without introducing false positives.
+
+%	if l1_vert_room_1 {
+%		if !l1_vert_room_2 {
+%			goto LABEL_51
+%		}
+%		drlg_l1_generate_hall(18, 12, 18, 14)
+%	}
+%	if l1_vert_room_2 && l1_vert_room_3 {
+%		drlg_l1_generate_hall(18, 26, 18, 28)
+%	}
+%LABEL_51:
+%
+%Since the first !l1_vert_room_2 is enough to ensure that the condition of the
+%second if-statement is never true, a jump has been inserted by the compiler to
+%skip the second condition check.
 
 \todo{Include minimal example illustrating the deficiency;}
 \todo{that of nested while loops.}
