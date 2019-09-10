@@ -18,7 +18,7 @@ An \textbf{Interval} $I(h)$ with header node $h$ is a maximal single-entry subgr
 
 % ~~~ [ Derived Sequence of Graphs G^1...G^n ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Given a control flow graph $G$ a \textbf{derived sequence of graphs}, $G^1 \dots G^n$, may be obtained by a recursive process of collapsing intervals. The first order graph $G^1 = G$. The second order graph $G^2$ is obtained by collapsing each interval in $G^1$ into a dedicated node (in other words, each node of $G^2$ denotes an interval of $G^1$). The node of a collapsed interval $I(h)$ has incoming edges from the immediate predecessors of the header node $h$ not part of the interval, and outgoing edges to the immediate successors of the exit nodes of $I(h)$ not part of the interval. The intervals of $G^2$ are collapsed and the process is repeated until $G^n$ is a single node or an irreducible graph; as illustrated in figure \ref{fig:derived_sequence_of_graphs}.
+Given a control flow graph $G$ a \textbf{derived sequence of graphs}, $G^1 \dots G^n$, may be obtained by a recursive process of collapsing intervals. The first order graph $G^1 = G$. The second order graph $G^2$ is obtained by collapsing each interval in $G^1$ into a dedicated node (in other words, each node of $G^2$ corresponds to an interval of $G^1$). The node of a collapsed interval $I(h)$ has incoming edges from the immediate predecessors of the header node $h$ not part of the interval, and outgoing edges to the immediate successors of the exit nodes of $I(h)$ not part of the interval. The intervals of $G^2$ are collapsed and the process is repeated until $G^n$ is a single node or an irreducible graph; as illustrated in figure \ref{fig:derived_sequence_of_graphs}.
 
 \begin{figure}[htbp]
 	\centering
@@ -53,7 +53,17 @@ Given a control flow graph $G$ a \textbf{derived sequence of graphs}, $G^1 \dots
 
 \subsubsection{Structuring of Loops}
 
-The unique property with intervals .... \todo{TODO: continue}.
+The loops of a control flow graph are determined by identifying back-edges\footnote{Back-edges are edges that go back to a previously visited node during a DFS walk of a CFG.} going from nodes of an interval $I(h)$ to the header node $h$ of the interval. Given the presence of back-edges in an interval $I(h)$, a loop with \textit{header node} $h$ exists..... \todo{TODO}
+
+the header node $h$ of the interval is the \textit{header node} of a loop. The nodes with outgoing back-edges to $h$ are referred to as \textit{latch nodes}, and the latch node with the highest reverse post-order DFS visit number is considered \textit{the} latch node of the loop.
+
+%Based on the type of the header node and the latch node, the
+
+The interval header node $n$ is the \textit{header node} of a loop
+
+Nodes with outgoing back-edges are referred to as \textit{latch nodes} and
+
+%The unique property with intervals .... \todo{TODO: continue}.
 
 \begin{table}[htbp]
 	\begin{center}
