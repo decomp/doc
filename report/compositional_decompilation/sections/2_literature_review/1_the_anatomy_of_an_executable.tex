@@ -35,7 +35,7 @@ In general, ELF files consist of a file header, zero or more program headers, ze
 \end{figure}
 \footnotetext{Original image (CC BY-SA): \url{https://en.wikipedia.org/wiki/File:Elf-layout--en.svg}}
 
-All ELF files starts with the four byte identifier \texttt{0x7F}, \texttt{'E'}, \texttt{'L'}, \texttt{'F'} which marks the beginning of the ELF file header. The ELF file header contains general information about a binary, such as its object file type (executable, relocatable or shared object), its assembly architecture (x86-64, ARM, …), the virtual address of its entry point which indicates the starting point of program execution, and the file offsets to the program and section headers.
+All ELF files start with the four byte identifier \texttt{0x7F}, \texttt{'E'}, \texttt{'L'}, \texttt{'F'} which marks the beginning of the ELF file header. The ELF file header contains general information about a binary, such as its object file type (executable, relocatable or shared object), its assembly architecture (x86-64, ARM, …), the virtual address of its entry point which indicates the starting point of program execution, and the file offsets to the program and section headers.
 
 Each program and section header describes a continuous segment or section of memory respectively. In general, segments are used by the linker to load executables into memory with correct access permissions, while sections are used by the compiler to categorise data and instructions. Therefore, the program headers are optional for relocatable and shared objects, while the section headers are optional for executables.
 
