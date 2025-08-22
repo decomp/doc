@@ -1,0 +1,48 @@
+% --- [ Control Flow Analysis Library ] ----------------------------------------
+
+\subsection{Control Flow Analysis Library}
+\label{sec:eval_control_flow_analysis_library}
+
+In total five essential (\textbf{R9}, \textbf{R10}, \textbf{R11}, \textbf{R12} and \textbf{R13}), two important (\textbf{R14} and \textbf{R15}), two desirable (\textbf{R16} and \textbf{R17}), and two future (\textbf{R18} and \textbf{R19}) requirements were identified for the control flow analysis library (see section~\ref{sec:req_control_flow_analysis_library}). The current implementation of the subgraph isomorphism search library satisfies six out of nine requirements (not counting future requirements), and fails to satisfy one essential, one important, and one desirable requirement; as summarised in table~\ref{tbl:eval_summary_of_control_flow_analysis_library}. Section~\ref{sec:eval_control_flow_analysis_library_essential_requirements},~\ref{sec:eval_control_flow_analysis_library_important_requirements} and~\ref{sec:eval_control_flow_analysis_library_desirable_requirements} provides a detailed evaluation of the essential, the important and the desirable requirements, respectively.
+
+\begin{table}[htbp]
+	\begin{center}
+		\begin{tabular}{|l|l|l|l|}
+			\hline
+			Sat. & Req. & Priority & Description \\
+			\hline
+			\rowcolor{light_green_3}
+			Yes & \textbf{R9} & MUST & Support analysis of reducible graphs \\
+			\rowcolor{light_green_3}
+			Yes & \textbf{R10} & MUST & Recover pre-test loops (e.g. \texttt{while}) \\
+			\rowcolor{light_red_3}
+			No & \textbf{R11} & MUST & Recover infinite loops (e.g. \texttt{while(TRUE)}) \\
+			\rowcolor{light_green_3}
+			Yes & \textbf{R12} & MUST & Recover 1-way conditionals (e.g. \texttt{if}) \\
+			\rowcolor{light_green_3}
+			Yes & \textbf{R13} & MUST & Recover 2-way conditionals (e.g. \texttt{if-else}) \\
+			\hline
+			\rowcolor{light_green_3}
+			Yes & \textbf{R14} & SHOULD & Recover post-test loops (e.g. \texttt{do-while}) \\
+			\rowcolor{light_red_3}
+			No & \textbf{R15} & SHOULD & Recover n-way conditionals (e.g. \texttt{switch}) \\
+			\hline
+			\rowcolor{light_red_3}
+			No & \textbf{R16} & COULD & Recover multi-exit loops \\
+			\rowcolor{light_green_3}
+			Yes & \textbf{R17} & COULD & Recover nested loops \\
+			\hline
+			N/A & \textbf{R18} & WON'T & Support analysis of irreducible graphs \\
+			N/A & \textbf{R19} & WON'T & Recover compound boolean expressions \\
+			\hline
+		\end{tabular}
+	\end{center}
+	\caption{A summary of the evaluation against requirements of the control flow analysis library, which specifies what requirements (abbreviated as ``Req.'') that have been satisfied (abbreviated as ``Sat.'').}
+	\label{tbl:eval_summary_of_control_flow_analysis_library}
+\end{table}
+
+% --- [ Subsections ] ----------------------------------------------------------
+
+\input{sections/9_evaluation/2_control_flow_analysis_library/1_essential_requirements}
+\input{sections/9_evaluation/2_control_flow_analysis_library/2_important_requirements}
+\input{sections/9_evaluation/2_control_flow_analysis_library/3_desirable_requirements}

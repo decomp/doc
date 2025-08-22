@@ -1,0 +1,107 @@
+% --- [ Post-processing Example ] ----------------------------------------------
+
+\subsection{Post-processing Example}
+\label{app:post-processing_example}
+
+This section demonstrates the rewriting capabilities of the \texttt{go-post} tool, by successively simplifying the unpolished Go source code presented in the left side of figure~\ref{fig:rewrite_1}, through a series of six rewrites which are illustrated in figure~\ref{fig:rewrite_1},~\ref{fig:rewrite_2},~\ref{fig:rewrite_3},~\ref{fig:rewrite_4},~\ref{fig:rewrite_5} and~\ref{fig:rewrite_6} respectively.
+
+For comparison, the original C source code is presented alongside of the decompiled Go output from \textbf{rewrite 6} in figure~\ref{fig:example1_comparison}. Please note that the middle-end and back-end modules of the decompilation pipeline are only given access to the LLVM IR (see listing~\ref{lst:example1_ll}) produced by the front-end (as described in appendix~\ref{app:clang_example}), and are completely unaware of the original C source code. When decompiling LLVM IR generated from native code, the original names of identifiers may be missing.
+
+% unresolved
+\begin{figure}[htbp]
+	\centering
+	\begin{subfigure}[t]{0.45\textwidth}
+		\lstinputlisting[language=go, style=go]{inc/appendices/post_example/example1_0.go}
+	\end{subfigure}
+	\qquad
+	\begin{subfigure}[t]{0.45\textwidth}
+		\lstinputlisting[language=go, style=go]{inc/appendices/post_example/example1_1.go}
+	\end{subfigure}
+	\caption{\textbf{Rewrite 1}. The original unpolished Go source code (left) and the simplified Go source code (right) after declaring unresolved identifiers. The assignment statements of line 4 and 5 have been rewritten into declare-and-initialise statements. This transformation was applied by invoking \texttt{go-post -r unresolved}.}
+	\label{fig:rewrite_1}
+\end{figure}
+
+% mainret
+\begin{figure}[htbp]
+	\centering
+	\begin{subfigure}[t]{0.45\textwidth}
+		\lstinputlisting[language=go, style=go]{inc/appendices/post_example/example1_1.go}
+	\end{subfigure}
+	\qquad
+	\begin{subfigure}[t]{0.45\textwidth}
+		\lstinputlisting[language=go, style=go]{inc/appendices/post_example/example1_2.go}
+	\end{subfigure}
+	\caption{\textbf{Rewrite 2}. The Go source code from \textbf{rewrite 1} (left) and the simplified Go source code (right) after applying Go conventions for exit status codes. The return statement of line 18 have been rewritten into an \texttt{os.Exit} function call and the \textit{``os''} package have been imported on line 3. This transformation was applied by invoking \texttt{go-post -r mainret}}
+	\label{fig:rewrite_2}
+\end{figure}
+
+% localid
+\begin{figure}[htbp]
+	\centering
+	\begin{subfigure}[t]{0.45\textwidth}
+		\lstinputlisting[language=go, style=go]{inc/appendices/post_example/example1_2.go}
+	\end{subfigure}
+	\qquad
+	\begin{subfigure}[t]{0.45\textwidth}
+		\lstinputlisting[language=go, style=go]{inc/appendices/post_example/example1_3.go}
+	\end{subfigure}
+	\caption{\textbf{Rewrite 3}. The Go source code from \textbf{rewrite 2} (left) and the simplified Go source code (right) after propagating temporary variables into expressions. The temporary variables declared at line 9, 12, 13 and 16 have been propagated into the expressions at line 10, 11 and 13. This transformation was applied by invoking \texttt{go-post -r localid}}
+	\label{fig:rewrite_3}
+\end{figure}
+
+% assignbinop
+\begin{figure}[htbp]
+	\centering
+	\begin{subfigure}[t]{0.45\textwidth}
+		\lstinputlisting[language=go, style=go]{inc/appendices/post_example/example1_3.go}
+	\end{subfigure}
+	\qquad
+	\begin{subfigure}[t]{0.45\textwidth}
+		\lstinputlisting[language=go, style=go]{inc/appendices/post_example/example1_4.go}
+	\end{subfigure}
+	\caption{\textbf{Rewrite 4}. The Go source code from \textbf{rewrite 3} (left) and the simplified Go source code (right) after simplifying binary assignment statements. The assignment statements on line 11 and 13 have been rewritten into an addition assignment operation and an increment statement respectively. This transformation was applied by invoking \texttt{go-post -r assignbinop}}
+	\label{fig:rewrite_4}
+\end{figure}
+
+% deadassign
+\begin{figure}[htbp]
+	\centering
+	\begin{subfigure}[t]{0.45\textwidth}
+		\lstinputlisting[language=go, style=go]{inc/appendices/post_example/example1_4.go}
+	\end{subfigure}
+	\qquad
+	\begin{subfigure}[t]{0.45\textwidth}
+		\lstinputlisting[language=go, style=go]{inc/appendices/post_example/example1_5.go}
+	\end{subfigure}
+	\caption{\textbf{Rewrite 5}. The Go source code from \textbf{rewrite 4} (left) and the simplified Go source code (right) after removing dead assignment statements. The assignment statements on line 9 and 14 have been removed. This transformation was applied by invoking \texttt{go-post -r deadassign}}
+	\label{fig:rewrite_5}
+\end{figure}
+
+% forloop
+\begin{figure}[htbp]
+	\centering
+	\begin{subfigure}[t]{0.45\textwidth}
+		\lstinputlisting[language=go, style=go]{inc/appendices/post_example/example1_5.go}
+	\end{subfigure}
+	\qquad
+	\begin{subfigure}[t]{0.45\textwidth}
+		\lstinputlisting[language=go, style=go]{inc/appendices/post_example/example1_6.go}
+	\end{subfigure}
+	\caption{\textbf{Rewrite 6}. The Go source code from \textbf{rewrite 5} (left) and the simplified Go source code (right) after propagating the initialisation statement on line 6 and the post-statement on line 12 to the for-loop header on line 7. This transformation was applied by invoking \texttt{go-post -r forloop}}
+	\label{fig:rewrite_6}
+\end{figure}
+
+% Comparison between the original C source code and the decompiled Go output
+% from rewrite 6.
+\begin{figure}[htbp]
+	\centering
+	\begin{subfigure}[t]{0.49\textwidth}
+		\lstinputlisting[language=C, style=c]{inc/appendices/clang_example/example1.c}
+	\end{subfigure}
+	\qquad
+	\begin{subfigure}[t]{0.43\textwidth}
+		\lstinputlisting[language=go, style=go]{inc/appendices/post_example/example1_6.go}
+	\end{subfigure}
+	\caption{The original C source code (left) and the decompiled Go output from \textbf{rewrite 6} (right).}
+	\label{fig:example1_comparison}
+\end{figure}

@@ -1,0 +1,36 @@
+% --- [ LLVM IR Library ] ------------------------------------------------------
+
+\subsection{LLVM IR Library}
+\label{sec:req_llvm_ir_library}
+
+The LLVM IR language defines several primitives directly related to code optimisation and linking, neither of which convey any useful information for the decompilation pipeline. It is therefore sufficient for this project to support a subset of the LLVM IR language and the relevant requirements should be interpreted as referring to a subset of the language.
+
+The control flow recovery tool interacts with other components using LLVM IR. It is therefore required to support reading from and writing to at least one of the representations of LLVM IR. The representations of LLVM IR are isomorphic and the standard \texttt{llvm-as} and \texttt{llvm-dis} tools from the LLVM distribution may be used to convert between the assembly language and bitcode representation of LLVM IR. Access to the bitcode representation (\textbf{R6} and \textbf{R7}) has therefore been deferred in favour of the assembly language representation (\textbf{R1} and \textbf{R2}) which has the benefit of being human-readable.
+
+The control flow analysis library will inspect and manipulate an in-memory representation of LLVM IR (\textbf{R3}) to locate high-level control flow patterns and store these findings respectively. Rather than working with sequential lists, the control flow analysis algorithms will operate on CFGs of basic blocks (\textbf{R4}). To facilitate the implementation and debugging of these algorithms, a visual representation of the CFGs would be beneficial (\textbf{R5}).
+
+To guarantee the language-agnostic interaction between components, objective~\ref{itm:obj_formal_ir} stated that a formal grammar for the LLVM IR had to be located or produced (\textbf{R8}). Previous efforts have only managed to produce formal grammars for subsets of the LLVM IR language~\cite{formal_llvm_ir_spec,formalizing_llvm_ir} and no such grammar has been officially endorsed. The difficult nature of producing a formal grammar only became apparent after discussions with the project supervisor. With this in mind, objective~\ref{itm:obj_formal_ir} has been re-evaluated as a future ambition.
+
+\begin{table}[htbp]
+	\begin{center}
+		\resizebox{\textwidth}{!}{
+			\begin{tabular}{|l|l|l|l|}
+				\hline
+				Obj. & Req. & Priority & Description \\
+				\hline
+				\ref{itm:obj_ir_library} & \textbf{R1} & MUST & Read the assembly language representation of LLVM IR \\
+				\ref{itm:obj_ir_library} & \textbf{R2} & MUST & Write the assembly language representation of LLVM IR \\
+				\ref{itm:obj_ir_library} & \textbf{R3} & MUST & Interact with an in-memory representation of LLVM IR \\
+				\ref{itm:obj_ir_library} & \textbf{R4} & MUST & Generate CFGs from LLVM IR basic blocks \\
+				\hline
+				\ref{itm:obj_ir_library} & \textbf{R5} & COULD & Visualise CFGs using the \texttt{DOT} graph description language \\
+				\hline
+				\ref{itm:obj_ir_library} & \textbf{R6} & WON'T & Read the bitcode representation of LLVM IR \\
+				\ref{itm:obj_ir_library} & \textbf{R7} & WON'T & Write the bitcode representation of LLVM IR \\
+				\ref{itm:obj_formal_ir} & \textbf{R8} & WON'T & Provide a formal grammar of LLVM IR \\
+				\hline
+			\end{tabular}
+		}
+	\end{center}
+	\caption{Requirements of the LLVM IR library.}
+\end{table}

@@ -1,0 +1,16 @@
+% ~~~ [ Compilers ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsubsection{Compilers}
+\label{sec:design_compilers}
+
+One important aspect of utilizing the IR of a compiler framework, is that the decompilation pipeline automatically gains support for transpilation (i.e. translating one programming language into another) in addition to reverse compilation. An increasing number of open source compilers (e.g. Clang, GHC, \texttt{rustc}) are capable of translating a range of source languages (e.g. C, Haskell, Rust) into LLVM IR. These compilers may be used as-is by the front-end module (see figure~\ref{fig:front-end_source}), thereby extending the supported source languages of the decompilation pipeline. Using this approach, the decompilation pipeline may translate $ n $ source languages into $ m $ target languages by implementing $ n + m $ front-end and back-end modules, instead of $ n \cdot m $ transpilers.
+
+\begin{figure}[htbp]
+	\begin{center}
+		\includegraphics[width=\textwidth]{inc/6_design/front-end_source.png}
+		\caption{Several open source compilers translate high-level programming languages into LLVM IR. Three such compilers are Clang, the Glasgow Haskell Compiler and the Rust compiler which translate C, Haskell and Rust respectively into LLVM IR.}
+		\label{fig:front-end_source}
+	\end{center}
+\end{figure}
+
+Another important aspect of utilizing LLVM IR, is that a wide range of optimisations have been implemented already by the LLVM compiler framework. This allows the front-end components to focus on translating the source languages into LLVM IR, without having to worry about producing highly optimised output. The LLVM IR may later be optimised by invoking the \texttt{opt} tool of LLVM to remove dead code, propagate constants, and promote memory accesses to registers, for instance.

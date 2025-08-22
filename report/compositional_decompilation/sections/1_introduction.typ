@@ -1,0 +1,40 @@
+% === [ Introduction ] =========================================================
+
+\begin{quote}
+	\textit{``What we call chaos is just patterns we haven't recognized. What we call random is just patterns we can't decipher.''} \\ --- Chuck Palahniuk~\cite{patterns_quote}
+\end{quote}
+
+\section{Introduction}
+\label{sec:introduction}
+
+A compiler is a piece of software which translates human readable high-level programming languages (e.g. C) to machine readable low-level languages (e.g. Assembly). In the usual flow of compilation, code is lowered through a set of transformations from a high-level to a low-level representation. The decompilation process (also referred to as reverse compilation~\cite{reverse_comp}) moves in the opposite direction by lifting code from a low-level to a high-level representation.
+
+Decompilation enables source code reconstruction of binary applications and libraries. Both security researchers and software engineers may benefit from decompilation as it facilitates analysis, modification and reconstruction of object code. The applications of decompilation are versatile, and may include one of the following uses:
+
+\begin{itemize}
+	\item Analyse malware
+	\item Recover source code
+	\item Migrate software from legacy platforms or programming languages
+	\item Optimise existing binary applications
+	\item Discover and mitigate bugs and security vulnerabilities
+	\item Verify compiler output with regards to correctness
+	\item Analyse proprietary algorithms
+	\item Improve interoperability with other software
+	\item Add new features to existing software
+\end{itemize}
+
+As recognised by Edsger W. Dijkstra in his 1972 ACM Turing Lecture (an extract of which is presented in figure~\ref{fig:dijkstra_lecture}), one of the most powerful tools for solving complex problems in Computer Science is the use of abstractions and separation of concerns. This paper explores a compositional approach to decompilation which facilitates abstractions to create a decompilation pipeline of self-contained components. Since each component interacts through language-agnostic interfaces (well-defined input and output) they may be written in a variety of programming languages. Furthermore, for each component of the decompilation pipeline there may exist multiple implementations with their respective advantages and limitations. The end user (e.g. malware analyst, security researcher or reverse engineer) may select the components which solve their task most efficiently.
+
+\begin{figure}[htbp]
+	\begin{quote}
+		\textit{``We all know that the only mental tool by means of which a very finite piece of reasoning can cover a myriad cases is called ``abstraction''; as a result the effective exploitation of their powers of abstraction must be regarded as one of the most vital activities of a competent programmer. In this connection it might be worthwhile to point out that the purpose of abstracting is not to be vague, but to create a new semantic level in which one can be absolutely precise.''}
+	\end{quote}
+	\caption{An extract from the ACM Turing Lecture given by Edsger W. Dijkstra in 1972~\cite{abstractions_quote}.}
+	\label{fig:dijkstra_lecture}
+\end{figure}
+
+% === [ Subsections ] ==========================================================
+
+\input{sections/1_introduction/1_project_aim_and_objectives}
+\input{sections/1_introduction/2_deliverables}
+\input{sections/1_introduction/3_disposition}

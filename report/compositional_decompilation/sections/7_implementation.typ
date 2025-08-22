@@ -1,0 +1,48 @@
+% === [ Implementation ] =======================================================
+
+% <howto>
+% * Write the implementation chapter plot heavy (as a novel)
+%    - Problem/task
+%    - What happened?
+%    - How was is solved?
+%
+% * If the artefact is not capable of doing everything that was wanted.
+%     - Describe problems and reflect on how those problems where solved.
+%
+% * NOT screenshot (should go in appendix)
+%
+% * Process of development.
+%
+% * These are the decisions I made and why.
+% * There are interesting problems and here is how I went about solving them.
+% * Not just what, but why you did something. What my choices were and why I
+%   choose the specific one.
+%
+% * In the course of the development some changes were made to the design.
+% * In the process of doing the implementation, this was the initial design, and
+%   these changes had to be made.
+%
+% Supervisor:
+%    - What was this for, why did you do that?
+
+% * Which limitations are tied to the design, and which were caused by the implementation? Describe each one in their dedicated sections.
+
+% * Captivating reading
+%    - Make the reading captivating; e.g. Dan Brown. And then X, and then Y.
+%    - And then I had a problem, and what did I do about it; which lead to these Z.
+
+% <howto>
+% * Note from Janka: The Implementation section should be strictly related to the software itself.
+
+\section{Implementation}
+\label{sec:implementation}
+
+This section motivates the language choice of the decompilation pipeline, describes the implementation process, and provides insight into how the software artefacts evolved from the challenges that were encountered.
+
+% === [ Subsections ] ==========================================================
+
+\input{sections/7_implementation/1_language_considerations}
+\input{sections/7_implementation/2_llvm_ir_library}
+\input{sections/7_implementation/3_go_bindings_for_llvm}
+\input{sections/7_implementation/4_subgraph_isomorphism_search_library}
+\input{sections/7_implementation/5_documentation}

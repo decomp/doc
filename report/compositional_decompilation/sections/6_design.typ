@@ -1,0 +1,40 @@
+% === [ Design ] ===============================================================
+
+% <howto>
+% * Justify, evaluate, recognize limitations of.
+%
+% * Analytical writing
+%    - Why did you do X that way?
+%    - Why did you do Y but not Z?
+%    - What was important and what not?
+
+% <howto>
+% * If you were to implement the system in another language, which aspects of
+%   the design would remain?
+% * Which are the guiding design principles?
+% * Describe the general system architecture; which components interact, how,
+%   and why?
+% * How are the individual components designed? (once again, which aspects
+%   remain if you implemented them in another language?)
+
+\begin{quote}
+	\textit{``The whole is more than the sum of its parts.''} --- Anonymous
+\end{quote}
+
+\section{Design}
+\label{sec:design}
+
+The principle of separation of concern has had a core influence on the design of the decompilation system. It has motivated a system architecture based on the composition of independent and self-contained components. End-users may either use the individual component in separation, or combine a set of components into a custom decompilation pipeline.
+
+Several smaller components may conceptually be arranged in a pipeline of stages which transform, massage or interpret the input in a certain way to solve larger tasks. A well composed pipeline is capable of solving more complex problems than each of its components, problems which may not even have been envisioned by the original component authors~\cite{simplicity_and_collaboration}. This idea is embodied in the Unix philosophy and it has influenced software construction profoundly~\cite{art_of_unix}. Furthermore, systems which expose their individual components to end-users facilitate dynamic workflows, as they enable users to adapt and extend each part of the system by adding, removing, replacing or refining components in one or more stages of the pipeline.
+
+To enforce a strict separation of concerns, each component is given access to the least amount of information required to successfully accomplish its task (e.g. the control flow analysis stage operates on CFGs and is unaware of the underlying code).
+
+The design of the decompilation system must allow language-agnostic interaction between components written in different programming languages (refer to the aim of the project in section~\ref{sec:intro_project_aim_and_objectives}). This requirement has been satisfied by communicating through well-defined input and output (e.g. JSON, DOT, LLVM IR). A more detailed view of the system architecture is presented in section~\ref{sec:design_system_architecture}.
+
+% === [ Subsections ] ==========================================================
+
+\input{sections/6_design/1_system_architecture}
+\input{sections/6_design/2_front-end_components}
+\input{sections/6_design/3_middle-end_components}
+\input{sections/6_design/4_back-end_components}

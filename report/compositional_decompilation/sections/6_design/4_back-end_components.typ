@@ -1,0 +1,24 @@
+% --- [ Back-end Components ] --------------------------------------------------
+
+\subsection{Back-end Components}
+\label{sec:design_back-end_components}
+
+The back-end module translates structured LLVM IR into a target high-level programming language, using two distinct stages. Firstly, the code generation stage translates LLVM IR into unpolished Go code by converting the individual instructions into equivalent Go statements and creating high-level control flow primitives for the various basic blocks, using the information of the structured CFGs (see section~\ref{sec:design_control_flow_analysis}). Secondly, the post-processing stage improves the quality of the unpolished Go code, through a series of source code transformations. The interaction between the middle-end, and the \texttt{ll2go} and \texttt{go-post} tools of the back-end is illustrated in figure~\ref{fig:back-end}.
+
+\begin{figure}[htbp]
+	\begin{center}
+		\includegraphics[width=0.8\textwidth]{inc/6_design/back-end.png}
+		\caption{The back-end module decompiles structured LLVM IR into Go source code, using two components. The \texttt{ll2go} tool translates structured LLVM IR assembly into unpolished Go code, which is post-processed by the \texttt{go-post} tool to improve the quality of the output.}
+		\label{fig:back-end}
+	\end{center}
+\end{figure}
+
+The clear distinction between the two back-end stages aligns with the design principle of separation of concern. The code generation stage may focus on converting LLVM IR into equivalent Go code, without having to worry about the quality of the produced code. Similarly, the post-processing stage may focus on simplifying the Go code and make it more idiomatic, without any knowledge of the underlying LLVM IR. This enables the post-processing component to be reused as-is by other projects to improve the quality of Go code.
+
+A tighter integration between the two stages could potentially produce a higher quality output, but there are no known issues preventing the decoupled stages from producing output of equivalent quality.
+
+The decompilation pipeline aims to keep the back-end module as simple as possible, by delegating general decompilation tasks (e.g. control flow analysis, data flow analysis) to the middle-end module. This reduces the efforts required to implement additional back-ends, which add support for new target programming languages (e.g. Python).
+
+% --- [ Subsubsections ] -------------------------------------------------------
+
+\input{sections/6_design/4_back-end_components/1_post-processing}
