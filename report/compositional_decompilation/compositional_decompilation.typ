@@ -1,82 +1,106 @@
-\documentclass[12pt, a4paper]{article}
+#import "@preview/latex-lookalike:0.1.4"
 
-\usepackage{preamble}
-\usepackage{preamblepaper}
-
-\title{Compositional Decompilation using LLVM IR}
-\author{Robin Eklind}
-\date{2015-04-21}
+#set document(title: [Compositional Decompilation using LLVM IR])
+#set document(author: "Robin Eklind")
+#set document(date: datetime(year: 2015, month: 04, day: 21)) // "2015-04-21"
 
 // Document
 
 // <howto>
 // * Critically evaluate why you are doing things, throughout the entire report.
 
-\begin{document}
+// === [ Front matter ] ========================================================
 
-// === [ Front matter ] =========================================================
+#set page(numbering: "i")
 
-\pagenumbering{roman}
+// --- [ Cover page ] ----------------------------------------------------------
 
-// --- [ Cover page ] -----------------------------------------------------------
+// TODO: \includepdf[pages=-]{inc/cover/cover.pdf}
 
-//\includepdf[pages=-]{inc/cover/cover.pdf}
+// --- [ Title page ] ----------------------------------------------------------
 
-// --- [ Title page ] -----------------------------------------------------------
+#latex-lookalike.make-title()
 
-\maketitle
+// TODO: uncomment
+//#include("/sections/abstract.typ")
 
-\input{sections/abstract}
+#pagebreak(weak: true)
 
-\clearpage
+// --- [ Acknowledgements ] ----------------------------------------------------
 
-// --- [ Acknowledgements ] -----------------------------------------------------
+// TODO: uncomment
+//#include("/sections/0_acknowledgements.typ")
 
-\include{sections/0_acknowledgements}
+#pagebreak(weak: true)
 
-// --- [ Table of contents ] ----------------------------------------------------
+// --- [ Table of contents ] ---------------------------------------------------
 
-\tableofcontents
+#outline()
 
-\clearpage
+#pagebreak(weak: true)
 
-// --- [ Blank page ] -----------------------------------------------------------
+// --- [ Blank page ] ----------------------------------------------------------
 
 // No paper is complete without at least one blank page.
 
-\thispagestyle{empty}
+#page(
+	header: none,
+	footer: none,
+)[
+	#v(2.5cm)
 
-\vspace*{2.5cm}
+	#align(center)[
+		#emph[This page is unintentionally left blank.]
+	]
 
-\begin{center}
-	\textit{This page is unintentionally left blank.}
-\end{center}
+	#pagebreak(weak: true)
+]
 
-\clearpage
+// === [ Main matter ] =========================================================
 
-// === [ Main matter ] ==========================================================
+#counter(page).update(1) // reset page number
+#set page(numbering: "1")
 
-\pagenumbering{arabic}
+// TODO: uncomment
+//#include("/sections/1_introduction.typ")
+#pagebreak(weak: true)
+// TODO: uncomment
+//#include("/sections/2_literature_review.typ")
+#pagebreak(weak: true)
+// TODO: uncomment
+//#include("/sections/3_related_work.typ")
+#pagebreak(weak: true)
+// TODO: uncomment
+//#include("/sections/4_methodology.typ")
+#pagebreak(weak: true)
+// TODO: uncomment
+//#include("/sections/5_requirements.typ")
+#pagebreak(weak: true)
+// TODO: uncomment
+//#include("/sections/6_design.typ")
+#pagebreak(weak: true)
+// TODO: uncomment
+//#include("/sections/7_implementation.typ")
+#pagebreak(weak: true)
+// TODO: uncomment
+//#include("/sections/8_verification.typ")
+#pagebreak(weak: true)
+// TODO: uncomment
+//#include("/sections/9_evaluation.typ")
+#pagebreak(weak: true)
+// TODO: uncomment
+//#include("/sections/10_conclusion.typ")
+#pagebreak(weak: true)
 
-\include{sections/1_introduction}
-\include{sections/2_literature_review}
-\include{sections/3_related_work}
-\include{sections/4_methodology}
-\include{sections/5_requirements}
-\include{sections/6_design}
-\include{sections/7_implementation}
-\include{sections/8_verification}
-\include{sections/9_evaluation}
-\include{sections/10_conclusion}
+// === [ Back matter ] =========================================================
 
-// === [ Back matter ] ==========================================================
+// --- [ References ] ----------------------------------------------------------
 
-// --- [ References ] -----------------------------------------------------------
+#bibliography("references.bib")
 
-\bibliography{references}
+#pagebreak(weak: true)
 
-// --- [ Appendices ] -----------------------------------------------------------
+// --- [ Appendices ] ----------------------------------------------------------
 
-\include{sections/appendices}
-
-\end{document}
+// TODO: uncomment
+//#include("/sections/appendices.typ")
