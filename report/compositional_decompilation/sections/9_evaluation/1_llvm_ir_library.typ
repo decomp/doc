@@ -34,7 +34,7 @@ In total four essential (\textbf{R1}, \textbf{R2}, \textbf{R3} and \textbf{R4}),
 	\label{tbl:eval_summary_of_llvm_ir_library}
 \end{table}
 
-% --- [ Subsections ] ----------------------------------------------------------
+// --- [ Subsections ] ----------------------------------------------------------
 
 \input{sections/9_evaluation/1_llvm_ir_library/1_essential_requirements}
 \input{sections/9_evaluation/1_llvm_ir_library/3_desirable_requirements}

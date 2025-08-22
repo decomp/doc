@@ -33,7 +33,7 @@ As recognised by Edsger W. Dijkstra in his 1972 ACM Turing Lecture (an extract o
 	\label{fig:dijkstra_lecture}
 \end{figure}
 
-% === [ Subsections ] ==========================================================
+// === [ Subsections ] ==========================================================
 
 \input{sections/1_introduction/1_project_aim_and_objectives}
 \input{sections/1_introduction/2_deliverables}

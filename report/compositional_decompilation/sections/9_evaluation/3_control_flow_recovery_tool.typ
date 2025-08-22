@@ -25,6 +25,6 @@ The control flow analysis component (see section~\ref{sec:design_control_flow_an
 	\label{tbl:eval_summary_of_control_flow_recovery_tool}
 \end{table}
 
-% --- [ Subsections ] ----------------------------------------------------------
+// --- [ Subsections ] ----------------------------------------------------------
 
 \input{sections/9_evaluation/3_control_flow_recovery_tool/1_essential_requirements}

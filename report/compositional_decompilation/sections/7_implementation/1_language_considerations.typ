@@ -1,7 +1,7 @@
 % --- [ Language Considerations ] ----------------------------------------------
 
-% <howto>
-% * choice of programming language(s) (implementation)
+// <howto>
+// * choice of programming language(s) (implementation)
 
 \subsection{Language Considerations}
 

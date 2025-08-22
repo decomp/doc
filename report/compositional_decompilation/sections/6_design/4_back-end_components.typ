@@ -19,6 +19,6 @@ A tighter integration between the two stages could potentially produce a higher 
 
 The decompilation pipeline aims to keep the back-end module as simple as possible, by delegating general decompilation tasks (e.g. control flow analysis, data flow analysis) to the middle-end module. This reduces the efforts required to implement additional back-ends, which add support for new target programming languages (e.g. Python).
 
-% --- [ Subsubsections ] -------------------------------------------------------
+// --- [ Subsubsections ] -------------------------------------------------------
 
 \input{sections/6_design/4_back-end_components/1_post-processing}

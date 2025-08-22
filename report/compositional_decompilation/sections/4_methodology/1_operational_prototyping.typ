@@ -8,7 +8,7 @@ This approach is very similar to the operational prototyping methodology, which 
 
 A major benefit with this approach is that it makes it easy to track the evolution of the design, by referring back to the throwaway prototypes which gave new insight into the problem domain; as demonstrated when tracking the evolution of the subgraph isomorphism search algorithm in section~\ref{sec:impl_subgraph_isomorphism_search_library}. A concrete risk with operational prototyping is that throwaway prototypes may end up in production systems, if not discarded as intended. As mentioned in section~\ref{sec:method_throwaway_prototyping}, the throwaway prototypes enable rapid iteration cycles by ignoring several areas of quality software (e.g. maintainability, efficiency and usability) and should therefore never end up in production systems. The use of revision control systems could help mitigate this risk, as they tracks old versions of the source code which may lower the psychological threshold for removing code (e.g. the code is not permanently removed, and may later be recovered if needed).
 
-% --- [ Subsubsections ] -------------------------------------------------------
+// --- [ Subsubsections ] -------------------------------------------------------
 
 \input{sections/4_methodology/1_operational_prototyping/1_throwaway_prototyping}
 \input{sections/4_methodology/1_operational_prototyping/2_evolutionary_prototyping}

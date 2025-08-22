@@ -41,7 +41,7 @@ In total five essential (\textbf{R9}, \textbf{R10}, \textbf{R11}, \textbf{R12} a
 	\label{tbl:eval_summary_of_control_flow_analysis_library}
 \end{table}
 
-% --- [ Subsections ] ----------------------------------------------------------
+// --- [ Subsections ] ----------------------------------------------------------
 
 \input{sections/9_evaluation/2_control_flow_analysis_library/1_essential_requirements}
 \input{sections/9_evaluation/2_control_flow_analysis_library/2_important_requirements}

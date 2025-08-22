@@ -7,22 +7,22 @@
 \author{Robin Eklind}
 \date{2015-04-21}
 
-% Document
+// Document
 
-% <howto>
-% * Critically evaluate why you are doing things, throughout the entire report.
+// <howto>
+// * Critically evaluate why you are doing things, throughout the entire report.
 
 \begin{document}
 
-% === [ Front matter ] =========================================================
+// === [ Front matter ] =========================================================
 
 \pagenumbering{roman}
 
-% --- [ Cover page ] -----------------------------------------------------------
+// --- [ Cover page ] -----------------------------------------------------------
 
-%\includepdf[pages=-]{inc/cover/cover.pdf}
+//\includepdf[pages=-]{inc/cover/cover.pdf}
 
-% --- [ Title page ] -----------------------------------------------------------
+// --- [ Title page ] -----------------------------------------------------------
 
 \maketitle
 
@@ -30,19 +30,19 @@
 
 \clearpage
 
-% --- [ Acknowledgements ] -----------------------------------------------------
+// --- [ Acknowledgements ] -----------------------------------------------------
 
 \include{sections/0_acknowledgements}
 
-% --- [ Table of contents ] ----------------------------------------------------
+// --- [ Table of contents ] ----------------------------------------------------
 
 \tableofcontents
 
 \clearpage
 
-% --- [ Blank page ] -----------------------------------------------------------
+// --- [ Blank page ] -----------------------------------------------------------
 
-% No paper is complete without at least one blank page.
+// No paper is complete without at least one blank page.
 
 \thispagestyle{empty}
 
@@ -54,7 +54,7 @@
 
 \clearpage
 
-% === [ Main matter ] ==========================================================
+// === [ Main matter ] ==========================================================
 
 \pagenumbering{arabic}
 
@@ -69,13 +69,13 @@
 \include{sections/9_evaluation}
 \include{sections/10_conclusion}
 
-% === [ Back matter ] ==========================================================
+// === [ Back matter ] ==========================================================
 
-% --- [ References ] -----------------------------------------------------------
+// --- [ References ] -----------------------------------------------------------
 
 \bibliography{references}
 
-% --- [ Appendices ] -----------------------------------------------------------
+// --- [ Appendices ] -----------------------------------------------------------
 
 \include{sections/appendices}
 

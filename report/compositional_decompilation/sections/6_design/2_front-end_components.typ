@@ -5,7 +5,7 @@
 
 The front-end module is responsible for converting a variety of inputs into LLVM IR. Two common scenarios involve converting binary files (e.g. executables, shared libraries and relocatable object code) and converting source code (e.g. C, Haskell, Rust, …) into LLVM IR. The first scenario is presented in section~\ref{sec:design_native_code_to_llvm_ir} and the second in section~\ref{sec:design_compilers}.
 
-% --- [ Subsubsections ] -------------------------------------------------------
+// --- [ Subsubsections ] -------------------------------------------------------
 
 \input{sections/6_design/2_front-end_components/1_native_code_to_llvm_ir}
 \input{sections/6_design/2_front-end_components/2_compilers}

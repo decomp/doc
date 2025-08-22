@@ -160,7 +160,7 @@ As the size of $ n $ doubles in table~\ref{tbl:run_time_summary}, the execution 
 
 In summary, profiling is great for optimising the implementations of simple problems. Algorithm research, time complexity theory and intuition is essential for implementing performant solutions to complex problems. Furthermore, knowledge about specific properties of the problem may be exploited to design performant algorithms.
 
-% --- [ Subsubsections ] -------------------------------------------------------
+// --- [ Subsubsections ] -------------------------------------------------------
 
 \input{sections/8_verification/2_performance/1_profiling}
 \input{sections/8_verification/2_performance/2_benchmarks}

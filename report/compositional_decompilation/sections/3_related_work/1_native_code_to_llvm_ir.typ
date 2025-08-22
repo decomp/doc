@@ -5,7 +5,7 @@
 
 There exist several open source projects for translating native code (e.g. x86, ARM) into LLVM IR. This section presents three such projects; Dagger, Fracture and MC-Semantics. The Fracture project is still in early development (e.g. recursive descent disassembler is on the roadmap), but shows a lot of promise and is currently capable of translating ARM binaries into LLVM IR~\cite{fracture}. The Dagger and MC-Semantics projects are reviewed in section~\ref{sec:rel_work_dagger} and~\ref{sec:rel_work_mc-semantics}, respectively.
 
-% --- [ Subsubsections ] -------------------------------------------------------
+// --- [ Subsubsections ] -------------------------------------------------------
 
 \input{sections/3_related_work/1_native_code_to_llvm_ir/1_dagger}
 \input{sections/3_related_work/1_native_code_to_llvm_ir/2_mc-semantics}

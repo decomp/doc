@@ -1,7 +1,7 @@
 % === [ Requirements ] =========================================================
 
-% <howto>
-% * what is the software meant to do? (requirements)
+// <howto>
+// * what is the software meant to do? (requirements)
 
 \section{Requirements}
 \label{sec:requirements}
@@ -27,7 +27,7 @@ The requirements of each deliverable have been outlined in the succeeding subsec
 	\label{tbl:MoSCoW_priorities}
 \end{table}
 
-% === [ Subsections ] ==========================================================
+// === [ Subsections ] ==========================================================
 
 \input{sections/5_requirements/1_llvm_ir_library}
 \input{sections/5_requirements/2_control_flow_analysis_library}

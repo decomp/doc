@@ -1,21 +1,21 @@
 % === [ Design ] ===============================================================
 
-% <howto>
-% * Justify, evaluate, recognize limitations of.
-%
-% * Analytical writing
-%    - Why did you do X that way?
-%    - Why did you do Y but not Z?
-%    - What was important and what not?
+// <howto>
+// * Justify, evaluate, recognize limitations of.
+//
+// * Analytical writing
+//    - Why did you do X that way?
+//    - Why did you do Y but not Z?
+//    - What was important and what not?
 
-% <howto>
-% * If you were to implement the system in another language, which aspects of
-%   the design would remain?
-% * Which are the guiding design principles?
-% * Describe the general system architecture; which components interact, how,
-%   and why?
-% * How are the individual components designed? (once again, which aspects
-%   remain if you implemented them in another language?)
+// <howto>
+// * If you were to implement the system in another language, which aspects of
+//   the design would remain?
+// * Which are the guiding design principles?
+// * Describe the general system architecture; which components interact, how,
+//   and why?
+// * How are the individual components designed? (once again, which aspects
+//   remain if you implemented them in another language?)
 
 \begin{quote}
 	\textit{``The whole is more than the sum of its parts.''} --- Anonymous
@@ -32,7 +32,7 @@ To enforce a strict separation of concerns, each component is given access to th
 
 The design of the decompilation system must allow language-agnostic interaction between components written in different programming languages (refer to the aim of the project in section~\ref{sec:intro_project_aim_and_objectives}). This requirement has been satisfied by communicating through well-defined input and output (e.g. JSON, DOT, LLVM IR). A more detailed view of the system architecture is presented in section~\ref{sec:design_system_architecture}.
 
-% === [ Subsections ] ==========================================================
+// === [ Subsections ] ==========================================================
 
 \input{sections/6_design/1_system_architecture}
 \input{sections/6_design/2_front-end_components}

@@ -1,12 +1,12 @@
 % --- [ System Architecture ] --------------------------------------------------
 
-% <howto>
-% * the overall structure of the software system (architecture)
+// <howto>
+// * the overall structure of the software system (architecture)
 
-% <howto>
-% * Software architecture is concerned with deciding what has to be done, and which program component is going to do it (how something is done is left to the detailed design phase, below)
-% * It effectively defines the interface between the programs of the system.
-% * This stage does not need to consider non-functional requirements (e.g. response time, reliability, maintainability).
+// <howto>
+// * Software architecture is concerned with deciding what has to be done, and which program component is going to do it (how something is done is left to the detailed design phase, below)
+// * It effectively defines the interface between the programs of the system.
+// * This stage does not need to consider non-functional requirements (e.g. response time, reliability, maintainability).
 
 \subsection{System Architecture}
 \label{sec:design_system_architecture}

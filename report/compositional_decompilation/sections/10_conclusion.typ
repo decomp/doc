@@ -1,25 +1,25 @@
 % === [ Conclusion ] ===========================================================
 
-% <howto>
-% * Reflections on what you have personally learned from this and lessons for the future.
-% * Reflect on how problems were solved in the conclusions chapter.
-% * How well you implemented methodologies.
-% * How successful the development was.
-% * Reflective writing on what you've done.
+// <howto>
+// * Reflections on what you have personally learned from this and lessons for the future.
+// * Reflect on how problems were solved in the conclusions chapter.
+// * How well you implemented methodologies.
+// * How successful the development was.
+// * Reflective writing on what you've done.
 
-% <howto> Relationship between sections.
-%
-%    Introduction ---> Conclusions
-%                         ^
-%                         |
-%    Literature Review ---+
+// <howto> Relationship between sections.
+//
+//    Introduction ---> Conclusions
+//                         ^
+//                         |
+//    Literature Review ---+
 
 \section{Conclusion}
 \label{sec:conclusion}
 
 This section concludes the project report with subjective reflections from the author. For the remainder of this section I will switch to a first person narrative.
 
-% === [ Subsections ] ==========================================================
+// === [ Subsections ] ==========================================================
 
 \input{sections/10_conclusion/1_project_summary}
 \input{sections/10_conclusion/2_future_work}

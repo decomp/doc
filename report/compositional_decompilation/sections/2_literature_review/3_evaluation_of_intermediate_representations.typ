@@ -4,7 +4,7 @@
 
 Decompilers face similar problems as both binary analysis tools and compilers. Therefore, it seems reasonable that the intermediate representations (IRs) used in these domains may be well suited for decompilation purposes. This section evaluates one IR from each domain with regards to their suitability for recovering high-level control flow primitives (objective~\ref{itm:obj_control_flow_analysis_component}) and expressions (objective~\ref{itm:obj_data_analysis_library}).
 
-% --- [ Subsubsections ] -------------------------------------------------------
+// --- [ Subsubsections ] -------------------------------------------------------
 
 \input{sections/2_literature_review/3_evaluation_of_intermediate_representations/1_reil}
 \input{sections/2_literature_review/3_evaluation_of_intermediate_representations/2_llvm_ir}

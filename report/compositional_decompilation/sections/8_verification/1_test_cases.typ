@@ -30,6 +30,6 @@ ok     github.com/decomp/graphs/iso   0.62s
 	\end{center}
 \end{figure}
 
-% --- [ Subsubsections ] -------------------------------------------------------
+// --- [ Subsubsections ] -------------------------------------------------------
 
 \input{sections/8_verification/1_test_cases/1_code_coverage}

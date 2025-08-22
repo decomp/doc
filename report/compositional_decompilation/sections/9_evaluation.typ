@@ -1,27 +1,27 @@
 % === [ Evaluation ] ===========================================================
 
-% <mark>
-% - Description of plan for evaluating outcome.
-% - Convincing evidence that artefact meets requirements with explanation where
-%   it doesn't.
-% - Justification of evaluation method.
-% - Shows awareness of limits of evaluation.
-%
-% - How well does the report describe and justify the means by which the outcome
-%   of the project was evaluated?
-% - How well is it shown whether the specification of the requirements has been
-%   satisfied?
-% - How well explained are areas where it hasn't?
+// <mark>
+// - Description of plan for evaluating outcome.
+// - Convincing evidence that artefact meets requirements with explanation where
+//   it doesn't.
+// - Justification of evaluation method.
+// - Shows awareness of limits of evaluation.
+//
+// - How well does the report describe and justify the means by which the outcome
+//   of the project was evaluated?
+// - How well is it shown whether the specification of the requirements has been
+//   satisfied?
+// - How well explained are areas where it hasn't?
 
-% <howto> Relationship between sections.
-%
-%    Requirements -----> Evaluation
-%
-% <howto>
-% - You should describe how you demonstrated that system works as intended (or not, as the case may be)
-% - Include comprehensible summaries of the results of all critical tests that you made.
-% - You should try to indicate how confident you are about whatever code you have produced, and also suggest what tests would be required to gain further confidence.
-% - You must also critically evaluate your system in the light of these tests, describing its strengths and weaknesses.
+// <howto> Relationship between sections.
+//
+//    Requirements -----> Evaluation
+//
+// <howto>
+// - You should describe how you demonstrated that system works as intended (or not, as the case may be)
+// - Include comprehensible summaries of the results of all critical tests that you made.
+// - You should try to indicate how confident you are about whatever code you have produced, and also suggest what tests would be required to gain further confidence.
+// - You must also critically evaluate your system in the light of these tests, describing its strengths and weaknesses.
 
 \section{Evaluation}
 \label{sec:evaluation}
@@ -38,7 +38,7 @@ The \texttt{ll2go} component (see section~\ref{sec:design_back-end_components}) 
 
 Lastly, the \texttt{go-post} component (see section~\ref{sec:design_post-processing}) is considered alpha quality, and the test cases of the \texttt{go-post} command have a code coverage of 38.0\%; as outlined in section~\ref{sec:ver_code_coverage}. The \texttt{go-post} tool was primarily implemented to evaluate the feasibility of applying source code transformations to make the decompiled Go code more idiomatic. Implementing these post-processing rules were surprisingly easy, and it was often possible to go from the conceptual idea of a rewrite rule to a working implementation in a matter of hours. While some rewrite rules are reliable (e.g. the \textit{``mainret''} rewrite rule, which is presented in~\ref{fig:rewrite_2} of appendix~\ref{app:post-processing_example}), most are considered experimental. For instance, the \textit{``localid''} rewrite rule (see figure~\ref{fig:rewrite_3} of appendix~\ref{app:post-processing_example}) is known to produce incorrect rewrites when applied to complex programs, but it works for simple programs and provides rudimentary support for expression propagation. A proper implementation of expression propagation would rely on the future implementation of the data flow analysis component, which is mentioned in~\ref{sec:con_design_validation}.
 
-% === [ Subsections ] ==========================================================
+// === [ Subsections ] ==========================================================
 
 \input{sections/9_evaluation/1_llvm_ir_library}
 \input{sections/9_evaluation/2_control_flow_analysis_library}

@@ -15,7 +15,7 @@ A core principle utilised in decompilers is the separation of concern through th
 
 The remainder of this section describes the distinct decompilation phases, most of which have been thoroughly described by Cristina Cifuentes in her influential paper \textit{``Reverse Compilation Techniques''}~\cite{reverse_comp}.
 
-% --- [ Subsubsections ] -------------------------------------------------------
+// --- [ Subsubsections ] -------------------------------------------------------
 
 \input{sections/2_literature_review/2_decompilation_phases/1_binary_analysis}
 \input{sections/2_literature_review/2_decompilation_phases/2_disassembly}

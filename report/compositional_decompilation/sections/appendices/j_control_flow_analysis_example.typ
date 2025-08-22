@@ -17,7 +17,7 @@ The last step of the control flow analysis stage reduces the CFG of \textbf{step
 
 When the CFG has been reduced into a single node, a structured CFG may be generated which maps each node to a high-level control flow primitive; as further described in appendix~\ref{app:restructure_example}. Should the control flow analysis fail to reduce the CFG into a single node, the CFG is considered irreducible with regards to the supported high-level control flow primitives, a summary of which are presented in figure~\ref{fig:graph_representations} of section~\ref{sec:lit_review_control_flow_analysis}.
 
-% pre_test
+// pre_test
 \begin{figure}[htbp]
 	\centering
 	\begin{subfigure}[ht]{0.45\textwidth}
@@ -31,7 +31,7 @@ When the CFG has been reduced into a single node, a structured CFG may be genera
 	\label{fig:step_1}
 \end{figure}
 
-% seq
+// seq
 \begin{figure}[htbp]
 	\centering
 	\begin{subfigure}[ht]{0.45\textwidth}
@@ -45,7 +45,7 @@ When the CFG has been reduced into a single node, a structured CFG may be genera
 	\label{fig:step_2}
 \end{figure}
 
-% if
+// if
 \begin{figure}[htbp]
 	\centering
 	\begin{subfigure}[ht]{0.45\textwidth}
@@ -59,7 +59,7 @@ When the CFG has been reduced into a single node, a structured CFG may be genera
 	\label{fig:step_3}
 \end{figure}
 
-% if_return
+// if_return
 \begin{figure}[htbp]
 	\centering
 	\begin{subfigure}[ht]{0.45\textwidth}
@@ -73,7 +73,7 @@ When the CFG has been reduced into a single node, a structured CFG may be genera
 	\label{fig:step_4}
 \end{figure}
 
-% if_else
+// if_else
 \begin{figure}[htbp]
 	\centering
 	\begin{subfigure}[ht]{0.45\textwidth}

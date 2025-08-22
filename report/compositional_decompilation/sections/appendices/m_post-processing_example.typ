@@ -7,7 +7,7 @@ This section demonstrates the rewriting capabilities of the \texttt{go-post} too
 
 For comparison, the original C source code is presented alongside of the decompiled Go output from \textbf{rewrite 6} in figure~\ref{fig:example1_comparison}. Please note that the middle-end and back-end modules of the decompilation pipeline are only given access to the LLVM IR (see listing~\ref{lst:example1_ll}) produced by the front-end (as described in appendix~\ref{app:clang_example}), and are completely unaware of the original C source code. When decompiling LLVM IR generated from native code, the original names of identifiers may be missing.
 
-% unresolved
+// unresolved
 \begin{figure}[htbp]
 	\centering
 	\begin{subfigure}[t]{0.45\textwidth}
@@ -21,7 +21,7 @@ For comparison, the original C source code is presented alongside of the decompi
 	\label{fig:rewrite_1}
 \end{figure}
 
-% mainret
+// mainret
 \begin{figure}[htbp]
 	\centering
 	\begin{subfigure}[t]{0.45\textwidth}
@@ -35,7 +35,7 @@ For comparison, the original C source code is presented alongside of the decompi
 	\label{fig:rewrite_2}
 \end{figure}
 
-% localid
+// localid
 \begin{figure}[htbp]
 	\centering
 	\begin{subfigure}[t]{0.45\textwidth}
@@ -49,7 +49,7 @@ For comparison, the original C source code is presented alongside of the decompi
 	\label{fig:rewrite_3}
 \end{figure}
 
-% assignbinop
+// assignbinop
 \begin{figure}[htbp]
 	\centering
 	\begin{subfigure}[t]{0.45\textwidth}
@@ -63,7 +63,7 @@ For comparison, the original C source code is presented alongside of the decompi
 	\label{fig:rewrite_4}
 \end{figure}
 
-% deadassign
+// deadassign
 \begin{figure}[htbp]
 	\centering
 	\begin{subfigure}[t]{0.45\textwidth}
@@ -77,7 +77,7 @@ For comparison, the original C source code is presented alongside of the decompi
 	\label{fig:rewrite_5}
 \end{figure}
 
-% forloop
+// forloop
 \begin{figure}[htbp]
 	\centering
 	\begin{subfigure}[t]{0.45\textwidth}
@@ -91,8 +91,8 @@ For comparison, the original C source code is presented alongside of the decompi
 	\label{fig:rewrite_6}
 \end{figure}
 
-% Comparison between the original C source code and the decompiled Go output
-% from rewrite 6.
+// Comparison between the original C source code and the decompiled Go output
+// from rewrite 6.
 \begin{figure}[htbp]
 	\centering
 	\begin{subfigure}[t]{0.49\textwidth}
