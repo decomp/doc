@@ -1,11 +1,12 @@
-// === [ Requirements ] =========================================================
+// === [ Requirements ] ========================================================
 
 // <howto>
 // * what is the software meant to do? (requirements)
 
-\section{Requirements}
-\label{sec:requirements}
+= Requirements
+<sec:requirements>
 
+/*
 The requirements of each deliverable have been outlined in the succeeding subsections, and are categorised using MoSCoW prioritization~\cite{MoSCoW_analysis}; a definition of which is presented in table~\ref{tbl:MoSCoW_priorities}. Each requirement is directly related to an objective as indicated by the requirements tables of the deliverables. The only objectives not covered by these requirements are objective~\ref{itm:obj_review_decomp_techniques},~\ref{itm:obj_review_suitable_ir} and~\ref{itm:obj_formal_ir} which relate to the literature review, and objective~\ref{itm:obj_data_analysis_library} which was intentionally left as a future ambition.
 
 \begin{table}[htbp]
@@ -27,8 +28,9 @@ The requirements of each deliverable have been outlined in the succeeding subsec
 	\label{tbl:MoSCoW_priorities}
 \end{table}
 
-// === [ Subsections ] ==========================================================
+// === [ Subsections ] =========================================================
 
 \input{sections/5_requirements/1_llvm_ir_library}
 \input{sections/5_requirements/2_control_flow_analysis_library}
 \input{sections/5_requirements/3_control_flow_recovery_tool}
+*/

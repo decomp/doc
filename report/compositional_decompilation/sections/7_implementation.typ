@@ -1,4 +1,4 @@
-// === [ Implementation ] =======================================================
+// === [ Implementation ] ======================================================
 
 // <howto>
 // * Write the implementation chapter plot heavy (as a novel)
@@ -34,15 +34,17 @@
 // <howto>
 // * Note from Janka: The Implementation section should be strictly related to the software itself.
 
-\section{Implementation}
-\label{sec:implementation}
+= Implementation
+<sec:implementation>
 
+/*
 This section motivates the language choice of the decompilation pipeline, describes the implementation process, and provides insight into how the software artefacts evolved from the challenges that were encountered.
 
-// === [ Subsections ] ==========================================================
+// === [ Subsections ] =========================================================
 
 \input{sections/7_implementation/1_language_considerations}
 \input{sections/7_implementation/2_llvm_ir_library}
 \input{sections/7_implementation/3_go_bindings_for_llvm}
 \input{sections/7_implementation/4_subgraph_isomorphism_search_library}
 \input{sections/7_implementation/5_documentation}
+*/

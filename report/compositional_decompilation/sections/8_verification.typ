@@ -1,13 +1,15 @@
-// === [ Verification ] =========================================================
+// === [ Verification ] ========================================================
 
-\section{Verification}
-\label{sec:verification}
+= Verification
+<sec:verification>
 
+/*
 This section describes the methods used to verify the correctness, measure the performance and assess security of the software artefacts. It concludes with a discussion on how CI is utilised to automatically and continuously verify these aspects.
 
-// === [ Subsections ] ==========================================================
+// === [ Subsections ] =========================================================
 
 \input{sections/8_verification/1_test_cases}
 \input{sections/8_verification/2_performance}
 \input{sections/8_verification/3_security_assessment}
 \input{sections/8_verification/4_continuous_integration}
+*/

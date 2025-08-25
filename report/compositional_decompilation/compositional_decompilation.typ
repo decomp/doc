@@ -8,8 +8,6 @@
 #set text(font: "New Computer Modern")
 #set text(size: 11.5pt)
 
-#set heading(numbering: "1.1")
-
 // Display a heading's numbering and body for hydra.
 #let display-hydra(
 	// The context in which the element was found.
@@ -43,12 +41,31 @@
 	header-ascent: 31%,
 )
 
-#set par(
-	justify: true
-)
+#show: latex-lookalike.style
 
-#show heading: latex-lookalike.style-heading
-#show outline: latex-lookalike.style-outline
+// --- [ referenceable enums hack ] --------------------------------------------
+
+// TODO: update when https://github.com/typst/typst/issues/779 is resolved.
+
+// workaround hack (ref: https://github.com/typst/typst/issues/779#issuecomment-2595880447)
+
+#let enum-numbering = (..nums) => {
+	counter("enum").update(nums.pos())
+	numbering("1.1.", ..nums)
+}
+
+#set enum(numbering: enum-numbering, full: true)
+
+#show ref: it => {
+	let elem = it.element
+	if elem != none and elem.func() == std.text {
+		link(elem.location(), numbering("1.1", ..counter("enum").at(elem.location())))
+	} else {
+		it
+	}
+}
+
+// --- [/ referenceable enums hack ] -------------------------------------------
 
 // Document
 
@@ -109,35 +126,34 @@ pagebreak(weak: true)
 #counter(page).update(1) // reset page number
 #set page(numbering: "1")
 
-// TODO: uncomment
-//#include("/sections/1_introduction.typ")
+#include("/sections/1_introduction.typ")
 #pagebreak(weak: true)
-// TODO: uncomment
-//#include("/sections/2_literature_review.typ")
+
+#include("/sections/2_literature_review.typ")
 #pagebreak(weak: true)
-// TODO: uncomment
-//#include("/sections/3_related_work.typ")
+
+#include("/sections/3_related_work.typ")
 #pagebreak(weak: true)
-// TODO: uncomment
-//#include("/sections/4_methodology.typ")
+
+#include("/sections/4_methodology.typ")
 #pagebreak(weak: true)
-// TODO: uncomment
-//#include("/sections/5_requirements.typ")
+
+#include("/sections/5_requirements.typ")
 #pagebreak(weak: true)
-// TODO: uncomment
-//#include("/sections/6_design.typ")
+
+#include("/sections/6_design.typ")
 #pagebreak(weak: true)
-// TODO: uncomment
-//#include("/sections/7_implementation.typ")
+
+#include("/sections/7_implementation.typ")
 #pagebreak(weak: true)
-// TODO: uncomment
-//#include("/sections/8_verification.typ")
+
+#include("/sections/8_verification.typ")
 #pagebreak(weak: true)
-// TODO: uncomment
-//#include("/sections/9_evaluation.typ")
+
+#include("/sections/9_evaluation.typ")
 #pagebreak(weak: true)
-// TODO: uncomment
-//#include("/sections/10_conclusion.typ")
+
+#include("/sections/10_conclusion.typ")
 #pagebreak(weak: true)
 
 // === [ Back matter ] =========================================================

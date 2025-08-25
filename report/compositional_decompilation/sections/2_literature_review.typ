@@ -1,4 +1,4 @@
-// === [ Literature Review ] ====================================================
+// === [ Literature Review ] ===================================================
 
 // <howto>
 // * Critical review of relevant literature
@@ -110,13 +110,15 @@
 // * which authors support which views?
 // * are there inconsistencies, gaps...?
 
-\section{Literature Review}
-\label{sec:literature_review}
+= Literature Review
+<sec:literature_review>
 
+/*
 This section details the problem domain associated with decompilation, reviews traditional decompilation techniques, and evaluates a set of intermediate representations with regards to their suitability for decompilation purposes. To set the stage for binary analysis, a \textit{``hello world''} executable is dissected in section~\ref{sec:lit_review_the_anatomy_of_an_executable}.
 
-// === [ Subsections ] ==========================================================
+// === [ Subsections ] =========================================================
 
 \input{sections/2_literature_review/1_the_anatomy_of_an_executable}
 \input{sections/2_literature_review/2_decompilation_phases}
 \input{sections/2_literature_review/3_evaluation_of_intermediate_representations}
+*/

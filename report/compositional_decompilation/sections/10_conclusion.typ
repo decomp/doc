@@ -1,4 +1,4 @@
-// === [ Conclusion ] ===========================================================
+// === [ Conclusion ] ==========================================================
 
 // <howto>
 // * Reflections on what you have personally learned from this and lessons for the future.
@@ -14,14 +14,16 @@
 //                         |
 //    Literature Review ---+
 
-\section{Conclusion}
-\label{sec:conclusion}
+= Conclusion
+<sec:conclusion>
 
+/*
 This section concludes the project report with subjective reflections from the author. For the remainder of this section I will switch to a first person narrative.
 
-// === [ Subsections ] ==========================================================
+// === [ Subsections ] =========================================================
 
 \input{sections/10_conclusion/1_project_summary}
 \input{sections/10_conclusion/2_future_work}
 \input{sections/10_conclusion/3_personal_development}
 \input{sections/10_conclusion/4_final_thoughts}
+*/

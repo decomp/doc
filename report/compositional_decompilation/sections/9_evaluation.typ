@@ -1,4 +1,4 @@
-// === [ Evaluation ] ===========================================================
+// === [ Evaluation ] ==========================================================
 
 // <mark>
 // - Description of plan for evaluating outcome.
@@ -23,9 +23,10 @@
 // - You should try to indicate how confident you are about whatever code you have produced, and also suggest what tests would be required to gain further confidence.
 // - You must also critically evaluate your system in the light of these tests, describing its strengths and weaknesses.
 
-\section{Evaluation}
-\label{sec:evaluation}
+= Evaluation
+<sec:evaluation>
 
+/*
 This section evaluates the artefacts of the decompilation system against the requirements outlined in section~\ref{sec:requirements}. To assess the capabilities of the individual components, relevant decompilation scenarios have been considered. The current state of each component is summarised in the succeeding paragraphs, and future work to validate the design, improve the reliability, and extend the capabilities of the decompilation pipeline is presented in section~\ref{sec:con_future_work}.
 
 The \texttt{ll2dot} component (see section~\ref{sec:design_control_flow_graph_generation}) is considered stable, but there are known issues which may affect the reliability and the integrity of the produced CFGs; as further described in section~\ref{sec:ver_security_assessment}. Future work which seeks to address these issues is presented in section~\ref{sec:con_reliability_improvements}.
@@ -38,8 +39,9 @@ The \texttt{ll2go} component (see section~\ref{sec:design_back-end_components}) 
 
 Lastly, the \texttt{go-post} component (see section~\ref{sec:design_post-processing}) is considered alpha quality, and the test cases of the \texttt{go-post} command have a code coverage of 38.0\%; as outlined in section~\ref{sec:ver_code_coverage}. The \texttt{go-post} tool was primarily implemented to evaluate the feasibility of applying source code transformations to make the decompiled Go code more idiomatic. Implementing these post-processing rules were surprisingly easy, and it was often possible to go from the conceptual idea of a rewrite rule to a working implementation in a matter of hours. While some rewrite rules are reliable (e.g. the \textit{``mainret''} rewrite rule, which is presented in~\ref{fig:rewrite_2} of appendix~\ref{app:post-processing_example}), most are considered experimental. For instance, the \textit{``localid''} rewrite rule (see figure~\ref{fig:rewrite_3} of appendix~\ref{app:post-processing_example}) is known to produce incorrect rewrites when applied to complex programs, but it works for simple programs and provides rudimentary support for expression propagation. A proper implementation of expression propagation would rely on the future implementation of the data flow analysis component, which is mentioned in~\ref{sec:con_design_validation}.
 
-// === [ Subsections ] ==========================================================
+// === [ Subsections ] =========================================================
 
 \input{sections/9_evaluation/1_llvm_ir_library}
 \input{sections/9_evaluation/2_control_flow_analysis_library}
 \input{sections/9_evaluation/3_control_flow_recovery_tool}
+*/
