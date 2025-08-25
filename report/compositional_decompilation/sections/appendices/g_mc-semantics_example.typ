@@ -1,4 +1,4 @@
-% --- [ MC-Semantics Example ] -------------------------------------------------
+// --- [ MC-Semantics Example ] -------------------------------------------------
 
 \subsection{MC-Semantics Example}
 \label{app:mc-semantics_example}

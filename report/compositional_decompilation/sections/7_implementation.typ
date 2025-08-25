@@ -1,4 +1,4 @@
-% === [ Implementation ] =======================================================
+// === [ Implementation ] =======================================================
 
 // <howto>
 // * Write the implementation chapter plot heavy (as a novel)

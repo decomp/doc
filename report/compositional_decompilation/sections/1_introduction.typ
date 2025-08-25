@@ -1,4 +1,4 @@
-% === [ Introduction ] =========================================================
+// === [ Introduction ] =========================================================
 
 \begin{quote}
 	\textit{``What we call chaos is just patterns we haven't recognized. What we call random is just patterns we can't decipher.''} \\ --- Chuck Palahniuk~\cite{patterns_quote}

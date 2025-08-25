@@ -1,4 +1,4 @@
-% --- [ Certificate of Ethics Review ] -----------------------------------------
+// --- [ Certificate of Ethics Review ] -----------------------------------------
 
 \subsection{Certificate of Ethics Review}
 

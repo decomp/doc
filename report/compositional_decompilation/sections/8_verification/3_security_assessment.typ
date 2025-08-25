@@ -1,4 +1,4 @@
-% --- [ Security Assessment ] --------------------------------------------------
+// --- [ Security Assessment ] --------------------------------------------------
 
 \subsection{Security Assessment}
 \label{sec:ver_security_assessment}

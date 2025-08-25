@@ -1,4 +1,4 @@
-% --- [ Code Generation Example ] ----------------------------------------------
+// --- [ Code Generation Example ] ----------------------------------------------
 
 \subsection{Code Generation Example}
 \label{app:code_generation_example}

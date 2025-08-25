@@ -1,4 +1,4 @@
-% ~~~ [ Extended Capabilities ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~ [ Extended Capabilities ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 \subsubsection{Extended Capabilities}
 \label{sec:con_extended_capabilities}

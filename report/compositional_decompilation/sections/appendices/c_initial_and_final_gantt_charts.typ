@@ -1,4 +1,4 @@
-% --- [ Initial and Final Gantt Charts ] ---------------------------------------
+// --- [ Initial and Final Gantt Charts ] ---------------------------------------
 
 \subsection{Initial and Final Gantt Charts}
 

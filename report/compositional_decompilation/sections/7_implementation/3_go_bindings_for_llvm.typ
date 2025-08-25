@@ -1,4 +1,4 @@
-% --- [ Go Bindings for LLVM ] -------------------------------------------------
+// --- [ Go Bindings for LLVM ] -------------------------------------------------
 
 \subsection{Go Bindings for LLVM}
 \label{sec:impl_go_bindings_for_llvm}

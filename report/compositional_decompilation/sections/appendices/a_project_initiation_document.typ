@@ -1,4 +1,4 @@
-% --- [ Project Initiation Document ] ------------------------------------------
+// --- [ Project Initiation Document ] ------------------------------------------
 
 \subsection{Project Initiation Document}
 

@@ -1,4 +1,4 @@
-% --- [ The Anatomy of an Executable ] -----------------------------------------
+// --- [ The Anatomy of an Executable ] -----------------------------------------
 
 \subsection{The Anatomy of an Executable}
 \label{sec:lit_review_the_anatomy_of_an_executable}

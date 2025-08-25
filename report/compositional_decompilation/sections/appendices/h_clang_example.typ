@@ -1,4 +1,4 @@
-% --- [ Clang Example ] --------------------------------------------------------
+// --- [ Clang Example ] --------------------------------------------------------
 
 \subsection{Clang Example}
 \label{app:clang_example}

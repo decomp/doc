@@ -1,4 +1,4 @@
-% --- [ Native Code to LLVM IR ] -----------------------------------------------
+// --- [ Native Code to LLVM IR ] -----------------------------------------------
 
 \subsection{Native Code to LLVM IR}
 \label{sec:rel_work_native_code_to_llvm_ir}

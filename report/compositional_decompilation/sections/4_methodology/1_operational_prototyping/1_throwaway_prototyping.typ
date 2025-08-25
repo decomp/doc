@@ -1,4 +1,4 @@
-% ~~~ [ Throwaway Prototyping ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~ [ Throwaway Prototyping ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 \subsubsection{Throwaway Prototyping}
 \label{sec:method_throwaway_prototyping}

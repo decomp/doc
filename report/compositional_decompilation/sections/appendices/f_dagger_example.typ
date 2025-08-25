@@ -1,4 +1,4 @@
-% --- [ Dagger Example ] -------------------------------------------------------
+// --- [ Dagger Example ] -------------------------------------------------------
 
 \subsection{Dagger Example}
 \label{app:dagger_example}

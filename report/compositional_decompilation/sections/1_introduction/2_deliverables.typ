@@ -1,4 +1,4 @@
-% --- [ Deliverables ] ---------------------------------------------------------
+// --- [ Deliverables ] ---------------------------------------------------------
 
 \subsection{Deliverables}
 \label{sec:intro_deliverables}

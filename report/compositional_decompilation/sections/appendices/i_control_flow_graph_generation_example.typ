@@ -1,4 +1,4 @@
-% --- [ Control Flow Graph Generation Example ] --------------------------------
+// --- [ Control Flow Graph Generation Example ] --------------------------------
 
 \subsection{Control Flow Graph Generation Example}
 \label{app:control_flow_graph_generation_example}

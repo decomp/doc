@@ -1,4 +1,4 @@
-% --- [ Post-processing Example ] ----------------------------------------------
+// --- [ Post-processing Example ] ----------------------------------------------
 
 \subsection{Post-processing Example}
 \label{app:post-processing_example}

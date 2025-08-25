@@ -1,4 +1,4 @@
-% --- [ Project Aim and Objectives ] -------------------------------------------
+// --- [ Project Aim and Objectives ] -------------------------------------------
 
 \subsection{Project Aim and Objectives}
 \label{sec:intro_project_aim_and_objectives}

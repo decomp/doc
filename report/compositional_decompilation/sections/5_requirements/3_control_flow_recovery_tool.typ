@@ -1,4 +1,4 @@
-% --- [ Control Flow Recovery Tool ] -------------------------------------------
+// --- [ Control Flow Recovery Tool ] -------------------------------------------
 
 \subsection{Control Flow Recovery Tool}
 \label{sec:req_control_flow_recovery_tool}

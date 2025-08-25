@@ -1,4 +1,4 @@
-% --- [ Evaluation of Intermediate Representations ] ---------------------------
+// --- [ Evaluation of Intermediate Representations ] ---------------------------
 
 \subsection{Evaluation of Intermediate Representations}
 

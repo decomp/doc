@@ -1,4 +1,4 @@
-% --- [ Control Flow Analysis Library ] ----------------------------------------
+// --- [ Control Flow Analysis Library ] ----------------------------------------
 
 \subsection{Control Flow Analysis Library}
 \label{sec:req_control_flow_analysis_library}

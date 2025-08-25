@@ -1,4 +1,4 @@
-% === [ Literature Review ] ====================================================
+// === [ Literature Review ] ====================================================
 
 // <howto>
 // * Critical review of relevant literature

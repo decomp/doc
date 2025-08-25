@@ -1,4 +1,4 @@
-% --- [ The REIL Instruction Set ] ---------------------------------------------
+// --- [ The REIL Instruction Set ] ---------------------------------------------
 
 \subsection{The REIL Instruction Set}
 \label{app:reil_instructions}

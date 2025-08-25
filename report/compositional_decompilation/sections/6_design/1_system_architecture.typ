@@ -1,4 +1,4 @@
-% --- [ System Architecture ] --------------------------------------------------
+// --- [ System Architecture ] --------------------------------------------------
 
 // <howto>
 // * the overall structure of the software system (architecture)

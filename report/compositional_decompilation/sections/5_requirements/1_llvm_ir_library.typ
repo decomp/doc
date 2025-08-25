@@ -1,4 +1,4 @@
-% --- [ LLVM IR Library ] ------------------------------------------------------
+// --- [ LLVM IR Library ] ------------------------------------------------------
 
 \subsection{LLVM IR Library}
 \label{sec:req_llvm_ir_library}

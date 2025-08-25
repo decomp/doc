@@ -1,4 +1,4 @@
-% --- [ Front-end Components ] -------------------------------------------------
+// --- [ Front-end Components ] -------------------------------------------------
 
 \subsection{Front-end Components}
 \label{sec:design_front-end_components}

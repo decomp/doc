@@ -1,4 +1,4 @@
-% --- [ Patch for Unnamed Basic Blocks of LLVM ] -------------------------------
+// --- [ Patch for Unnamed Basic Blocks of LLVM ] -------------------------------
 
 \subsection{Patch for Unnamed Basic Blocks of LLVM}
 \label{app:unnamed_patch}

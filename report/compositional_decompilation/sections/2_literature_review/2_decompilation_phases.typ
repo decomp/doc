@@ -1,4 +1,4 @@
-% --- [ Decompilation Phases ] -------------------------------------------------
+// --- [ Decompilation Phases ] -------------------------------------------------
 
 \subsection{Decompilation Phases}
 \label{sec:lit_review_decompilation_phases}

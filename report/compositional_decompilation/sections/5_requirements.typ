@@ -1,4 +1,4 @@
-% === [ Requirements ] =========================================================
+// === [ Requirements ] =========================================================
 
 // <howto>
 // * what is the software meant to do? (requirements)

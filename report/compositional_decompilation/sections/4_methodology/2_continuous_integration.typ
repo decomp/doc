@@ -1,4 +1,4 @@
-% --- [ Continuous Integration ] -----------------------------------------------
+// --- [ Continuous Integration ] -----------------------------------------------
 
 \subsection{Continuous Integration}
 

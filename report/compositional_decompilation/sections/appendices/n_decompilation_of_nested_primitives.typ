@@ -1,4 +1,4 @@
-% --- [ Decompilation of Nested Primitives ] -----------------------------------
+// --- [ Decompilation of Nested Primitives ] -----------------------------------
 
 \subsection{Decompilation of Nested Primitives}
 \label{app:decompilation_of_nested_primitives}

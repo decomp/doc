@@ -1,4 +1,4 @@
-% --- [ Continuous Integration ] -----------------------------------------------
+// --- [ Continuous Integration ] -----------------------------------------------
 
 \subsection{Continuous Integration}
 \label{sec:ver_continuous_integration}

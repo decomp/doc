@@ -1,4 +1,4 @@
-% --- [ Personal Development ] -------------------------------------------------
+// --- [ Personal Development ] -------------------------------------------------
 
 \subsection{Personal Development}
 

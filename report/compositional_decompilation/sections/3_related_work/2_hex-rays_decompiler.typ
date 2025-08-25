@@ -1,4 +1,4 @@
-% --- [ Hex-Rays Decompiler ] --------------------------------------------------
+// --- [ Hex-Rays Decompiler ] --------------------------------------------------
 
 \subsection{Hex-Rays Decompiler}
 \label{sec:rel_work_hex-rays_decompiler}

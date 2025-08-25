@@ -1,4 +1,4 @@
-% --- [ Restructure Example ] --------------------------------------------------
+// --- [ Restructure Example ] --------------------------------------------------
 
 \subsection{Restructure Example}
 \label{app:restructure_example}

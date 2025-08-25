@@ -1,4 +1,4 @@
-% --- [ Operational Prototyping ] ----------------------------------------------
+// --- [ Operational Prototyping ] ----------------------------------------------
 
 \subsection{Operational Prototyping}
 

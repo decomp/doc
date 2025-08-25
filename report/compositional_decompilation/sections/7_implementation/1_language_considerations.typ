@@ -1,4 +1,4 @@
-% --- [ Language Considerations ] ----------------------------------------------
+// --- [ Language Considerations ] ----------------------------------------------
 
 // <howto>
 // * choice of programming language(s) (implementation)

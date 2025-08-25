@@ -1,4 +1,4 @@
-% --- [ Subgraph Isomorphism Search Library ] ----------------------------------
+// --- [ Subgraph Isomorphism Search Library ] ----------------------------------
 
 \subsection{Subgraph Isomorphism Search Library}
 \label{sec:impl_subgraph_isomorphism_search_library}

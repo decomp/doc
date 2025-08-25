@@ -1,4 +1,4 @@
-% --- [ Middle-end Components ] ------------------------------------------------
+// --- [ Middle-end Components ] ------------------------------------------------
 
 // <howto>
 // * more detailed design of individual components (design)

@@ -1,4 +1,4 @@
-% --- [ Control Flow Analysis Example ] ----------------------------------------
+// --- [ Control Flow Analysis Example ] ----------------------------------------
 
 \subsection{Control Flow Analysis Example}
 \label{app:control_flow_analysis_example}

@@ -1,4 +1,4 @@
-% === [ Conclusion ] ===========================================================
+// === [ Conclusion ] ===========================================================
 
 // <howto>
 // * Reflections on what you have personally learned from this and lessons for the future.
