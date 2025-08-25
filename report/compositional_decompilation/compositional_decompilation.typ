@@ -1,8 +1,54 @@
 #import "@preview/latex-lookalike:0.1.4"
+#import "@preview/hydra:0.6.2": hydra
 
 #set document(title: [Compositional Decompilation using LLVM IR])
 #set document(author: "Robin Eklind")
 #set document(date: datetime(year: 2015, month: 04, day: 21)) // "2015-04-21"
+
+#set text(font: "New Computer Modern")
+#set text(size: 11.5pt)
+
+#set heading(numbering: "1.1")
+
+// Display a heading's numbering and body for hydra.
+#let display-hydra(
+	// The context in which the element was found.
+	ctx,
+	// The heading to display.
+	candidate,
+) = {
+	if candidate.has("numbering") and candidate.numbering != none {
+		numbering(candidate.numbering, ..counter(heading).at(candidate.location()))
+		h(1em)
+	}
+
+	candidate.body
+}
+
+#set page(
+	margin: 2.54cm, // 1 inch
+	header: [
+		#grid(
+			columns: (1fr, 1fr),
+			align: (left, right),
+			stroke: (bottom: 0.5pt + black),
+			inset: (y: 5pt),
+			[
+				#context emph(hydra(2, skip-starting: false, display: display-hydra))
+			], [
+				#context emph(upper(hydra(1, skip-starting: false, display: display-hydra)))
+			],
+		)
+	],
+	header-ascent: 31%,
+)
+
+#set par(
+	justify: true
+)
+
+#show heading: latex-lookalike.style-heading
+#show outline: latex-lookalike.style-outline
 
 // Document
 
@@ -19,17 +65,19 @@
 
 // --- [ Title page ] ----------------------------------------------------------
 
-#latex-lookalike.make-title()
+#{
+set page(header: none)
 
-// TODO: uncomment
-//#include("/sections/abstract.typ")
+latex-lookalike.make-title()
 
-#pagebreak(weak: true)
+include("/sections/abstract.typ")
+
+pagebreak(weak: true)
+}
 
 // --- [ Acknowledgements ] ----------------------------------------------------
 
-// TODO: uncomment
-//#include("/sections/0_acknowledgements.typ")
+#include("/sections/0_acknowledgements.typ")
 
 #pagebreak(weak: true)
 
@@ -47,7 +95,7 @@
 	header: none,
 	footer: none,
 )[
-	#v(2.5cm)
+	#v(3.4cm)
 
 	#align(center)[
 		#emph[This page is unintentionally left blank.]
@@ -96,7 +144,7 @@
 
 // --- [ References ] ----------------------------------------------------------
 
-#bibliography("references.bib")
+#bibliography("references.bib", title: "References")
 
 #pagebreak(weak: true)
 
